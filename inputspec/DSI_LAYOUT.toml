@@ -1,5 +1,5 @@
 [input]
-id = "3DS_LAYOUT"
+id = "DSI_LAYOUT"
 type = "handheld"
 
 [[input.button]]
@@ -30,26 +30,9 @@ element = "r"
 label = "D-Pad"
 hats = 4
 
-[[input.analog]]
-axes = 2
-alignment = "left"
-
-[[input.analog]]
-axes = 2
-label = "Circle Pad"
-alignment = "right"
-
-[[input.analog]]
-axes = 3
-alignment = "gyroscope"
-
-[[input.analog]]
-axes = 3
-alignment = "accelerometer"
-
 [[input.touchscreen]]
-width = 320
-height = 240
+width = 256
+height = 192
 
 [[input.microphone]]
 label = "Microphone"
@@ -58,7 +41,4 @@ label = "Microphone"
 label = "Inner Camera"
 
 [[input.camera]]
-label = "Outer Camera (Left)"
-
-[[input.camera]]
-label = "Outer Camera (Right)"
+label = "Outer Camera"

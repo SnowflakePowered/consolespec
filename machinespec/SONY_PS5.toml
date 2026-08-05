@@ -1,0 +1,25 @@
+[machine]
+name = "PlayStation 5"
+id = "SONY_PS5"
+
+[meta]
+short-name = "PS5"
+licensor = "Sony"
+manufacturer = "Sony"
+type = "console"
+
+[meta.na]
+release-date = "2020-11-12"
+
+[meta.eu]
+release-date = "2020-11-19"
+
+[meta.jp]
+release-date = "2020-11-12"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["DUALSENSE_CONTROLLER", "DUALSHOCK_4_CONTROLLER"]
+ports = 4

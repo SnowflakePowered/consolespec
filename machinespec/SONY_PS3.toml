@@ -12,11 +12,29 @@ type = "console"
 release-date = "2006-11-11"
 
 [input]
-groups = ["controller"]
+groups = ["controller", "usb"]
 
 [input.controller]
 inputs = ["DUALSHOCK_3_CONTROLLER", "DUALSHOCK_CONTROLLER"]
 ports = 4
+
+[input.usb]
+accessories = true
+
+[accessories]
+class = [
+    "disney_infinity",
+    "skylander",
+    "lego_dimensions",
+    "guitar",
+    "piano",
+    "drums",
+    "keyboard",
+    "mouse",
+    "camera",
+    "microphone",
+    "storage"
+]
 
 [[bios]]
 name = "PS3UPDAT.PUP"

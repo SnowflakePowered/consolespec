@@ -12,8 +12,25 @@ type = "console"
 release-date = "2013-11-22"
 
 [input]
-groups = ["controller"]
+groups = ["controller", "usb"]
 
 [input.controller]
 inputs = ["XBOX_CONTROLLER"]
 ports = 4
+
+[input.usb]
+accessories = true
+
+[accessories]
+class = [
+    "disney_infinity",
+    "skylander",
+    "lego_dimensions",
+    "guitar",
+    "drums",
+    "keyboard",
+    "mouse",
+    "camera",
+    "microphone",
+    "storage"
+]

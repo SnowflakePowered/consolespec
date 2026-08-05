@@ -112,6 +112,12 @@ version = "1.0.0"
         type = "string"
         allowedvalues = [ "big", "small" ]
 
+        # Whether the rumble motor is an optional add-on rather than built
+        # in, e.g. the N64 Rumble Pak. Defaults to false.
+        [types.rumbleType.optional]
+        type = "boolean"
+        optional = true
+
     # A pointing device expressing absolute position in 2D or 3D space, e.g. a
     # mouse or the Wii Remote IR. Each dimension also expands to a positive and
     # a negative pointer axis element for continuous movement.
@@ -132,6 +138,20 @@ version = "1.0.0"
     [types.keyboardType]
 
         [types.keyboardType.label]
+        type = "string"
+        optional = true
+
+    # A microphone for voice or sound input.
+    [types.microphoneType]
+
+        [types.microphoneType.label]
+        type = "string"
+        optional = true
+
+    # A camera for image input. One entry per physical camera.
+    [types.cameraType]
+
+        [types.cameraType.label]
         type = "string"
         optional = true
 
@@ -207,6 +227,18 @@ version = "1.0.0"
     type = "array"
     arraytype = "table"
     itemtype = "types.keyboardType"
+    optional = true
+
+    [elements.input.microphone]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.microphoneType"
+    optional = true
+
+    [elements.input.camera]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.cameraType"
     optional = true
 
     [elements.input.touchscreen]

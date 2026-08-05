@@ -1,0 +1,25 @@
+[machine]
+name = "Nintendo Switch 2"
+id = "NINTENDO_NS2"
+
+[meta]
+short-name = "NS2"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.na]
+release-date = "2025-06-05"
+
+[meta.eu]
+release-date = "2025-06-05"
+
+[meta.jp]
+release-date = "2025-06-05"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["SWITCH_2_JOYCONS_CONTROLLER", "SWITCH_2_LEFT_JOYCON_CONTROLLER", "SWITCH_2_PRO_CONTROLLER", "SWITCH_2_RIGHT_JOYCON_CONTROLLER", "SWITCH_JOYCONS_CONTROLLER", "SWITCH_LEFT_JOYCON_CONTROLLER", "SWITCH_PRO_CONTROLLER", "SWITCH_RIGHT_JOYCON_CONTROLLER", "GAMECUBE_CONTROLLER"]
+ports = 8

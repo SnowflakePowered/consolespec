@@ -79,3 +79,6 @@ size = "small"
 [[input.rumble]]
 label = "HD Rumble (Right)"
 size = "small"
+
+[[input.camera]]
+label = "IR Camera"

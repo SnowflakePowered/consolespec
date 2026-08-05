@@ -45,3 +45,6 @@ hats = 4
 [[input.analog]]
 axes = 2
 alignment = "left"
+
+[[input.microphone]]
+label = "Microphone"

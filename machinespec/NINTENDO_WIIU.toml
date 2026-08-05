@@ -12,11 +12,24 @@ type = "console"
 release-date = "2012-11-18"
 
 [input]
-groups = ["gamepad", "controller"]
+groups = ["gamepad", "controller", "usb"]
 
 [input.gamepad]
 inputs = ["WIIU_DRC_CONTROLLER"]
 ports = 1
+
+[input.usb]
+accessories = true
+
+[accessories]
+class = [
+    "disney_infinity",
+    "skylander",
+    "keyboard",
+    "camera",
+    "microphone",
+    "storage"
+]
 
 [input.controller]
 inputs = ["GAMECUBE_CONTROLLER",  "WIIU_PRO_CONTROLLER", "WII_REMOTE_CONTROLLER", "WII_REMOTE_NUNCHUCK_CONTROLLER"]

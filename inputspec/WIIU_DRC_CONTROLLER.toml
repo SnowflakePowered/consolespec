@@ -71,3 +71,9 @@ digital = true
 [[input.touchscreen]]
 width = 854
 height = 480
+
+[[input.microphone]]
+label = "Microphone"
+
+[[input.camera]]
+label = "Front Camera"

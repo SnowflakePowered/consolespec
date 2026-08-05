@@ -33,3 +33,11 @@ hats = 4
 [[input.touchscreen]]
 width = 256
 height = 192
+
+[[input.microphone]]
+label = "Microphone"
+
+[[input.rumble]]
+label = "Rumble Pak"
+size = "small"
+optional = true

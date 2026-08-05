@@ -15,9 +15,15 @@ release-date = "1990-11-21"
 [input]
 groups = ["controller"]
 
+[accessories]
+class = [
+    "mouse"
+]
+
 [input.controller]
-inputs = ["SNES_CONTROLLER", "SNES_MOUSE_CONTROLLER"]
+inputs = ["SNES_CONTROLLER"]
 ports = 2
+accessories = true
 
 [[bios]]
 name = "cx4.data.rom"

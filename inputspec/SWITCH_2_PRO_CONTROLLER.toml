@@ -1,5 +1,5 @@
 [input]
-id = "SWITCH_PRO_CONTROLLER"
+id = "SWITCH_2_PRO_CONTROLLER"
 type = "controller"
 
 [[input.button]]
@@ -39,8 +39,28 @@ label = "R"
 element = "r"
 
 [[input.button]]
+label = "L3"
+element = "clickl"
+
+[[input.button]]
+label = "R3"
+element = "clickr"
+
+[[input.button]]
 label = "Capture"
 element = "0"
+
+[[input.button]]
+label = "C"
+element = "1"
+
+[[input.button]]
+label = "GL"
+element = "2"
+
+[[input.button]]
+label = "GR"
+element = "3"
 
 [[input.directional]]
 label = "D-Pad"

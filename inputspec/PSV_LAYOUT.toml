@@ -59,5 +59,20 @@ axes = 3
 alignment = "accelerometer"
 
 [[input.touchscreen]]
+label = "Touchscreen"
 width = 960
 height = 544
+
+[[input.touchscreen]]
+label = "Rear Touchpad"
+width = 960
+height = 544
+
+[[input.microphone]]
+label = "Microphone"
+
+[[input.camera]]
+label = "Front Camera"
+
+[[input.camera]]
+label = "Rear Camera"

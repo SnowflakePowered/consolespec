@@ -4,6 +4,9 @@ version = "1.0.0"
 [types]
 
     # An input group is a family of input devices the machine accepts.
+    # Either a device group (`inputs` + `ports`) or an accessory port group
+    # (`accessories = true`, with the supported classes listed in the
+    # machine's [accessories] table).
     [types.inputGroupType]
 
         # Inputspec ids of the input devices connectable to this group.
@@ -11,11 +14,19 @@ version = "1.0.0"
         type = "array"
         itemtype = "types.inputIdType"
         minlength = 1
+        optional = true
 
         # Number of ports available for this group's devices.
         [types.inputGroupType.ports]
         type = "integer"
         min = 1
+        optional = true
+
+        # Whether this group hosts accessories rather than input devices.
+        # Defaults to false.
+        [types.inputGroupType.accessories]
+        type = "boolean"
+        optional = true
 
     # Reference to an inputspec id.
     [types.inputIdType]
@@ -203,6 +214,29 @@ optional = true
     type = "array"
     arraytype = "string"
     minlength = 1
+
+# Accessories the machine supports through its accessory input groups.
+[elements.accessories]
+optional = true
+
+    # Classes of supported accessories.
+    [elements.accessories.class]
+    type = "array"
+    arraytype = "string"
+    minlength = 1
+    allowedvalues = [
+        "disney_infinity",
+        "skylander",
+        "lego_dimensions",
+        "guitar",
+        "piano",
+        "drums",
+        "keyboard",
+        "mouse",
+        "camera",
+        "microphone",
+        "storage",
+    ]
 
 # Storage attached to or insertable into the machine.
 [elements.storage]

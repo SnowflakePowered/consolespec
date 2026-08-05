@@ -17,3 +17,10 @@ groups = ["controller"]
 [input.controller]
 inputs = ["N64_CONTROLLER"]
 ports = 4
+accessories = true
+
+[accessories]
+class = [
+    "mouse",
+    "microphone"
+]

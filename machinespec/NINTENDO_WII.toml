@@ -12,7 +12,7 @@ type = "console"
 release-date = "2006-12-02"
 
 [input]
-groups = ["wii", "gamecube"]
+groups = ["wii", "gamecube", "usb"]
 
 [input.wii]
 inputs = ["WII_REMOTE_CONTROLLER", "WII_REMOTE_NUNCHUCK_CONTROLLER"]
@@ -21,6 +21,19 @@ ports = 4
 [input.gamecube]
 inputs = ["GAMECUBE_CONTROLLER"]
 ports = 4
+
+[input.usb]
+accessories = true
+ports = 2
+
+[accessories]
+class = [
+    "disney_infinity",
+    "skylander",
+    "keyboard",
+    "camera",
+    "microphone",
+]
 
 [storage]
 

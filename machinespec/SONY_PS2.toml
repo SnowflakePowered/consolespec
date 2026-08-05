@@ -12,11 +12,25 @@ type = "console"
 release-date = "2000-03-04"
 
 [input]
-groups = ["controller"]
+groups = ["controller", "usb"]
 
 [input.controller]
 inputs = ["DUALSHOCK_2_CONTROLLER", "DUALSHOCK_CONTROLLER"]
 ports = 4
+
+[input.usb]
+accessories = true
+
+[accessories]
+class = [
+    "guitar",
+    "drums",
+    "keyboard",
+    "mouse",
+    "camera",
+    "microphone",
+    "storage"
+]
 
 [[bios]]
 name = "scph-10000.bin"
@@ -45,3 +59,15 @@ md5 = ["dc752f160044f2ed5fc1f4964db2a095"]
 [[bios]]
 name = "scph-70012.bin"
 md5 = ["d333558cc14561c1fdc334c75d5f37b7"]
+
+[[storage.partition]]
+id = "mem1"
+name = "Memory Card 1"
+raw = true
+user = true
+
+[[storage.partition]]
+id = "mem2"
+name = "Memory Card 2"
+raw = true
+user = true

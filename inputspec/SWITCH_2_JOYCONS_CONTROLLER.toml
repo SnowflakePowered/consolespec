@@ -1,5 +1,5 @@
 [input]
-id = "SWITCH_PRO_CONTROLLER"
+id = "SWITCH_2_JOYCONS_CONTROLLER"
 type = "controller"
 
 [[input.button]]
@@ -31,16 +31,20 @@ label = "Home"
 element = "guide"
 
 [[input.button]]
+label = "Capture"
+element = "0"
+
+[[input.button]]
+label = "C"
+element = "1"
+
+[[input.button]]
 label = "L"
 element = "l"
 
 [[input.button]]
 label = "R"
 element = "r"
-
-[[input.button]]
-label = "Capture"
-element = "0"
 
 [[input.directional]]
 label = "D-Pad"
@@ -79,3 +83,11 @@ size = "small"
 [[input.rumble]]
 label = "HD Rumble (Right)"
 size = "small"
+
+[[input.pointer]]
+label = "Mouse (Left)"
+dimensions = 2
+
+[[input.pointer]]
+label = "Mouse (Right)"
+dimensions = 2

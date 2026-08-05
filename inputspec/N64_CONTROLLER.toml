@@ -34,8 +34,11 @@ hats = 4
 axes = 2
 alignment = "left"
 
-[[input.analog]]
+[[input.directional]]
 label = "C-Button"
-axes = 2
-alignment = "right"
-digital = true
+hats = 4
+
+[[input.rumble]]
+label = "Rumble Pak"
+size = "big"
+optional = true

@@ -15,7 +15,7 @@ release-date = "2008-11-01"
 groups = ["layout"]
 
 [input.layout]
-inputs = ["NDS_LAYOUT"]
+inputs = ["DSI_LAYOUT"]
 ports = 1
 
 [[bios]]

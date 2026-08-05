@@ -12,11 +12,20 @@ type = "handheld"
 release-date = "2004-12-12"
 
 [input]
-groups = ["layout"]
+groups = ["layout", "usb"]
 
 [input.layout]
 inputs = ["PSP_LAYOUT"]
 ports = 1
+
+[input.usb]
+accessories = true
+
+[accessories]
+class = [
+    "camera",
+    "microphone"
+]
 
 [[bios]]
 name = "PSPUPDAT.PUP"

@@ -1,34 +1,14 @@
 [input]
-id = "SWITCH_RIGHT_JOYCON_CONTROLLER"
+id = "SWITCH_2_LEFT_JOYCON_CONTROLLER"
 type = "controller"
 
 [[input.button]]
-label = "A"
-element = "a"
+label = "-"
+element = "select"
 
 [[input.button]]
-label = "B"
-element = "b"
-
-[[input.button]]
-label = "X"
-element = "x"
-
-[[input.button]]
-label = "Y"
-element = "y"
-
-[[input.button]]
-label = "+"
-element = "start"
-
-[[input.button]]
-label = "Home"
-element = "guide"
-
-[[input.button]]
-label = "R"
-element = "r"
+label = "L"
+element = "l"
 
 [[input.button]]
 label = "SL"
@@ -38,13 +18,17 @@ element = "0"
 label = "SR"
 element = "1"
 
+[[input.button]]
+label = "Capture"
+element = "guide"
+
 [[input.directional]]
 label = "D-Pad"
 hats = 4
 
 [[input.analog]]
 axes = 2
-alignment = "right"
+alignment = "left"
 
 [[input.analog]]
 axes = 3
@@ -55,13 +39,14 @@ axes = 3
 alignment = "accelerometer"
 
 [[input.trigger]]
-label = "ZR"
-alignment = "right"
+label = "ZL"
+alignment = "left"
 digital = true
 
 [[input.rumble]]
 label = "HD Rumble"
 size = "small"
 
-[[input.camera]]
-label = "IR Camera"
+[[input.pointer]]
+label = "Mouse"
+dimensions = 2

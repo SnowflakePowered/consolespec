@@ -1,46 +1,58 @@
 [input]
-id = "SWITCH_PRO_CONTROLLER"
+id = "DUALSENSE_CONTROLLER"
 type = "controller"
 
 [[input.button]]
-label = "A"
+label = "Cross"
 element = "a"
 
 [[input.button]]
-label = "B"
+label = "Circle"
 element = "b"
 
 [[input.button]]
-label = "X"
+label = "Square"
 element = "x"
 
 [[input.button]]
-label = "Y"
+label = "Triangle"
 element = "y"
 
 [[input.button]]
-label = "+"
+label = "Options"
 element = "start"
 
 [[input.button]]
-label = "-"
+label = "Create"
 element = "select"
 
 [[input.button]]
-label = "Home"
-element = "guide"
-
-[[input.button]]
-label = "L"
+label = "L1"
 element = "l"
 
 [[input.button]]
-label = "R"
+label = "R1"
 element = "r"
 
 [[input.button]]
-label = "Capture"
+label = "L3"
+element = "clickl"
+
+[[input.button]]
+label = "R3"
+element = "clickr"
+
+[[input.button]]
+label = "PS Button"
+element = "guide"
+
+[[input.button]]
+label = "Touchpad Click"
 element = "0"
+
+[[input.button]]
+label = "Mute"
+element = "1"
 
 [[input.directional]]
 label = "D-Pad"
@@ -63,19 +75,22 @@ axes = 3
 alignment = "accelerometer"
 
 [[input.trigger]]
-label = "ZL"
+label = "L2"
 alignment = "left"
-digital = true
 
 [[input.trigger]]
-label = "ZR"
+label = "R2"
 alignment = "right"
-digital = true
 
 [[input.rumble]]
-label = "HD Rumble (Left)"
+label = "Haptic (Left)"
 size = "small"
 
 [[input.rumble]]
-label = "HD Rumble (Right)"
+label = "Haptic (Right)"
 size = "small"
+
+[[input.touchscreen]]
+label = "Touchpad"
+width = 1920
+height = 1080

@@ -1,15 +1,21 @@
 [machine]
-name = "Xbox 360"
-id = "MICROSOFT_X360"
+name = "Xbox Series X|S"
+id = "MICROSOFT_XBS"
 
 [meta]
-short-name = "X360"
+short-name = "XBS"
 licensor = "Microsoft"
 manufacturer = "Microsoft"
 type = "console"
 
 [meta.na]
-release-date = "2005-11-22"
+release-date = "2020-11-10"
+
+[meta.eu]
+release-date = "2020-11-10"
+
+[meta.jp]
+release-date = "2020-11-10"
 
 [input]
 groups = ["controller", "usb"]
@@ -27,10 +33,9 @@ class = [
     "skylander",
     "lego_dimensions",
     "guitar",
-    "piano",
     "drums",
     "keyboard",
-    "camera",
+    "mouse",
     "microphone",
     "storage"
 ]

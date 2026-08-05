@@ -1,0 +1,22 @@
+[machine]
+name = "Nintendo Entertainment System"
+id = "NINTENDO_NES"
+
+[meta]
+short-name = "NES"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+name = "Family Computer"
+
+[meta.na]
+release-date = "1985-10-18"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["NES_CONTROLLER"]
+ports = 2

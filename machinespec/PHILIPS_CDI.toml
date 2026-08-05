@@ -1,0 +1,35 @@
+[machine]
+name = "Philips CD-i"
+id = "PHILIPS_CDI"
+
+[meta]
+short-name = "CD-i"
+licensor = "Philips"
+manufacturer = "Philips"
+type = "console"
+
+[meta.na]
+release-date = "1991-12-03"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["CDI_CONTROLLER", "CDI_MOUSE_CONTROLLER"]
+ports = 1
+
+[[bios]]
+name = "cdi200.rom"
+md5 = ["2969341396aa61e0143dc2351aaa6ef6"]
+
+[[bios]]
+name = "cdi220b.rom"
+md5 = ["ac0d468be366779c9df633be98da250a"]
+
+[[bios]]
+name = "cdi490a.rom"
+md5 = ["f0f4e0bf948930b50be8f97730463e34"]
+
+[[bios]]
+name = "cdi910.rom"
+md5 = ["b69d6553134ad69dfd5ce0ea709b02b5"]

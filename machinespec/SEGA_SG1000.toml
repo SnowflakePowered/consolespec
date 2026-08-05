@@ -1,0 +1,19 @@
+[machine]
+name = "Sega SG-1000"
+id = "SEGA_SG1000"
+
+[meta]
+short-name = "SG-1000"
+licensor = "Sega"
+manufacturer = "Sega"
+type = "console"
+
+[meta.jp]
+release-date = "1983-07-15"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["SG1000_CONTROLLER"]
+ports = 1

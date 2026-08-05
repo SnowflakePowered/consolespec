@@ -1,0 +1,15 @@
+[input]
+id = "CDI_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "Button 1"
+element = "a"
+
+[[input.button]]
+label = "Button 2"
+element = "b"
+
+[[input.directional]]
+label = "Joystick"
+hats = 4

@@ -1,0 +1,23 @@
+[machine]
+name = "Game Boy Color"
+id = "NINTENDO_GBC"
+
+[meta]
+short-name = "GBC"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "handheld"
+
+[meta.jp]
+release-date = "1998-10-21"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["GB_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "gbc_bios.bin"
+md5 = ["dbfce9db9deaa2567f6a84fde55f9680"]

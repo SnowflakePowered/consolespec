@@ -1,0 +1,26 @@
+[machine]
+name = "Playstation Vita"
+id = "SONY_PSV"
+
+[meta]
+short-name = "PSV"
+licensor = "Sony"
+manufacturer = "Sony"
+type = "handheld"
+
+[meta.jp]
+release-date = "2011-12-17"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["PSV_LAYOUT"]
+ports = 1
+
+[storage]
+
+[[storage.partition]]
+id = "ux0"
+name = "Memory Card"
+user = true

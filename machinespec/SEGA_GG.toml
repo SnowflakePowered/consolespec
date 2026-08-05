@@ -1,0 +1,16 @@
+[machine]
+name = "Sega Game Gear"
+id = "SEGA_GG"
+
+[meta]
+short-name = "GG"
+licensor = "Sega"
+manufacturer = "Sega"
+type = "handheld"
+
+[meta.jp]
+release-date = "1990-10-06"
+
+[[bios]]
+name = "bios.gg"
+md5 = ["672e104c3be3a238301aceffc3b23fd6"]

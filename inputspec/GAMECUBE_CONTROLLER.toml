@@ -1,0 +1,65 @@
+[input]
+id = "GAMECUBE_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "X"
+element = "x"
+
+[[input.button]]
+label = "Y"
+element = "y"
+
+[[input.button]]
+label = "Z"
+element = "z"
+
+[[input.button]]
+label = "Digital L"
+element = "l"
+
+[[input.button]]
+label = "Digital R"
+element = "r"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+label = "Control Stick"
+alignment = "left"
+
+[[input.analog]]
+axes = 2
+label = "C-Stick"
+alignment = "right"
+
+[[input.trigger]]
+label = "L"
+alignment = "left"
+
+[[input.trigger]]
+label = "R"
+alignment = "right"
+
+[[input.rumble]]
+label = "Strong Rumble"
+size = "big"
+
+[[input.rumble]]
+label = "Weak Rumble"
+size = "small"

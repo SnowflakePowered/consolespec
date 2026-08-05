@@ -1,0 +1,73 @@
+[input]
+id = "SWITCH_PRO_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "X"
+element = "x"
+
+[[input.button]]
+label = "Y"
+element = "y"
+
+[[input.button]]
+label = "+"
+element = "start"
+
+[[input.button]]
+label = "-"
+element = "select"
+
+[[input.button]]
+label = "Home"
+element = "guide"
+
+[[input.button]]
+label = "L"
+element = "l"
+
+[[input.button]]
+label = "R"
+element = "r"
+
+[[input.button]]
+label = "Capture"
+element = "0"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"
+
+[[input.analog]]
+axes = 2
+alignment = "right"
+
+[[input.analog]]
+axes = 3
+alignment = "gyroscope"
+
+[[input.analog]]
+axes = 3
+alignment = "accelerometer"
+
+[[input.trigger]]
+label = "ZL"
+alignment = "left"
+digital = true
+
+[[input.trigger]]
+label = "ZR"
+alignment = "right"
+digital = true

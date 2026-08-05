@@ -1,0 +1,19 @@
+[machine]
+name = "Xbox 360"
+id = "MICROSOFT_X360"
+
+[meta]
+short-name = "X360"
+licensor = "Microsoft"
+manufacturer = "Microsoft"
+type = "console"
+
+[meta.na]
+release-date = "2005-11-22"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["XBOX_CONTROLLER"]
+ports = 4

@@ -1,0 +1,59 @@
+[input]
+id = "WII_REMOTE_NUNCHUCK_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "C"
+element = "c"
+
+[[input.button]]
+label = "Z"
+element = "z"
+
+[[input.button]]
+label = "1"
+element = "0"
+
+[[input.button]]
+label = "2"
+element = "1"
+
+[[input.button]]
+label = "+"
+element = "start"
+
+[[input.button]]
+label = "-"
+element = "select"
+
+[[input.button]]
+label = "Home"
+element = "guide"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"
+
+[[input.analog]]
+axes = 3
+alignment = "gyroscope"
+
+[[input.analog]]
+axes = 3
+alignment = "accelerometer"
+
+[[input.pointer]]
+label = "IR"
+dimensions = 2

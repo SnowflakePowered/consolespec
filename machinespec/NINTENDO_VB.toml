@@ -1,0 +1,19 @@
+[machine]
+name = "Virtual Boy"
+id = "NINTENDO_VB"
+
+[meta]
+short-name = "VB"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+release-date = "1995-07-21"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["VB_CONTROLLER"]
+ports = 1

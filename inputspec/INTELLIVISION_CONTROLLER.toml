@@ -1,0 +1,75 @@
+[input]
+id = "INTELLIVISION_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "0"
+element = "0"
+
+[[input.button]]
+label = "1"
+element = "1"
+
+[[input.button]]
+label = "*"
+element = "10"
+
+[[input.button]]
+label = "#"
+element = "11"
+
+[[input.button]]
+label = "2"
+element = "2"
+
+[[input.button]]
+label = "3"
+element = "3"
+
+[[input.button]]
+label = "4"
+element = "4"
+
+[[input.button]]
+label = "5"
+element = "5"
+
+[[input.button]]
+label = "6"
+element = "6"
+
+[[input.button]]
+label = "7"
+element = "7"
+
+[[input.button]]
+label = "8"
+element = "8"
+
+[[input.button]]
+label = "9"
+element = "9"
+
+[[input.button]]
+label = "Fire 1"
+element = "a"
+
+[[input.button]]
+label = "Fire 2"
+element = "b"
+
+[[input.button]]
+label = "Reset"
+element = "guide"
+
+[[input.button]]
+label = "Pause"
+element = "select"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.analog]]
+axes = 1
+alignment = "left"

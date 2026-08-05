@@ -1,0 +1,23 @@
+[machine]
+name = "Neo Geo Pocket"
+id = "SNK_NGP"
+
+[meta]
+short-name = "NGP"
+licensor = "SNK"
+manufacturer = "SNK"
+type = "handheld"
+
+[meta.jp]
+release-date = "1998-10-28"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["NGP_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "bios.rom"
+md5 = ["d87d876c4391935c9d48ef352a3ff02d"]

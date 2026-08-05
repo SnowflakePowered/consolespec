@@ -1,0 +1,19 @@
+[machine]
+name = "Atari 2600"
+id = "ATARI_2600"
+
+[meta]
+short-name = "2600"
+licensor = "Atari"
+manufacturer = "Atari"
+type = "console"
+
+[meta.na]
+release-date = "1977-09-11"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["A2600_JOYSTICK_CONTROLLER", "A2600_PADDLE_CONTROLLER"]
+ports = 2

@@ -1,0 +1,47 @@
+[machine]
+name = "PlayStation 2"
+id = "SONY_PS2"
+
+[meta]
+short-name = "PS2"
+licensor = "Sony"
+manufacturer = "Sony"
+type = "console"
+
+[meta.jp]
+release-date = "2000-03-04"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["DUALSHOCK_2_CONTROLLER", "DUALSHOCK_CONTROLLER"]
+ports = 4
+
+[[bios]]
+name = "scph-10000.bin"
+md5 = ["acf4730ceb38ac9d8c7d8e21f2614600"]
+
+[[bios]]
+name = "scph-30003.bin"
+md5 = ["b7fa11e87d51752a98b38e3e691cbf17"]
+
+[[bios]]
+name = "scph-39001.bin"
+md5 = ["d5ce2c7d119f563ce04bc04dbc3a323e"]
+
+[[bios]]
+name = "scph-50003.bin"
+md5 = ["4b59943913d9f9e950ffcbbf75cdb894"]
+
+[[bios]]
+name = "scph-70000.bin"
+md5 = ["0eee5d1c779aa50e94edd168b4ebf42e"]
+
+[[bios]]
+name = "scph-70004.bin"
+md5 = ["dc752f160044f2ed5fc1f4964db2a095"]
+
+[[bios]]
+name = "scph-70012.bin"
+md5 = ["d333558cc14561c1fdc334c75d5f37b7"]

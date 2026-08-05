@@ -1,0 +1,23 @@
+[machine]
+name = "Nintendo GameCube"
+id = "NINTENDO_GCN"
+
+[meta]
+short-name = "GCN"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+release-date = "2001-09-14"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["GAMECUBE_CONTROLLER"]
+ports = 4
+
+[[bios]]
+name = "IPL.bin"
+md5 = ["fc924a7c879b661abc37cec4f018fdf3", "0cdda509e2da83c85bfe423dd87346cc", "db92574caab77a7ec99d4605fd6f2450"]

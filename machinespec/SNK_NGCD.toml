@@ -1,0 +1,31 @@
+[machine]
+name = "Neo Geo CD"
+id = "SNK_NGCD"
+
+[meta]
+short-name = "NGCD"
+licensor = "SNK"
+manufacturer = "SNK"
+type = "console"
+
+[meta.jp]
+release-date = "1994-09-10"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["NG_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "top-sp1.bin"
+md5 = ["122aee210324c72e8a11116e6ef9c0d0"]
+
+[[bios]]
+name = "front-sp1.bin"
+md5 = ["5c2366f25ff92d71788468ca492ebeca"]
+
+[[bios]]
+name = "NeoCD.bin"
+md5 = ["f39572af7584cb5b3f70ae8cc848aba2", "11526d58d4c524daef7d5d677dc6b004"]

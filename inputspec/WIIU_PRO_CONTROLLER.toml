@@ -1,0 +1,65 @@
+[input]
+id = "WIIU_PRO_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "X"
+element = "x"
+
+[[input.button]]
+label = "Y"
+element = "y"
+
+[[input.button]]
+label = "+"
+element = "start"
+
+[[input.button]]
+label = "-"
+element = "select"
+
+[[input.button]]
+label = "Home"
+element = "guide"
+
+[[input.button]]
+label = "L1"
+element = "l"
+
+[[input.button]]
+label = "R1"
+element = "r"
+
+[[input.button]]
+label = "Power"
+element = "0"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"
+
+[[input.analog]]
+axes = 2
+alignment = "right"
+
+[[input.trigger]]
+label = "L2"
+alignment = "left"
+digital = true
+
+[[input.trigger]]
+label = "R2"
+alignment = "right"
+digital = true

@@ -1,0 +1,19 @@
+[machine]
+name = "Watara Supervision"
+id = "WATARA_SV"
+
+[meta]
+short-name = "SV"
+licensor = "Watara"
+manufacturer = "Watara"
+type = "handheld"
+
+[meta.na]
+release-date = "1992"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["SV_LAYOUT"]
+ports = 1

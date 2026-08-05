@@ -1,0 +1,27 @@
+[machine]
+name = "New Nintendo 3DS"
+id = "NINTENDO_N3DS"
+
+[meta]
+short-name = "N3DS"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "handheld"
+
+[meta.jp]
+release-date = "2014-10-11"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["3DS_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "boot9.bin"
+md5 = ["d8675e80e5dd3a9afaaf885d79b14e9c"]
+
+[[bios]]
+name = "boot11.bin"
+md5 = ["43454041b0cddf1a34c130593afa8b9b"]

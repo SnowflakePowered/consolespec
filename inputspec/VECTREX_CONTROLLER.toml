@@ -1,0 +1,23 @@
+[input]
+id = "VECTREX_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "1"
+element = "a"
+
+[[input.button]]
+label = "2"
+element = "b"
+
+[[input.button]]
+label = "3"
+element = "x"
+
+[[input.button]]
+label = "4"
+element = "y"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

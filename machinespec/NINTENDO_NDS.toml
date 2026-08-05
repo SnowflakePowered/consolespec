@@ -1,0 +1,27 @@
+[machine]
+name = "Nintendo DS"
+id = "NINTENDO_NDS"
+
+[meta]
+short-name = "NDS"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "handheld"
+
+[meta.na]
+release-date = "2004-11-21"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["NDS_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "biosnds7.rom"
+md5 = ["df692a80a5b1bc90728bc3dfc76cd948"]
+
+[[bios]]
+name = "biosnds9.rom"
+md5 = ["a392174eb3e572fed6447e956bde4b25"]

@@ -1,0 +1,6 @@
+[machine]
+name = "Arcade"
+id = "ARCADE_MAME"
+
+[meta]
+type = "arcade"

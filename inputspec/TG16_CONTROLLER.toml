@@ -1,0 +1,23 @@
+[input]
+id = "TG16_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "I"
+element = "a"
+
+[[input.button]]
+label = "II"
+element = "b"
+
+[[input.button]]
+label = "Run"
+element = "start"
+
+[[input.button]]
+label = "Select"
+element = "select"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

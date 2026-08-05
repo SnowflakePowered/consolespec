@@ -1,0 +1,15 @@
+[input]
+id = "SMS_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "1"
+element = "a"
+
+[[input.button]]
+label = "2"
+element = "b"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

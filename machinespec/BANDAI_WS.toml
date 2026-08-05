@@ -1,0 +1,19 @@
+[machine]
+name = "Bandai WonderSwan"
+id = "BANDAI_WS"
+
+[meta]
+short-name = "WS"
+licensor = "Bandai"
+manufacturer = "Bandai"
+type = "handheld"
+
+[meta.jp]
+release-date = "1999-03-04"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["WS_LAYOUT"]
+ports = 1

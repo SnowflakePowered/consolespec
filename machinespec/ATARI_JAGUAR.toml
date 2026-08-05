@@ -1,0 +1,19 @@
+[machine]
+name = "Atari Jaguar"
+id = "ATARI_JAGUAR"
+
+[meta]
+short-name = "Jaguar"
+licensor = "Atari"
+manufacturer = "Atari"
+type = "console"
+
+[meta.na]
+release-date = "1993-11-15"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["JAGUAR_CONTROLLER"]
+ports = 2

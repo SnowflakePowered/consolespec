@@ -1,0 +1,23 @@
+[machine]
+name = "Atari Lynx"
+id = "ATARI_LYNX"
+
+[meta]
+short-name = "Lynx"
+licensor = "Atari"
+manufacturer = "Atari"
+type = "handheld"
+
+[meta.na]
+release-date = "1989-10-11"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["LYNX_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "lynxboot.img"
+md5 = ["fcd403db69f54290b51035d82f835e7b"]

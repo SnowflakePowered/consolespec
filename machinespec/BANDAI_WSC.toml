@@ -1,0 +1,19 @@
+[machine]
+name = "Bandai WonderSwan Color"
+id = "BANDAI_WSC"
+
+[meta]
+short-name = "WSC"
+licensor = "Bandai"
+manufacturer = "Bandai"
+type = "handheld"
+
+[meta.jp]
+release-date = "2000-12-09"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["WS_LAYOUT"]
+ports = 1

@@ -1,0 +1,17 @@
+[machine]
+name = "Family Computer Disk System"
+id = "NINTENDO_FDS"
+depends-on = ["NINTENDO_NES"]
+
+[meta]
+short-name = "FDS"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+release-date = "1986-02-21"
+
+[[bios]]
+name = "disksys.rom"
+md5 = ["ca30b50f880eb660a320674ed365ef7a"]

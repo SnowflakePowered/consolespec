@@ -1,0 +1,23 @@
+[machine]
+name = "Satellaview"
+id = "NINTENDO_BS"
+
+[meta]
+short-name = "BS-X"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+release-date = "1995-04-24"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["SNES_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "BS-X.bin"
+md5 = ["fed4d8242cfbed61343d53d48432aced"]

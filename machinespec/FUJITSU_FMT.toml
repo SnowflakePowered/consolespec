@@ -1,0 +1,39 @@
+[machine]
+name = "FM Towns Marty"
+id = "FUJITSU_FMT"
+
+[meta]
+short-name = "FMT"
+licensor = "Fujitsu"
+manufacturer = "Fujitsu"
+type = "console"
+
+[meta.jp]
+release-date = "1993-02-20"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["MARTY_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "FMT_DIC.ROM"
+md5 = ["8fa4e553f28cfc0c30a0a1e589799942"]
+
+[[bios]]
+name = "FMT_DOS.ROM"
+md5 = ["0585b19930d4a7f4c71bcc8a33746588"]
+
+[[bios]]
+name = "FMT_F20.ROM"
+md5 = ["ac0c7021e9bf48ca84b51ab651169a88"]
+
+[[bios]]
+name = "FMT_FNT.ROM"
+md5 = ["b91300e55b70227ce98b59c5f02fa8dd"]
+
+[[bios]]
+name = "FMT_SYS.ROM"
+md5 = ["86fb6f7280689259f0ca839dd3dd6cde", "5b2f2e4c76a7335e4cdba290546ce52f"]

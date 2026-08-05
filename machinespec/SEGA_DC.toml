@@ -1,0 +1,27 @@
+[machine]
+name = "Sega Dreamcast"
+id = "SEGA_DC"
+
+[meta]
+short-name = "DC"
+licensor = "Sega"
+manufacturer = "Sega"
+type = "console"
+
+[meta.jp]
+release-date = "1998-11-27"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["DC_CONTROLLER"]
+ports = 4
+
+[[bios]]
+name = "dc_boot.bin"
+md5 = ["e10c53c2f8b90bab96ead2d368858623"]
+
+[[bios]]
+name = "dc_flash.bin"
+md5 = ["0a93f7940c455905bea6e392dfde92a4"]

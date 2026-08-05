@@ -1,0 +1,92 @@
+[input]
+id = "DUALSHOCK_4_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "Cross"
+element = "a"
+
+[[input.button]]
+label = "Circle"
+element = "b"
+
+[[input.button]]
+label = "Square"
+element = "x"
+
+[[input.button]]
+label = "Triangle"
+element = "y"
+
+[[input.button]]
+label = "Options"
+element = "start"
+
+[[input.button]]
+label = "Share"
+element = "select"
+
+[[input.button]]
+label = "L1"
+element = "l"
+
+[[input.button]]
+label = "R1"
+element = "r"
+
+[[input.button]]
+label = "L3"
+element = "clickl"
+
+[[input.button]]
+label = "R3"
+element = "clickr"
+
+[[input.button]]
+label = "PS Button"
+element = "guide"
+
+[[input.button]]
+label = "Touchpad Click"
+element = "0"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"
+
+[[input.analog]]
+axes = 2
+alignment = "right"
+
+[[input.analog]]
+axes = 3
+alignment = "gyroscope"
+
+[[input.analog]]
+axes = 3
+alignment = "accelerometer"
+
+[[input.trigger]]
+label = "L2"
+alignment = "left"
+
+[[input.trigger]]
+label = "R2"
+alignment = "right"
+
+[[input.rumble]]
+label = "Strong Rumble"
+size = "big"
+
+[[input.rumble]]
+label = "Weak Rumble"
+size = "small"
+
+[[input.touchscreen]]
+label = "Touchpad"
+width = 1920
+height = 943

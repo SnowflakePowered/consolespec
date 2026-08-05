@@ -1,0 +1,41 @@
+[input]
+id = "N64_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "Z"
+element = "z"
+
+[[input.button]]
+label = "L"
+element = "l"
+
+[[input.button]]
+label = "R"
+element = "r"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"
+
+[[input.analog]]
+label = "C-Button"
+axes = 2
+alignment = "right"
+digital = true

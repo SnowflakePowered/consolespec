@@ -1,0 +1,29 @@
+[machine]
+name = "Game Boy Advance"
+id = "NINTENDO_GBA"
+
+[meta]
+short-name = "GBA"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "handheld"
+
+[meta.na]
+release-date = "2001-06-11"
+
+[meta.eu]
+release-date = "2001-06-22"
+
+[meta.jp]
+release-date = "2001-03-21"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["GBA_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "gba_bios.bin"
+md5 = ["a860e8c0b6d573d191e4ec7db1b1e4f6"]

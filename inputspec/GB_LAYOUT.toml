@@ -1,0 +1,23 @@
+[input]
+id = "GB_LAYOUT"
+type = "handheld"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.button]]
+label = "Select"
+element = "select"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

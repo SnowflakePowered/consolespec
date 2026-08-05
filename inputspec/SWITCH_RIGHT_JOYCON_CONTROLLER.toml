@@ -1,0 +1,64 @@
+[input]
+id = "SWITCH_RIGHT_JOYCON_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "X"
+element = "x"
+
+[[input.button]]
+label = "Y"
+element = "y"
+
+[[input.button]]
+label = "+"
+element = "start"
+
+[[input.button]]
+label = "Home"
+element = "guide"
+
+[[input.button]]
+label = "R"
+element = "r"
+
+[[input.button]]
+label = "SL"
+element = "0"
+
+[[input.button]]
+label = "SR"
+element = "1"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "right"
+
+[[input.analog]]
+axes = 3
+alignment = "gyroscope"
+
+[[input.analog]]
+axes = 3
+alignment = "accelerometer"
+
+[[input.trigger]]
+label = "ZR"
+alignment = "right"
+digital = true
+
+[[input.rumble]]
+label = "HD Rumble"
+size = "small"

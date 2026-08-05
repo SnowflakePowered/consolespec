@@ -1,0 +1,22 @@
+[machine]
+name = "Neo Geo"
+id = "SNK_NG"
+
+[meta]
+short-name = "NG"
+licensor = "SNK"
+manufacturer = "SNK"
+type = "console"
+
+[meta.jp]
+release-date = "1991-04-26"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["NG_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "neogeo.zip"

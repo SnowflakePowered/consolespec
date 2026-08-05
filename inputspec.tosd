@@ -1,0 +1,216 @@
+# TOML Schema (https://toml-schema.org/) for inputspec documents.
+# An inputspec describes an input device layout (buttons, directionals,
+# analog clusters, triggers, rumble motors, pointers, keyboards, and
+# touchscreens), following the element vocabulary of the Stone controller spec.
+
+[toml-schema]
+version = "1.0.0"
+
+[types]
+
+    # A digital button, excluding directional buttons.
+    [types.buttonType]
+
+        # Label of the button as printed on the physical device, e.g. "Cross".
+        [types.buttonType.label]
+        type = "string"
+
+        # Semantic element this button maps to: lettered face buttons (a, b, c,
+        # x, y, z), digital shoulder buttons (l, r), UI control buttons (start,
+        # select, guide), analog stick clicks (clickl, clickr), or numbered
+        # buttons (0-31) for buttons without semantic meaning.
+        [types.buttonType.element]
+        type = "string"
+        allowedvalues = [
+            "a", "b", "c", "x", "y", "z",
+            "l", "r",
+            "start", "select", "guide",
+            "clickl", "clickr",
+            "0", "1", "2", "3", "4", "5", "6", "7",
+            "8", "9", "10", "11", "12", "13", "14", "15",
+            "16", "17", "18", "19", "20", "21", "22", "23",
+            "24", "25", "26", "27", "28", "29", "30", "31",
+        ]
+
+        # Whether the button is pressure sensitive, registering an analog
+        # signal from unpressed (0%) to fully depressed (100%), e.g. the
+        # DualShock 2/3 face buttons. Defaults to false.
+        [types.buttonType.analog]
+        type = "boolean"
+        optional = true
+
+    # A directional button cluster (D-pad).
+    [types.directionalType]
+
+        # Label of the directional cluster, e.g. "D-Pad".
+        [types.directionalType.label]
+        type = "string"
+        optional = true
+
+        # Number of directional buttons in the cluster: 4 for the cardinal
+        # directions (N, E, S, W), 8 to add the auxiliary intercardinal
+        # directions (NE, NW, SE, SW).
+        [types.directionalType.hats]
+        type = "integer"
+        allowedvalues = [ 4, 8 ]
+
+    # An analog axis cluster: a paddle or spinner (1 axis), a stick (2 axes),
+    # or a motion sensor (3 axes). Each axis expands to a positive and a
+    # negative element.
+    [types.analogType]
+
+        [types.analogType.label]
+        type = "string"
+        optional = true
+
+        # 1 for paddles and spinners (X), 2 for analog sticks (X, Y), 3 for
+        # motion sensors (X, Y, Z).
+        [types.analogType.axes]
+        type = "integer"
+        allowedvalues = [ 1, 2, 3 ]
+
+        # Which analog cluster this is: an analog stick ("left", "right") or a
+        # motion sensor ("gyroscope", "accelerometer").
+        [types.analogType.alignment]
+        type = "string"
+        allowedvalues = [ "left", "right", "gyroscope", "accelerometer" ]
+
+        # Whether the cluster registers digital signals only, e.g. the N64
+        # C-buttons occupying the right analog position. Defaults to false.
+        [types.analogType.digital]
+        type = "boolean"
+        optional = true
+
+    # An analog shoulder trigger, depressible from 0% to 100%, usually marked
+    # L2 or R2.
+    [types.triggerType]
+
+        [types.triggerType.label]
+        type = "string"
+        optional = true
+
+        # Which side of the device the trigger is on.
+        [types.triggerType.alignment]
+        type = "string"
+        allowedvalues = [ "left", "right" ]
+
+        # Whether the trigger registers a digital signal only, e.g. the
+        # Switch ZL/ZR. Defaults to false.
+        [types.triggerType.digital]
+        type = "boolean"
+        optional = true
+
+    # A rumble motor that shakes the device.
+    [types.rumbleType]
+
+        [types.rumbleType.label]
+        type = "string"
+        optional = true
+
+        # Which of the two conventional rumble motors this is.
+        [types.rumbleType.size]
+        type = "string"
+        allowedvalues = [ "big", "small" ]
+
+    # A pointing device expressing absolute position in 2D or 3D space, e.g. a
+    # mouse or the Wii Remote IR. Each dimension also expands to a positive and
+    # a negative pointer axis element for continuous movement.
+    [types.pointerType]
+
+        [types.pointerType.label]
+        type = "string"
+        optional = true
+
+        # 2 for a mouse or the Wii Remote IR, 3 for devices like the
+        # PlayStation Move.
+        [types.pointerType.dimensions]
+        type = "integer"
+        allowedvalues = [ 2, 3 ]
+
+    # A keyboard with an unspecified amount of keys, e.g. for emulated
+    # computers.
+    [types.keyboardType]
+
+        [types.keyboardType.label]
+        type = "string"
+        optional = true
+
+    # A touch sensitive surface where input is expressed as coordinates on a
+    # 2D plane.
+    [types.touchscreenType]
+
+        [types.touchscreenType.label]
+        type = "string"
+        optional = true
+
+        # Dimensions of the touch surface's coordinate matrix, usually in
+        # pixels.
+        [types.touchscreenType.width]
+        type = "integer"
+        min = 1
+
+        [types.touchscreenType.height]
+        type = "integer"
+        min = 1
+
+[elements.input]
+
+    # Unique identifier for this input layout, e.g. SONY_PSV_LAYOUT.
+    [elements.input.id]
+    type = "string"
+    pattern = "^[A-Z0-9_]+(_CONTROLLER|_DEVICE|_LAYOUT)$"
+
+    # The kind of input device this layout describes. Layouts built into the
+    # machine itself (e.g. a handheld's controls) are "handheld"; detachable
+    # gamepads are "controller"; other peripherals are "device".
+    [elements.input.type]
+    type = "string"
+    allowedvalues = [ "controller", "handheld", "device" ]
+
+    [elements.input.button]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.buttonType"
+    optional = true
+
+    [elements.input.directional]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.directionalType"
+    optional = true
+
+    [elements.input.analog]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.analogType"
+    optional = true
+
+    [elements.input.trigger]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.triggerType"
+    optional = true
+
+    [elements.input.rumble]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.rumbleType"
+    optional = true
+
+    [elements.input.pointer]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.pointerType"
+    optional = true
+
+    [elements.input.keyboard]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.keyboardType"
+    optional = true
+
+    [elements.input.touchscreen]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.touchscreenType"
+    optional = true

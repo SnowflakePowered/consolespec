@@ -1,0 +1,27 @@
+[input]
+id = "VB_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.button]]
+label = "Select"
+element = "select"
+
+[[input.directional]]
+label = "Left D-Pad"
+hats = 4
+
+[[input.directional]]
+label = "Right D-Pad"
+hats = 4

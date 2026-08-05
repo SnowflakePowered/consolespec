@@ -1,0 +1,28 @@
+[machine]
+name = "TurboGrafx-16"
+id = "NEC_TG16"
+
+[meta]
+short-name = "TG16"
+licensor = "NEC"
+manufacturer = "NEC"
+type = "console"
+
+[meta.jp]
+name = "PC Engine"
+release-date = "1987-10-30"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["TG16_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "syscard3.pce"
+md5 = ["ff1a674273fe3540ccef576376407d1d", "38179df8f4ac870017db21ebcbf53114", "0754f903b52e3b3342202bdafb13efa5"]
+
+[[bios]]
+name = "gecard.pce"
+md5 = ["6d2cb14fc3e1f65ceb135633d1694122"]

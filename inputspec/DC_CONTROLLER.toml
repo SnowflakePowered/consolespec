@@ -1,0 +1,31 @@
+[input]
+id = "DC_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "X"
+element = "x"
+
+[[input.button]]
+label = "Y"
+element = "y"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"

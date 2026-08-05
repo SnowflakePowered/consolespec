@@ -1,0 +1,11 @@
+[input]
+id = "A2600_PADDLE_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "Fire"
+element = "a"
+
+[[input.analog]]
+axes = 1
+alignment = "left"

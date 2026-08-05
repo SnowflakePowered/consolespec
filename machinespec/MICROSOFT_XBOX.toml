@@ -1,0 +1,31 @@
+[machine]
+name = "Xbox"
+id = "MICROSOFT_XBOX"
+
+[meta]
+short-name = "XBOX"
+licensor = "Microsoft"
+manufacturer = "Microsoft"
+type = "console"
+
+[meta.na]
+release-date = "2001-11-15"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["XBOX_CONTROLLER"]
+ports = 4
+
+[[bios]]
+name = "mcpx_1.0.bin"
+md5 = ["d49c52a4102f6df7bcf8d0617ac475ed"]
+
+[[bios]]
+name = "complex_4627Debug.bin"
+md5 = ["19b5c6d3d42a707bba620634fe6d4baf", "e8dd61cc6abdbd06aac185e371312dc1"]
+
+[[bios]]
+name = "3944.bin"
+md5 = ["e8b39b98cf775496c1c76e4f7756e6ed", "542c62cb976a4993c8c5027dff9638ce"]

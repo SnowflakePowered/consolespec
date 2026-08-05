@@ -1,0 +1,23 @@
+[machine]
+name = "Game Boy"
+id = "NINTENDO_GB"
+
+[meta]
+short-name = "GB"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "handheld"
+
+[meta.jp]
+release-date = "1989-04-21"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["GB_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "bios.bin"
+md5 = ["a8f84a0ac44da5d3f0ee19f9cea80a8c", "71a378e71ff30b2d8a1f02bf5c7896aa", "32fbbd84168d3482956eb3c5051637f5"]

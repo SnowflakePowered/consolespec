@@ -1,0 +1,27 @@
+[machine]
+name = "Sega Genesis"
+id = "SEGA_GEN"
+
+[meta]
+short-name = "Genesis"
+licensor = "Sega"
+manufacturer = "Sega"
+type = "console"
+
+[meta.eu]
+name = "Mega Drive"
+
+[meta.jp]
+name = "Mega Drive"
+release-date = "1988-10-29"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["GEN6_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "Genesis_OS_ROM.bin"
+md5 = ["d3293ebaaa7f4eb2a6766b68a0fb4609", "45e298905a08f9cfb38fd504cd6dbc84"]

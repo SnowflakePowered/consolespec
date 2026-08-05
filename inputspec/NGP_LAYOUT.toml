@@ -1,0 +1,19 @@
+[input]
+id = "NGP_LAYOUT"
+type = "handheld"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "Option"
+element = "start"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 8

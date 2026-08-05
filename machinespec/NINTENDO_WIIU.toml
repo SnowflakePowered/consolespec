@@ -1,0 +1,23 @@
+[machine]
+name = "WiiU"
+id = "NINTENDO_WIIU"
+
+[meta]
+short-name = "WiiU"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.na]
+release-date = "2012-11-18"
+
+[input]
+groups = ["gamepad", "controller"]
+
+[input.gamepad]
+inputs = ["WIIU_DRC_CONTROLLER"]
+ports = 1
+
+[input.controller]
+inputs = ["GAMECUBE_CONTROLLER",  "WIIU_PRO_CONTROLLER", "WII_REMOTE_CONTROLLER", "WII_REMOTE_NUNCHUCK_CONTROLLER"]
+ports = 8

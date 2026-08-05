@@ -1,0 +1,31 @@
+[input]
+id = "GBA_LAYOUT"
+type = "handheld"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.button]]
+label = "Select"
+element = "select"
+
+[[input.button]]
+label = "L"
+element = "l"
+
+[[input.button]]
+label = "R"
+element = "r"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

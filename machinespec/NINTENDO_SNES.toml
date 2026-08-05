@@ -1,0 +1,92 @@
+[machine]
+name = "Super Nintendo Entertainment System"
+id = "NINTENDO_SNES"
+
+[meta]
+short-name = "SNES"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+name = "Super Famicom"
+release-date = "1990-11-21"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["SNES_CONTROLLER", "SNES_MOUSE_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "cx4.data.rom"
+md5 = ["037ac4296b6b6a5c47c440188d3c72e3"]
+
+[[bios]]
+name = "dsp1.data.rom"
+md5 = ["3d81b45fa0c2aa8b852dfb1ece7c0971"]
+
+[[bios]]
+name = "dsp1.program.rom"
+md5 = ["ae209fbe789fbf11a48aea5ab1197321"]
+
+[[bios]]
+name = "dsp1b.data.rom"
+md5 = ["1e3f568634a7d8284020dddc0ae905bc"]
+
+[[bios]]
+name = "dsp1b.program.rom"
+md5 = ["d10f446888e097cbf500f3f663cf4f6d"]
+
+[[bios]]
+name = "dsp2.data.rom"
+md5 = ["e9417e29223b139c3c4b635a2a3b8744"]
+
+[[bios]]
+name = "dsp2.program.rom"
+md5 = ["aa6e5922a3ed5ded54f24247c11143c5"]
+
+[[bios]]
+name = "dsp3.data.rom"
+md5 = ["0a81210c0a940b997dd9843281008ee6"]
+
+[[bios]]
+name = "dsp3.program.rom"
+md5 = ["d99ca4562818d49cee1f242705bba6f8"]
+
+[[bios]]
+name = "dsp4.data.rom"
+md5 = ["ee4990879eb68e3cbca239c5bc20303d"]
+
+[[bios]]
+name = "dsp4.program.rom"
+md5 = ["a151023b948b90ffc23a5b594bb6fef2"]
+
+[[bios]]
+name = "sgb.boot.rom"
+md5 = ["d574d4f9c12f305074798f54c091a8b4"]
+
+[[bios]]
+name = "st010.data.rom"
+md5 = ["254d70762b6f59f99c27c395aba7d07d"]
+
+[[bios]]
+name = "st010.program.rom"
+md5 = ["1d70019179a59a566a0bb5d3f2845544"]
+
+[[bios]]
+name = "st011.data.rom"
+md5 = ["10bd3f4aa949737ab9836512c35bcc29"]
+
+[[bios]]
+name = "st011.program.rom"
+md5 = ["95222ebf1c0c2990bcf25db43743f032"]
+
+[[bios]]
+name = "st018.data.rom"
+md5 = ["49c898b60d0f15e90d0ba780dd12f366"]
+
+[[bios]]
+name = "st018.program.rom"
+md5 = ["dda40ccd57390c96e49d30a041f9a9e7"]

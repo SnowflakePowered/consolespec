@@ -1,0 +1,55 @@
+[machine]
+name = "Nintendo Wii"
+id = "NINTENDO_WII"
+
+[meta]
+short-name = "Wii"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+release-date = "2006-12-02"
+
+[input]
+groups = ["wii", "gamecube"]
+
+[input.wii]
+inputs = ["WII_REMOTE_CONTROLLER", "WII_REMOTE_NUNCHUCK_CONTROLLER"]
+ports = 4
+
+[input.gamecube]
+inputs = ["GAMECUBE_CONTROLLER"]
+ports = 4
+
+[storage]
+
+[[storage.partition]]
+id = "nand"
+name = "Wii NAND"
+spec = "wii_nand.mtree"
+
+[[storage.partition]]
+id = "sd"
+name = "SD Card"
+user = true
+
+[[storage.partition]]
+id = "slotA"
+name = "GameCube Memory Card A"
+raw = true
+user = true
+
+[[storage.partition]]
+id = "slotB"
+name = "GameCube Memory Card B"
+raw = true
+user = true
+
+[[bios]]
+name = "dsp_rom.bin"
+md5 = ["23645d446729a166ab3a9aaba2f5fba5"]
+
+[[bios]]
+name = "dsp_coef.bin"
+md5 = ["9a6514b88003c9c47e334de654ec550b"]

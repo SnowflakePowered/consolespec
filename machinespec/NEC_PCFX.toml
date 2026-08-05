@@ -1,0 +1,39 @@
+[machine]
+name = "PC-FX"
+id = "NEC_PCFX"
+
+[meta]
+short-name = "PC-FX"
+licensor = "NEC"
+manufacturer = "NEC"
+type = "console"
+
+[meta.jp]
+release-date = "1994-11-23"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["PCFX_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "pcfx.rom"
+md5 = ["08e36edbea28a017f79f8d4f7ff9b6d7"]
+
+[[bios]]
+name = "fx-scsi.rom"
+md5 = ["430e9745f9235c515bc8e652d6ca3004"]
+
+[[bios]]
+name = "pcfxbios.bin"
+md5 = ["08e36edbea28a017f79f8d4f7ff9b6d7"]
+
+[[bios]]
+name = "pcfx.bios"
+md5 = ["08e36edbea28a017f79f8d4f7ff9b6d7"]
+
+[[bios]]
+name = "pcfxv101.bin"
+md5 = ["e2fb7c7220e3a7838c2dd7e401a7f3d8"]

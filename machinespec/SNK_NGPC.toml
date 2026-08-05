@@ -1,0 +1,23 @@
+[machine]
+name = "Neo Geo Pocket Color"
+id = "SNK_NGPC"
+
+[meta]
+short-name = "NGPC"
+licensor = "SNK"
+manufacturer = "SNK"
+type = "handheld"
+
+[meta.jp]
+release-date = "1999-03-16"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["NGP_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "bios.rom"
+md5 = ["3655aacebb43a963607d4cf821fc1301"]

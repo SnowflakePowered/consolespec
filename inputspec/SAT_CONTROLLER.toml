@@ -1,0 +1,39 @@
+[input]
+id = "SAT_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "C"
+element = "c"
+
+[[input.button]]
+label = "X"
+element = "x"
+
+[[input.button]]
+label = "Y"
+element = "y"
+
+[[input.button]]
+label = "Z"
+element = "z"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.button]]
+label = "Select"
+element = "select"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

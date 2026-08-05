@@ -1,0 +1,24 @@
+[machine]
+name = "SuFami Turbo"
+id = "NINTENDO_SFT"
+depends-on = ["NINTENDO_SNES"]
+
+[meta]
+short-name = "SFT"
+licensor = "Nintendo"
+manufacturer = "Bandai"
+type = "console"
+
+[meta.jp]
+release-date = "1996-06-28"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["SNES_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "Sufami Turbo (Japan).sfc"
+md5 = ["d3a44ba7d42a74d3ac58cb9c14c6a5ca"]

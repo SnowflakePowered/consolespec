@@ -1,0 +1,52 @@
+[machine]
+name = "Nintendo Switch"
+id = "NINTENDO_NSW"
+
+[meta]
+short-name = "NSW"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.na]
+release-date = "2017-03-03"
+
+[meta.eu]
+release-date = "2017-03-03"
+
+[meta.jp]
+release-date = "2017-03-03"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["GAMECUBE_CONTROLLER", "SWITCH_JOYCONS_CONTROLLER", "SWITCH_LEFT_JOYCON_CONTROLLER", "SWITCH_PRO_CONTROLLER", "SWITCH_RIGHT_JOYCON_CONTROLLER", "WIIU_PRO_CONTROLLER"]
+ports = 8
+
+[[bios]]
+name = "console.keys"
+
+[[bios]]
+name = "prod.keys"
+
+[[bios]]
+name = "PRODINFO.bin"
+
+[[bios]]
+name = "BCPKG2-1-Normal-Main.bin"
+
+[[bios]]
+name = "fuses.bin"
+
+[[bios]]
+name = "BOOT0"
+
+[[bios]]
+name = "BOOT1"
+
+[[bios]]
+name = "secmon.bin"
+
+[[bios]]
+name = "pkg1_decr.bin"

@@ -1,0 +1,27 @@
+[input]
+id = "MARTY_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "Run"
+element = "start"
+
+[[input.button]]
+label = "Select"
+element = "select"
+
+[[input.button]]
+label = "Resolution"
+element = "r"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

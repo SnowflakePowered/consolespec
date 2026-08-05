@@ -1,0 +1,48 @@
+[input]
+id = "SWITCH_LEFT_JOYCON_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "-"
+element = "select"
+
+[[input.button]]
+label = "L"
+element = "l"
+
+[[input.button]]
+label = "SL"
+element = "0"
+
+[[input.button]]
+label = "SR"
+element = "1"
+
+[[input.button]]
+label = "Capture"
+element = "guide"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"
+
+[[input.analog]]
+axes = 3
+alignment = "gyroscope"
+
+[[input.analog]]
+axes = 3
+alignment = "accelerometer"
+
+[[input.trigger]]
+label = "ZL"
+alignment = "left"
+digital = true
+
+[[input.rumble]]
+label = "HD Rumble"
+size = "small"

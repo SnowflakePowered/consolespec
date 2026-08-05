@@ -1,0 +1,36 @@
+[machine]
+name = "Sega 32X"
+id = "SEGA_32X"
+depends-on = ["SEGA_GEN"]
+
+[meta]
+short-name = "32X"
+licensor = "Sega"
+manufacturer = "Sega"
+type = "addon"
+
+[meta.na]
+release-date = "1994-11-21"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["GEN6_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "32X_G_BIOS.BIN"
+md5 = ["6a5433f6a132a2b683635819a6dcf085", "a70a89510ceba467bf9d21ddd1d141f7"]
+
+[[bios]]
+name = "32X_S_BIOS.BIN"
+md5 = ["7f041b6a55cd7423a6c08a219335269e", "c480d0c9ff0fb1f05c038512b72aec5a"]
+
+[[bios]]
+name = "32X_M_BIOS.BIN"
+md5 = ["f88354ec482be09aeccd76a97bb75868", "3e373e5bd9ea545b43ea190f4174b11b"]
+
+[[bios]]
+name = "32X_M_BIOS_SDK.bin"
+md5 = ["f754457e362a347c80c87f99164c3349"]

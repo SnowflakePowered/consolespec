@@ -1,0 +1,31 @@
+[input]
+id = "LYNX_LAYOUT"
+type = "handheld"
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "Option 1"
+element = "start"
+
+[[input.button]]
+label = "Option 2"
+element = "select"
+
+[[input.button]]
+label = "Restart"
+element = "guide"
+
+[[input.button]]
+label = "Flip"
+element = "0"
+
+[[input.directional]]
+label = "D-Pad"
+hats = 4

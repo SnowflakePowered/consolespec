@@ -1,0 +1,19 @@
+[machine]
+name = "Nintendo 64"
+id = "NINTENDO_N64"
+
+[meta]
+short-name = "N64"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "console"
+
+[meta.jp]
+release-date = "1996-06-23"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["N64_CONTROLLER"]
+ports = 4

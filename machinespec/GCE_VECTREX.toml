@@ -1,0 +1,19 @@
+[machine]
+name = "Vectrex"
+id = "GCE_VECTREX"
+
+[meta]
+short-name = "Vectrex"
+licensor = "General Computer"
+manufacturer = "General Computer"
+type = "console"
+
+[meta.na]
+release-date = "1982-11"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["VECTREX_CONTROLLER"]
+ports = 1

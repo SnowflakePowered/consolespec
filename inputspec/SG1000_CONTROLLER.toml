@@ -1,0 +1,15 @@
+[input]
+id = "SG1000_CONTROLLER"
+type = "controller"
+
+[[input.button]]
+label = "Fire 1"
+element = "a"
+
+[[input.button]]
+label = "Fire 2"
+element = "b"
+
+[[input.directional]]
+label = "Joystick"
+hats = 4

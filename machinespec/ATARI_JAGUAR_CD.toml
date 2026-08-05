@@ -1,0 +1,19 @@
+[machine]
+name = "Atari Jaguar CD"
+id = "ATARI_JAGUAR_CD"
+
+[meta]
+short-name = "Jag CD"
+licensor = "Atari"
+manufacturer = "Atari"
+type = "console"
+
+[meta.na]
+release-date = "1995-09-21"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["JAGUAR_CONTROLLER"]
+ports = 2

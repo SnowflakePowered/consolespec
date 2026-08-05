@@ -1,0 +1,43 @@
+[machine]
+name = "Sega Saturn"
+id = "SEGA_SAT"
+
+[meta]
+short-name = "Saturn"
+licensor = "Sega"
+manufacturer = "Sega"
+type = "console"
+
+[meta.jp]
+release-date = "1994-11-22"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["SAT_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "saturn_bios.bin"
+md5 = ["af5828fdff51384f99b3c4926be27762"]
+
+[[bios]]
+name = "sega_101.bin"
+md5 = ["85ec9ca47d8f6807718151cbcca8b964"]
+
+[[bios]]
+name = "mpr-17933.bin"
+md5 = ["3240872c70984b6cbfda1586cab68dbe"]
+
+[[bios]]
+name = "mpr-18811-mx.ic1"
+md5 = ["255113ba943c92a54facd25a10fd780c"]
+
+[[bios]]
+name = "mpr-19367-mx.ic1"
+md5 = ["1cd19988d1d72a3e7caa0b73234c96b4"]
+
+[[bios]]
+name = "sega_100.bin"
+md5 = ["af5828fdff51384f99b3c4926be27762"]

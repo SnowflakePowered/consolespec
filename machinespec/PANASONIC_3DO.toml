@@ -1,0 +1,39 @@
+[machine]
+name = "3DO Interactive Multiplayer"
+id = "PANASONIC_3DO"
+
+[meta]
+short-name = "3DO"
+licensor = "Panasonic"
+manufacturer = "Panasonic"
+type = "console"
+
+[meta.na]
+release-date = "1993-10-04"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["3DO_CONTROLLER"]
+ports = 8
+
+[[bios]]
+name = "3DO-FZ-10.bin"
+md5 = ["51f2f43ae2f3508a14d9f56597e2d3ce"]
+
+[[bios]]
+name = "goldstar.bin"
+md5 = ["8639fd5e549bd6238cfee79e3e749114"]
+
+[[bios]]
+name = "panafz1.bin"
+md5 = ["f47264dd47fe30f73ab3c010015c155b"]
+
+[[bios]]
+name = "panafz10.bin"
+md5 = ["51f2f43ae2f3508a14d9f56597e2d3ce"]
+
+[[bios]]
+name = "sanyotry.bin"
+md5 = ["35fa1a1ebaaeea286dc5cd15487c13ea"]

@@ -1,0 +1,49 @@
+[machine]
+name = "PlayStation"
+id = "SONY_PSX"
+
+[meta]
+short-name = "psx"
+licensor = "Sony"
+manufacturer = "Sony"
+type = "console"
+
+[meta.jp]
+release-date = "1994-12-03"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["DUALSHOCK_CONTROLLER", "PSX_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "scph1001.bin"
+md5 = ["924e392ed05558ffdb115408c263dccf"]
+
+[[bios]]
+name = "scph5500.bin"
+md5 = ["8dd7d5296a650fac7319bce665a6a53c"]
+
+[[bios]]
+name = "scph5501.bin"
+md5 = ["490f666e1afb15b7362b406ed1cea246"]
+
+[[bios]]
+name = "scph5502.bin"
+md5 = ["32736f17079d0b2b7024407c39bd3050"]
+
+[storage]
+
+[[storage.partition]]
+id = "card1"
+name = "Card 1"
+raw = true
+user = true
+
+[[storage.partition]]
+id = "card2"
+name = "Card 2"
+raw = true
+user = true

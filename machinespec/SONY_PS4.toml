@@ -1,0 +1,19 @@
+[machine]
+name = "PlayStation 4"
+id = "SONY_PS4"
+
+[meta]
+short-name = "PS4"
+licensor = "Sony"
+manufacturer = "Sony"
+type = "console"
+
+[meta.na]
+release-date = "2013-11-15"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["DUALSHOCK_4_CONTROLLER", "DUALSHOCK_CONTROLLER"]
+ports = 4

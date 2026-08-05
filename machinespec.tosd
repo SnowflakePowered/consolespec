@@ -1,0 +1,222 @@
+[toml-schema]
+version = "1.0.0"
+
+[types]
+
+    # An input group is a family of input devices the machine accepts.
+    [types.inputGroupType]
+
+        # Inputspec ids of the input devices connectable to this group.
+        [types.inputGroupType.inputs]
+        type = "array"
+        itemtype = "types.inputIdType"
+        minlength = 1
+
+        # Number of ports available for this group's devices.
+        [types.inputGroupType.ports]
+        type = "integer"
+        min = 1
+
+    # Reference to an inputspec id.
+    [types.inputIdType]
+    type = "string"
+    pattern = "^[A-Z0-9_]+$"
+
+    # A storage partition of the machine.
+    [types.partitionType]
+
+        # Identifier of the partition as known by the machine, e.g. "nand",
+        # "ux0", "slotA".
+        [types.partitionType.id]
+        type = "string"
+        pattern = "^[a-zA-Z0-9_]+$"
+
+        # Human-readable name of the partition, e.g. "Memory Card".
+        [types.partitionType.name]
+        type = "string"
+
+        # Filename of a partitionspec mtree describing the partition's initial
+        # filesystem layout.
+        [types.partitionType.spec]
+        type = "string"
+        pattern = "\\.mtree$"
+        optional = true
+
+        # Whether this partition is a raw block device without a filesystem.
+        # Defaults to false.
+        [types.partitionType.raw]
+        type = "boolean"
+        optional = true
+
+        # Whether this partition is user-provided removable storage.
+        # Defaults to false.
+        [types.partitionType.user]
+        type = "boolean"
+        optional = true
+
+    # Reference to another machinespec id.
+    [types.machineIdType]
+    type = "string"
+    pattern = "^[A-Z0-9_]+$"
+
+    # Region-specific metadata, overriding the machine-wide values for one
+    # market.
+    [types.regionMetaType]
+
+        # Name of the machine in this region, when it differs,
+        # e.g. "Famicom".
+        [types.regionMetaType.name]
+        type = "string"
+        optional = true
+
+        # Abbreviated name of the machine in this region, e.g. "SFC".
+        [types.regionMetaType.short-name]
+        type = "string"
+        optional = true
+
+        # Date the machine was released in this region, as YYYY-MM-DD.
+        # Truncated to YYYY-MM or YYYY when the exact day or month is not
+        # known.
+        [types.regionMetaType.release-date]
+        type = "string"
+        pattern = "^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$"
+        optional = true
+
+    # A BIOS or system file required by the machine.
+    [types.biosType]
+
+        # Filename of the BIOS file.
+        [types.biosType.name]
+        type = "string"
+
+        # MD5 checksums of known-good copies of the file, one per accepted
+        # revision. Omitted when no checksum is known, e.g. for
+        # console-unique files.
+        [types.biosType.md5]
+        type = "array"
+        itemtype = "types.md5Type"
+        minlength = 1
+        optional = true
+
+        # SHA-1 checksums of known-good copies of the file, one per accepted
+        # revision.
+        [types.biosType.sha1]
+        type = "array"
+        itemtype = "types.sha1Type"
+        minlength = 1
+        optional = true
+
+        # SHA-256 checksums of known-good copies of the file, one per
+        # accepted revision.
+        [types.biosType.sha256]
+        type = "array"
+        itemtype = "types.sha256Type"
+        minlength = 1
+        optional = true
+
+    # An MD5 checksum.
+    [types.md5Type]
+    type = "string"
+    pattern = "^[a-f0-9]{32}$"
+
+    # A SHA-1 checksum.
+    [types.sha1Type]
+    type = "string"
+    pattern = "^[a-f0-9]{40}$"
+
+    # A SHA-256 checksum.
+    [types.sha256Type]
+    type = "string"
+    pattern = "^[a-f0-9]{64}$"
+
+# Identity of the machine.
+[elements.machine]
+
+    # Human-readable name of the machine.
+    [elements.machine.name]
+    type = "string"
+
+    # Unique identifier for this machine, matching the Stone platform id,
+    # e.g. NINTENDO_WII.
+    [elements.machine.id]
+    type = "string"
+    pattern = "^[A-Z0-9_]+$"
+
+    # Machines this machine is an addon for and cannot run without,
+    # e.g. SEGA_GEN for the 32X.
+    [elements.machine.depends-on]
+    type = "array"
+    itemtype = "types.machineIdType"
+    minlength = 1
+    optional = true
+
+[elements.meta]
+
+    # Abbreviated name of the machine, e.g. "Wii", "PSV".
+    [elements.meta.short-name]
+    type = "string"
+    optional = true
+
+    # Company that licensed the machine.
+    [elements.meta.licensor]
+    type = "string"
+    optional = true
+
+    # Company that manufactured the machine.
+    [elements.meta.manufacturer]
+    type = "string"
+    optional = true
+
+    # The kind of machine: a home console, a handheld, an addon to another
+    # machine, or an arcade board.
+    [elements.meta.type]
+    type = "string"
+    allowedvalues = [ "console", "handheld", "addon", "arcade" ]
+
+    # Metadata for the North American market.
+    [elements.meta.na]
+    typeof = "types.regionMetaType"
+    optional = true
+
+    # Metadata for the European market.
+    [elements.meta.eu]
+    typeof = "types.regionMetaType"
+    optional = true
+
+    # Metadata for the Japanese market.
+    [elements.meta.jp]
+    typeof = "types.regionMetaType"
+    optional = true
+
+# Input groups the machine accepts. Beyond the fixed `groups` key, each entry
+# is a dynamically named group table, e.g. [input.wii], [input.gamecube].
+[elements.input]
+type = "collection"
+typeof = "types.inputGroupType"
+keypattern = "^[a-z0-9_]+$"
+minlength = 1
+optional = true
+
+    # Names of the input groups, in order. Each name must have a matching
+    # group table.
+    [elements.input.groups]
+    type = "array"
+    arraytype = "string"
+    minlength = 1
+
+# Storage attached to or insertable into the machine.
+[elements.storage]
+optional = true
+
+    [elements.storage.partition]
+    type = "array"
+    arraytype = "table"
+    itemtype = "types.partitionType"
+    optional = true
+
+# BIOS or system files required by the machine.
+[elements.bios]
+type = "array"
+arraytype = "table"
+itemtype = "types.biosType"
+optional = true

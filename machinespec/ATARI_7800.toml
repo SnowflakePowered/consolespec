@@ -1,0 +1,27 @@
+[machine]
+name = "Atari 7800 ProSystem"
+id = "ATARI_7800"
+
+[meta]
+short-name = "7800"
+licensor = "Atari"
+manufacturer = "Atari"
+type = "console"
+
+[meta.na]
+release-date = "1986-05"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["A2600_JOYSTICK_CONTROLLER", "A2600_PADDLE_CONTROLLER", "A7800_JOYPAD_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "7800 BIOS (U).rom"
+md5 = ["0763f1ffb006ddbe32e52d497ee848ae"]
+
+[[bios]]
+name = "7800 BIOS (E).rom"
+md5 = ["397bb566584be7b9764e7a68974c4263"]

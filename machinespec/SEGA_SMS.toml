@@ -1,0 +1,31 @@
+[machine]
+name = "Sega Master System"
+id = "SEGA_SMS"
+
+[meta]
+short-name = "SMS"
+licensor = "Sega"
+manufacturer = "Sega"
+type = "console"
+
+[meta.jp]
+release-date = "1985-10-20"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["SMS_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "bios_E.sms"
+md5 = ["840481177270d5642a14ca71ee72844c"]
+
+[[bios]]
+name = "bios_J.sms"
+md5 = ["24a519c53f67b00640d0048ef7089105"]
+
+[[bios]]
+name = "bios_U.sms"
+md5 = ["840481177270d5642a14ca71ee72844c"]

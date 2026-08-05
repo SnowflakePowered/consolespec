@@ -1,0 +1,35 @@
+[machine]
+name = "Intellivision"
+id = "MATTEL_INT"
+
+[meta]
+short-name = "INT"
+licensor = "Mattel Electronics"
+manufacturer = "Mattel Electronics"
+type = "console"
+
+[meta.na]
+release-date = "1979-12-03"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["INTELLIVISION_CONTROLLER"]
+ports = 2
+
+[[bios]]
+name = "exec.bin"
+md5 = ["62e761035cb657903761800f4437b8af"]
+
+[[bios]]
+name = "grom.bin"
+md5 = ["0cd5946c6473e42e8e4c2137785e427f"]
+
+[[bios]]
+name = "ivoice.bin"
+md5 = ["d5530f74681ec6e0f282dab42e6b1c5f"]
+
+[[bios]]
+name = "ecs.bin"
+md5 = ["2e72a9a2b897d330a35c8b07a6146c52"]

@@ -1,0 +1,27 @@
+[machine]
+name = "Nintendo DSi"
+id = "NINTENDO_DSI"
+
+[meta]
+short-name = "DSi"
+licensor = "Nintendo"
+manufacturer = "Nintendo"
+type = "handheld"
+
+[meta.jp]
+release-date = "2008-11-01"
+
+[input]
+groups = ["layout"]
+
+[input.layout]
+inputs = ["NDS_LAYOUT"]
+ports = 1
+
+[[bios]]
+name = "biosdsi7.rom"
+md5 = ["2e17b63fc7ad43763f11226c96240ef1", "559dae4ea78eb9d67702c56c1d791e81", "c8b9fe70f1ef5cab8e55540cd1c13dc8"]
+
+[[bios]]
+name = "biosdsi9.rom"
+md5 = ["3fbb3f39bd9a96e5d743f138bd4b9907", "87b665fce118f76251271c3732532777"]

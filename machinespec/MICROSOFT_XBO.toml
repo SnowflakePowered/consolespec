@@ -1,0 +1,19 @@
+[machine]
+name = "Xbox One"
+id = "MICROSOFT_XBO"
+
+[meta]
+short-name = "XBO"
+licensor = "Microsoft"
+manufacturer = "Microsoft"
+type = "console"
+
+[meta.na]
+release-date = "2013-11-22"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["XBOX_CONTROLLER"]
+ports = 4

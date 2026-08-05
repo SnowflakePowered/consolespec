@@ -1,0 +1,23 @@
+[machine]
+name = "ColecoVision"
+id = "COLECO_CV"
+
+[meta]
+short-name = "CV"
+licensor = "Coleco"
+manufacturer = "Coleco"
+type = "console"
+
+[meta.na]
+release-date = "1982-08"
+
+[input]
+groups = ["controller"]
+
+[input.controller]
+inputs = ["COLECOVISION_CONTROLLER"]
+ports = 4
+
+[[bios]]
+name = "coleco.rom"
+md5 = ["2c66f5911e5b42b8ebe113403548eee7"]

@@ -25,3 +25,22 @@ md5 = ["2e17b63fc7ad43763f11226c96240ef1", "559dae4ea78eb9d67702c56c1d791e81", "
 [[bios]]
 name = "biosdsi9.rom"
 md5 = ["3fbb3f39bd9a96e5d743f138bd4b9907", "87b665fce118f76251271c3732532777"]
+
+[storage]
+devices = ["nand", "sd"]
+
+[storage.nand]
+name = "Internal NAND"
+
+[[storage.nand.partition]]
+id = "nand"
+name = "nand"
+
+[[storage.nand.partition]]
+id = "photo"
+name = "photo"
+user = true
+
+[storage.sd]
+name = "SD Card"
+user = true

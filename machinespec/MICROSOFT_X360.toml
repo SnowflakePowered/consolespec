@@ -34,3 +34,23 @@ class = [
     "microphone",
     "storage"
 ]
+
+[storage]
+devices = ["hdd", "mu"]
+
+[storage.hdd]
+name = "Hard Drive"
+user = true
+
+[[storage.hdd.partition]]
+id = "system"
+name = "System"
+
+[[storage.hdd.partition]]
+id = "content"
+name = "Content"
+user = true
+
+[storage.mu]
+name = "Memory Unit"
+user = true

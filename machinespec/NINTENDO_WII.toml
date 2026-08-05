@@ -36,28 +36,59 @@ class = [
 ]
 
 [storage]
+devices = ["nand", "sd", "slotA", "slotB"]
 
-[[storage.partition]]
-id = "nand"
-name = "Wii NAND"
-spec = "wii_nand.mtree"
-
-[[storage.partition]]
-id = "sd"
+[storage.sd]
 name = "SD Card"
 user = true
 
-[[storage.partition]]
-id = "slotA"
+[storage.slotA]
 name = "GameCube Memory Card A"
 raw = true
 user = true
 
-[[storage.partition]]
-id = "slotB"
+[storage.slotB]
 name = "GameCube Memory Card B"
 raw = true
 user = true
+
+[storage.nand]
+name = "Wii System Storage"
+
+[[storage.nand.partition]]
+id = "title"
+name = "title"
+spec = [
+    "NINTENDO_WII/title.mtree"
+]
+
+[[storage.nand.partition]]
+id = "ticket"
+name = "ticket"
+
+[[storage.nand.partition]]
+id = "shared1"
+name = "shared1"
+
+[[storage.nand.partition]]
+id = "shared2"
+name = "shared2"
+
+[[storage.nand.partition]]
+id = "sys"
+name = "sys"
+
+[[storage.nand.partition]]
+id = "meta"
+name = "meta"
+
+[[storage.nand.partition]]
+id = "import"
+name = "import"
+
+[[storage.nand.partition]]
+id = "tmp"
+name = "tmp"
 
 [[bios]]
 name = "dsp_rom.bin"

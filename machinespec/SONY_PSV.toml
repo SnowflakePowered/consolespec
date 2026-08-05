@@ -19,8 +19,44 @@ inputs = ["PSV_LAYOUT"]
 ports = 1
 
 [storage]
+devices = ["ux0", "emmc"]
 
-[[storage.partition]]
-id = "ux0"
+[storage.ux0]
 name = "Memory Card"
 user = true
+
+[storage.emmc]
+name = "Internal Storage"
+
+[[storage.emmc.partition]]
+id = "ur0"
+name = "ur0"
+user = true
+
+[[storage.emmc.partition]]
+id = "os0"
+name = "os0"
+
+[[storage.emmc.partition]]
+id = "pd0"
+name = "pd0"
+
+[[storage.emmc.partition]]
+id = "sa0"
+name = "sa0"
+
+[[storage.emmc.partition]]
+id = "tm0"
+name = "tm0"
+
+[[storage.emmc.partition]]
+id = "ud0"
+name = "ud0"
+
+[[storage.emmc.partition]]
+id = "vd0"
+name = "vd0"
+
+[[storage.emmc.partition]]
+id = "vs0"
+name = "vs0"

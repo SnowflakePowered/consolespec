@@ -50,3 +50,42 @@ name = "secmon.bin"
 
 [[bios]]
 name = "pkg1_decr.bin"
+
+[storage]
+devices = ["emmc", "sd"]
+
+[storage.emmc]
+name = "Internal Storage"
+
+[[storage.emmc.partition]]
+id = "boot0"
+name = "BOOT0"
+
+[[storage.emmc.partition]]
+id = "boot1"
+name = "BOOT1"
+
+[[storage.emmc.partition]]
+id = "prodinfo"
+name = "PRODINFO"
+
+[[storage.emmc.partition]]
+id = "prodinfof"
+name = "PRODINFOF"
+
+[[storage.emmc.partition]]
+id = "safe"
+name = "SAFE"
+
+[[storage.emmc.partition]]
+id = "system"
+name = "SYSTEM"
+
+[[storage.emmc.partition]]
+id = "user"
+name = "USER"
+user = true
+
+[storage.sd]
+name = "microSD Card"
+user = true

@@ -35,15 +35,14 @@ name = "scph5502.bin"
 md5 = ["32736f17079d0b2b7024407c39bd3050"]
 
 [storage]
+devices = ["card1", "card2"]
 
-[[storage.partition]]
-id = "card1"
+[storage.card1]
 name = "Card 1"
 raw = true
 user = true
 
-[[storage.partition]]
-id = "card2"
+[storage.card2]
 name = "Card 2"
 raw = true
 user = true

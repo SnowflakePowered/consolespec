@@ -60,14 +60,15 @@ md5 = ["dc752f160044f2ed5fc1f4964db2a095"]
 name = "scph-70012.bin"
 md5 = ["d333558cc14561c1fdc334c75d5f37b7"]
 
-[[storage.partition]]
-id = "mem1"
+[storage]
+devices = ["mem1", "mem2"]
+
+[storage.mem1]
 name = "Memory Card 1"
 raw = true
 user = true
 
-[[storage.partition]]
-id = "mem2"
+[storage.mem2]
 name = "Memory Card 2"
 raw = true
 user = true

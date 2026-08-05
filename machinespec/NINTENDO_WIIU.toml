@@ -34,3 +34,20 @@ class = [
 [input.controller]
 inputs = ["GAMECUBE_CONTROLLER",  "WIIU_PRO_CONTROLLER", "WII_REMOTE_CONTROLLER", "WII_REMOTE_NUNCHUCK_CONTROLLER"]
 ports = 8
+
+[storage]
+devices = ["slc", "slccmpt", "mlc", "sd"]
+
+[storage.slc]
+name = "System NAND"
+
+[storage.slccmpt]
+name = "vWii NAND"
+
+[storage.mlc]
+name = "Internal Storage"
+user = true
+
+[storage.sd]
+name = "SD Card"
+user = true

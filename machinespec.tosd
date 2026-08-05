@@ -33,37 +33,62 @@ version = "1.0.0"
     type = "string"
     pattern = "^[A-Z0-9_]+$"
 
-    # A storage partition of the machine.
+    # A storage device of the machine, e.g. internal NAND, a memory card
+    # slot, or an SD card slot.
+    [types.storageDeviceType]
+
+        # Human-readable name of the device, e.g. "SD Card".
+        [types.storageDeviceType.name]
+        type = "string"
+
+        # Whether this device is a raw block device without a filesystem.
+        # Defaults to false.
+        [types.storageDeviceType.raw]
+        type = "boolean"
+        optional = true
+
+        # Whether this device is user-provided removable storage.
+        # Defaults to false.
+        [types.storageDeviceType.user]
+        type = "boolean"
+        optional = true
+
+        # Partitions of the device.
+        [types.storageDeviceType.partition]
+        type = "array"
+        arraytype = "table"
+        itemtype = "types.partitionType"
+        optional = true
+
+    # A partition of a storage device.
     [types.partitionType]
 
-        # Identifier of the partition as known by the machine, e.g. "nand",
-        # "ux0", "slotA".
+        # Identifier of the partition as known by the machine, e.g. "title".
         [types.partitionType.id]
         type = "string"
         pattern = "^[a-zA-Z0-9_]+$"
 
-        # Human-readable name of the partition, e.g. "Memory Card".
+        # Human-readable name of the partition.
         [types.partitionType.name]
         type = "string"
 
-        # Filename of a partitionspec mtree describing the partition's initial
-        # filesystem layout.
+        # Partitionspec mtrees describing the partition's initial filesystem
+        # layout.
         [types.partitionType.spec]
-        type = "string"
-        pattern = "\\.mtree$"
+        type = "array"
+        itemtype = "types.mtreeRefType"
+        minlength = 1
         optional = true
 
-        # Whether this partition is a raw block device without a filesystem.
-        # Defaults to false.
-        [types.partitionType.raw]
-        type = "boolean"
-        optional = true
-
-        # Whether this partition is user-provided removable storage.
-        # Defaults to false.
+        # Whether this partition holds user data. Defaults to false.
         [types.partitionType.user]
         type = "boolean"
         optional = true
+
+    # Reference to a partitionspec mtree file.
+    [types.mtreeRefType]
+    type = "string"
+    pattern = "\\.mtree$"
 
     # Reference to another machinespec id.
     [types.machineIdType]
@@ -238,15 +263,22 @@ optional = true
         "storage",
     ]
 
-# Storage attached to or insertable into the machine.
+# Storage devices attached to or insertable into the machine. Beyond the
+# fixed `devices` key, each entry is a dynamically named device table,
+# e.g. [storage.nand], [storage.sd].
 [elements.storage]
+type = "collection"
+typeof = "types.storageDeviceType"
+keypattern = "^[a-zA-Z0-9_]+$"
+minlength = 1
 optional = true
 
-    [elements.storage.partition]
+    # Names of the storage devices, in order. Each name must have a matching
+    # device table.
+    [elements.storage.devices]
     type = "array"
-    arraytype = "table"
-    itemtype = "types.partitionType"
-    optional = true
+    arraytype = "string"
+    minlength = 1
 
 # BIOS or system files required by the machine.
 [elements.bios]

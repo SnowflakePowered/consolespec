@@ -140,6 +140,14 @@ def check_machinespecs(root, input_ids, report):
             if dep not in ids:
                 report.error(name, f'depends-on references unknown machine "{dep}"')
 
+        # A machine that owns mtrees but declares no storage has lost its
+        # [storage] section: partitionspec/<machine>/ exists with nothing
+        # pointing at it. Silent section loss is otherwise invisible here,
+        # since every remaining reference still resolves.
+        owned = os.path.join(root, 'partitionspec', doc.get('machine', {}).get('id', ''))
+        if 'storage' not in doc and os.path.isdir(owned):
+            report.error(name, f'has {owned and "partitionspec"} mtrees but no [storage] section')
+
         check_bios(doc, name, report)
 
     for spec_id, spec_file in input_ids.items():
@@ -184,8 +192,8 @@ def check_mtrees(root, referenced, report):
                         report.warn(where, f'unknown keyword "{key}"')
                 if kv.get('type') not in ('dir', 'file'):
                     report.error(where, f'entry has no valid type= ({kv.get("type")})')
-                if kv.get('type') == 'file' and 'size' not in kv:
-                    report.error(where, 'file entry has no size=')
+                # `size` is optional in mtree: a file whose size is not fixed
+                # (a journal sized to its volume, say) legitimately omits it.
                 for algo, width in HEX.items():
                     for key in (algo, f'{algo}digest'):
                         if key in kv and not re.fullmatch(f'[a-f0-9]{{{width}}}', kv[key]):

@@ -62,6 +62,12 @@ def verify(mtree, files):
         if data is None:
             failures.append(f'missing from firmware: {name}')
             continue
+        if gen.is_blank(data):
+            # a blank save carries a name only; recording a size or digest for
+            # one would describe an install that has never been used
+            if 'size' in kv or any(kv.get(a) for a in CHECKS):
+                failures.append(f'{name}: blank save should carry no size or digest')
+            continue
         if 'size' in kv and len(data) != int(kv['size']):
             failures.append(f'{name}: size {len(data)} != {kv["size"]}')
         actual = digests(data)

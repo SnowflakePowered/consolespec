@@ -18,14 +18,6 @@ groups = ["layout"]
 inputs = ["3DS_LAYOUT"]
 ports = 1
 
-[[bios]]
-name = "boot9.bin"
-md5 = ["d8675e80e5dd3a9afaaf885d79b14e9c"]
-
-[[bios]]
-name = "boot11.bin"
-md5 = ["43454041b0cddf1a34c130593afa8b9b"]
-
 [storage]
 devices = ["nand", "sd"]
 
@@ -438,6 +430,36 @@ name = "agbsave"
 [storage.sd]
 name = "microSD Card"
 user = true
+
+[[bios]]
+name = "boot9.bin"
+md5 = ["d8675e80e5dd3a9afaaf885d79b14e9c"]
+sha1 = ["5a3d3d6df4743e6b50afe0fc717fa8a12bc888e6"]
+sha256 = ["2f88744feed717856386400a44bba4b9ca62e76a32c715d4f309c399bf28166f"]
+
+[[bios]]
+name = "boot11.bin"
+md5 = ["43454041b0cddf1a34c130593afa8b9b"]
+sha1 = ["f81039bbc208a54d9c6dec31bd5d30f6ec09d2bd"]
+sha256 = ["74daace1f8067b66cc81fc307a3fdb509cbedc32f903aebe906144dea7a07512"]
+
+[[bios]]
+name = "dspfirm.cdc"
+md5 = ["21fc3d5f261db2a277b1839f413686ef"]
+sha1 = ["e828a31e249b269d69a2298639902d3ca22f49a4"]
+sha256 = ["8e213f3e71d2e3e45d1169bac6465a70eabeb22b303f1fa6d7679370ffad0f54"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v17120.firm"
+md5 = ["f6e7995283944fca0cdac8523786ec04"]
+sha1 = ["ae5c77cd2c43c68050f194f0bb607f7e87e909a5"]
+sha256 = ["d7be76e1813f398dcea85572d0c058f7954761a1d5ea03b5eb5047ac63ac5d6b"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v20262.firm"
+md5 = ["f939e878239170c2ddaa3f5496fd22fa"]
+sha1 = ["cbb9358f4874058bbeb2b2f7c407707d1d93ca25"]
+sha256 = ["be39ade27434ea43fc4d27ab4cd060e7ba63e61477e3bd484f6b9188080cc32c"]
 
 [[bios]]
 name = "NATIVE_FIRM_N3DS_v21288.firm"

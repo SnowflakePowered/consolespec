@@ -1,0 +1,47 @@
+#mtree
+# Nintendo Wii shared2 partition skeleton
+# setup data and logs for WiiConnect24, Miis and the factory test line
+# console state, not update content: paths only, never a digest,
+# and sizes only where a source fixes them
+. type=dir
+./shared2 type=dir
+./shared2/DIAG type=dir
+./shared2/DWC_AUTHDATA type=file
+./shared2/FaceLib type=dir
+./shared2/aging type=dir
+./shared2/cntcache.txt type=file
+./shared2/diag type=dir
+./shared2/ec type=dir
+./shared2/expired type=file
+./shared2/menu type=dir
+./shared2/menu/FaceLib type=dir
+./shared2/menu/FaceLib/RFL_DB.dat type=file size=127968
+./shared2/succession type=dir
+./shared2/succession/shop.log type=file
+./shared2/succession/transfer.id type=file
+./shared2/sys type=dir
+./shared2/sys/NANDBOOTINFO type=file size=4096
+./shared2/sys/SYSCONF type=file size=16384
+./shared2/sys/net type=dir
+./shared2/sys/net/02 type=dir
+./shared2/sys/net/config.dat type=file
+./shared2/sys/net/dhcp.dat type=file
+./shared2/test type=dir
+./shared2/test/testlog.txt type=file
+./shared2/test2 type=dir
+./shared2/test2/dvderror.dat type=file
+./shared2/test2/nanderr.log type=file
+./shared2/title type=dir
+./shared2/wc24 type=dir
+./shared2/wc24/dlcnt.bin type=file
+./shared2/wc24/mbox type=dir
+./shared2/wc24/mbox/wc24recv.ctl type=file size=32768
+./shared2/wc24/mbox/wc24recv.mbx type=file size=48
+./shared2/wc24/mbox/wc24send.ctl type=file size=16384
+./shared2/wc24/mbox/wc24send.mbx type=file size=48
+./shared2/wc24/misc.bin type=file size=1024
+./shared2/wc24/nwc24dl.bin type=file size=63488
+./shared2/wc24/nwc24fl.bin type=file size=32864
+./shared2/wc24/nwc24fls.bin type=file size=12800
+./shared2/wc24/nwc24msg.cbk type=file size=1024
+./shared2/wc24/nwc24msg.cfg type=file size=1024

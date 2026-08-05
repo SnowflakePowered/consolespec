@@ -59,36 +59,168 @@ name = "Wii System Storage"
 id = "title"
 name = "title"
 spec = [
-    "NINTENDO_WII/title.mtree"
+    "NINTENDO_WII/title/2.0E.mtree",
+    "NINTENDO_WII/title/2.0J.mtree",
+    "NINTENDO_WII/title/2.0U.mtree",
+    "NINTENDO_WII/title/2.1E.mtree",
+    "NINTENDO_WII/title/2.2E.mtree",
+    "NINTENDO_WII/title/2.2J.mtree",
+    "NINTENDO_WII/title/2.2U.mtree",
+    "NINTENDO_WII/title/3.0E.mtree",
+    "NINTENDO_WII/title/3.0J.mtree",
+    "NINTENDO_WII/title/3.0U.mtree",
+    "NINTENDO_WII/title/3.1E.mtree",
+    "NINTENDO_WII/title/3.1J.mtree",
+    "NINTENDO_WII/title/3.1U.mtree",
+    "NINTENDO_WII/title/3.2E.mtree",
+    "NINTENDO_WII/title/3.2J.mtree",
+    "NINTENDO_WII/title/3.2U.mtree",
+    "NINTENDO_WII/title/3.3E.mtree",
+    "NINTENDO_WII/title/3.3J.mtree",
+    "NINTENDO_WII/title/3.3U.mtree",
+    "NINTENDO_WII/title/3.4E.mtree",
+    "NINTENDO_WII/title/3.4J.mtree",
+    "NINTENDO_WII/title/3.4U.mtree",
+    "NINTENDO_WII/title/3.5K.mtree",
+    "NINTENDO_WII/title/4.0E.mtree",
+    "NINTENDO_WII/title/4.0J.mtree",
+    "NINTENDO_WII/title/4.0U.mtree",
+    "NINTENDO_WII/title/4.1E.mtree",
+    "NINTENDO_WII/title/4.1J.mtree",
+    "NINTENDO_WII/title/4.1K.mtree",
+    "NINTENDO_WII/title/4.1U.mtree",
+    "NINTENDO_WII/title/4.2E.mtree",
+    "NINTENDO_WII/title/4.2J.mtree",
+    "NINTENDO_WII/title/4.2K.mtree",
+    "NINTENDO_WII/title/4.2U.mtree",
+    "NINTENDO_WII/title/4.3E.mtree",
+    "NINTENDO_WII/title/4.3J.mtree",
+    "NINTENDO_WII/title/4.3K.mtree",
+    "NINTENDO_WII/title/4.3U.mtree",
 ]
 
 [[storage.nand.partition]]
 id = "ticket"
 name = "ticket"
+spec = [
+    "NINTENDO_WII/ticket/2.0E.mtree",
+    "NINTENDO_WII/ticket/2.0J.mtree",
+    "NINTENDO_WII/ticket/2.0U.mtree",
+    "NINTENDO_WII/ticket/2.1E.mtree",
+    "NINTENDO_WII/ticket/2.2E.mtree",
+    "NINTENDO_WII/ticket/2.2J.mtree",
+    "NINTENDO_WII/ticket/2.2U.mtree",
+    "NINTENDO_WII/ticket/3.0E.mtree",
+    "NINTENDO_WII/ticket/3.0J.mtree",
+    "NINTENDO_WII/ticket/3.0U.mtree",
+    "NINTENDO_WII/ticket/3.1E.mtree",
+    "NINTENDO_WII/ticket/3.1J.mtree",
+    "NINTENDO_WII/ticket/3.1U.mtree",
+    "NINTENDO_WII/ticket/3.2E.mtree",
+    "NINTENDO_WII/ticket/3.2J.mtree",
+    "NINTENDO_WII/ticket/3.2U.mtree",
+    "NINTENDO_WII/ticket/3.3E.mtree",
+    "NINTENDO_WII/ticket/3.3J.mtree",
+    "NINTENDO_WII/ticket/3.3U.mtree",
+    "NINTENDO_WII/ticket/3.4E.mtree",
+    "NINTENDO_WII/ticket/3.4J.mtree",
+    "NINTENDO_WII/ticket/3.4U.mtree",
+    "NINTENDO_WII/ticket/3.5K.mtree",
+    "NINTENDO_WII/ticket/4.0E.mtree",
+    "NINTENDO_WII/ticket/4.0J.mtree",
+    "NINTENDO_WII/ticket/4.0U.mtree",
+    "NINTENDO_WII/ticket/4.1E.mtree",
+    "NINTENDO_WII/ticket/4.1J.mtree",
+    "NINTENDO_WII/ticket/4.1K.mtree",
+    "NINTENDO_WII/ticket/4.1U.mtree",
+    "NINTENDO_WII/ticket/4.2E.mtree",
+    "NINTENDO_WII/ticket/4.2J.mtree",
+    "NINTENDO_WII/ticket/4.2K.mtree",
+    "NINTENDO_WII/ticket/4.2U.mtree",
+    "NINTENDO_WII/ticket/4.3E.mtree",
+    "NINTENDO_WII/ticket/4.3J.mtree",
+    "NINTENDO_WII/ticket/4.3K.mtree",
+    "NINTENDO_WII/ticket/4.3U.mtree",
+]
 
 [[storage.nand.partition]]
 id = "shared1"
 name = "shared1"
+spec = [
+    "NINTENDO_WII/shared1/2.0E.mtree",
+    "NINTENDO_WII/shared1/2.0J.mtree",
+    "NINTENDO_WII/shared1/2.0U.mtree",
+    "NINTENDO_WII/shared1/2.1E.mtree",
+    "NINTENDO_WII/shared1/2.2E.mtree",
+    "NINTENDO_WII/shared1/2.2J.mtree",
+    "NINTENDO_WII/shared1/2.2U.mtree",
+    "NINTENDO_WII/shared1/3.0E.mtree",
+    "NINTENDO_WII/shared1/3.0J.mtree",
+    "NINTENDO_WII/shared1/3.0U.mtree",
+    "NINTENDO_WII/shared1/3.1E.mtree",
+    "NINTENDO_WII/shared1/3.1J.mtree",
+    "NINTENDO_WII/shared1/3.1U.mtree",
+    "NINTENDO_WII/shared1/3.2E.mtree",
+    "NINTENDO_WII/shared1/3.2J.mtree",
+    "NINTENDO_WII/shared1/3.2U.mtree",
+    "NINTENDO_WII/shared1/3.3E.mtree",
+    "NINTENDO_WII/shared1/3.3J.mtree",
+    "NINTENDO_WII/shared1/3.3U.mtree",
+    "NINTENDO_WII/shared1/3.4E.mtree",
+    "NINTENDO_WII/shared1/3.4J.mtree",
+    "NINTENDO_WII/shared1/3.4U.mtree",
+    "NINTENDO_WII/shared1/3.5K.mtree",
+    "NINTENDO_WII/shared1/4.0E.mtree",
+    "NINTENDO_WII/shared1/4.0J.mtree",
+    "NINTENDO_WII/shared1/4.0U.mtree",
+    "NINTENDO_WII/shared1/4.1E.mtree",
+    "NINTENDO_WII/shared1/4.1J.mtree",
+    "NINTENDO_WII/shared1/4.1K.mtree",
+    "NINTENDO_WII/shared1/4.1U.mtree",
+    "NINTENDO_WII/shared1/4.2E.mtree",
+    "NINTENDO_WII/shared1/4.2J.mtree",
+    "NINTENDO_WII/shared1/4.2K.mtree",
+    "NINTENDO_WII/shared1/4.2U.mtree",
+    "NINTENDO_WII/shared1/4.3E.mtree",
+    "NINTENDO_WII/shared1/4.3J.mtree",
+    "NINTENDO_WII/shared1/4.3K.mtree",
+    "NINTENDO_WII/shared1/4.3U.mtree",
+]
 
 [[storage.nand.partition]]
 id = "shared2"
 name = "shared2"
+spec = [
+    "NINTENDO_WII/shared2.mtree",
+]
 
 [[storage.nand.partition]]
 id = "sys"
 name = "sys"
+spec = [
+    "NINTENDO_WII/sys.mtree",
+]
 
 [[storage.nand.partition]]
 id = "meta"
 name = "meta"
+spec = [
+    "NINTENDO_WII/meta.mtree",
+]
 
 [[storage.nand.partition]]
 id = "import"
 name = "import"
+spec = [
+    "NINTENDO_WII/import.mtree",
+]
 
 [[storage.nand.partition]]
 id = "tmp"
 name = "tmp"
+spec = [
+    "NINTENDO_WII/tmp.mtree",
+]
 
 [[bios]]
 name = "dsp_rom.bin"

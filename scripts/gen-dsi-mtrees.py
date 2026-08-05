@@ -104,10 +104,16 @@ def firmware_files(zip_path, sysdata_dir=None, label=None):
     return files
 
 
+def is_blank(data):
+    """True for a file a fresh install leaves entirely zero-filled."""
+    return bool(data) and data.count(0) == len(data)
+
+
 def mtree_lines(files, label):
     lines = ['#mtree',
              f'# Nintendo DSi firmware {label} installed NAND state (TWL_MAIN)',
-             '# save files are the zero-filled ones a freshly installed title starts with',
+             '# save files a fresh install leaves blank carry a name only: their',
+             '# size and contents change as soon as the title is used',
              '. type=dir']
     dirs = set()
     for path in files:
@@ -118,6 +124,8 @@ def mtree_lines(files, label):
     for path, data in sorted(entries):
         if data is None:
             lines.append(f'./{path} type=dir')
+        elif is_blank(data):
+            lines.append(f'./{path} type=file')
         else:
             md5, sha1, sha256 = digests(data)
             lines.append(f'./{path} type=file size={len(data)} '

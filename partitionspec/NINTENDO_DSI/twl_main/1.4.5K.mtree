@@ -1,6 +1,7 @@
 #mtree
 # Nintendo DSi firmware 1.4.5K installed NAND state (TWL_MAIN)
-# save files are the zero-filled ones a freshly installed title starts with
+# save files a fresh install leaves blank carry a name only: their
+# size and contents change as soon as the title is used
 . type=dir
 ./shared1 type=dir
 ./shared1/TWLCFG0.dat type=file size=16384 md5=3b184ed615f4b999e44cfba66d04f74c sha1=5d02c630b954b82f57c2a243edf972e8f6fd3071 sha256=93af7ed9fca6951f50892fbe751afb8f6ff283bcb2255d2c4f990c62d567c06f
@@ -43,13 +44,13 @@
 ./title/00030005/484e494b/content/00000000.app type=file size=4174848 md5=7aabf076483e2b74089f679eafcc4275 sha1=bc9b92c627108384792381334b50ab4019f8de17 sha256=77a56a05600f42ea38d47d624b73bed5b49832481dc1ee6e3dfd7eaea210609d
 ./title/00030005/484e494b/content/title.tmd type=file size=520 md5=e6b584ab26674d6fe0c7faa38da2f237 sha1=58faa38f9a2d8e04da8f585fc882b11c3d8aaddd sha256=7326597e7bdd3f7e9b72d150d0079a4f26dbb0af360f26bc9908df3b6045f717
 ./title/00030005/484e494b/data type=dir
-./title/00030005/484e494b/data/private.sav type=file size=524288 md5=59071590099d21dd439896592338bf95 sha1=6a521e1d2a632c26e53b83d2cc4b0edecfc1e68c sha256=07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541
+./title/00030005/484e494b/data/private.sav type=file
 ./title/00030005/484e4b4b type=dir
 ./title/00030005/484e4b4b/content type=dir
 ./title/00030005/484e4b4b/content/00000000.app type=file size=4060160 md5=8d4c3f0ea933b3551ec5c2604313a8d1 sha1=e3a82508ba2528ea52b85ce436a853f9a525097d sha256=ee24d62f70d58117df2495275fcdd14cc9796e33d608e4434662f1337c6d1b49
 ./title/00030005/484e4b4b/content/title.tmd type=file size=520 md5=25eb42793b18aa4b216bb8779f1f0220 sha1=d53521564381897d02e7ba57205c50d12b0383dd sha256=0d8607f48de796462fd9eb01b58ead0c08318304041193d373a372fcfbcbf8ce
 ./title/00030005/484e4b4b/data type=dir
-./title/00030005/484e4b4b/data/private.sav type=file size=524288 md5=59071590099d21dd439896592338bf95 sha1=6a521e1d2a632c26e53b83d2cc4b0edecfc1e68c sha256=07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541
+./title/00030005/484e4b4b/data/private.sav type=file
 ./title/0003000f type=dir
 ./title/0003000f/484e4341 type=dir
 ./title/0003000f/484e4341/content type=dir
@@ -73,11 +74,11 @@
 ./title/00030015/484e464b/content/00000005.app type=file size=4749312 md5=9fa8afb5e1b9547c5ba5265a27122fa4 sha1=6d2a4a1f1cb6213db0a296d4aed1ad8ca2c8053b sha256=70a132935616406247d5483b144e780e302d295ff92dc31400d989e9e672cee1
 ./title/00030015/484e464b/content/title.tmd type=file size=520 md5=57c28db7a08e54bc68f4fadd75a84462 sha1=a3337e6eefd990eb936d79cdfa6075052d25174b sha256=8cd850b3b8516b5ac6a831b94f644ade3085e2d874c774c671d9263188f39587
 ./title/00030015/484e464b/data type=dir
-./title/00030015/484e464b/data/private.sav type=file size=16384 md5=ce338fe6899778aacfc28414f2d9498b sha1=897256b6709e1a4da9daba92b6bde39ccfccd8c1 sha256=4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe
+./title/00030015/484e464b/data/private.sav type=file
 ./title/00030017 type=dir
 ./title/00030017/484e414b type=dir
 ./title/00030017/484e414b/content type=dir
 ./title/00030017/484e414b/content/00000004.app type=file size=1707008 md5=4848b6d71d3095360a6fe2e58f6da3a3 sha1=97387addacdc97409f4b9dc0213f026ef99f1b5c sha256=961db7c1a8d29bfdfd0f2cbbab66d18708d3c608e4392b0c9d08ed8fba24cbfc
 ./title/00030017/484e414b/content/title.tmd type=file size=520 md5=6637a9880611a4d6ac7950cb6c9c2367 sha1=d3449c4cbfb0904246ad2091a30c11b40c48ef16 sha256=fbf09495cb98e2fbe8aefffe98534d045770929d3b83675cce6df8268bbf1b41
 ./title/00030017/484e414b/data type=dir
-./title/00030017/484e414b/data/private.sav type=file size=16384 md5=ce338fe6899778aacfc28414f2d9498b sha1=897256b6709e1a4da9daba92b6bde39ccfccd8c1 sha256=4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe
+./title/00030017/484e414b/data/private.sav type=file

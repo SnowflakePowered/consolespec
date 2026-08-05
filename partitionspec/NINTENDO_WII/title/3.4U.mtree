@@ -1,0 +1,216 @@
+#mtree
+# Nintendo Wii system menu 3.4U installed NAND state (title)
+# sizes and digests are those Nintendo signed into each title's TMD; shared contents live in shared1 and are not listed
+. type=dir
+./title type=dir
+./title/00000001 type=dir
+./title/00000001/00000002 type=dir
+./title/00000001/00000002/content type=dir
+./title/00000001/00000002/content/00000062.app type=file size=64 sha1=804cc2ce8187b9aaaf4b16100de84a9a7cdb2384
+./title/00000001/00000002/content/00000063.app type=file size=6507079 sha1=70ffd5f82c65c577413b682d298ce7d1da84a647
+./title/00000001/00000002/content/00000064.app type=file size=3671296 sha1=2667362a9325e508ddd290397691c309b4e00265
+./title/00000001/00000002/content/title.tmd type=file size=808 sha1=ee70e12aaff4cf5576d2b3bc811133e272784195
+./title/00000001/00000004 type=dir
+./title/00000001/00000004/content type=dir
+./title/00000001/00000004/content/00000009.app type=file size=64 sha1=f9aeabf10f1db2e819e35a91299e64d8ccadcc52
+./title/00000001/00000004/content/title.tmd type=file size=592 sha1=e465142b57955f7da52617b9f79a0067d8c943b6
+./title/00000001/00000009 type=dir
+./title/00000001/00000009/content type=dir
+./title/00000001/00000009/content/00000003.app type=file size=1559562 sha1=1d112c0c4f9c4800a204c273169cfbac7959ebc5
+./title/00000001/00000009/content/title.tmd type=file size=520 sha1=7238a3a1e277ed95aafa553e4f5165750be01e47
+./title/00000001/0000000a type=dir
+./title/00000001/0000000a/content type=dir
+./title/00000001/0000000a/content/00000001.app type=file size=64 sha1=44422de0a6fc7aa0e0d0f86e138889360900ae4c
+./title/00000001/0000000a/content/title.tmd type=file size=592 sha1=59c468b073874de325f582865e067bbec82de307
+./title/00000001/0000000b type=dir
+./title/00000001/0000000b/content type=dir
+./title/00000001/0000000b/content/0000000a.app type=file size=64 sha1=93f38868e05f699c2dcb150eb309141fb61a22e7
+./title/00000001/0000000b/content/title.tmd type=file size=592 sha1=6eeef316fb936458ed05d886fe76155cfa5791cf
+./title/00000001/0000000c type=dir
+./title/00000001/0000000c/content type=dir
+./title/00000001/0000000c/content/00000004.app type=file size=64 sha1=e2ca55942c7a084d5f411609f0ffcf82a9fdee42
+./title/00000001/0000000c/content/00000005.app type=file size=1609764 sha1=d80c1f853597b7536a928ded6231e862a913b2b9
+./title/00000001/0000000c/content/title.tmd type=file size=556 sha1=16443da0e8fc9914a7fbd0a0dcf263831537e47c
+./title/00000001/0000000d type=dir
+./title/00000001/0000000d/content type=dir
+./title/00000001/0000000d/content/0000000a.app type=file size=64 sha1=46d05d4ca62812fc5d22417642d030922dffbddb
+./title/00000001/0000000d/content/0000000b.app type=file size=1610884 sha1=edd4d882407807787b3e227011b651f2cca0fc4f
+./title/00000001/0000000d/content/title.tmd type=file size=556 sha1=3dab279523d1db9b25967e6aaa7109a67c9d1a5c
+./title/00000001/0000000e type=dir
+./title/00000001/0000000e/content type=dir
+./title/00000001/0000000e/content/0000000a.app type=file size=64 sha1=021bf24484c589a2c026d09db067bddf8183022e
+./title/00000001/0000000e/content/0000000b.app type=file size=1612524 sha1=a77eb451c04b3de80ce3bf2c93202bc2a2d1c62a
+./title/00000001/0000000e/content/title.tmd type=file size=556 sha1=2cdc4953a0f10dae0909621d3a3279f819671ec1
+./title/00000001/0000000f type=dir
+./title/00000001/0000000f/content type=dir
+./title/00000001/0000000f/content/00000003.app type=file size=296192 sha1=2780fd8a3edc30d0a112670823d86e9cfed64d1a
+./title/00000001/0000000f/content/0000000a.app type=file size=64 sha1=7eb4ed0152182c55e8fa64b86534913985575834
+./title/00000001/0000000f/content/0000000b.app type=file size=1612544 sha1=a086cf5a467b802a06e3602378d6ffe00b21ea54
+./title/00000001/0000000f/content/title.tmd type=file size=592 sha1=a94fb180b13afd7326fe3c7c0d398e1a32717677
+./title/00000001/00000010 type=dir
+./title/00000001/00000010/content type=dir
+./title/00000001/00000010/content/00000002.app type=file size=64 sha1=10147994c3c598104f1dd8eaeaf6a1eadc85ee44
+./title/00000001/00000010/content/title.tmd type=file size=592 sha1=3f73c30ad85ab73ba4b84b8563534fc288c2be5d
+./title/00000001/00000011 type=dir
+./title/00000001/00000011/content type=dir
+./title/00000001/00000011/content/00000004.app type=file size=64 sha1=ce001e48da70903609e3fa82ee84161456053e93
+./title/00000001/00000011/content/00000005.app type=file size=1613824 sha1=67122884e3f36e6488201eef3078f64a0a56d198
+./title/00000001/00000011/content/title.tmd type=file size=556 sha1=da8f86615f879c82f1e33281470ae0e33759745c
+./title/00000001/00000014 type=dir
+./title/00000001/00000014/content type=dir
+./title/00000001/00000014/content/00000002.app type=file size=64 sha1=fc043d39a79f3f08fae8e167cf83609047e46d27
+./title/00000001/00000014/content/title.tmd type=file size=592 sha1=589af8795fbadeef7afb1057e4f7e9683d3d730d
+./title/00000001/00000015 type=dir
+./title/00000001/00000015/content type=dir
+./title/00000001/00000015/content/00000003.app type=file size=296192 sha1=2780fd8a3edc30d0a112670823d86e9cfed64d1a
+./title/00000001/00000015/content/0000000c.app type=file size=64 sha1=3570fac902494841f24f1506eaf20cb2448c46b3
+./title/00000001/00000015/content/0000000d.app type=file size=1614284 sha1=e85bc489b098a071285230ba4d101ee73e6d17d5
+./title/00000001/00000015/content/title.tmd type=file size=592 sha1=95619f60f7b83cb249d5cda89bfaccccc7fa73cf
+./title/00000001/00000016 type=dir
+./title/00000001/00000016/content type=dir
+./title/00000001/00000016/content/00000006.app type=file size=64 sha1=b72e4cebfe914a394c22a016cfdc04070459fcbf
+./title/00000001/00000016/content/00000007.app type=file size=1620500 sha1=1581976261ac6b27182cdb3ebef34072a955f815
+./title/00000001/00000016/content/title.tmd type=file size=556 sha1=2fe6fb9669ac7ec5424efd331ee622fc4ee5d174
+./title/00000001/0000001c type=dir
+./title/00000001/0000001c/content type=dir
+./title/00000001/0000001c/content/00000014.app type=file size=64 sha1=92658f0d11c58873bd603a7ab5aa3da7e56b607e
+./title/00000001/0000001c/content/title.tmd type=file size=988 sha1=a95ae403bb1959c5c3250bb76bb2d86e21290559
+./title/00000001/0000001e type=dir
+./title/00000001/0000001e/content type=dir
+./title/00000001/0000001e/content/00000025.app type=file size=64 sha1=11285cf94741742bd96ae307786b47c02d17a84c
+./title/00000001/0000001e/content/title.tmd type=file size=592 sha1=5fd69cdf8197c405a02a8419ae1aaf0fd9c09190
+./title/00000001/0000001f type=dir
+./title/00000001/0000001f/content type=dir
+./title/00000001/0000001f/content/0000002d.app type=file size=64 sha1=f60f4900d85374411a7ce2e22ab1be6ddee3ee07
+./title/00000001/0000001f/content/title.tmd type=file size=1024 sha1=0f6a1f549d31ecd5f46bbb916649399d5cc237cb
+./title/00000001/00000021 type=dir
+./title/00000001/00000021/content type=dir
+./title/00000001/00000021/content/00000018.app type=file size=64 sha1=693bca7dcf9dfe38a885ba236cfdaf989bdd6fe8
+./title/00000001/00000021/content/title.tmd type=file size=1024 sha1=4de821e3cdd0e87db32ae62ac25ceb3559408482
+./title/00000001/00000022 type=dir
+./title/00000001/00000022/content type=dir
+./title/00000001/00000022/content/0000000f.app type=file size=64 sha1=eded23e8247e9a0cadd596af41ecb3e0332a5781
+./title/00000001/00000022/content/title.tmd type=file size=1024 sha1=99452f4eee235555c3b11b9793cfe78c8027f0ee
+./title/00000001/00000023 type=dir
+./title/00000001/00000023/content type=dir
+./title/00000001/00000023/content/0000000f.app type=file size=64 sha1=8e1faa449d7807217dffc4a05563ef2fdc54a289
+./title/00000001/00000023/content/title.tmd type=file size=1024 sha1=cebcb283453d591e6df15c0649eb4d524f15376f
+./title/00000001/00000024 type=dir
+./title/00000001/00000024/content type=dir
+./title/00000001/00000024/content/00000018.app type=file size=64 sha1=f64d62a118b4acf05e3baab0ca215998a57a8105
+./title/00000001/00000024/content/title.tmd type=file size=1024 sha1=1b91560a1b7aaa7f92c610bb04dce2f2c00651c5
+./title/00000001/00000025 type=dir
+./title/00000001/00000025/content type=dir
+./title/00000001/00000025/content/00000019.app type=file size=64 sha1=e8585f9f5c1b2b7825e6820c9aa5401182c14213
+./title/00000001/00000025/content/title.tmd type=file size=1024 sha1=07a8bae20abae2e54421b7e89a0c7825ece74f4b
+./title/00000001/00000026 type=dir
+./title/00000001/00000026/content type=dir
+./title/00000001/00000026/content/0000000f.app type=file size=64 sha1=8be938d6293a64fa5d113609709656bf893d9772
+./title/00000001/00000026/content/title.tmd type=file size=1024 sha1=fec3e30df184e5d7bf32fbbcb7baabca3bec0bdb
+./title/00000001/00000032 type=dir
+./title/00000001/00000032/content type=dir
+./title/00000001/00000032/content/0000000f.app type=file size=64 sha1=f7d7c825ffd7af6f084d45909bf0e2a96bdcfb9a
+./title/00000001/00000032/content/title.tmd type=file size=1024 sha1=9340fd98a25133b6e314ce6ba729257f56b17f85
+./title/00000001/00000033 type=dir
+./title/00000001/00000033/content type=dir
+./title/00000001/00000033/content/00000000.app type=file size=64 sha1=c768b8168b4abd67ed77e6bc8393eed425e3922c
+./title/00000001/00000033/content/title.tmd type=file size=1024 sha1=9119ded24b5e34da06d4d77968b087a9f2f4ce1f
+./title/00000001/00000035 type=dir
+./title/00000001/00000035/content type=dir
+./title/00000001/00000035/content/00000013.app type=file size=64 sha1=f3458645cc8755ca0a0658902482b416d6405ab5
+./title/00000001/00000035/content/title.tmd type=file size=988 sha1=c38519cf7e117f666f64089b8be586da9a95daf2
+./title/00000001/00000037 type=dir
+./title/00000001/00000037/content type=dir
+./title/00000001/00000037/content/0000000f.app type=file size=64 sha1=126e8b46fc6c0746353246bfb71652615c16b01f
+./title/00000001/00000037/content/title.tmd type=file size=1024 sha1=d574ada642f13ec3dac2854dbc47026e6f55718a
+./title/00000001/0000003c type=dir
+./title/00000001/0000003c/content type=dir
+./title/00000001/0000003c/content/00000000.app type=file size=64 sha1=88ab9cf7e4870b766f799a674afa0c5387b170d5
+./title/00000001/0000003c/content/title.tmd type=file size=1024 sha1=0f10ee7bcd26d2b7f5e9ed583f10e56118be6f84
+./title/00000001/0000003d type=dir
+./title/00000001/0000003d/content type=dir
+./title/00000001/0000003d/content/00000000.app type=file size=64 sha1=6b34cbce22a74612918d4e49381cd28e51ffdedd
+./title/00000001/0000003d/content/title.tmd type=file size=1024 sha1=67b07cac929d12bde2e72a0e73588ededd0a2bef
+./title/00000001/000000fe type=dir
+./title/00000001/000000fe/content type=dir
+./title/00000001/000000fe/content/00000002.app type=file size=1559562 sha1=1d112c0c4f9c4800a204c273169cfbac7959ebc5
+./title/00000001/000000fe/content/title.tmd type=file size=520 sha1=2cb062319692a096c6f0db6ad963653575c0131b
+./title/00000001/00000100 type=dir
+./title/00000001/00000100/content type=dir
+./title/00000001/00000100/content/00000005.app type=file size=64 sha1=d3413a39c3ef6d143388ac6db38885c0cfeb7bd2
+./title/00000001/00000100/content/00000006.app type=file size=20232 sha1=b067d1eaa51e11186ce0fe30dafd02bf57fd271c
+./title/00000001/00000100/content/title.tmd type=file size=556 sha1=63a18a8b5c47b7e4359a74df65e647ac33b267c5
+./title/00000001/00000101 type=dir
+./title/00000001/00000101/content type=dir
+./title/00000001/00000101/content/00000009.app type=file size=64 sha1=26f27ea7ae60ba27bee95aa1dda7e57e4be77b68
+./title/00000001/00000101/content/0000000a.app type=file size=181476 sha1=97befcd1ca1b68a931c4898f4552bcfd2c76fbdc
+./title/00000001/00000101/content/title.tmd type=file size=556 sha1=2f714a7b9ad8b87ce6659232c83a644816124b18
+./title/00010002 type=dir
+./title/00010002/48414141 type=dir
+./title/00010002/48414141/content type=dir
+./title/00010002/48414141/content/00000006.app type=file size=271616 sha1=ce0aad0fac9c666af9cf7d1c5c791fc679d25b7f
+./title/00010002/48414141/content/00000007.app type=file size=345600 sha1=a2ca7a1f39bb5e294c14ca7c1060a6dae2d38a3a
+./title/00010002/48414141/content/00000008.app type=file size=2032736 sha1=1884d850e609d20f1c1286532b63d86262b2cd69
+./title/00010002/48414141/content/00000009.app type=file size=3718081 sha1=5b258e944e268d6a7a96eb3176b6dbe21a650532
+./title/00010002/48414141/content/title.tmd type=file size=628 sha1=b9a2de8cfda50bf780d5aa57a5d1c0076edd7068
+./title/00010002/48414241 type=dir
+./title/00010002/48414241/content type=dir
+./title/00010002/48414241/content/00000022.app type=file size=828 sha1=d7f8a1fdd7efa8a8b41f982e74fa13d5222ec914
+./title/00010002/48414241/content/00000032.app type=file size=7004 sha1=c183afaefa4b8ae5a38bdecc336e9e8749ec6d80
+./title/00010002/48414241/content/00000039.app type=file size=3148800 sha1=38585d3afd136ee0e7e52c7d21d94cd6c9147996
+./title/00010002/48414241/content/0000003a.app type=file size=4397222 sha1=d56a03c735ef5bd6c2e7b561ae053592526d0340
+./title/00010002/48414241/content/00000044.app type=file size=312576 sha1=a6465a7dd3c49b08156732bec613643eab093e7d
+./title/00010002/48414241/content/00000047.app type=file size=435904 sha1=29fd2a38f6e6ea82965a8b9d4c0f69f6d3e87478
+./title/00010002/48414241/content/00000048.app type=file size=3139456 sha1=5fe39135f7180c63911d09d922c6a2a33d7e5426
+./title/00010002/48414241/content/title.tmd type=file size=1132 sha1=e0a7883f0cb65cc3d34639f2dec416e4cf787494
+./title/00010002/48414341 type=dir
+./title/00010002/48414341/content type=dir
+./title/00010002/48414341/content/00000016.app type=file size=296192 sha1=6f4c46e3c5723a778a16c61b9089b37f9d70f7d5
+./title/00010002/48414341/content/00000017.app type=file size=419200 sha1=d3f21ba99c5649212fb921fb692ba07370982f53
+./title/00010002/48414341/content/00000018.app type=file size=2631136 sha1=5e0325b32438065bbc33fb82b755a250d93a9f9b
+./title/00010002/48414341/content/00000019.app type=file size=1623872 sha1=d3f3331947e7b54e36f368429e1ac4619c6bd9b8
+./title/00010002/48414341/content/title.tmd type=file size=736 sha1=7677dcd0fdff9851c8eb2529a74b4eb291c8e571
+./title/00010002/48414645 type=dir
+./title/00010002/48414645/content type=dir
+./title/00010002/48414645/content/0000000a.app type=file size=1179658 sha1=3d12c2cac0395d2b4de24b5d31adec0158dd70e8
+./title/00010002/48414645/content/0000000c.app type=file size=323840 sha1=868c5e7fd88b6dcef3168c9f510ebba59b667bdb
+./title/00010002/48414645/content/0000000d.app type=file size=1925536 sha1=3c3bdec3e81441325e093c49380163e9d744597f
+./title/00010002/48414645/content/0000000e.app type=file size=6276 sha1=3f06fa01562e3c3452bafc19faba7c24fd336c64
+./title/00010002/48414645/content/0000000f.app type=file size=14688 sha1=551810cbd719a78dd17fa56fa0b79d358ee901c0
+./title/00010002/48414645/content/00000010.app type=file size=3271554 sha1=e9b051e1b4b8282a8384e88ebd3fa90fa0fe124f
+./title/00010002/48414645/content/00000011.app type=file size=296192 sha1=33ac4d5a49137e8730ea463a4c83626cf2809f4a
+./title/00010002/48414645/content/title.tmd type=file size=916 sha1=d17a874db121be3df70665a4fd2b8505a04592e6
+./title/00010002/48414745 type=dir
+./title/00010002/48414745/content type=dir
+./title/00010002/48414745/content/0000000a.app type=file size=257792 sha1=f2926539bb6a0592435b9ed7854ce858ef712033
+./title/00010002/48414745/content/0000000b.app type=file size=2018688 sha1=1bb643fa5f5e11930849b5efd514f08d30ead975
+./title/00010002/48414745/content/0000000c.app type=file size=3992 sha1=a097c92839270470aaa51396b758ff65b2d1aedc
+./title/00010002/48414745/content/0000000d.app type=file size=3940 sha1=310a965fb2ea8068f3cc0806b51689d721cae6e6
+./title/00010002/48414745/content/00000011.app type=file size=3653028 sha1=331c506e42fd626ee18b8b81bc481bb453753e1a
+./title/00010002/48414745/content/00000012.app type=file size=914075 sha1=bc8f38c22eee0288593bcb8619908743c9028aa9
+./title/00010002/48414745/content/00000013.app type=file size=296192 sha1=33ac4d5a49137e8730ea463a4c83626cf2809f4a
+./title/00010002/48414745/content/title.tmd type=file size=916 sha1=f4579bdada1525691e647dd5dc8784630571776d
+./title/00010002/48415941 type=dir
+./title/00010002/48415941/content type=dir
+./title/00010002/48415941/content/0000000b.app type=file size=337024 sha1=2c8e01051a80cdc1346f00f69e77dabdaeb991cd
+./title/00010002/48415941/content/0000000c.app type=file size=2273696 sha1=a38bca501d65f20391303c2c5a1e7bf5637fcce6
+./title/00010002/48415941/content/0000000d.app type=file size=2712153 sha1=f2c4742415c260a5d13504b2fe92a41c1e6eafde
+./title/00010002/48415941/content/0000000e.app type=file size=1892 sha1=ec715965288f69489f0e43b36b796e8b63499467
+./title/00010002/48415941/content/0000000f.app type=file size=1908 sha1=35094fc9c3f70e2f4852a1da4e77944fff4f3937
+./title/00010002/48415941/content/00000011.app type=file size=312576 sha1=58858c8566a55edeecc6ef9182d76b61c3897142
+./title/00010002/48415941/content/title.tmd type=file size=772 sha1=289bfab2bf8861df62830a8cd95bc113566a2e75
+./title/00010008 type=dir
+./title/00010008/48414b45 type=dir
+./title/00010008/48414b45/content type=dir
+./title/00010008/48414b45/content/00000009.app type=file size=64 sha1=70650e02efba7eb9c2d5ec801872c69f80ff9179
+./title/00010008/48414b45/content/0000000a.app type=file size=1047968 sha1=6e8b812730fdb02e781cd2e51f068167bc22fac7
+./title/00010008/48414b45/content/0000000b.app type=file size=686880 sha1=8a12e3bcc66787391d2521bb2d51903699d76ff6
+./title/00010008/48414b45/content/0000000c.app type=file size=296192 sha1=33ac4d5a49137e8730ea463a4c83626cf2809f4a
+./title/00010008/48414b45/content/title.tmd type=file size=700 sha1=e03bebe6500c5eb140d4828e65c204c233c8392f
+./title/00010008/48414c45 type=dir
+./title/00010008/48414c45/content type=dir
+./title/00010008/48414c45/content/00000008.app type=file size=64 sha1=313be4338e84a78667a6ff3503e874ff49230f1a
+./title/00010008/48414c45/content/00000009.app type=file size=1247712 sha1=ee8e78aa48acde8b9d10a1a5bbca8114d332472b
+./title/00010008/48414c45/content/0000000a.app type=file size=443840 sha1=99f5b48b6a274aaa628cdd95a0d85af7b455c18a
+./title/00010008/48414c45/content/0000000b.app type=file size=296192 sha1=33ac4d5a49137e8730ea463a4c83626cf2809f4a
+./title/00010008/48414c45/content/title.tmd type=file size=736 sha1=aaa572d87f309809a40715f7dd32efaf053034d0

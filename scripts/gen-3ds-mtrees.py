@@ -42,6 +42,45 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ctrtmd  # noqa: E402
 
 
+# The directories a clean CTRNAND carries besides title/, and the files that
+# live in them. Both were read from reference ctrtransfer images and confirmed
+# identical between an o3DS and an n3DS one, so they are properties of the
+# filesystem layout rather than of either console.
+#
+# The files themselves are console-unique: SecureInfo_A holds the region and
+# serial, LocalFriendCodeSeed_B and MOVABLE.SED are per-console key material,
+# HWCAL* is that unit's hardware calibration, and the dbs/ databases hold its
+# install state. Their digests are therefore never recorded — a digest would
+# fingerprint one particular console.
+CTRNAND_DIRS = [
+    'data', 'dbs', 'fixdata', 'fixdata/sysdata', 'private', 'ro', 'ro/private',
+    'ro/shared', 'ro/sys', 'rw', 'rw/shared', 'rw/sys', 'ticket', 'title', 'tmp',
+]
+
+# Sizes are given only where they are structurally fixed: fixed-layout signed
+# blobs, and the pre-allocated databases that do not grow with use. Both
+# reference images agree on every size below.
+CTRNAND_FILES = {
+    'dbs/certs.db': 24576,
+    'dbs/title.db': 412672,
+    'private/MOVABLE.SED': 320,
+    'ro/sys/HWCAL0.dat': 2512,
+    'ro/sys/HWCAL1.dat': 2512,
+    'rw/sys/LocalFriendCodeSeed_B': 272,
+    'rw/sys/SecureInfo_A': 273,
+    'rw/sys/rand_seed': 64,
+}
+
+# Present on every CTRNAND but with no dependable size: the FAT journal is
+# sized to its volume (the two reference images disagree, 114688 vs 98304),
+# ticket.db and import.db grow with what the console has installed, and the
+# tmp_* databases hold whatever an in-flight install left behind.
+CTRNAND_FILES_UNSIZED = [
+    '__journal.nn_', 'dbs/import.db', 'dbs/ticket.db',
+    'dbs/tmp_i.db', 'dbs/tmp_t.db',
+]
+
+
 def firmware_key(label):
     """Sort key placing firmware labels in release order.
 
@@ -100,23 +139,38 @@ def title_sets(rows):
 
 def mtree_lines(entries, label, partition, missing):
     lines = ['#mtree',
-             f'# Nintendo 3DS firmware {label} installed title contents ({partition})',
-             '# sizes and digests are those Nintendo signed into each title\'s TMD']
+             f'# Nintendo 3DS firmware {label} installed state ({partition})',
+             '# title content sizes and digests are those Nintendo signed into each TMD']
+    if partition == 'ctrnand':
+        lines.append('# console-unique files carry name and size only, never a digest')
     if missing:
         lines.append(f'# {missing} title(s) omitted: no TMD available from NUS')
     lines.append('. type=dir')
-    dirs = set()
+
+    dirs = set(CTRNAND_DIRS) if partition == 'ctrnand' else set()
     for path in entries:
         parts = path.split('/')[:-1]
         for i in range(1, len(parts) + 1):
             dirs.add('/'.join(parts[:i]))
+        # every installed title also carries a cmd directory
+        if path.startswith('title/') and path.endswith('.app'):
+            dirs.add('/'.join(path.split('/')[:4]) + '/cmd')
+
     rows = [(d, None) for d in dirs] + list(entries.items())
+    if partition == 'ctrnand':
+        rows += [(p, (size, None)) for p, size in CTRNAND_FILES.items()]
+        rows += [(p, (None, None)) for p in CTRNAND_FILES_UNSIZED]
     for path, value in sorted(rows):
         if value is None:
             lines.append(f'./{path} type=dir')
         else:
             size, sha256 = value
-            lines.append(f'./{path} type=file size={size} sha256={sha256}')
+            line = f'./{path} type=file'
+            if size is not None:
+                line += f' size={size}'
+            if sha256:
+                line += f' sha256={sha256}'
+            lines.append(line)
     return lines
 
 

@@ -18,14 +18,6 @@ groups = ["layout"]
 inputs = ["3DS_LAYOUT"]
 ports = 1
 
-[[bios]]
-name = "boot9.bin"
-md5 = ["d8675e80e5dd3a9afaaf885d79b14e9c"]
-
-[[bios]]
-name = "boot11.bin"
-md5 = ["43454041b0cddf1a34c130593afa8b9b"]
-
 [storage]
 devices = ["nand", "sd"]
 
@@ -825,6 +817,24 @@ name = "SD Card"
 user = true
 
 [[bios]]
+name = "boot9.bin"
+md5 = ["d8675e80e5dd3a9afaaf885d79b14e9c"]
+sha1 = ["5a3d3d6df4743e6b50afe0fc717fa8a12bc888e6"]
+sha256 = ["2f88744feed717856386400a44bba4b9ca62e76a32c715d4f309c399bf28166f"]
+
+[[bios]]
+name = "boot11.bin"
+md5 = ["43454041b0cddf1a34c130593afa8b9b"]
+sha1 = ["f81039bbc208a54d9c6dec31bd5d30f6ec09d2bd"]
+sha256 = ["74daace1f8067b66cc81fc307a3fdb509cbedc32f903aebe906144dea7a07512"]
+
+[[bios]]
+name = "dspfirm.cdc"
+md5 = ["21fc3d5f261db2a277b1839f413686ef"]
+sha1 = ["e828a31e249b269d69a2298639902d3ca22f49a4"]
+sha256 = ["8e213f3e71d2e3e45d1169bac6465a70eabeb22b303f1fa6d7679370ffad0f54"]
+
+[[bios]]
 name = "AGB_FIRM_v2576.firm"
 md5 = ["a5150b96d03b7aa4b15c57ecf1e5b2a4"]
 sha1 = ["e929dfad1af3438cfb0711988b07eec8192eb273"]
@@ -843,6 +853,18 @@ sha1 = ["df40bedc040c32ad53dbd59c8cd9781a57cecc2b"]
 sha256 = ["f9b41c4d53774e6d8ae6985ddc8938a875f35870834f1ad8cf1d7ac85afc05a3"]
 
 [[bios]]
+name = "NATIVE_FIRM_v17120.firm"
+md5 = ["513cf34e0e6cc23717f91eca9f29ab2b"]
+sha1 = ["e7a2b0f662d7d9988191a42140ab75ae7071933a"]
+sha256 = ["0c70b776220835065ddb97cf14f660826020a9b1e2b131e43dd0ac533490662a"]
+
+[[bios]]
+name = "NATIVE_FIRM_v20262.firm"
+md5 = ["180d297732415d27ca49e69967eb68b6"]
+sha1 = ["e813b29ca0c660eb22f72cba8d9d2ec773e25e54"]
+sha256 = ["270a27dc2113a8ef90deeb1ab06efe0716f84488bf4d8b008e55383a397ed5d2"]
+
+[[bios]]
 name = "NATIVE_FIRM_v22313.firm"
 md5 = ["98cf5384775c98bb9cfcf545113068ac"]
 sha1 = ["e77500e47a9e2a04ede7db96a34f9df829070c0b"]
@@ -859,6 +881,12 @@ name = "NATIVE_FIRM_v24368.firm"
 md5 = ["a60e2504caa53562bc9498bf60c465f7"]
 sha1 = ["d47d4a8331bb456ff2644ef01b058bef75dd2dac"]
 sha256 = ["116ed99805f9a9ae261b11e5329adceb115eddf4cb185bc722e5e721eb825e5f"]
+
+[[bios]]
+name = "NATIVE_FIRM_v2516.firm"
+md5 = ["cdf667f075231119c393005d1c0b500b"]
+sha1 = ["9153aed777fadebca7916da112344392e90952a9"]
+sha256 = ["cfa0af910b67dac9aba5cfcb3765fe47b652840dc8be3de689c183ba9eaf9307"]
 
 [[bios]]
 name = "NATIVE_FIRM_v25396.firm"
@@ -907,6 +935,12 @@ name = "NATIVE_FIRM_v32673.firm"
 md5 = ["d30a253d95fcfeccbf5a448acbc817b3"]
 sha1 = ["6e75a6f4f36b222825774541395c0ccfe9e02a52"]
 sha256 = ["d6fe484b0a7cda9c11afb1c94d629bf04fafe02cfb2e9746882ab93220126280"]
+
+[[bios]]
+name = "NATIVE_FIRM_v8758.firm"
+md5 = ["63644cb34c19d562e0608261b4f7ed53"]
+sha1 = ["6923a85c89d0b2e2e60e0d5f4a0a0507a3e66de0"]
+sha256 = ["ec989cb493adcd43de7bac3b2e214bd5746535b6a3a4450d4d97da5a4770fddb"]
 
 [[bios]]
 name = "SAFE_MODE_FIRM_v432.firm"

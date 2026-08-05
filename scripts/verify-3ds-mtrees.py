@@ -122,7 +122,17 @@ def main():
             if have is None:
                 failures.append(f'no reconstructed {partition} title set for this label')
             else:
+                skeleton = set(gen.CTRNAND_FILES) | set(gen.CTRNAND_FILES_UNSIZED)
                 for path, kv in sorted(want.items()):
+                    if path in skeleton:
+                        # console-unique files: check the recorded size where the
+                        # generator gives one, and never expect a digest
+                        expect = gen.CTRNAND_FILES.get(path)
+                        if expect is not None and int(kv.get('size', -1)) != expect:
+                            failures.append(f'{path}: size {kv.get("size")} != {expect}')
+                        if kv.get('sha256'):
+                            failures.append(f'{path}: has a digest but is console-unique')
+                        continue
                     if path not in have:
                         failures.append(f'not derivable from TMDs: {path}')
                         continue

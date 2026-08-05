@@ -1,0 +1,234 @@
+#mtree
+# PS Vita official firmware 01.000 system software (sa0)
+. type=dir
+./data type=dir
+./data/dic type=dir
+./data/dic/utf16be type=dir
+./data/dic/utf16be/DA type=dir
+./data/dic/utf16be/DA/DA type=dir
+./data/dic/utf16be/DA/DA/njubase1.a type=file size=110600 md5=9ea554c6c8b1c22980fb7a1d1aadc5bf sha1=cfc758849c12f0087b0ceea3919956e4a384f654 sha256=a052e6ad80a4cc999279d6b2f0773f8620dcdf3e4deefd876abcb718d61f06be
+./data/dic/utf16be/DA/DA/njubase2.a type=file size=96406 md5=59661837649e9c246b977c05f3c5e2f4 sha1=74e4adfbc585a4fdc1691d1751e1f4fa34ebd232 sha256=91ac9be2e27c9e958ec9a49ff4934b1d43f4782ab14a052f844771027e916bc4
+./data/dic/utf16be/DA/DA/njubase3.a type=file size=866270 md5=b88d47dd0b51ac7fe66633821fb535ad sha1=2d9ea333377252bc8dfc02205dd83db832d8bcb4 sha256=68f8be3cc50d89b211c0d4ce33da3391f85d37c535b135e47ba6a662f4f06b2c
+./data/dic/utf16be/DA/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/DE type=dir
+./data/dic/utf16be/DE/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/DE/regular type=dir
+./data/dic/utf16be/DE/regular/njexyomi.a type=file size=1760 md5=2fc48d894ad311e1b3f7a9985a09a13b sha1=19298bd4d5e5bd190caf0d66f7408a07e4b33403 sha256=6755a5a9c9ea1fddce95d3282e5d0e45809e69eeae22f9bac6a5cbe60272b87c
+./data/dic/utf16be/DE/regular/njubase1.a type=file size=122100 md5=02907d28ca81626f4f824bfb21332399 sha1=1de9417e6ea74d226cd11abb3ef56339a68a4437 sha256=ced03a2dedcbfb31e5fcb18c6669c56ddfec84ac01cbb3fe816a2c0daa784320
+./data/dic/utf16be/DE/regular/njubase2.a type=file size=116312 md5=0149adb42472a2715a882eef66ed888d sha1=293abe055eb0ddaf702b175ff1121beab9071e17 sha256=88aa1444e915ad83e759dfbde14a1c2c3bce2ce58832d18588756d4ae4a02d87
+./data/dic/utf16be/DE/regular/njubase3.a type=file size=1296886 md5=8b44b2033d929d024fd7033cb1d35731 sha1=f34238cfc433f01af3025d9ce7ef25ce37986a40 sha256=8d41f1208175d5600299b98cf88fcb14ba16560ef6b027f7e9038183d7409ee8
+./data/dic/utf16be/EN type=dir
+./data/dic/utf16be/EN/GB type=dir
+./data/dic/utf16be/EN/GB/njubase1gb.a type=file size=4608 md5=a7096f5462a2beb6bffd6310584b9f16 sha1=eb7fb87c5d1ffd4897af30938dae875f84c34d17 sha256=2988c6c0c6792aaa2272e834600d188f86bc493185b8712d40a4e71c67503b2e
+./data/dic/utf16be/EN/US type=dir
+./data/dic/utf16be/EN/US/njubase1us.a type=file size=3584 md5=27617bdad14adc4f3e55501a54255b19 sha1=5b93a4a3cec76352b365e095aec220b9f66d1218 sha256=2453014032cd722f9ce1319979e588307d6b051e0d404b50a4fd17537a877a11
+./data/dic/utf16be/EN/njcon.a type=file size=160 md5=d260bb218c72f4a28d8f416a4ffdecfb sha1=14656e7d9e89a9fe843ad17ddf55e6f2fd3b453f sha256=0a220a769c27448b560f05eb178b686e6201533d261963357aebe75535677a23
+./data/dic/utf16be/EN/njubase1.a type=file size=137152 md5=aad512010b9663d08f0825280cb56b08 sha1=3851a085c14c5557fd9d5ad79bf9d48adb8ae421 sha256=f47cb3131bbb9582451d658466f41016628576fa2fc4547b9a2007113ac6febc
+./data/dic/utf16be/EN/njubase2.a type=file size=258682 md5=cf0d11206d7ba6bdeaa8decf421984e4 sha1=566b459ae0b853e1bdbf3ea591eb5c3304ca2ec4 sha256=fabf9383723f3cccc09a4adad2a5ba6798853736ed129fcd0132037d4cdc4bec
+./data/dic/utf16be/EN/njubase3.a type=file size=1247452 md5=65de9e937276cd4b732dea97d188463f sha1=39c8c53350d8664051775db91de2c70d55b811a9 sha256=4108747c6d9c196539d2f11de03d108572d4d5aadc9af45713bcbd609e9143f7
+./data/dic/utf16be/EN/njyomi.a type=file size=1759 md5=e00e70e07394aeeec68a6e3f08c23191 sha1=608db2b053ec4ca2bbc171947f6e70de97599dfd sha256=846166fdefe189cdea386c64b57bbcbcd6db9a2ed60e359fbf7fa544b7b91bf3
+./data/dic/utf16be/ES type=dir
+./data/dic/utf16be/ES/ES type=dir
+./data/dic/utf16be/ES/ES/njexyomi.a type=file size=1306 md5=84c26e9aae2c4ce843353bd03d157bdf sha1=11056d3bdfbe9b73226ba33914ce948415f5acfd sha256=f626ffc5dbf41682bc64361dbc4b93db6d4be137df5c45b2a7759f30bbdc1d97
+./data/dic/utf16be/ES/ES/njubase1.a type=file size=117742 md5=273dd9e5b30530d76aabd157cc730c2a sha1=6236799747bc86b6da3c7cb9263cb63feee5a6fb sha256=9a30427ba4ceed583e1838fe85d970920240f7451ea8cee23b4611a5c6c7d0e2
+./data/dic/utf16be/ES/ES/njubase2.a type=file size=87296 md5=6cfdfc035862bb6343b8d76c69660384 sha1=5030ae075acd8d1a766f48c2373739bb7a6d70a6 sha256=0eb7e744ad32c535e4319d31aecb2d9764536e098e953c4efa7b1cc456d244c9
+./data/dic/utf16be/ES/ES/njubase3.a type=file size=1548326 md5=fbcaf48b44a1e40e13cff849984d54e2 sha1=7b9efbb07aa9543079201e13b3806f32886b4fd3 sha256=397fc2cd8d3d9d0d6ead396d7d63636b526befc54250bcfcc79e8e761fcf91d0
+./data/dic/utf16be/ES/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/FI type=dir
+./data/dic/utf16be/FI/FI type=dir
+./data/dic/utf16be/FI/FI/njubase1.a type=file size=108462 md5=38e0eb1c795c310e4e9e30cfbc2cf8c0 sha1=9e6e1094bbba4397c9b060bd0d97befb02e43ab6 sha256=5f5139634539179fff6fdda3e87f099d4540358b0556059e82a248b7629fab56
+./data/dic/utf16be/FI/FI/njubase2.a type=file size=86448 md5=dc02c63bf547654fbe541259c887a022 sha1=f89bfe4197e06d8cb3c4611934567f11f00f278a sha256=3ae6511d810987053b78da07fba909ea1b55035ddfa08e4b165fcaf8ac4116b9
+./data/dic/utf16be/FI/FI/njubase3.a type=file size=1195176 md5=d74687e486b51525e56af68bc82baa52 sha1=951be2b27b46319b3bc5e469c12fdcbbdc270076 sha256=fa0a1bb5e8b37185b757b27a26adc200be92c4c6d5decd4b027d9d804a835c7e
+./data/dic/utf16be/FI/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/FR type=dir
+./data/dic/utf16be/FR/FR type=dir
+./data/dic/utf16be/FR/FR/regular type=dir
+./data/dic/utf16be/FR/FR/regular/njexyomi.a type=file size=1176 md5=a0104090fd8b15541ced44afea452c90 sha1=83d7b4192f2c9f6bbed00e67426ae79c0c9a1153 sha256=03b7e5af82e458148770f92bbe0196d53fc30ec8ab8b523077368791ba4bd37c
+./data/dic/utf16be/FR/FR/regular/njubase1.a type=file size=112750 md5=d1b822848e9b434c37a48f10df92d41b sha1=d13d8d5e9461c932723589e7c2d608d7a391b303 sha256=c564db236e9b9835958b8676dbb5799c877630faac5ca98cac76b6903d698795
+./data/dic/utf16be/FR/FR/regular/njubase2.a type=file size=92342 md5=ede706f1cb36c1fd1e2120fe391a8192 sha1=b4864a76ce1658d9d8419d8eddab8e8659fe892d sha256=d1f01c7811eb362bca01990e46644fa010d8aba33f000a982bde8f8a5d3b14c7
+./data/dic/utf16be/FR/FR/regular/njubase3.a type=file size=1365070 md5=b1513470295e625bb500304ccdb73ac9 sha1=505b49441a45ec9601083dac6e9d76ee8a0525f5 sha256=f96c4e0a96170065ec342b3f300bd8856abcc4e10ed9118977b03806aacc44b1
+./data/dic/utf16be/FR/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/IT type=dir
+./data/dic/utf16be/IT/IT type=dir
+./data/dic/utf16be/IT/IT/njexyomi.a type=file size=2516 md5=df6d6fec013fc36c85e3059ec59a2981 sha1=cd4b4939616fd56c1af81875cd4635b67fcc6311 sha256=dc6b9df82e7c17cfa4cf2b57c454a3791c8c1da9dbb37ca040f0bf87113f488c
+./data/dic/utf16be/IT/IT/njubase1.a type=file size=103696 md5=2a632ea6061fe9de6b92d6670e82a377 sha1=a9002f4378b4249c8f52d564b91c8f5dc54fedad sha256=d4f6727a481462d0bfa05ae948c3bb4cf697d934d9e7cbe1c3a62c3e1d4537e1
+./data/dic/utf16be/IT/IT/njubase2.a type=file size=80868 md5=b730e237c1d484b7ec57a82428b4c550 sha1=501c002c9a783873d99184c21580abbc14d5a65c sha256=34a78b5f1ff0611fc995a01987447b3e2c24fbbb621c1cde4cc9b04e4b1102f9
+./data/dic/utf16be/IT/IT/njubase3.a type=file size=1357834 md5=22b171a80fe58e685ddff249cf87c80b sha1=760b76bf56a319e193940d509e46e7288f347b15 sha256=5f8ce91e899cf3614f08ca4287f1a44060e0eea05a39aecf8874f7eb61d0dbb2
+./data/dic/utf16be/IT/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/JA type=dir
+./data/dic/utf16be/JA/16 type=dir
+./data/dic/utf16be/JA/16/njexyomi.a type=file size=82299 md5=2d446d6300dcfac225b79f10988292c4 sha1=ba92575d870d1aeb46fe793bf05652219c9929d8 sha256=0be2be91f33a050ed254e83e0c739edfd1100a3b0ae7b4946ed0b3c3130fe538
+./data/dic/utf16be/JA/16/njfzk.a type=file size=5785 md5=73f6e7e5bee5da8a370b4c9e735a3f00 sha1=18f0d75c3c5dfccf2bc9f3e616897500370a5f25 sha256=600afa95f9cf476126d652d556c1adddb2daf86daadb7d30dbaeb689bb1b342a
+./data/dic/utf16be/JA/16/njtan.a type=file size=81907 md5=6fa2c1e95af0c7c0ea30d13fa4ba8fac sha1=3d44abb701a04bd663d640eeab7fd5cbfe9e6b9c sha256=c957067fff659ad8ca763089f00eaa3b5f0753ba533ba4a15269a6e34e25969a
+./data/dic/utf16be/JA/16/njubase1.a type=file size=513643 md5=d7a54d214b24b884c310cadb8f863791 sha1=6aa24b068d9953d195da0a14c824f5310b7cc8db sha256=881c3fc8c60993ae6d85d7ed8563a8f8e3d0fb0ed672af9df727582934bbd4f3
+./data/dic/utf16be/JA/16/njubase2.a type=file size=4046711 md5=43134f5608cbab075a175c7ff852e092 sha1=5e79e7f22fa6fd6d2e1350be94751d905c403c74 sha256=6a0a5497f0398c5addf423d44438f2d897e49f8d86b2a321e5d0b8474d1c45cd
+./data/dic/utf16be/JA/16/text type=dir
+./data/dic/utf16be/JA/njcon.a type=file size=18817 md5=a2985eebf0274ab4ac06dd1cb01588fc sha1=0d984d45301e9ea8b973195cb34f35593322a3bf sha256=87b4bafb2be1bf4ab94415fae962d70784e4d2ecaac6a3dc5956311e8f7ba491
+./data/dic/utf16be/KO type=dir
+./data/dic/utf16be/KO/njcon.a type=file size=160 md5=d260bb218c72f4a28d8f416a4ffdecfb sha1=14656e7d9e89a9fe843ad17ddf55e6f2fd3b453f sha256=0a220a769c27448b560f05eb178b686e6201533d261963357aebe75535677a23
+./data/dic/utf16be/KO/njexyomi.a type=file size=1330 md5=23c4cd76e674eaedf479ada285a65aae sha1=18a6d944b14939124b5f6f4c8de50a592d2a4d29 sha256=3dd3062accfe481f36523f3fb7b733376c8cdb58f0c235a113d1bad16540f96a
+./data/dic/utf16be/KO/njtan.a type=file size=16919 md5=d119a2f5cd87a33e592b916cb5c7aab7 sha1=9d9d5a61dd69b5ff65268de784eb2dcce9f8379c sha256=3c6e68d193338655035079fa9f0cd70a0ba2be9cbeff66a3341f190cd96cdc03
+./data/dic/utf16be/KO/njubase1.a type=file size=310242 md5=77826f002500a98a2a9866ba1d3edca0 sha1=713315f95d55ae7fdd7d0d254720de6a2a065571 sha256=9a324cc3b2a268a8ee01f402a0ef5bae66ce085a3c72d7797194e151500f0a83
+./data/dic/utf16be/KO/njubase2.a type=file size=423592 md5=2e57333bdc83359e043485e89f0c38a2 sha1=8c24a67dca1ea63add0f144f9c433ee5bcf56d85 sha256=2b6cfb7a92cb159fd218a0c66f95520246c0191b309ae7b3f49f115a2cfdd378
+./data/dic/utf16be/NL type=dir
+./data/dic/utf16be/NL/NL type=dir
+./data/dic/utf16be/NL/NL/njubase1.a type=file size=110562 md5=d73de4487c20e01ffc134d87aef0a33a sha1=25042e968828cb58203474462bc898352483b1f0 sha256=2cc7207a356077a99675353d3980dfb35039e2c968e54a87a127ec901233e61d
+./data/dic/utf16be/NL/NL/njubase2.a type=file size=109756 md5=3c46b850cfcc05d5e522f9b9dd4825ad sha1=18b09103e21c8be078814e0652379153ec35e442 sha256=2f80282b1635de5c4681c8e06ae9dfb68ca846e00627a93d057d0a0492caba01
+./data/dic/utf16be/NL/NL/njubase3.a type=file size=1258522 md5=813912de6974fa4186ca7eae2ae06214 sha1=5d60cb5ce1ec737a55ca094ec0013c9d9f630943 sha256=ca5477a08727ac20df127b3bb3ccbffe20d7447c7971acbda229143a124e7f0b
+./data/dic/utf16be/NL/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/NO type=dir
+./data/dic/utf16be/NO/NO type=dir
+./data/dic/utf16be/NO/NO/njubase1.a type=file size=107620 md5=e2f2c2665d6713600da912088dbe8800 sha1=64885f2cd0cbc00d10698ac1abfd81466bbd431d sha256=8f7e69b9f9eff0e153ba2988ad0d4b8e7ae75788c139a503f3625cc340916973
+./data/dic/utf16be/NO/NO/njubase2.a type=file size=94548 md5=421113096a28dcb2b913abf9a50b0ead sha1=fe84e4c98bed7580501956fac94f6455ea2514ed sha256=a22ab6061c1abea74d28b99090834801ffe1b5a85c8b27827dcb494832b10795
+./data/dic/utf16be/NO/NO/njubase3.a type=file size=1260058 md5=ba6c99d4acc7f3219c417c923377abf5 sha1=31accc85e7a9bf09dab62ca19502d8f441686436 sha256=0914b16489a8e4ac53fca5ecccf8d816f2a8139f2344e089355f9eebe54087ce
+./data/dic/utf16be/NO/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/PL type=dir
+./data/dic/utf16be/PL/PL type=dir
+./data/dic/utf16be/PL/PL/njubase1.a type=file size=126096 md5=5dbe5d0af6ad6da777e7cc3c204bea09 sha1=801c10a6c3ce2120dbbc3c76c9fd2346f99e70f2 sha256=7f1af45ba987871296fc5815410df25b0163f337018f9e308d58dd54a6eb1eab
+./data/dic/utf16be/PL/PL/njubase2.a type=file size=116748 md5=0a52077e34493487156f465cca3ef22d sha1=ec7adaca38e0bc3d0620b6d0defff887f23f68d4 sha256=d9ce95bd2fef9c4d420f7697a17d36d2e309764d7263b3c3b4418e6f281d9d9d
+./data/dic/utf16be/PL/PL/njubase3.a type=file size=1270744 md5=82b2377687af0d665c162a1a9e528b3e sha1=f30eff255df6294494e1fba69aafdfcc1d9d09c3 sha256=0b5ad107f2b17bb59661be647b144cf78b57f64edae4bc7f6f306890573f72b3
+./data/dic/utf16be/PL/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/PT type=dir
+./data/dic/utf16be/PT/BR type=dir
+./data/dic/utf16be/PT/BR/regular type=dir
+./data/dic/utf16be/PT/BR/regular/njexyomi.a type=file size=1668 md5=5dd0a8ffb438db5f33a21a6b026483db sha1=3900c24022eaa1a17ecc3e36decca30577158eba sha256=428b56e906ab1df5ed9482f5d34deb6499916aba4873f2f62c005564cc3aa4a5
+./data/dic/utf16be/PT/BR/regular/njubase1.a type=file size=110384 md5=809bd6f9ea113aa0a119e3dfa7882109 sha1=86fc23a2a3ad9606ccbbde71b497354f4dc55704 sha256=62240d025e8eb29137704bcd7d20a631ac5191804642ed211c08932d17453adb
+./data/dic/utf16be/PT/BR/regular/njubase2.a type=file size=90870 md5=3b36bed13c016e3197cdf172d7af05d5 sha1=34d63073c4ba1248e57ce98f0409749d911bb26e sha256=c8131881659bb6654704c3835b0463fd80e7f1636c64a5fb500006b14cad8054
+./data/dic/utf16be/PT/BR/regular/njubase3.a type=file size=1283716 md5=55845666be8cf5a3272f7acc0e1da494 sha1=5656e3d97c5dd89617c45dc3ec40aca0aa19c294 sha256=3f4fa2d672b61a7215cdd3c9df69b0f65325dcfc8a6ff41f9b2bce5aa11b84c4
+./data/dic/utf16be/PT/PT type=dir
+./data/dic/utf16be/PT/PT/regular type=dir
+./data/dic/utf16be/PT/PT/regular/njexyomi.a type=file size=2032 md5=21350709eb4f46e1344bd3d63868c7ae sha1=8e1ccd707cd989e9be20274d8a0a089fa09314e2 sha256=e3c59ab609c2366822643f90a6a317277130f9444b06e5ffeb88bc143229d136
+./data/dic/utf16be/PT/PT/regular/njubase1.a type=file size=93468 md5=fc91001fccf3da93d91b9c2a27a988af sha1=6ad7aeb9dcb3243618ae744e0430184718fe5e46 sha256=aa1db595e60e90cf95b3a324029cf483477d369c5fb7bec79170e1b2855db49a
+./data/dic/utf16be/PT/PT/regular/njubase2.a type=file size=66820 md5=1a0615bba41b1a4f5a93b4adb648fc4d sha1=9295c07107cde87d82e904a4abb4743f99ece775 sha256=b9ea07eb2863957927da8b8755c2b1d2e85a93fe373c41b1128846630411fb48
+./data/dic/utf16be/PT/PT/regular/njubase3.a type=file size=1059402 md5=437e2e4c99454bdc6c0325240948d447 sha1=32e23ab28793189bb3c609d9f498394b02ad124c sha256=267ef132699e3a97fb710ad22d172768eb85c5e1b2215c3004e18da5a54b4b53
+./data/dic/utf16be/PT/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/RU type=dir
+./data/dic/utf16be/RU/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/RU/regular type=dir
+./data/dic/utf16be/RU/regular/njexyomi.a type=file size=908 md5=727ee989f2334ac6e5af739ca23d96ec sha1=209357b88dce9bddb523607de183d5d68bb59817 sha256=bfe998fcf460e156de5514c76417364a4c77f5712887418db5e0bcb5d6ea68d7
+./data/dic/utf16be/RU/regular/njubase1.a type=file size=124656 md5=1aebc0331844c138b74aaaac0d062c1d sha1=80851f5bba25c6941756fe70f1ec3117e5084dc3 sha256=157c61fa893b88ee078b2177351a0ad735ce4fbd050782d6c450e50444168bc5
+./data/dic/utf16be/RU/regular/njubase2.a type=file size=97782 md5=b04e80d8b367872fb0df93bf19ef1520 sha1=ecec61e5f8649b15aa1d9f1f07d5258b5cd4c9f1 sha256=fb88de556443bc76fdf6e8e93d1f1a0a6e61e9c67d69ebdc4db413c63619492e
+./data/dic/utf16be/RU/regular/njubase3.a type=file size=963442 md5=5ca9e06def2fb6748fc1e2cde95d5844 sha1=64aa190f803a630d50aaa981100c80266441eabe sha256=dd26ce1eb6ee90c743e8b22b6e5867f2ae7ea9eed0b59b140333beeb652ed947
+./data/dic/utf16be/SV type=dir
+./data/dic/utf16be/SV/SV type=dir
+./data/dic/utf16be/SV/SV/njubase1.a type=file size=105854 md5=28ea40ad8d7baad545450a4a356b94c1 sha1=b16a378f9e063882d144547feb82a7473b924dbf sha256=d09aae74ef7691fd0c3455dbfab24da6a3ecd5322e89e36727c58e48f4d09dc4
+./data/dic/utf16be/SV/SV/njubase2.a type=file size=72740 md5=80e0626b67e1fa33e59e9e875c27b46e sha1=87daa399eec50c7c11703e798b9a93dbd3623977 sha256=e87c8c59a0dd8f38f6eb7323792d4c997d8c3a8997c6bd731b00f53e8b9bc3f0
+./data/dic/utf16be/SV/SV/njubase3.a type=file size=1066208 md5=0fcce95705698d72fa00b11bb76b7837 sha1=def181eb974d8810e349aaa79d748a996c5c26bd sha256=7f121298ff938e58bfabac52066d8dc6170a15173a5331ed171cb648785e662d
+./data/dic/utf16be/SV/njcon.a type=file size=142 md5=aa19a5f1a5a6a2d69f7d9ee0e0e6f0c8 sha1=216de1f84404ee77e5b2b9265a938abcb08bfaeb sha256=0ab70953fa0dda54c344e161024181c83de6ef4654665d0308bb9b29efd33c47
+./data/dic/utf16be/ZH type=dir
+./data/dic/utf16be/ZH/CN type=dir
+./data/dic/utf16be/ZH/CN/njcon.a type=file size=164 md5=ae708e64c5b85ae5e08daf20327acd47 sha1=0f344310fe9be9fae768142b7c17a68eca6c8ef2 sha256=416b5707d66a990c351e6f401d46b7926720df7280e8354338bcd09f78dd9a07
+./data/dic/utf16be/ZH/CN/pinyin type=dir
+./data/dic/utf16be/ZH/CN/pinyin/GB18030 type=dir
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njexyomi.a type=file size=1484 md5=3de57a23555795136fc1d2e9593633ea sha1=246cbc817e7b0baa70c92a9c99b49e770fa5666c sha256=424a566111609a23b94c770dacddefefeb78d769b75e3681d357797263f489d1
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njexyomi.ad1 type=file size=676 md5=fd74965aa394d03cf4f2f17a2b619b0c sha1=bbff3137a74f6e7e35d71c5f01d83c136721752b sha256=b06b55b1ea173faa83f061a7ec5132009cebadd331ca27d05570e57717f70ffa
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njtan.a type=file size=463006 md5=5f0127b8751682d43150cdd57f0777f1 sha1=75d264deb8482729d958170aa44bab202dc129a4 sha256=42f2dbc8eed63ca5339bb96a018ac07af4e89bf45ad4bef058f0c4fbc9d00031
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njtan.ad1.arz type=file size=11557 md5=b38b861afe33d786a738929a4eb1825b sha1=ccb25d5bfd252471ddb1cafb3bdd3eb0ef1ad8e2 sha256=b5e00336bb73dfb7d2ba2f011e9ff83fb03c216b6a407446ba5bfec381b6fdd7
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njubase1.a type=file size=89770 md5=56de02cde832279e7112b627325b3a84 sha1=8cc9e2704f8c1eb2a481990e896ea36358a7f207 sha256=2dddbf8a11dc42f110299902df6aff647b17113579e21da898d454867ab637ca
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njubase1.ad1.arz type=file size=7787 md5=2f6eeb94c1228b93072f4c54fee43d6f sha1=79d0c4147c875fb0780f6b9f1b6cd9e25b269f37 sha256=ac4aaa54869119431227655288d620b62a0e97c85be81f6b49a6db413ae65316
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njubase2.a type=file size=91118 md5=522c7224c51df59db7c4bb54164920f8 sha1=6657af0ed67e8c930306119d785172fc98985d0a sha256=c752da6b9d7ceb3988b67263564fb3a75e7e75b0f246674d6dcc69e411ec4626
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njubase2.ad1.arz type=file size=8360 md5=441b37facd93519c5d132a3da10b8054 sha1=99bd727d3c559a4ae3f4a98df3742e0e148465d7 sha256=171492847a8c7eda73f3cb03226c960b147d2bb2ea2e2c41a3b6b852eb5bfd05
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njubase3.a type=file size=1775838 md5=48c8265732b212c6ba1c14eab1d67676 sha1=3fdcc5200ab601320104c4d12b57013eabaa162d sha256=0a8709eb08d4231213c4276a109b2879da02eba24647475cd1654bbe378ba96f
+./data/dic/utf16be/ZH/CN/pinyin/GB18030/njubase3.ad1.arz type=file size=154035 md5=67ce89624c365657c70ea1fa86e232bf sha1=12296b80ceb45669023106b0f66fd978d9d85b02 sha256=e281d3b6009569ae180b9a94679518814c2314da52ae7fcf1ad75d3c3e35b95e
+./data/dic/utf16be/ZH/HK type=dir
+./data/dic/utf16be/ZH/HK/jyutping type=dir
+./data/dic/utf16be/ZH/HK/jyutping/njexyomi.a type=file size=3914 md5=bdd77ee9c7666a8f30e0956a83106572 sha1=c00ba8088d727354daa7cd101df4d3100f2babdb sha256=a52bab9a1c73694e9851fd5fc08befcd477e846f052d8c94025c3ac2979fb288
+./data/dic/utf16be/ZH/HK/jyutping/njexyomi.ad1 type=file size=1726 md5=4328aef63c2ee7ae6951914ecf623b75 sha1=90061b743f464d81394f7a39aead3be5b78f9ffa sha256=ce29fa4ee1a857a70944f091ab805a3193dd34baa84f1a3a8c363917e8bb670a
+./data/dic/utf16be/ZH/HK/jyutping/njtan.a type=file size=324484 md5=a1010c9b340c921f409999a8b5243392 sha1=02d0fff371513235dd8545c418c6941cc7f14f9c sha256=57fc37ad48218ed7e800cff7afc562983ba51efdfaa273fa95142de13cc20695
+./data/dic/utf16be/ZH/HK/jyutping/njtan.ad1.arz type=file size=12143 md5=a2b834ec0fd0e40bdf4a54f1c3552612 sha1=ff5da457454c82dacdfd151e812842c2b1a99ffd sha256=f0797bf39e45ddd7b28bfc8c15216111c3703a296c6ee464afdd3ccd5b231800
+./data/dic/utf16be/ZH/HK/jyutping/njubase1.a type=file size=183394 md5=a4fbf8ddffbffa83cca6eb3d2e2d9293 sha1=81592774fa7f3b6d109e1d0109af1bdeb3d65892 sha256=853887c96c22b48a1d2bdfeea2c40d09b1d0e37ae42d5cfd405ec1e7dd03dcdd
+./data/dic/utf16be/ZH/HK/jyutping/njubase1.ad1.arz type=file size=9778 md5=c0bb32625e1bc6d64bded61808dae27a sha1=e92e195c3f67a6e03022d422e0c296fa4810f66d sha256=c0cc44c7bb26ef6fea71896fd984417d82a67cb97f3b8f6adeabc0da91ef1b94
+./data/dic/utf16be/ZH/HK/jyutping/njubase2.a type=file size=1466436 md5=6b79039622f340fc67705b9db5c45d50 sha1=49381e6a6af4544ea528fc4c94c382253ddb842d sha256=c2615839dc1c202488ff8f4dd1401ac2c0dc6e3e8788e10bd0b6f53ba31d85d1
+./data/dic/utf16be/ZH/HK/jyutping/njubase2.ad1.arz type=file size=120035 md5=9b434e371012149b666cf834fe3fb4ac sha1=1df0acc7e113b4fa1283230eb81a83a4f832d7e2 sha256=63ba7fd794069ea83e99a8abe7178bba76ddc5b5428824350fd7071b9e7fc805
+./data/dic/utf16be/ZH/HK/njcon.a type=file size=193 md5=2b657286bb9338ce7324ed8681554f3c sha1=738ee22444cc7e5cfd72be5e5b6cc6491dc52844 sha256=99c454713958fd4c8acdb0764a21e07ff874397350643e77a7c382601d01e4c3
+./data/dic/utf16be/ZH/TW type=dir
+./data/dic/utf16be/ZH/TW/bopomofo type=dir
+./data/dic/utf16be/ZH/TW/bopomofo/njexyomi.a type=file size=2008 md5=4f087f8e5a3b18415f34c7fca344363b sha1=6f4822f0d9e2f57e81e41891412986b52a594400 sha256=422205ea85a8d72f49134defcaadc7d121497faabdba0e952f8a2ade03469a96
+./data/dic/utf16be/ZH/TW/bopomofo/njexyomi.ad1 type=file size=814 md5=6176d035780c7ab1453d91a59d81fea3 sha1=af451615b0f0db50a58500133a6db37adf210eca sha256=22ccfa17d53328e202565606ae6eb950778f607b573bfcc57b2574ad778f3266
+./data/dic/utf16be/ZH/TW/bopomofo/njtan.a type=file size=289082 md5=30d839722c74eaf1fc8c0dda33371d23 sha1=00ea5cec2ebadae87864a6955b0c4aef03e8a770 sha256=3477772022661f59630736af790a474089f87a9dcbf0ea6dced4b347705bda14
+./data/dic/utf16be/ZH/TW/bopomofo/njtan.ad1.arz type=file size=6644 md5=cb0221a7c1c421b3b81e75cb13769fb5 sha1=8b879ab7490030127a623692e9fba245e8d0d99e sha256=585bc4666af351620e9496f7079989e8f7e4c1110f2e7bebbcf91cca9ae42071
+./data/dic/utf16be/ZH/TW/bopomofo/njubase1.a type=file size=232590 md5=3dc6dd661217421b004b2b3f6db77c20 sha1=ba47a5b7c550058e89dab184008f48e95424a255 sha256=34f5f7a433b701326e7a28eee6e536fd67fbd5b33ad25275b25a173ee9f89abe
+./data/dic/utf16be/ZH/TW/bopomofo/njubase1.ad1.arz type=file size=15887 md5=93633d88e99cd3f5588f0f3cadf23272 sha1=ad19e48ef67de671543fc243edfd9d681a6e9b54 sha256=10a287fad9edd2f6a52ad80310827e9fb9144478c36ed030c62dc098b3b6fc72
+./data/dic/utf16be/ZH/TW/bopomofo/njubase2.a type=file size=1257326 md5=483474318c4305fdb0bfe2272b47c07f sha1=67d8ba8b348cbce749a7fc627bf6e500b6127bfb sha256=4f707fa4f989728f12e256c0f43167feaf89a94692cb04a98f971196260cfeec
+./data/dic/utf16be/ZH/TW/bopomofo/njubase2.ad1.arz type=file size=68373 md5=693a9e1760dbeaf825bcb014ce285d36 sha1=1ed0270a5deacf352bc385cf78caa9a333d79137 sha256=ec1d5acf123ecb66bbd47a57cbc19f143bac8b432fe6c8bbace438bde34b122a
+./data/dic/utf16be/ZH/TW/cangjie type=dir
+./data/dic/utf16be/ZH/TW/cangjie/njcangjie.a.arz type=file size=122605 md5=64d927292aa6b7c91f498777abe74906 sha1=7e03bc0bfc9328e5f7b275d108690233538bdd3b sha256=aac029b5e729c5dffd3304db21bdbc93a8e8678d4fc8670e69fac85b4aa79c2b
+./data/dic/utf16be/ZH/TW/njcon.a type=file size=164 md5=ae708e64c5b85ae5e08daf20327acd47 sha1=0f344310fe9be9fae768142b7c17a68eca6c8ef2 sha256=416b5707d66a990c351e6f401d46b7926720df7280e8354338bcd09f78dd9a07
+./data/dic/utf16be/ZH/TW/pinyin type=dir
+./data/dic/utf16be/ZH/TW/pinyin/njexyomi.a type=file size=2094 md5=0a5cd876380817bb73ff7104e51fd9d3 sha1=0aa03990f22e7b981344b48daed3feb20392a9dc sha256=18ff60de224bb1ae80918957babe33c371f17feed2aab43b3a1ac08dd0985f90
+./data/dic/utf16be/ZH/TW/pinyin/njexyomi.ad1 type=file size=822 md5=e0cacb2fa39e0dada190eb4564a9b09e sha1=b46e1ba2c252bd48da848eb412102b84073df3e8 sha256=1dec48cea4aab94e3c6155404314a2baf1e3eb59602ab638e478615937cdf596
+./data/dic/utf16be/ZH/TW/pinyin/njtan.a type=file size=289166 md5=5c77f9d0e52e9d4bf4bdc87c4ed1add5 sha1=1a339facfe1cc8b9d3b900e27ae501a9da2fe8cc sha256=656d56fd83abb38d7103b2664e40a78ea44b9e2c0ff57ae5e33c9804cc800da0
+./data/dic/utf16be/ZH/TW/pinyin/njtan.ad1.arz type=file size=7292 md5=98d5b1b87fcb5971aa61a7d96d3009f5 sha1=206c92afa7bee6b631fa1a1726d55bd1abdf4d65 sha256=cce91364639627ac40fbec67e8e238be0be0c01e081cd7d50078781bc3119128
+./data/dic/utf16be/ZH/TW/pinyin/njubase1.a type=file size=253646 md5=9ece7736bc75fd59607e3651e36389f6 sha1=928558daaa1dfb66a9a3bc288a21a423e181ab82 sha256=b9c58fa29cb04cbcfcd73026472d3e8856280f97c3467d18a152e6df86e88116
+./data/dic/utf16be/ZH/TW/pinyin/njubase1.ad1.arz type=file size=18742 md5=013537b49f616762a004b083ced2df6d sha1=66d428e0a48e7943a22b8a399516c56604346d64 sha256=4f85d73c46f59f5f691fa44ec6b59b79f34bda0603ac37f25fb7bbeb1ccdadbe
+./data/dic/utf16be/ZH/TW/pinyin/njubase2.a type=file size=1340898 md5=5f598e7389f3f4bc413eaf37e1bffd61 sha1=b134e64dbe2e06be336063c7d8e8ff36981d3d74 sha256=9367249d426f6a24bbf49dfa690371159d2b9398ece5ee95a45d993933aff351
+./data/dic/utf16be/ZH/TW/pinyin/njubase2.ad1.arz type=file size=82279 md5=347f69cc2e1a91c325f9fdf7323c27b2 sha1=7cd8d7256453b4617055db3997a31b2450a18abb sha256=eac99c44cbffa120f7243320691b058ef8d712ca2842b29e74d5e04129cd7b9e
+./data/font type=dir
+./data/font/emoji type=dir
+./data/font/pgf type=dir
+./data/font/pgf/arib.pgf type=file size=185512 md5=1955bcc4957c4900e0e5885cd557e28c sha1=9ab222e1e3b9627ad20963d3a60fcae1290a26eb sha256=b58f41682e14be79dd0638777168258cd19c507d8216232db26a02927af034c9
+./data/font/pgf/gb3s1518.bwfon type=file size=1023372 md5=3522de0822ea504d0a5f0c8fa4c1164c sha1=026d0819c8d847570aa408bf8357c198eff9deb1 sha256=05c9991fc82c96672026d5e71da595d0a5b028a74607d726e613099db8a3699a
+./data/font/pgf/jpn0.pgf type=file size=1581700 md5=0ed527caf6befe752f759e5de14cf025 sha1=9ee2931e477cf10bc0b764714e9f0a21aaaed3b4 sha256=7a5773a751725ca041b62425b7714d247f268ec954717d365584108fa82bcebb
+./data/font/pgf/kr0.pgf type=file size=394192 md5=63a947ffcd5b1bbb524d41556ed5ee65 sha1=eb0a5001a54bdab092db1b015544a42bbe817515 sha256=bac796bc7b0869d024ccccac33714a31961f548f19d4b65eeabb8a0b7beb137c
+./data/font/pgf/ltn0.pgf type=file size=69108 md5=90df7a7c5aaa500b7e1d14789f094afd sha1=bd0be6d3c32c74f0cde1b96e475f1936ecd0ec41 sha256=9caade8e32074501b721277946a9056585ba92090842db5976339591c0f5b595
+./data/font/pgf/ltn1.pgf type=file size=65124 md5=43933d4f25f380ab619fd4031108fcce sha1=1280929bb682d299453eca425aaf86415f3c5192 sha256=3f71c97d9eb6c4a9736822e14a48a15b8ff46ca39f97faae2c44bc99bf5b610d
+./data/font/pgf/ltn10.pgf type=file size=42692 md5=0ff6d2e40360a74ddf347e1d498085f9 sha1=eb44c801f61b585a3e5d027d505c179b4cc2e594 sha256=ad2ff67767d555dd41a266ae456a3d663bc91f48822220501a59367303a1afd8
+./data/font/pgf/ltn11.pgf type=file size=41488 md5=c4205f75e74457f7890d2bf344fe5de1 sha1=df774719009ce1d4a3ea8c4e496f7454be07eeb4 sha256=087724b44c08227b42302d26b18fa1ed9fdb3059488f7bbe752fc36f7d509544
+./data/font/pgf/ltn12.pgf type=file size=43136 md5=24e2b96dd6f32ac8ad2a11c6c69eddef sha1=d7a36607b2607cb83d8195fea71b0f1ffc07f5ed sha256=233e6ce9541d5572df1f9b43bd802e097987eb7bfa286ce04dcfb18d873c8920
+./data/font/pgf/ltn13.pgf type=file size=41772 md5=80f8268c5bd57182138214b2bed1ef47 sha1=0c1acd5a545d1dcb6e9ad2967e7fd5fe54864fbb sha256=9814d98a7bc72fc02beafa791bf953c5a7f86c46cc582d2716832a9f8cc33eba
+./data/font/pgf/ltn14.pgf type=file size=45184 md5=b4c11f3326c5a7d9d740860dea1de24c sha1=0cd842780701a7b7f196f04ff1221c953510a6c4 sha256=bb7bf6c67e1439b5fee2605328caf74bf583ff347eee659c1519762b61e65b04
+./data/font/pgf/ltn15.pgf type=file size=43044 md5=7bc20212ca1e703bbe497dc24e12f77c sha1=a69933ec3e93acef7800d5f75273924c205f02a6 sha256=08ef126a7f40297f61eaab5add570940753b2a727050af043daf05db2f07e100
+./data/font/pgf/ltn2.pgf type=file size=72948 md5=7e6e4924cedee424f0e4dbb50133c531 sha1=10d4c7445de6a7af273a2cdc0393fef9f9a9bdc2 sha256=f243bef19e2b51d6903703d16a1f9c5e6885b06d770ae47aeb3033f92b2d2967
+./data/font/pgf/ltn3.pgf type=file size=67700 md5=f2bb7f170c3ad50b3be57082761440d9 sha1=cf355aec8e014752a198196de835262326b6b7f4 sha256=86c94f13fe09ed41a4b1d15a46be75b076ba41d32ccb3fbfa92ee639708ba71a
+./data/font/pgf/ltn4.pgf type=file size=72828 md5=faafbb188141564c4d8e1b08de90ec04 sha1=ecfc5e261e4218c2c4559bd20be39ec5a52a9518 sha256=d0ed6d7397ba0d42ab0d991da803ec2c2adb847efc453a89b07da6d4f717a94f
+./data/font/pgf/ltn5.pgf type=file size=68220 md5=1adfe7797dfea78b964a75ea265d3117 sha1=37122c62e9b158ee757833c76f5fa48f902d200e sha256=9e4e4c89510965f0235161373e9318f7b2efca8e4729dc09655f0c45f8d73f44
+./data/font/pgf/ltn6.pgf type=file size=77032 md5=bbc58f1214372bd1604875b3b5e7a764 sha1=67e34f24dbcb92f012a79d5741a9850614988a2b sha256=dbd43a14c0990856b8712f7077b3ec249070b52cb864f03624a25981c428ec2c
+./data/font/pgf/ltn7.pgf type=file size=71144 md5=404f92e373272745c15b4ab2f5a936e8 sha1=ef74b4b915ceea2cfd688e1b53fb7d091199b3db sha256=aef70e8e4ff0d6284c8a379efd368e70bde7f99496ccc2f0adbcba4a9fbc4b3e
+./data/font/pgf/ltn8.pgf type=file size=41000 md5=525c68b5fb073d82df65f30d979a21ac sha1=caf71c8bed923749ea3b8bb96bc0a58c4c105298 sha256=3c842878632fae835f78f83aee6f74a91d255fc5fdb32b163340033645e6b17f
+./data/font/pgf/ltn9.pgf type=file size=40164 md5=56129bbac3f8e5187a5a9c775d71d35d sha1=7b48d6baca15b4d1c1c525aea9486f50c37d5237 sha256=2e175c98df0d02d97c1b5c2ce1c75991a20625163c6b79bae584b23d6137653c
+./data/font/pvf type=dir
+./data/font/pvf/cn0.pvf type=file size=8226948 md5=8298536755af9d0c51350dccf84e0f60 sha1=f079f279c8d908530f1dede9a14718fd090bf667 sha256=938fb23c836663098d1f338e0c7da3dd8d6ae4ae9b1ff0bc188fccdba3d018c5
+./data/font/pvf/cn1.pvf type=file size=16997960 md5=113f353492988c949b332dd00c000b3f sha1=a646ea322ef036e131615bf58dbe1efdaafd9314 sha256=06aeadad42bde87f1bb6f685f606319ec187b96e05946d519b79b9fd2ee6ea44
+./data/font/pvf/jpn0.pvf type=file size=2480768 md5=a453464832ea429c83df9848ca11702d sha1=e095b99425daf50964d8d0f89cdf679f450a9435 sha256=2a0c977f65d334a858b7f2e86109276395227d57da2236a2229e89be7415ff43
+./data/font/pvf/jpn1.pvf type=file size=8116820 md5=6164c6059390a25bc922c30b62291b6f sha1=b009fd35723d96bc7a4f2b11c155fa64d030f23b sha256=1ef2447f14732d356024c9bc2345505459fb7bf3f8e6876b48029a74f7550633
+./data/font/pvf/jpn2.pvf type=file size=2620448 md5=a802af61057daa982940c7090d99eaa7 sha1=e4b132f2e65989b7d52eda9d7da09768b9ea2cae sha256=e1e7ed3e6d03e22e599b66b76fbfab71846e7fd662e70d967f2e9935ed45bfa3
+./data/font/pvf/jpn3.pvf type=file size=7911924 md5=ce347b5773737cda4c65618b1245d1ae sha1=b4f38ea5ee977ef656cc42835cbc0ec9df6da1b9 sha256=ed9616350731d5f0960fb4e8fc405217440b93ef96441775ab5c273d99a5c97b
+./data/font/pvf/kr0.pvf type=file size=617968 md5=e9e21eec918d42f5f7ae222e34faba54 sha1=148e471f1eea201db57f23e0d8760d1cf5419692 sha256=7a207f09faf6244f6a635453e1576d598016faf957ae702fb9b5b2b0e51a7790
+./data/font/pvf/kr1.pvf type=file size=685260 md5=a6998cb28aafdfbbdabd10b2ad939142 sha1=d9ba13e5c524ba5229e8555b6d0c23278988b527 sha256=7dc07050944a527eeb18937daffdfac0683c258bf7923373a273664e4c6ce300
+./data/font/pvf/kr2.pvf type=file size=612716 md5=41abbd963dc0b67df69a303d3b99c551 sha1=56f2003e8530be87ab48886d79a4d75554db877d sha256=8d64375943bdeb21372bf195372165ba065a3ac7d53996957136eb1f70908103
+./data/font/pvf/kr3.pvf type=file size=690068 md5=650358f4a8241aeb9bb6cf993b91147f sha1=e7e38663d5b6e8a3a7237803708552860b2ee5fe sha256=d6da59571201493ac7b39c35a7c8305e791cda38aece48c65b976c90063132b9
+./data/font/pvf/ltn0.pvf type=file size=44280 md5=8be9366687328cb46e6df2c80e12fc33 sha1=9c486d5e45e0e56ec0efd858e5cba816c09f079e sha256=0585fdbe702152f2e099bc7bab9574a651608eab4228ef67de4f872690210bd0
+./data/font/pvf/ltn1.pvf type=file size=87880 md5=e8d4a6ba35f6980c5a32941bae5d3452 sha1=d747e6a4ae4afb39e285f98d2a25aad8d3b40f5e sha256=b8ab63b7b6158dbdb138dbb9fc902c78c080b7db9362e8f5991bd4808c99ac82
+./data/font/pvf/ltn2.pvf type=file size=50064 md5=0092e2be1777f8f8c67e4f3124b3e446 sha1=6e80f9694cf738e44a89e38320b053287fc07b9c sha256=e57e1f40b96df6a49e8cf66c966bdbefd498e3f83c25b0cca2c1cc9f8631be2c
+./data/font/pvf/ltn3.pvf type=file size=95748 md5=4835e4b24b46ff77817f56382846c567 sha1=f3896592f0705e635b4065a6c2cf0721ee4e4057 sha256=337eb016ae35ef97627496d53d4278d97e30958c1edb36656b8fbae4498f4d6a
+./data/font/pvf/ltn4.pvf type=file size=45924 md5=28693cb08dbebe41135d0c9ef00692c4 sha1=2c45516c3e85cf964757cf3261cbb6fb0c2b1ea8 sha256=d85c1d63727e419823392bbc91cc4cb6e6fd2dfea8e366cccc51dddef22cbfd9
+./data/font/pvf/ltn5.pvf type=file size=89372 md5=3dd17a984767a9b58895545035ea4631 sha1=483871614e2c676beddc821735b5f0dc516226aa sha256=b6f324aaa32184c06e78a9c152ae1242484277c9d0c10d20a5374ad4d1f5e5dd
+./data/font/pvf/ltn6.pvf type=file size=51192 md5=5350b8dea4782382a634fba21c9a8373 sha1=4fb4a4a327cf847f381dcc27213f5c9bc1d471b3 sha256=07de4328f4d8abc32e8af1294b7b3905e99738ac247b49ad7d6e8d9f9fd57e16
+./data/font/pvf/ltn7.pvf type=file size=95560 md5=9e0a495a50938a449bb46cab5ca5bf83 sha1=8485bb053d85b711ee096065426178b7252b4751 sha256=d7972aef9b5b25da2d19bb767e8937d3eb2e28b837c0886ca4714123812de1fd
+./data/font/pvf/music_arib.pvf type=file size=116140 md5=608e8cd5e049ba0d19491152e55d71bf sha1=6ecf12b6225f7ff1e4ea82e6ad9b30bb202e8612 sha256=60b923c91e4879dfced96a7e885f120fac65091126637dd57e748d5ec8567698
+./data/font/pvf/psexchar.pvf type=file size=8292 md5=f09649e3edf5f8380c9f89e5873d3db0 sha1=0d12c1151593aea6f760aa281cfc7e600e2ecccd sha256=5c4766154852ec665a646143da6f0161fc72094c926065c9a9162f72cf50e10c
+./data/libhwr type=dir
+./data/libhwr/all2_u.bin.hwz type=file size=701886 md5=13717017b875a7ad512ef49bdb07f147 sha1=b1d852da128d34ef1d02442acd2806f0e9d957d6 sha256=a50b6d75acf13b2462fc9b26377f33fb5f2e0d9e4c7c57d84f3a63809b0bcf49
+./data/libhwr/all_u.bin.hwz type=file size=515567 md5=e0192e656a164dc8ab6f203ae470b6e7 sha1=9588576462163ed57dd1e300c8942426b81f2bea sha256=56159e6f721bed2ca9ff857c42c488d61ba838ad7772ac1de0647eca330314c4
+./data/libhwr/alnum_native_u.bin.hwz type=file size=22480 md5=e62baff902f86aa257a0458f48ed031d sha1=9d3f3179f320639b201d67d492727761f46ebca3 sha256=d49d0f1b84be5ce9fd4af9fab601059f07f79c9254e6ed2a2dba732124c7c141
+./data/libhwr/alnum_u.bin.hwz type=file size=22329 md5=2ba16bc51c0bf5f97bb86b1e081acfe2 sha1=f4613e1f4dc8292323391fd5f5f29c0838066552 sha256=8e1fd29201c81c943386ceb9c9a9bffaeff3a0d1f06956ef416c14dff5a3477b
+./data/libhwr/alnumlat1_u.bin.hwz type=file size=31146 md5=ca51f743c21dab39b6545cfc4f46699f sha1=e0fa92542575c7399a504631ee6039d465d62337 sha256=cd296118b76c64b22cd1115b3772b20994ad4a13e9064c02c282315f95c24032
+./data/libhwr/chinese_simplified1_u.bin.hwz type=file size=910607 md5=9a64253648c24635705dbc857fb75dbb sha1=8664774949a822f91426a3f7b4e882f94405d1f8 sha256=a6e26e151a9d80a74a11bc9e68130a977c9ddd8d28c2f827c61bbf9b98cc9bea
+./data/libhwr/chinese_traditional_u.bin.hwz type=file size=1906075 md5=ad8a35a34327ca0e10abc7069a0fe8f1 sha1=7f70536bd8ea5186592c353f0b142cd068eaa6a6 sha256=7065a2f150a7bd2a74d1fd41f7b95a5aba88e95e663b4e473f078294a8c388f5
+./data/libhwr/dan_nor_u.bin.hwz type=file size=23346 md5=f9d88b0f91fd52a225b59b9d07a89eb3 sha1=65eb30b55832e85c634da2e01f6880f5b1a59f7f sha256=49d3e71be10fc86699cdc60d1ddaa79dc17e2a6903ef076c6c3f1d3e1bb65ac8
+./data/libhwr/dutch_u.bin.hwz type=file size=25800 md5=00f09f1678c73c271a6493edef7ad626 sha1=8d593bbabcc41591cea29e76cf80b77367bb8e81 sha256=0bf121378aeef341bf0d2259e0dd90e12c963786ff436a64c3c2cea6326e236a
+./data/libhwr/french_u.bin.hwz type=file size=26699 md5=160afac6732d441a08ad64bcae0dccb8 sha1=ac07733e06dfccd04eade643530e997b55653a76 sha256=1a01c63b46c0f44d263247a63082d37420ac66e521724de285e555dff0a1d953
+./data/libhwr/german_u.bin.hwz type=file size=23461 md5=465af89d85a2c66dbb421db35627c006 sha1=249929fdcf8ce3f860d54d17180639740144583d sha256=2b333355d36b339d4ed71b804b50debea35ac7a4c2be857be37d106a7829d984
+./data/libhwr/hangul_u.bin.hwz type=file size=296568 md5=c9793a7d35614092dd930f8090ee17ff sha1=95c27f6fb3105721751372472794476238774d3e sha256=505939263e0aedb4b895c4ecf6b213180c1997148c7d36c20ae3deaf95c9a983
+./data/libhwr/hira_u.bin.hwz type=file size=23838 md5=38985c287b88015fce55648d216e866d sha1=6567d688f95ece092fb06cb12e1acf7630370981 sha256=1d0bce7872997fd8f2b86ab5495f454a884da1507d0cbaf70c454b82076bc80f
+./data/libhwr/icelandic_u.bin.hwz type=file size=25532 md5=ad2959eeb104249d9769e8fd657f71af sha1=6a6cae4c520ab97fa1065ba09dbe161ea4eb4a81 sha256=853ba8bcae64f61323ab6a806d5b704eafe982be7b9c173a0f8fbee28dba07ce
+./data/libhwr/italian_u.bin.hwz type=file size=24166 md5=609631d70202faed69284751865d0c54 sha1=8727b3a9ff76fb9ba95aebe72e8e62832c97cc90 sha256=0025d2cd2c679a4ef9be926fa7971fdfddb09fb65c79b13049fd178b98826b1b
+./data/libhwr/kanji2_u.bin.hwz type=file size=635272 md5=ca0de896d9cc59f1451c270545c5f2c5 sha1=55f7af8050e9222878f6b992648760f88cc827b5 sha256=80f3c399afa528035f919f5be47ef939b9793747973f059eca2b825c917b79b9
+./data/libhwr/kanji_u.bin.hwz type=file size=448765 md5=502fe05f7f7f4a1082e645f71a321606 sha1=9d9c1097baa5e4e3c4680ab7ea4656a8d15a72df sha256=4272cb73acbe7c7deaf2709531eaea0fd434c1eae922e3444945d261ab92d501
+./data/libhwr/kata_u.bin.hwz type=file size=21005 md5=d38e4fa815bcd467d372dbe3f2a18332 sha1=5d3ca7031695f22d82fa104d96ec973b1ef93f26 sha256=146177502cd797b30b52bffad61d21f08b63e60c7788cbeedced061834dbbfac
+./data/libhwr/korean_u.bin.hwz type=file size=779282 md5=f8dbf56ea0d43203cebe92e072b8e117 sha1=f6ea56b385507e69682f1d64507431c9ab9044c5 sha256=23664f2c60c5dd531a815dc7bb54690aa520e1f3ab6ef90bc3c2b0ed70e555f8
+./data/libhwr/polish_u.bin.hwz type=file size=23905 md5=52a3f94b4a3f02996b6cd4fde081c784 sha1=a1d4c93cbb9f08f584ebee44936b4be4ea974c5c sha256=892c4b6f4c74c6e0c2ba2a46adee2e40be48aec51c42e14c78a7122782b5379f
+./data/libhwr/portuguese_u.bin.hwz type=file size=25903 md5=0d87cde4f9dcf3ec4d74f673b340c9f0 sha1=7a0d1f1d11ef6885b4f332f6eeccf9987316e098 sha256=89eec77dcc892a2c9b4630a46a0971850c4f04d318634120f775def8ca3e2e5f
+./data/libhwr/russian_u.bin.hwz type=file size=28232 md5=49558f4c365e50369344986abd482949 sha1=ce4e869546981aca6203fdb1901de645be0dc220 sha256=b42fa3ae1c321b82c01dae90603a7cf548db41442ca476780482d3d01ec25331
+./data/libhwr/spanish_u.bin.hwz type=file size=24726 md5=35c26363cf5fa0f21f3523fc142beb33 sha1=20845955ca2391374d77fc27b02f6228ae6d746a sha256=f02e37569a8f9abf8cb830519e3f5234e728ded4c82a7760148257a81fd19768
+./data/libhwr/swe_fin_u.bin.hwz type=file size=23496 md5=dd335646112d85d66404fb8a20aa367c sha1=f55a95baa3a0e1f02d3157208f73c1581302941a sha256=655ee7ca90c8b3a6b63d95f9052a9dca156a366207a5456d7513599102d4fa0d

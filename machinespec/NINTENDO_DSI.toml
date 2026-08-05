@@ -33,14 +33,150 @@ devices = ["nand", "sd"]
 name = "Internal NAND"
 
 [[storage.nand.partition]]
-id = "nand"
-name = "nand"
+id = "twl_main"
+name = "TWL_MAIN"
+spec = [
+    "NINTENDO_DSI/twl_main/1.0J.mtree",
+    "NINTENDO_DSI/twl_main/1.2A.mtree",
+    "NINTENDO_DSI/twl_main/1.2E.mtree",
+    "NINTENDO_DSI/twl_main/1.2J.mtree",
+    "NINTENDO_DSI/twl_main/1.2U.mtree",
+    "NINTENDO_DSI/twl_main/1.3E.mtree",
+    "NINTENDO_DSI/twl_main/1.3J.mtree",
+    "NINTENDO_DSI/twl_main/1.3U.mtree",
+    "NINTENDO_DSI/twl_main/1.4A.mtree",
+    "NINTENDO_DSI/twl_main/1.4C.mtree",
+    "NINTENDO_DSI/twl_main/1.4E.mtree",
+    "NINTENDO_DSI/twl_main/1.4J.mtree",
+    "NINTENDO_DSI/twl_main/1.4J_KST.mtree",
+    "NINTENDO_DSI/twl_main/1.4U.mtree",
+    "NINTENDO_DSI/twl_main/1.4U_B.mtree",
+    "NINTENDO_DSI/twl_main/1.4.1A.mtree",
+    "NINTENDO_DSI/twl_main/1.4.1E.mtree",
+    "NINTENDO_DSI/twl_main/1.4.1J.mtree",
+    "NINTENDO_DSI/twl_main/1.4.1K.mtree",
+    "NINTENDO_DSI/twl_main/1.4.1U.mtree",
+    "NINTENDO_DSI/twl_main/1.4.1U_NZB.mtree",
+    "NINTENDO_DSI/twl_main/1.4.2C.mtree",
+    "NINTENDO_DSI/twl_main/1.4.2E.mtree",
+    "NINTENDO_DSI/twl_main/1.4.2J.mtree",
+    "NINTENDO_DSI/twl_main/1.4.2K.mtree",
+    "NINTENDO_DSI/twl_main/1.4.2U.mtree",
+    "NINTENDO_DSI/twl_main/1.4.2U_PWC.mtree",
+    "NINTENDO_DSI/twl_main/1.4.3A.mtree",
+    "NINTENDO_DSI/twl_main/1.4.3C.mtree",
+    "NINTENDO_DSI/twl_main/1.4.3E.mtree",
+    "NINTENDO_DSI/twl_main/1.4.3J.mtree",
+    "NINTENDO_DSI/twl_main/1.4.3U.mtree",
+    "NINTENDO_DSI/twl_main/1.4.4A.mtree",
+    "NINTENDO_DSI/twl_main/1.4.4E.mtree",
+    "NINTENDO_DSI/twl_main/1.4.4J.mtree",
+    "NINTENDO_DSI/twl_main/1.4.4U.mtree",
+    "NINTENDO_DSI/twl_main/1.4.5A.mtree",
+    "NINTENDO_DSI/twl_main/1.4.5C.mtree",
+    "NINTENDO_DSI/twl_main/1.4.5E.mtree",
+    "NINTENDO_DSI/twl_main/1.4.5J.mtree",
+    "NINTENDO_DSI/twl_main/1.4.5K.mtree",
+    "NINTENDO_DSI/twl_main/1.4.5U.mtree",
+    "NINTENDO_DSI/twl_main/1.4.6C.mtree",
+    "NINTENDO_DSI/twl_main/1.4.6K.mtree",
+]
 
 [[storage.nand.partition]]
-id = "photo"
-name = "photo"
+id = "twl_photo"
+name = "TWL_PHOTO"
 user = true
 
 [storage.sd]
 name = "SD Card"
 user = true
+
+[[bios]]
+name = "Stage2_v2725-9336_dev.nand"
+md5 = ["e4d6a31cf0ef927f3c9ab1888ae7230d"]
+sha1 = ["a28b2cdc58613e47ace482dc127255ed447a7b1d"]
+sha256 = ["4530a3005bc422e6114347cbbba567a06ac5f3fee66cb2692e85bd9388ded949"]
+
+[[bios]]
+name = "Stage2_v2665-9336_prod.nand"
+md5 = ["d1b58fe55a67129b56c7bbb7e0320e5b"]
+sha1 = ["386389789bdbdfc216b0f245416f6e0f825d49b6"]
+sha256 = ["3d03db66381e188d03bb9de15b6e3903421adecca42728019603662e2faff752"]
+
+[[bios]]
+name = "Stage2_v2435-8325_dev.nand"
+md5 = ["1c447409d7c6d12358a0b53695daed92"]
+sha1 = ["894d75c09dfd481676c8e93fb33d4d5d61c5ea45"]
+sha256 = ["321a070a6d6a2a7460696691806999f0d6a7c0f33cf8973460fa978f37b09a46"]
+
+[[bios]]
+name = "Stage2_v2435-8325_prod.nand"
+md5 = ["f5eb76ba14cd168dc29274004203a071"]
+sha1 = ["447348ec5090125e33205ef2ebe600173760dcd6"]
+sha256 = ["a324755b48199bce7f62a7e46c2eaa18fc2613196ce95ccce6ba80a145d64b64"]
+
+[[bios]]
+name = "Stage2_v2262-8067_dev.nand"
+md5 = ["49f163e80dc72ad28363a29e6bd42694"]
+sha1 = ["c2281409bb22f212d4ce2583db92f38138d0ad50"]
+sha256 = ["4030480f2f81212903e7f18aa8dc1cb188f51101a345b25b65fb6964420c066c"]
+
+[[bios]]
+name = "Stage2_v2262-8067_prod.nand"
+md5 = ["187d1f0ce5be26b5cb954b3482830186"]
+sha1 = ["3d832fb846f0d1b5ca7be0f75fed3e8aa8e8efbf"]
+sha256 = ["c7c21e1e09be71d8b70275ee70afbe334c20e4673a2b27848d13e6f3a2cf62eb"]
+
+[[bios]]
+name = "Stage2_v1935-7470_dev.nand"
+md5 = ["8240152597874ca0d4767ac86ec79290"]
+sha1 = ["c88d8c7179a23e10e4fd1fc762e11c4d900f6ec5"]
+sha256 = ["16aafc4964fe5239b62fc93966cca296ade676cc8b518ca85878516c31f317af"]
+
+[[bios]]
+name = "Stage2_v1935-7470_prod.nand"
+md5 = ["d5c1624ccc618cfef6cd1dd7ab21f08f"]
+sha1 = ["d18f3609ffaa35fba0e7f7a8ed6ecb38b9205a35"]
+sha256 = ["0034e92dddeef9a6f2fb98b82c090498a64538600860b02e2a31264cd6ecf311"]
+
+[[bios]]
+name = "Stage2_vNONE-NONE_X4_dev.nand"
+md5 = ["faa89df8d7cbe7273804f654561692bb"]
+sha1 = ["9a1334cc96339feaabc0682104e12bd46ab650a1"]
+sha256 = ["31685295b4869295e4bbd46b8bb6d3f50b0db15e7a66ee4c9e4e63f14092e744"]
+
+[[bios]]
+name = "Stage2_vNONE-NONE_X6_prod.nand"
+md5 = ["081e541e39df8be429e8aabe2ed5b722"]
+sha1 = ["967b1288f4c2d1eaab2693e17da7b9a5e551b1a3"]
+sha256 = ["281109c6d053413d862337ebc7706087fcb393913e35ef51258e29fa228bf3d6"]
+
+[[bios]]
+name = "Stage2_vNONE-NONE_Updater_dev.nand"
+md5 = ["31af6200f53f5bce1bb6279dfcfdb645"]
+sha1 = ["f4b8adc6ee3a982bf0fd68c1105ce2376e91d429"]
+sha256 = ["e3a32e27bac0a0a4df3d73b496ebc7bf3d85c2b5a5996fec73773d4c32721006"]
+
+[[bios]]
+name = "Stage2_vNONE-NONE_Unknown_dev.nand"
+md5 = ["dcd502103a148632eac3a1d7cafa6519"]
+sha1 = ["0ab3f139afa960983374a96eec2fa00361be1bf1"]
+sha256 = ["f3ebc3240de534694dfdb2ec1942d750986d89d36efdce31605c7be3babcb99c"]
+
+[[bios]]
+name = "Stage2_SDMC_20080821-134255_dev.nand"
+md5 = ["ab78c5e4079f8935ebabfc14774409ad"]
+sha1 = ["6de9fd40f11332417e302c048a82219b743ef03c"]
+sha256 = ["fff6a8ba0efdbecf6e2654222a3bdf31fe68b58c28d8fd5fabb89f10aa4d4b17"]
+
+[[bios]]
+name = "Stage2_SDMC_20080821-140258_prod.nand"
+md5 = ["9ec753a447c84f6b1ca4b871e9763c28"]
+sha1 = ["1ba5d916898fedcd4a166426de5ac3b0059af3db"]
+sha256 = ["78544e579e9da00acbefe487ca8b4c449e4522ffbb1b9b45e013795a7679a3f9"]
+
+[[bios]]
+name = "Stage2_nandfirm_print.nand"
+md5 = ["ec77ddbea740746a1c7a4a506948f533"]
+sha1 = ["cbd829032ceb6c3b387a102d426a4aeda89255a3"]
+sha256 = ["3e9d6e3bad186027adf623d3340aa20b874de7deeee85c79fdc3a3d164d41209"]

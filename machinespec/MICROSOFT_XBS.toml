@@ -39,3 +39,38 @@ class = [
     "microphone",
     "storage"
 ]
+
+[storage]
+devices = ["ssd", "expansion"]
+
+[storage.ssd]
+name = "Internal SSD"
+
+[[storage.ssd.partition]]
+id = "temp_content"
+name = "Temp Content"
+
+[[storage.ssd.partition]]
+id = "user_content"
+name = "User Content"
+user = true
+
+[[storage.ssd.partition]]
+id = "system_support"
+name = "System Support"
+
+[[storage.ssd.partition]]
+id = "system_update"
+name = "System Update"
+
+[[storage.ssd.partition]]
+id = "system_update2"
+name = "System Update 2"
+
+[[storage.ssd.partition]]
+id = "registry"
+name = "Registry"
+
+[storage.expansion]
+name = "Storage Expansion Card"
+user = true

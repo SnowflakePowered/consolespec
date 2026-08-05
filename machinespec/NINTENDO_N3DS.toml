@@ -25,3 +25,506 @@ md5 = ["d8675e80e5dd3a9afaaf885d79b14e9c"]
 [[bios]]
 name = "boot11.bin"
 md5 = ["43454041b0cddf1a34c130593afa8b9b"]
+
+[storage]
+devices = ["nand", "sd"]
+
+[storage.nand]
+name = "Internal NAND"
+
+[[storage.nand.partition]]
+id = "firm0"
+name = "firm0"
+
+[[storage.nand.partition]]
+id = "firm1"
+name = "firm1"
+
+[[storage.nand.partition]]
+id = "ctrnand"
+name = "ctrnand"
+spec = [
+    "NINTENDO_N3DS/ctrnand/9.0.0-20_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.0.0-20_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.0.0-20_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.0.0-20_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.0.0-20_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.1.0-20J_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.1.0-20J_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.1.0-20J_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.1.0-20J_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.1.0-20J_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.2.0-20_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.2.0-20_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.2.0-20_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.2.0-20_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.2.0-20_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.3.0-21_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.3.0-21_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.3.0-21_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.3.0-21_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.3.0-21_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.3.0-21_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.4.0-21_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.4.0-21_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.4.0-21_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.4.0-21_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.4.0-21_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.4.0-21_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-22_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-22_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-22_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-22_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-22_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-22_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-23_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-23_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-23_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-23_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-23_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.5.0-23_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.6.0-24_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.6.0-24_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.6.0-24_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.6.0-24_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.6.0-24_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.6.0-24_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.7.0-25_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.7.0-25_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.7.0-25_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.7.0-25_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.7.0-25_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.7.0-25_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.8.0-25_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.8.0-25_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.8.0-25_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.8.0-25_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.8.0-25_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.8.0-25_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/9.9.0-26_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.9.0-26_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.9.0-26_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.9.0-26_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/9.9.0-26_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/9.9.0-26_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.0.0-27_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.0.0-27_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.0.0-27_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.0.0-27_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.0.0-27_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.0.0-27_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.1.0-27_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.1.0-27_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.1.0-27_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.1.0-27_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.1.0-27_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.1.0-27_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.2.0-28_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.2.0-28_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.2.0-28_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.2.0-28_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.2.0-28_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.2.0-28_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.3.0-28_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.3.0-28_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.3.0-28_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.3.0-28_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.3.0-28_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.3.0-28_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.4.0-29_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.4.0-29_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.4.0-29_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.4.0-29_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.4.0-29_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.4.0-29_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.5.0-30_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.5.0-30_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.5.0-30_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.5.0-30_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.5.0-30_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.5.0-30_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.6.0-31_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.6.0-31_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.6.0-31_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.6.0-31_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.6.0-31_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.6.0-31_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/10.7.0-32_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.7.0-32_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.7.0-32_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.7.0-32_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/10.7.0-32_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/10.7.0-32_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.0.0-33_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.0.0-33_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.0.0-33_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.0.0-33_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.0.0-33_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.0.0-33_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.1.0-34_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.1.0-34_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.1.0-34_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.1.0-34_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.1.0-34_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.1.0-34_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.2.0-35_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.2.0-35_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.2.0-35_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.2.0-35_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.2.0-35_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.2.0-35_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.3.0-36_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.3.0-36_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.3.0-36_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.3.0-36_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.3.0-36_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.3.0-36_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.4.0-37_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.4.0-37_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.4.0-37_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.4.0-37_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.4.0-37_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.4.0-37_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.5.0-38_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.5.0-38_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.5.0-38_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.5.0-38_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.5.0-38_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.5.0-38_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.6.0-39_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.6.0-39_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.6.0-39_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.6.0-39_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.6.0-39_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.6.0-39_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.7.0-40_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.7.0-40_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.7.0-40_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.7.0-40_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.7.0-40_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.7.0-40_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.8.0-41_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.8.0-41_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.8.0-41_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.8.0-41_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.8.0-41_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.8.0-41_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.9.0-42_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.9.0-42_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.9.0-42_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.9.0-42_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.9.0-42_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.9.0-42_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.10.0-43_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.10.0-43_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.10.0-43_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.10.0-43_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.10.0-43_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.10.0-43_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.11.0-43E_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.11.0-43E_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.11.0-43E_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.11.0-43E_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.11.0-43E_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.11.0-43E_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.12.0-44_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.12.0-44_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.12.0-44_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.12.0-44_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.12.0-44_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.12.0-44_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.13.0-45_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.13.0-45_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.13.0-45_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.13.0-45_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.13.0-45_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.13.0-45_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.14.0-46_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.14.0-46_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.14.0-46_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.14.0-46_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.14.0-46_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.14.0-46_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.15.0-47_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.15.0-47_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.15.0-47_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.15.0-47_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.15.0-47_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.15.0-47_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-48_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-48_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-48_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-48_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-48_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-48_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-49_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-49_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-49_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-49_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-49_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.16.0-49_USA.mtree",
+    "NINTENDO_N3DS/ctrnand/11.17.0-50_CHN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.17.0-50_EUR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.17.0-50_JPN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.17.0-50_KOR.mtree",
+    "NINTENDO_N3DS/ctrnand/11.17.0-50_TWN.mtree",
+    "NINTENDO_N3DS/ctrnand/11.17.0-50_USA.mtree",
+]
+
+[[storage.nand.partition]]
+id = "twln"
+name = "twln"
+spec = [
+    "NINTENDO_N3DS/twln/9.7.0-25_CHN.mtree",
+    "NINTENDO_N3DS/twln/9.7.0-25_EUR.mtree",
+    "NINTENDO_N3DS/twln/9.7.0-25_JPN.mtree",
+    "NINTENDO_N3DS/twln/9.7.0-25_KOR.mtree",
+    "NINTENDO_N3DS/twln/9.7.0-25_USA.mtree",
+    "NINTENDO_N3DS/twln/9.8.0-25_CHN.mtree",
+    "NINTENDO_N3DS/twln/9.8.0-25_EUR.mtree",
+    "NINTENDO_N3DS/twln/9.8.0-25_JPN.mtree",
+    "NINTENDO_N3DS/twln/9.8.0-25_KOR.mtree",
+    "NINTENDO_N3DS/twln/9.8.0-25_USA.mtree",
+    "NINTENDO_N3DS/twln/9.9.0-26_CHN.mtree",
+    "NINTENDO_N3DS/twln/9.9.0-26_EUR.mtree",
+    "NINTENDO_N3DS/twln/9.9.0-26_JPN.mtree",
+    "NINTENDO_N3DS/twln/9.9.0-26_KOR.mtree",
+    "NINTENDO_N3DS/twln/9.9.0-26_USA.mtree",
+    "NINTENDO_N3DS/twln/10.0.0-27_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.0.0-27_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.0.0-27_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.0.0-27_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.0.0-27_USA.mtree",
+    "NINTENDO_N3DS/twln/10.1.0-27_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.1.0-27_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.1.0-27_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.1.0-27_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.1.0-27_USA.mtree",
+    "NINTENDO_N3DS/twln/10.2.0-28_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.2.0-28_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.2.0-28_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.2.0-28_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.2.0-28_USA.mtree",
+    "NINTENDO_N3DS/twln/10.3.0-28_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.3.0-28_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.3.0-28_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.3.0-28_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.3.0-28_USA.mtree",
+    "NINTENDO_N3DS/twln/10.4.0-29_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.4.0-29_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.4.0-29_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.4.0-29_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.4.0-29_USA.mtree",
+    "NINTENDO_N3DS/twln/10.5.0-30_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.5.0-30_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.5.0-30_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.5.0-30_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.5.0-30_USA.mtree",
+    "NINTENDO_N3DS/twln/10.6.0-31_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.6.0-31_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.6.0-31_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.6.0-31_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.6.0-31_USA.mtree",
+    "NINTENDO_N3DS/twln/10.7.0-32_CHN.mtree",
+    "NINTENDO_N3DS/twln/10.7.0-32_EUR.mtree",
+    "NINTENDO_N3DS/twln/10.7.0-32_JPN.mtree",
+    "NINTENDO_N3DS/twln/10.7.0-32_KOR.mtree",
+    "NINTENDO_N3DS/twln/10.7.0-32_USA.mtree",
+    "NINTENDO_N3DS/twln/11.0.0-33_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.0.0-33_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.0.0-33_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.0.0-33_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.0.0-33_USA.mtree",
+    "NINTENDO_N3DS/twln/11.1.0-34_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.1.0-34_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.1.0-34_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.1.0-34_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.1.0-34_USA.mtree",
+    "NINTENDO_N3DS/twln/11.2.0-35_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.2.0-35_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.2.0-35_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.2.0-35_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.2.0-35_USA.mtree",
+    "NINTENDO_N3DS/twln/11.3.0-36_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.3.0-36_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.3.0-36_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.3.0-36_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.3.0-36_USA.mtree",
+    "NINTENDO_N3DS/twln/11.4.0-37_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.4.0-37_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.4.0-37_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.4.0-37_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.4.0-37_USA.mtree",
+    "NINTENDO_N3DS/twln/11.5.0-38_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.5.0-38_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.5.0-38_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.5.0-38_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.5.0-38_USA.mtree",
+    "NINTENDO_N3DS/twln/11.6.0-39_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.6.0-39_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.6.0-39_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.6.0-39_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.6.0-39_USA.mtree",
+    "NINTENDO_N3DS/twln/11.7.0-40_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.7.0-40_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.7.0-40_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.7.0-40_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.7.0-40_USA.mtree",
+    "NINTENDO_N3DS/twln/11.8.0-41_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.8.0-41_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.8.0-41_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.8.0-41_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.8.0-41_USA.mtree",
+    "NINTENDO_N3DS/twln/11.9.0-42_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.9.0-42_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.9.0-42_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.9.0-42_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.9.0-42_USA.mtree",
+    "NINTENDO_N3DS/twln/11.10.0-43_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.10.0-43_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.10.0-43_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.10.0-43_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.10.0-43_USA.mtree",
+    "NINTENDO_N3DS/twln/11.11.0-43E_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.11.0-43E_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.11.0-43E_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.11.0-43E_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.11.0-43E_USA.mtree",
+    "NINTENDO_N3DS/twln/11.12.0-44_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.12.0-44_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.12.0-44_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.12.0-44_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.12.0-44_USA.mtree",
+    "NINTENDO_N3DS/twln/11.13.0-45_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.13.0-45_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.13.0-45_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.13.0-45_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.13.0-45_USA.mtree",
+    "NINTENDO_N3DS/twln/11.14.0-46_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.14.0-46_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.14.0-46_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.14.0-46_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.14.0-46_USA.mtree",
+    "NINTENDO_N3DS/twln/11.15.0-47_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.15.0-47_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.15.0-47_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.15.0-47_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.15.0-47_USA.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-48_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-48_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-48_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-48_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-48_USA.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-49_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-49_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-49_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-49_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.16.0-49_USA.mtree",
+    "NINTENDO_N3DS/twln/11.17.0-50_CHN.mtree",
+    "NINTENDO_N3DS/twln/11.17.0-50_EUR.mtree",
+    "NINTENDO_N3DS/twln/11.17.0-50_JPN.mtree",
+    "NINTENDO_N3DS/twln/11.17.0-50_KOR.mtree",
+    "NINTENDO_N3DS/twln/11.17.0-50_USA.mtree",
+]
+
+[[storage.nand.partition]]
+id = "twlp"
+name = "twlp"
+
+[[storage.nand.partition]]
+id = "agbsave"
+name = "agbsave"
+
+[storage.sd]
+name = "microSD Card"
+user = true
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v21288.firm"
+md5 = ["1a2bf41cf835dee8ba38b6ca0402c6d9"]
+sha1 = ["e21409bce0b3bfe7a48a895b123c2a5bd7448211"]
+sha256 = ["d82db7b4382b07889977910cc6ec6d877d217923d760af4e8b3aabb263e421c6"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v22313.firm"
+md5 = ["7512abc6bdfddb2fcf10732888ff81e5"]
+sha1 = ["2c9b63126e3ed3d402d3e6e01b966675a46a3dae"]
+sha256 = ["d253c1cc0a5ffac6b383dac1827cfb3b2d3d566c6a1a8e5254e389c2950623e5"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v23341.firm"
+md5 = ["e193d5832332f72fdec1f7f51bb9c20f"]
+sha1 = ["080bdddf6c2e50b8d9326c9edbc2ca9094de7adf"]
+sha256 = ["2d6bccce3b81d7ca67179033354dfaa570f47a99bb600c2f3490ff10d44c9742"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v24368.firm"
+md5 = ["4492780eb0279d0496ce403c17c46a17"]
+sha1 = ["1da9bc57ef6a4e50ec97c4eb6f57aeca9e05208e"]
+sha256 = ["581ec7255603accccd41f827fdfbfdd71edf990417d9410860ce66dc23fd8d2b"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v25396.firm"
+md5 = ["63591da6c4baf8e856c3dac71f3eb205"]
+sha1 = ["257b2512f519350953904e37a9359ffb2b97971d"]
+sha256 = ["12041c982116c12522ad7920c9a208c31d68e720281d33214971fb258fd0d3a2"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v26432.firm"
+md5 = ["f157117e20ccbff6928d774936fcaaeb"]
+sha1 = ["06f5de43a02d0a1b7c87f30bfd26b73890f863bc"]
+sha256 = ["04623caa015b46a557894e4693992252b7a45414f2cbcbd4b23a89bbe417c0ff"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v27476.firm"
+md5 = ["08244066201545a8a9dbdcb7fe5f1267"]
+sha1 = ["55ebc4593980960667a917a2d75868e56b44e926"]
+sha256 = ["9028946ef2b20750c6cbe3d0a3337c309cd21d0a4aaff25fc671ff465abc432c"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v28512.firm"
+md5 = ["972ca695a9403a7ae31a75c47bd8f041"]
+sha1 = ["82f4189811284061e9ea03f6a01cfe9be1b071ee"]
+sha256 = ["ae7374620599bbc5ec2622a4f6b0235777007bab77a4e00aed2337fc50d346db"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v29557.firm"
+md5 = ["922298c1cf56e17dc1d14bcc83468056"]
+sha1 = ["bf9afa974fbc1bded8e5b69a5dfb30b7e3b13f25"]
+sha256 = ["4e3033dcfeeb24c3403f34a8a946b4687ce865d54c9fe1215e2cca34455591cf"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v30593.firm"
+md5 = ["1dc547074f87c6fbc576b8388747f4ff"]
+sha1 = ["3a2b695f535cb4380418b6161571052df88d687e"]
+sha256 = ["c8527c1b00c7982fffa69430a245f37815c0355cd806f45e0a211d172fba2d75"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v31633.firm"
+md5 = ["f717b2e66ffc3f28f8445c8c4fcff0f5"]
+sha1 = ["8de6ebb85fcdef9216124a0a5c2e270877782c57"]
+sha256 = ["9fab9cf4af7ff61ec4e1757124beb6ab317206aafe5256d8e53e3dada630147f"]
+
+[[bios]]
+name = "NATIVE_FIRM_N3DS_v32673.firm"
+md5 = ["f609e138872db972a99abc059e44cc8f"]
+sha1 = ["1b4f673256bb005c866a6c71ec5c1af3e4447ac5"]
+sha256 = ["39373833d5f9a71253d4a5af54f8d5665d6339644f3c5c70046a935ef033b4bc"]
+
+[[bios]]
+name = "SAFE_MODE_FIRM_N3DS_v16081.firm"
+md5 = ["f45c49f61d8c16885460425e9193bc04"]
+sha1 = ["1465163f4b5b6f6c99676b14dd45025cfc7a6127"]
+sha256 = ["539a463c439f76dc218e0fe8fe434d5beb51ba9bc5e4ca6cfaf0f9423a16827f"]
+
+[[bios]]
+name = "TWL_FIRM_N3DS_v10962.firm"
+md5 = ["e65497219f836daca7fc72ea717a35f0"]
+sha1 = ["f4be0a880d4d6ce2a21a34904494ff26b8fc198f"]
+sha256 = ["403580f164a346066d8d4d0e33baf50362821fe54164272a34d7593e7c766197"]
+
+[[bios]]
+name = "TWL_FIRM_N3DS_v9936.firm"
+md5 = ["02f02b5de0f9811147386a7fb0a9677b"]
+sha1 = ["e7de6fc34f35c3ecf9781f9830545c902dfeece0"]
+sha256 = ["0ddf5eec6c2bd973a47bcb3f87dcb9293dede716b8b633f2542bd401883d05ad"]

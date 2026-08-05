@@ -23,3 +23,13 @@ groups = ["controller"]
 [input.controller]
 inputs = ["SWITCH_2_JOYCONS_CONTROLLER", "SWITCH_2_LEFT_JOYCON_CONTROLLER", "SWITCH_2_PRO_CONTROLLER", "SWITCH_2_RIGHT_JOYCON_CONTROLLER", "SWITCH_JOYCONS_CONTROLLER", "SWITCH_LEFT_JOYCON_CONTROLLER", "SWITCH_PRO_CONTROLLER", "SWITCH_RIGHT_JOYCON_CONTROLLER", "GAMECUBE_CONTROLLER"]
 ports = 8
+
+[storage]
+devices = ["ufs", "sd"]
+
+[storage.ufs]
+name = "Internal Storage"
+
+[storage.sd]
+name = "microSD Express Card"
+user = true

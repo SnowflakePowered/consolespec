@@ -34,3 +34,34 @@ class = [
     "microphone",
     "storage"
 ]
+
+[storage]
+devices = ["hdd"]
+
+[storage.hdd]
+name = "Hard Drive"
+
+[[storage.hdd.partition]]
+id = "temp_content"
+name = "Temp Content"
+
+[[storage.hdd.partition]]
+id = "user_content"
+name = "User Content"
+user = true
+
+[[storage.hdd.partition]]
+id = "system_support"
+name = "System Support"
+
+[[storage.hdd.partition]]
+id = "system_update"
+name = "System Update"
+
+[[storage.hdd.partition]]
+id = "system_update2"
+name = "System Update 2"
+
+[[storage.hdd.partition]]
+id = "registry"
+name = "Registry"

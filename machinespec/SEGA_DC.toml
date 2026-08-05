@@ -25,3 +25,11 @@ md5 = ["e10c53c2f8b90bab96ead2d368858623"]
 [[bios]]
 name = "dc_flash.bin"
 md5 = ["0a93f7940c455905bea6e392dfde92a4"]
+
+[storage]
+devices = ["vmu"]
+
+[storage.vmu]
+name = "Visual Memory Unit"
+raw = true
+user = true

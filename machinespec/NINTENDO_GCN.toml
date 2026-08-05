@@ -21,3 +21,16 @@ ports = 4
 [[bios]]
 name = "IPL.bin"
 md5 = ["fc924a7c879b661abc37cec4f018fdf3", "0cdda509e2da83c85bfe423dd87346cc", "db92574caab77a7ec99d4605fd6f2450"]
+
+[storage]
+devices = ["slotA", "slotB"]
+
+[storage.slotA]
+name = "Memory Card A"
+raw = true
+user = true
+
+[storage.slotB]
+name = "Memory Card B"
+raw = true
+user = true

@@ -1,0 +1,10 @@
+#mtree
+# PSP official firmware 4.01 system software (flash1)
+. type=dir
+./dic type=dir
+./gps type=dir
+./net type=dir
+./net/http type=dir
+./registry type=dir
+./vsh type=dir
+./vsh/theme type=dir

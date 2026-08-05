@@ -1,0 +1,19 @@
+#mtree
+# Nintendo 3DS firmware 3.0.0-5_EUR installed title contents (twln)
+# sizes and digests are those Nintendo signed into each title's TMD
+. type=dir
+./title type=dir
+./title/00048005 type=dir
+./title/00048005/42383841 type=dir
+./title/00048005/42383841/content type=dir
+./title/00048005/42383841/content/00000002.app type=file size=1305600 sha256=2050491c34883b892aafbc26ccee9232815721b2cf009fc399d9fb337b2a7468
+./title/00048005/484e4441 type=dir
+./title/00048005/484e4441/content type=dir
+./title/00048005/484e4441/content/00000000.app type=file size=433088 sha256=2d63b05e731514a31b8c740eefa7698b5aa6e06d86258df15d7988e24935bcd3
+./title/0004800f type=dir
+./title/0004800f/484e4841 type=dir
+./title/0004800f/484e4841/content type=dir
+./title/0004800f/484e4841/content/00000005.app type=file size=327680 sha256=629b15c76f81923311a80e2d3b45b5aa517932dcf6ecb5bac46e022b44ce83d1
+./title/0004800f/484e4c41 type=dir
+./title/0004800f/484e4c41/content type=dir
+./title/0004800f/484e4c41/content/00000000.app type=file size=6992 sha256=b2569155fca3be49ad88e1bba8992c6eb360a5c297c6a9e48b6a94c9a67079cb

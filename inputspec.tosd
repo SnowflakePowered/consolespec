@@ -1,7 +1,7 @@
 # TOML Schema (https://toml-schema.org/) for inputspec documents.
 # An inputspec describes an input device layout (buttons, directionals,
-# analog clusters, triggers, rumble motors, pointers, keyboards, and
-# touchscreens), following the element vocabulary of the Stone controller spec.
+# analog clusters, triggers, rumble motors, pointers, and touchscreens),
+# following the element vocabulary of the Stone controller spec.
 
 [toml-schema]
 version = "1.0.0"
@@ -193,14 +193,6 @@ version = "1.0.0"
         type = "types.alignmentType"
         optional = true
 
-    # A keyboard with an unspecified amount of keys, e.g. for emulated
-    # computers.
-    [types.keyboardType]
-
-        [types.keyboardType.label]
-        type = "string"
-        optional = true
-
     # A microphone for voice or sound input.
     [types.microphoneType]
 
@@ -319,12 +311,6 @@ optional = true
     type = "array"
     arraytype = "table"
     itemtype = "types.pointerType"
-    optional = true
-
-    [elements.input.keyboard]
-    type = "array"
-    arraytype = "table"
-    itemtype = "types.keyboardType"
     optional = true
 
     [elements.input.microphone]

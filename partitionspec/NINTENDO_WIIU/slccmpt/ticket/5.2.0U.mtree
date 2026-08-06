@@ -1,7 +1,7 @@
 #mtree
 # Nintendo Wii U vWii installed SLCCMPT state (ticket)
 # each ticket is the signed 0x2A4-byte prefix of the title's NUS cetk
-# as installed by 2 firmwares: 1.0.0J, 4.0.0J
+# as installed by firmware 5.2.0U
 . type=dir
 ./00000001 type=dir
 ./00000001/00000002.tik type=file size=676 sha1=9cd3ca73d4cc89c31dd4897447c67b94c24c6170
@@ -31,11 +31,14 @@
 ./00000001/00000038.tik type=file size=676 sha1=cf7dfd5b8daa1501ed515ab7ccae500852f58a25
 ./00000001/00000039.tik type=file size=676 sha1=3251c19773165ae3ed0aa6075b896aa2db56289b
 ./00000001/0000003a.tik type=file size=676 sha1=9f1a7835f7dc42e1af59f7966e432da8879346e2
+./00000001/0000003b.tik type=file size=676 sha1=f27cbba50d23dc5babaf9ee635f18fee0e0421ed
+./00000001/0000003e.tik type=file size=676 sha1=7b3ee8957415a716efaa02e5b2967dbc5916c9e1
 ./00000001/00000050.tik type=file size=676 sha1=d04cdbfa3d697b5dae32bf5692c3273636f67058
+./00000001/00000200.tik type=file size=676 sha1=54e02b0d479ab680ac0e2b1bdd375982d89fdcb1
 ./00000001/00000201.tik type=file size=676 sha1=30ebd44b30e4e61b9e7a087b1332c005429aa93b
 ./00010002 type=dir
 ./00010002/48414241.tik type=file size=676 sha1=a08406453b52e9782181e43aa969de104f5f244d
 ./00010002/48414341.tik type=file size=676 sha1=210335a4c3eb04bd5f028ece15f49c115ba39f80
 ./00010002/48435641.tik type=file size=676 sha1=0473aaf2365850a2cc37b3dbc749424c0c585998
 ./00010008 type=dir
-./00010008/48414c4a.tik type=file size=676 sha1=40014561328df572da0360f364a94c93d00b66d7
+./00010008/48414c45.tik type=file size=676 sha1=c1351aca453a08291828a9794d80d40b15f2d05a

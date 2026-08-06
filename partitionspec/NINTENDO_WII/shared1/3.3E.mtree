@@ -1,6 +1,6 @@
 #mtree
 # Nintendo Wii system menu installed NAND state (shared1)
-# names are allocated in install order, so no .app can be given a size or digest; content.map is 28 bytes per content
+# names are allocated in install order and content.map counts everything installed, not just the system software, so nothing here carries a size or a digest
 # as installed by 2 firmwares: 3.3E, 3.3J
 . type=dir
 ./00000000.app type=file
@@ -55,4 +55,4 @@
 ./00000031.app type=file
 ./00000032.app type=file
 ./00000033.app type=file
-./content.map type=file size=1456
+./content.map type=file

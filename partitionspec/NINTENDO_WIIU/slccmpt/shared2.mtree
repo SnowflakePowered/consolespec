@@ -1,43 +1,27 @@
 #mtree
-# Nintendo Wii shared2 partition skeleton
-# setup data and logs for WiiConnect24, Miis and the factory test line
+# Nintendo Wii U vWii SLCCMPT shared2 partition skeleton
+# setup data for WiiConnect24, Miis and the Wii U compatibility layer
 # console state, not update content: paths only, never a digest,
 # and sizes only where a source fixes them
 . type=dir
-./DIAG type=dir
-./DWC_AUTHDATA type=file
-./FaceLib type=dir
-./aging type=dir
-./cntcache.txt type=file
-./diag type=dir
-./ec type=dir
-./ec/shopsetu.log type=file
-./ec/sync type=dir
-./expired type=file
 ./menu type=dir
 ./menu/FaceLib type=dir
 ./menu/FaceLib/RFL_DB.dat type=file size=779968
 ./menu/vc type=dir
 ./menu/vc/settings.sav type=file size=32
 ./succession type=dir
-./succession/shop.log type=file
 ./succession/transfer.id type=file size=32
 ./sys type=dir
-./sys/NANDBOOTINFO type=file size=4128
 ./sys/SYSCONF type=file size=16384
+./sys/compat type=dir
 ./sys/flags.dat type=file size=32
 ./sys/net type=dir
 ./sys/net/02 type=dir
 ./sys/net/02/config.dat type=file size=7004
 ./sys/net/dhcp.dat type=file size=96
-./test type=dir
-./test/testlog.txt type=file
 ./test2 type=dir
-./test2/dvderror.dat type=file
 ./test2/nanderr.log type=file size=16384
-./title type=dir
 ./wc24 type=dir
-./wc24/dlcnt.bin type=file
 ./wc24/mbox type=dir
 ./wc24/mbox/wc24recv.ctl type=file size=32768
 ./wc24/mbox/wc24recv.mbx type=file size=7340032

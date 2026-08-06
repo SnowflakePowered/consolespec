@@ -1,0 +1,6 @@
+#mtree
+# Nintendo Wii U vWii SLCCMPT meta partition skeleton
+# present but empty: vWii has no factory install disc to write title.met
+# console state, not update content: paths only, never a digest,
+# and sizes only where a source fixes them
+. type=dir

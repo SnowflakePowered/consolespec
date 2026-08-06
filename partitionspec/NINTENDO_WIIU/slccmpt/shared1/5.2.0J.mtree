@@ -1,7 +1,7 @@
 #mtree
 # Nintendo Wii U vWii installed SLCCMPT state (shared1)
 # names are allocated in install order and content.map counts everything installed, not just the system software, so nothing here carries a size or a digest
-# as installed by 4 firmwares: 1.0.0E, 1.0.0U, 4.0.0E, 4.0.0U
+# as installed by firmware 5.2.0J
 . type=dir
 ./00000000.app type=file
 ./00000001.app type=file
@@ -68,4 +68,19 @@
 ./0000003e.app type=file
 ./0000003f.app type=file
 ./00000040.app type=file
+./00000041.app type=file
+./00000042.app type=file
+./00000043.app type=file
+./00000044.app type=file
+./00000045.app type=file
+./00000046.app type=file
+./00000047.app type=file
+./00000048.app type=file
+./00000049.app type=file
+./0000004a.app type=file
+./0000004b.app type=file
+./0000004c.app type=file
+./0000004d.app type=file
+./0000004e.app type=file
+./0000004f.app type=file
 ./content.map type=file

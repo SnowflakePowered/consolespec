@@ -47,23 +47,13 @@ id = "import"
 name = "import"
 spec = [
     "NINTENDO_WII/import.mtree",
-    "NINTENDO_WII/meta.mtree",
-    "NINTENDO_WII/sd.mtree",
-    "NINTENDO_WII/shared2.mtree",
-    "NINTENDO_WII/sys.mtree",
-    "NINTENDO_WII/tmp.mtree",
 ]
 
 [[storage.nand.partition]]
 id = "meta"
 name = "meta"
 spec = [
-    "NINTENDO_WII/import.mtree",
     "NINTENDO_WII/meta.mtree",
-    "NINTENDO_WII/sd.mtree",
-    "NINTENDO_WII/shared2.mtree",
-    "NINTENDO_WII/sys.mtree",
-    "NINTENDO_WII/tmp.mtree",
 ]
 
 [[storage.nand.partition]]
@@ -97,24 +87,14 @@ spec = [
 id = "shared2"
 name = "shared2"
 spec = [
-    "NINTENDO_WII/import.mtree",
-    "NINTENDO_WII/meta.mtree",
-    "NINTENDO_WII/sd.mtree",
     "NINTENDO_WII/shared2.mtree",
-    "NINTENDO_WII/sys.mtree",
-    "NINTENDO_WII/tmp.mtree",
 ]
 
 [[storage.nand.partition]]
 id = "sys"
 name = "sys"
 spec = [
-    "NINTENDO_WII/import.mtree",
-    "NINTENDO_WII/meta.mtree",
-    "NINTENDO_WII/sd.mtree",
-    "NINTENDO_WII/shared2.mtree",
     "NINTENDO_WII/sys.mtree",
-    "NINTENDO_WII/tmp.mtree",
 ]
 
 [[storage.nand.partition]]
@@ -202,11 +182,6 @@ spec = [
 id = "tmp"
 name = "tmp"
 spec = [
-    "NINTENDO_WII/import.mtree",
-    "NINTENDO_WII/meta.mtree",
-    "NINTENDO_WII/sd.mtree",
-    "NINTENDO_WII/shared2.mtree",
-    "NINTENDO_WII/sys.mtree",
     "NINTENDO_WII/tmp.mtree",
 ]
 

@@ -67,6 +67,9 @@ spec = [
     "NINTENDO_WIIU/slccmpt/ticket/1.0.0E.mtree",
     "NINTENDO_WIIU/slccmpt/ticket/1.0.0J.mtree",
     "NINTENDO_WIIU/slccmpt/ticket/1.0.0U.mtree",
+    "NINTENDO_WIIU/slccmpt/ticket/5.2.0E.mtree",
+    "NINTENDO_WIIU/slccmpt/ticket/5.2.0J.mtree",
+    "NINTENDO_WIIU/slccmpt/ticket/5.2.0U.mtree",
 ]
 
 [[storage.slccmpt.partition]]
@@ -75,27 +78,44 @@ name = "shared1"
 spec = [
     "NINTENDO_WIIU/slccmpt/shared1/1.0.0E.mtree",
     "NINTENDO_WIIU/slccmpt/shared1/1.0.0J.mtree",
+    "NINTENDO_WIIU/slccmpt/shared1/5.2.0E.mtree",
+    "NINTENDO_WIIU/slccmpt/shared1/5.2.0J.mtree",
 ]
 
 [[storage.slccmpt.partition]]
 id = "shared2"
 name = "shared2"
+spec = [
+    "NINTENDO_WIIU/slccmpt/shared2.mtree",
+]
 
 [[storage.slccmpt.partition]]
 id = "sys"
 name = "sys"
+spec = [
+    "NINTENDO_WIIU/slccmpt/sys.mtree",
+]
 
 [[storage.slccmpt.partition]]
 id = "meta"
 name = "meta"
+spec = [
+    "NINTENDO_WIIU/slccmpt/meta.mtree",
+]
 
 [[storage.slccmpt.partition]]
 id = "import"
 name = "import"
+spec = [
+    "NINTENDO_WIIU/slccmpt/import.mtree",
+]
 
 [[storage.slccmpt.partition]]
 id = "tmp"
 name = "tmp"
+spec = [
+    "NINTENDO_WIIU/slccmpt/tmp.mtree",
+]
 
 [storage.mlc]
 name = "Internal Storage"
@@ -104,3 +124,10 @@ user = true
 [storage.sd]
 name = "SD Card"
 user = true
+
+[[storage.slccmpt.partition]]
+id = "wfs"
+name = "wfs"
+spec = [
+    "NINTENDO_WIIU/slccmpt/wfs.mtree",
+]

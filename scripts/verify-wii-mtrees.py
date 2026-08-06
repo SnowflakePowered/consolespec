@@ -117,38 +117,41 @@ def derive(updates, tmd_dir):
             if cache[path]:
                 per_partition['ticket'].update(cache[path].tik_file())
         per_partition['shared1'] = gen.shared1_entries(sorted(shared_hashes))
-        out[label] = per_partition
+        out[label] = {part: gen.rooted(part, e)
+                      for part, e in per_partition.items()}
     return out, cache
 
 
-def check_skeletons(mtree_root):
+def check_skeletons(mtree_root, system='wii'):
     """Check each console-state skeleton against the generator's tables.
 
     They are not derived from anything, so the checks are that each says
     exactly what its table says, and that no entry ever carries a digest.
     """
     ok = failed = 0
-    for partition, spec in sorted(gen.SKELETONS.items()):
+    for partition, spec in sorted(gen.skeletons_for(system).items()):
         path = os.path.join(mtree_root, f'{partition}.mtree')
         if not os.path.exists(path):
             print(f'FAIL {partition}: {partition}.mtree missing')
             failed += 1
             continue
         want = parse_mtree(path)
+        files = gen.rooted(partition, spec['files'])
+        unsized = set(gen.rooted(partition, {p: None for p in spec['unsized']}))
         failures = []
         for entry, kv in sorted(want.items()):
             if kv.get('sha1') or kv.get('sha256') or kv.get('md5'):
                 failures.append(f'{entry}: has a digest but {partition} is console state')
-            if entry in spec['files']:
-                expect = spec['files'][entry]
+            if entry in files:
+                expect = files[entry]
                 if int(kv.get('size', -1)) != expect:
                     failures.append(f'{entry}: size {kv.get("size")} != {expect}')
-            elif entry in spec['unsized']:
+            elif entry in unsized:
                 if 'size' in kv:
                     failures.append(f'{entry}: has a size but none is documented')
             else:
                 failures.append(f'not in the {partition} tables: {entry}')
-        known = set(spec['files']) | set(spec['unsized'])
+        known = set(files) | unsized
         for entry in sorted(known - set(want)):
             failures.append(f'missing from mtree: {entry}')
         if failures:
@@ -179,8 +182,7 @@ def main():
                else wiiupd.parse(source))
     derived, cache = derive(updates, tmd_dir)
 
-    # the skeletons are Wii-only; vWii's console state has no source
-    ok, failed = check_skeletons(mtree_root) if args.system == 'wii' else (0, 0)
+    ok, failed = check_skeletons(mtree_root, args.system)
     partitions = sorted(d for d in os.listdir(mtree_root)
                         if os.path.isdir(os.path.join(mtree_root, d)))
     for partition in partitions:

@@ -1,0 +1,6 @@
+#mtree
+# Nintendo Wii U vWii SLCCMPT tmp partition skeleton
+# scratch space cleared by the System Menu on boot; empty at rest
+# console state, not update content: paths only, never a digest,
+# and sizes only where a source fixes them
+. type=dir

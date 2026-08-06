@@ -1,0 +1,6 @@
+#mtree
+# Nintendo Wii U vWii SLCCMPT import partition skeleton
+# scratch space for an in-progress title install; empty unless one was interrupted
+# console state, not update content: paths only, never a digest,
+# and sizes only where a source fixes them
+. type=dir

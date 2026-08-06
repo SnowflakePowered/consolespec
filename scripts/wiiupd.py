@@ -70,15 +70,16 @@ REGIONS = {'e': 'EUR', 'u': 'USA', 'j': 'JPN', 'k': 'KOR'}
 # 513 and 514, but the content differs.
 #
 # There is no wiiqt equivalent listing vWii update contents, so the table was
-# built by enumerating NUS directly: every id in 00000007-000000xx was probed,
-# which found the System Menu and 29 IOSes, and the channel ids came from
-# wiiubrew's title database with their versions confirmed against NUS.
+# built from wiiubrew's title database, with every id and version confirmed
+# against NUS, and checked against a retail SLCCMPT dump.
 #
-# Every vWii title except the System Menu has exactly one version on NUS. That
-# was checked by sweeping four major versions' worth of minor versions around
-# each of IOS31, IOS58 and IOS80 (one hit each) and by enumerating every
-# channel's versions in full. So only the System Menu is version-pinned here;
-# the rest resolve through LATEST, which for them is their only version.
+# Most vWii titles have exactly one version on NUS and resolve through LATEST.
+# Five do not — IOS59, IOS62 and BC-NAND, in VWII_MULTI below — and nothing
+# records which of their versions ships with which vWii release. Only 5.2.0 is
+# settled, because the dump is a 5.2.0E console and matched every entry of the
+# derived manifest; those titles are therefore pinned for 5.2.0 and left out of
+# 1.0.0 and 4.0.0 rather than guessed at. The Wii Menu Manual and WagonCompat
+# Transfer Tool are left out entirely for the same reason (see VWII_CHANNELS).
 VWII_SYSMENU = {
     '1.0.0J': 512, '1.0.0U': 513, '1.0.0E': 514,
     '4.0.0J': 544, '4.0.0U': 545, '4.0.0E': 546,
@@ -92,9 +93,17 @@ VWII_IOS = [
     0x0000000700000023, 0x0000000700000024, 0x0000000700000025, 0x0000000700000026,
     0x0000000700000029, 0x000000070000002b, 0x000000070000002d, 0x000000070000002e,
     0x0000000700000030, 0x0000000700000035, 0x0000000700000037, 0x0000000700000038,
-    0x0000000700000039, 0x000000070000003a, 0x000000070000003b, 0x000000070000003e,
-    0x0000000700000050,
+    0x0000000700000039, 0x000000070000003a, 0x0000000700000050,
+    0x0000000700000201,   # BC-WFS, the Wii U filesystem shim; only ever v1
 ]
+# Titles NUS serves more than one version of, and the release each version is
+# known to belong to. 5.2.0 is the only one a dump settles; the other versions
+# listed in the comments exist on NUS but are unattributed.
+VWII_MULTI = {
+    0x000000070000003b: {'5.2.0': 9249},   # IOS59, also v7201 and v8737
+    0x000000070000003e: {'5.2.0': 6942},   # IOS62, also v6430 and v6686
+    0x0000000700000200: {'5.2.0': 7},      # BC-NAND, also v6
+}
 # {nus title id: region letter, or None for every region}. Only channels with a
 # single version on NUS are listed. The Wii Menu Manual (HCUE/HCUJ/HCUP, five
 # or six versions each) and the WagonCompat Transfer Tool (HCZE/HCZJ/HCZP, v29
@@ -114,13 +123,22 @@ def vwii_updates():
     """Return {vWii version label: {NUS title id: version}}, same shape as parse()."""
     out = {}
     for label, menu_version in VWII_SYSMENU.items():
-        region = label[-1]
+        region, release = label[-1], label[:-1]
         titles = {VWII_SYSMENU_ID: menu_version}
         titles.update({tid: LATEST for tid in VWII_IOS})
         titles.update({tid: LATEST for tid, r in VWII_CHANNELS.items()
                        if r is None or r == region})
+        titles.update({tid: versions[release]
+                       for tid, versions in VWII_MULTI.items()
+                       if release in versions})
         out[label] = titles
     return out
+
+
+def vwii_unattributed(label):
+    """Titles left out of `label` because their version is not known for it."""
+    return sorted(tid for tid, versions in VWII_MULTI.items()
+                  if label[:-1] not in versions)
 
 FUNC = re.compile(r'NusDownloader::List(\d)(\d)([eujk])\(\)')
 BASE = re.compile(r'titles\s*=\s*List(\d)(\d)([eujk])\(\)')

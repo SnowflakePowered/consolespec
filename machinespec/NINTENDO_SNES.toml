@@ -9,7 +9,8 @@ manufacturer = "Nintendo"
 type = "console"
 
 [meta.jp]
-name = "Super Famicom"
+name = "スーパーファミコン"
+name-en = "Super Famicom"
 release-date = "1990-11-21"
 model-number = ["SHVC-001", "SHVC-101"]
 

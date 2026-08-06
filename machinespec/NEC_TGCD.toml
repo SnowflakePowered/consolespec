@@ -9,7 +9,8 @@ manufacturer = "NEC"
 type = "console"
 
 [meta.jp]
-name = "PC Engine CD"
+name = "CD-ROM²"
+name-en = "CD-ROM²"
 release-date = "1988-12-04"
 model-number = ["CDR-30"]
 

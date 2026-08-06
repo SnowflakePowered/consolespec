@@ -9,7 +9,8 @@ manufacturer = "Nintendo"
 type = "console"
 
 [meta.jp]
-name = "Family Computer"
+name = "ファミリーコンピュータ"
+name-en = "Family Computer"
 model-number = ["HVC-001", "HVC-101"]
 
 [meta.na]
@@ -20,5 +21,5 @@ model-number = ["NES-001", "NES-101"]
 groups = ["controller"]
 
 [input.controller]
-inputs = ["NES_CONTROLLER"]
+inputs = ["NES_CONTROLLER", "FC_MIC_CONTROLLER"]
 ports = 2

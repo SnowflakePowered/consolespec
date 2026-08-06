@@ -9,7 +9,8 @@ manufacturer = "NEC"
 type = "console"
 
 [meta.jp]
-name = "PC Engine"
+name = "PCエンジン"
+name-en = "PC Engine"
 release-date = "1987-10-30"
 model-number = ["PI-TG001"]
 

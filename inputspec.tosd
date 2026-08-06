@@ -8,6 +8,30 @@ version = "1.0.0"
 
 [types]
 
+    # Region-specific metadata, overriding the device-wide values for one
+    # market.
+    [types.regionMetaType]
+
+        # Name of the device in this region, in the script that region uses,
+        # e.g. "デュアルショック".
+        [types.regionMetaType.name]
+        type = "string"
+        optional = true
+
+        # That name transliterated into English, e.g. "Dual Shock". Only
+        # meaningful where `name` is not already in the Latin alphabet.
+        [types.regionMetaType.name-en]
+        type = "string"
+        optional = true
+
+        # Model numbers the device shipped under in this region, when they
+        # differ from the device-wide ones.
+        [types.regionMetaType.model-number]
+        type = "array"
+        arraytype = "string"
+        minlength = 1
+        optional = true
+
     # A digital button, excluding directional buttons.
     [types.buttonType]
 
@@ -78,10 +102,13 @@ version = "1.0.0"
         allowedvalues = [ 1, 2, 3 ]
 
         # Which analog cluster this is: an analog stick ("left", "right") or a
-        # motion sensor ("gyroscope", "accelerometer").
+        # motion sensor ("gyroscope", "accelerometer"). Omitted for a control
+        # that occupies no such position, such as the 3DS depth slider or the
+        # Famicom microphone's volume dial.
         [types.analogType.alignment]
         type = "string"
         allowedvalues = [ "left", "right", "gyroscope", "accelerometer" ]
+        optional = true
 
         # Whether the cluster registers digital signals only, e.g. the N64
         # C-buttons occupying the right analog position. Defaults to false.
@@ -180,6 +207,38 @@ version = "1.0.0"
         [types.touchscreenType.height]
         type = "integer"
         min = 1
+
+# Descriptive metadata about the input device.
+[elements.meta]
+optional = true
+
+    # Marketing name of the device, e.g. "Xbox Controller".
+    [elements.meta.name]
+    type = "string"
+    optional = true
+
+    # Manufacturer model numbers the device shipped under, ordered as
+    # released, e.g. ["SCPH-1200", "SCPH-110"].
+    [elements.meta.model-number]
+    type = "array"
+    arraytype = "string"
+    minlength = 1
+    optional = true
+
+    # Metadata for the North American market.
+    [elements.meta.na]
+    typeof = "types.regionMetaType"
+    optional = true
+
+    # Metadata for the European market.
+    [elements.meta.eu]
+    typeof = "types.regionMetaType"
+    optional = true
+
+    # Metadata for the Japanese market.
+    [elements.meta.jp]
+    typeof = "types.regionMetaType"
+    optional = true
 
 [elements.input]
 

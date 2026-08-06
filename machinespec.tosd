@@ -99,15 +99,29 @@ version = "1.0.0"
     # market.
     [types.regionMetaType]
 
-        # Name of the machine in this region, when it differs,
-        # e.g. "Famicom".
+        # Name of the machine in this region, when it differs, in the script
+        # that region uses, e.g. "メガドライブ".
         [types.regionMetaType.name]
+        type = "string"
+        optional = true
+
+        # That name transliterated into English, e.g. "Mega Drive". Only
+        # meaningful where `name` is not already in the Latin alphabet.
+        [types.regionMetaType.name-en]
         type = "string"
         optional = true
 
         # Abbreviated name of the machine in this region, e.g. "SFC".
         [types.regionMetaType.short-name]
         type = "string"
+        optional = true
+
+        # Model numbers the machine shipped under in this region, when they
+        # differ from the machine-wide ones.
+        [types.regionMetaType.model-number]
+        type = "array"
+        arraytype = "string"
+        minlength = 1
         optional = true
 
         # Date the machine was released in this region, as YYYY-MM-DD.
@@ -191,6 +205,14 @@ version = "1.0.0"
     # Abbreviated name of the machine, e.g. "Wii", "PSV".
     [elements.meta.short-name]
     type = "string"
+    optional = true
+
+    # Manufacturer model numbers this machine shipped under, e.g. "CX2600"
+    # and "CX2600A" for the Atari 2600. Ordered as released.
+    [elements.meta.model-number]
+    type = "array"
+    arraytype = "string"
+    minlength = 1
     optional = true
 
     # Company that licensed the machine.

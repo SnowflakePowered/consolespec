@@ -7,6 +7,7 @@ short-name = "3DO"
 licensor = "Panasonic"
 manufacturer = "Panasonic"
 type = "console"
+model-number = ["FZ-1", "FZ-10"]
 
 [meta.na]
 release-date = "1993-10-04"

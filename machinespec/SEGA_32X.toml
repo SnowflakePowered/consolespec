@@ -11,6 +11,13 @@ type = "addon"
 
 [meta.na]
 release-date = "1994-11-21"
+model-number = ["MK-84001", "MK-84002"]
+
+[meta.eu]
+model-number = ["MK-84201-50"]
+
+[meta.jp]
+model-number = ["HMA-0001"]
 
 [input]
 groups = ["controller"]

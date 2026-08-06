@@ -9,6 +9,7 @@ short-name = "3DS"
 licensor = "Nintendo"
 manufacturer = "Nintendo"
 type = "handheld"
+model-number = ["CTR-001", "SPR-001", "FTR-001"]
 
 [meta.jp]
 release-date = "2011-02-26"

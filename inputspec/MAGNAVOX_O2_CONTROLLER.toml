@@ -2,10 +2,13 @@
 id = "MAGNAVOX_O2_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Magnavox Odyssey² Controller"
+
 [[input.button]]
 label = "Fire"
 element = "a"
 
 [[input.directional]]
 label = "Joystick"
-hats = 4
+directions = 4

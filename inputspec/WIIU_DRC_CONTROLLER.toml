@@ -2,6 +2,10 @@
 id = "WIIU_DRC_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Wii U GamePad"
+model-number = ["WUP-010"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -40,7 +44,7 @@ element = "r"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

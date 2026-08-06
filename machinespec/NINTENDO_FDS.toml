@@ -11,6 +11,7 @@ type = "console"
 
 [meta.jp]
 release-date = "1986-02-21"
+model-number = ["HVC-022", "HVC-023"]
 
 [[bios]]
 name = "disksys.rom"

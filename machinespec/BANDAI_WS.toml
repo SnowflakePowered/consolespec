@@ -10,6 +10,7 @@ type = "handheld"
 
 [meta.jp]
 release-date = "1999-03-04"
+model-number = ["SW-001"]
 
 [input]
 groups = ["layout"]

@@ -7,6 +7,7 @@ short-name = "PS3"
 licensor = "Sony"
 manufacturer = "Sony"
 type = "console"
+model-number = ["CECHA", "CECHB", "CECHC", "CECHE", "CECHG", "CECHH", "CECHJ", "CECHK", "CECHL", "CECHM", "CECHP", "CECHQ", "CECH-2000", "CECH-2100", "CECH-2500", "CECH-3000", "CECH-4000", "CECH-4200", "CECH-4300"]
 
 [meta.na]
 release-date = "2006-11-17"

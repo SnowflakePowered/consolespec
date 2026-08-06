@@ -2,6 +2,9 @@
 id = "VECTREX_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Vectrex Controller"
+
 [[input.button]]
 label = "1"
 element = "a"
@@ -20,4 +23,4 @@ element = "y"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

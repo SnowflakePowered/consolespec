@@ -2,6 +2,10 @@
 id = "SWITCH_2_JOYCONS_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Switch 2 Joy-Con Pair"
+model-number = ["BEE-012", "BEE-014"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -48,7 +52,7 @@ element = "r"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

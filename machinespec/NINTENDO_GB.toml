@@ -7,9 +7,11 @@ short-name = "GB"
 licensor = "Nintendo"
 manufacturer = "Nintendo"
 type = "handheld"
+model-number = ["DMG-01", "MGB-001"]
 
 [meta.jp]
 release-date = "1989-04-21"
+model-number = ["MGB-101"]
 
 [input]
 groups = ["layout"]

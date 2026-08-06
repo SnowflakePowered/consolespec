@@ -2,6 +2,10 @@
 id = "DUALSHOCK_4_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "DualShock 4"
+model-number = ["CUH-ZCT1", "CUH-ZCT2"]
+
 [[input.button]]
 label = "Cross"
 element = "a"
@@ -52,7 +56,7 @@ element = "0"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

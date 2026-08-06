@@ -2,6 +2,15 @@
 id = "TG16_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "TurboPad"
+
+[meta.na]
+model-number = ["HES-PAD-01", "DUO-PAD-01"]
+
+[meta.jp]
+model-number = ["PI-PD001", "PI-PD002", "PI-PD6", "PI-PD8", "PCE-TP1", "PCE-TP2"]
+
 [[input.button]]
 label = "I"
 element = "a"
@@ -20,4 +29,4 @@ element = "select"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

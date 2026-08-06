@@ -20,4 +20,4 @@ element = "select"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

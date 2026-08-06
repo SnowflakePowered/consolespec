@@ -28,4 +28,4 @@ element = "0"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

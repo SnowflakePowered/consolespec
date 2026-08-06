@@ -10,6 +10,7 @@ type = "handheld"
 
 [meta.jp]
 release-date = "2000-12-09"
+model-number = ["SWC-001"]
 
 [input]
 groups = ["layout"]

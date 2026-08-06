@@ -11,6 +11,10 @@ type = "console"
 [meta.jp]
 name = "PC Engine CD"
 release-date = "1988-12-04"
+model-number = ["CDR-30"]
+
+[meta.na]
+model-number = ["HES-CDR-01"]
 
 [input]
 groups = ["controller"]

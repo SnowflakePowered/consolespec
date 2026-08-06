@@ -10,10 +10,15 @@ type = "console"
 
 [meta.eu]
 name = "Mega Drive"
+model-number = ["1600-05", "1600-09", "1600-18", "1600-06", "1600-20", "1600-13", "1600-24", "1600-03", "1601-09", "1601-18", "1601-24", "MK-1631-50"]
 
 [meta.jp]
 name = "Mega Drive"
 release-date = "1988-10-29"
+model-number = ["HAA-2510", "HAA-2502"]
+
+[meta.na]
+model-number = ["MK-1601", "MK-1631", "MK-1461"]
 
 [input]
 groups = ["controller"]

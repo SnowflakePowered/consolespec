@@ -40,7 +40,7 @@ element = "guide"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

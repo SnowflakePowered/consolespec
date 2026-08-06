@@ -10,6 +10,7 @@ type = "console"
 
 [meta.jp]
 release-date = "1994-09-10"
+model-number = ["CD-T01", "CD-T02"]
 
 [input]
 groups = ["controller"]

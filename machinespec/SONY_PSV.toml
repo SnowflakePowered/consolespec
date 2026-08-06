@@ -7,6 +7,7 @@ short-name = "PSV"
 licensor = "Sony"
 manufacturer = "Sony"
 type = "handheld"
+model-number = ["PCH-1000", "PCH-1100", "PCH-2000"]
 
 [meta.jp]
 release-date = "2011-12-17"

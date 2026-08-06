@@ -10,6 +10,13 @@ type = "handheld"
 
 [meta.jp]
 release-date = "1990-10-06"
+model-number = ["HGG-3200", "HGG-3210", "HGG-3223"]
+
+[meta.na]
+model-number = ["2110", "2110K", "2110G"]
+
+[meta.eu]
+model-number = ["2110-50", "MK-2110-50"]
 
 [[bios]]
 name = "bios.gg"

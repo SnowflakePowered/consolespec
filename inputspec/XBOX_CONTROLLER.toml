@@ -2,6 +2,10 @@
 id = "XBOX_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Xbox Controller"
+model-number = ["X08-17160", "X08-69873"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -48,7 +52,7 @@ element = "guide"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

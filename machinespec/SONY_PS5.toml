@@ -7,6 +7,7 @@ short-name = "PS5"
 licensor = "Sony"
 manufacturer = "Sony"
 type = "console"
+model-number = ["CFI-1000", "CFI-1100", "CFI-1200", "CFI-2000", "CFI-2100", "CFI-7000", "CFI-7100"]
 
 [meta.na]
 release-date = "2020-11-12"

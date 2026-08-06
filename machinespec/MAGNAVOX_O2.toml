@@ -10,6 +10,10 @@ type = "console"
 
 [meta.na]
 release-date = "1978"
+model-number = ["BA7600 GY02", "BB7600 GY02", "BC7600 GY02", "BC7600 GT02", "BJ7600 GY02", "BK7600 GY02", "CC7600 GY02"]
+
+[meta.eu]
+model-number = ["G7000/00", "G7000/20", "G7000/21", "G7000/22", "G7000/30", "G7000/35", "G7000/37", "G7000/53", "G7000/54", "G7000/75"]
 
 [input]
 groups = ["controller"]

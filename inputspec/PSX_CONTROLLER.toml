@@ -2,6 +2,10 @@
 id = "PSX_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "PlayStation Controller"
+model-number = ["SCPH-1010", "SCPH-1080"]
+
 [[input.button]]
 label = "Cross"
 element = "a"
@@ -44,7 +48,7 @@ element = "clickr"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.trigger]]
 label = "L2"

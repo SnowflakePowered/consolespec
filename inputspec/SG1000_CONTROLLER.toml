@@ -2,6 +2,10 @@
 id = "SG1000_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "SG-1000 Controller"
+model-number = ["SJ-200", "SJ-150", "SJ-151", "SJ-300", "SJ-300M"]
+
 [[input.button]]
 label = "Fire 1"
 element = "a"
@@ -12,4 +16,4 @@ element = "b"
 
 [[input.directional]]
 label = "Joystick"
-hats = 4
+directions = 4

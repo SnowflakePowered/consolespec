@@ -10,6 +10,7 @@ type = "console"
 
 [meta.jp]
 release-date = "1989-12-08"
+model-number = ["PI-TG4"]
 
 [input]
 groups = ["controller"]

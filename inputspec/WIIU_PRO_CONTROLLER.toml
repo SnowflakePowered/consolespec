@@ -2,6 +2,10 @@
 id = "WIIU_PRO_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Wii U Pro Controller"
+model-number = ["WUP-005"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -44,7 +48,7 @@ element = "0"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

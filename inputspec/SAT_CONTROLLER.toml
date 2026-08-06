@@ -2,6 +2,18 @@
 id = "SAT_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Saturn Controller"
+
+[meta.na]
+model-number = ["MK-80100"]
+
+[meta.eu]
+model-number = ["MK-80301", "MK-80313"]
+
+[meta.jp]
+model-number = ["HSS-0101"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -36,4 +48,4 @@ element = "select"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

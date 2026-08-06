@@ -7,6 +7,7 @@ short-name = "XBS"
 licensor = "Microsoft"
 manufacturer = "Microsoft"
 type = "console"
+model-number = ["1882", "1883"]
 
 [meta.na]
 release-date = "2020-11-10"

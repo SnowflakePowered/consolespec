@@ -50,9 +50,17 @@ version = "1.0.0"
         # Number of directional buttons in the cluster: 4 for the cardinal
         # directions (N, E, S, W), 8 to add the auxiliary intercardinal
         # directions (NE, NW, SE, SW).
-        [types.directionalType.hats]
+        [types.directionalType.directions]
         type = "integer"
         allowedvalues = [ 4, 8 ]
+
+        # Which side of the device the directional cluster is on, e.g. the
+        # DualShock D-Pad ("left") alongside a right-side face button
+        # cluster.
+        [types.directionalType.alignment]
+        type = "string"
+        allowedvalues = [ "left", "right" ]
+        optional = true
 
     # An analog axis cluster: a paddle or spinner (1 axis), a stick (2 axes),
     # or a motion sensor (3 axes). Each axis expands to a positive and a

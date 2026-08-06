@@ -10,6 +10,10 @@ type = "console"
 
 [meta.na]
 release-date = "1982-11"
+model-number = ["HP-3000", "3000"]
+
+[meta.eu]
+model-number = ["3000-UI", "3000-G1"]
 
 [input]
 groups = ["controller"]

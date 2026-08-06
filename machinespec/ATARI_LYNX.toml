@@ -10,6 +10,10 @@ type = "handheld"
 
 [meta.na]
 release-date = "1989-10-11"
+model-number = ["PAG-0201", "PAG-3201", "PAG-0401"]
+
+[meta.eu]
+model-number = ["PAG-0200", "PAG-0400"]
 
 [input]
 groups = ["layout"]

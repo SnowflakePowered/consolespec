@@ -7,6 +7,7 @@ short-name = "N64"
 licensor = "Nintendo"
 manufacturer = "Nintendo"
 type = "console"
+model-number = ["NUS-001"]
 
 [meta.jp]
 release-date = "1996-06-23"

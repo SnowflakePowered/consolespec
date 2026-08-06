@@ -7,6 +7,7 @@ short-name = "2600"
 licensor = "Atari"
 manufacturer = "Atari"
 type = "console"
+model-number = ["CX2600", "CX2600A"]
 
 [meta.na]
 release-date = "1977-09-11"

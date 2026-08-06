@@ -28,7 +28,7 @@ element = "r"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.touchscreen]]
 width = 256

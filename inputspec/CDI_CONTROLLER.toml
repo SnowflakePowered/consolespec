@@ -2,6 +2,10 @@
 id = "CDI_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "CD-i Gamepad"
+model-number = ["22ER9051", "22ER9019", "22ER9021", "22ER9017"]
+
 [[input.button]]
 label = "Button 1"
 element = "a"
@@ -12,4 +16,4 @@ element = "b"
 
 [[input.directional]]
 label = "Joystick"
-hats = 4
+directions = 4

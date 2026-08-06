@@ -7,6 +7,7 @@ short-name = "7800"
 licensor = "Atari"
 manufacturer = "Atari"
 type = "console"
+model-number = ["CX7800"]
 
 [meta.na]
 release-date = "1986-05"

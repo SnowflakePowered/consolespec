@@ -2,6 +2,10 @@
 id = "NG_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Neo Geo Controller"
+model-number = ["NEO-AEC"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -28,4 +32,4 @@ element = "select"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 8
+directions = 8

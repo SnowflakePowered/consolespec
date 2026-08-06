@@ -2,6 +2,10 @@
 id = "N64_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Nintendo 64 Controller"
+model-number = ["NUS-005"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -28,7 +32,8 @@ element = "start"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+alignment = "left"
+directions = 4
 
 [[input.analog]]
 axes = 2
@@ -36,7 +41,8 @@ alignment = "left"
 
 [[input.directional]]
 label = "C-Button"
-hats = 4
+alignment = "right"
+directions = 4
 
 [[input.rumble]]
 label = "Rumble Pak"

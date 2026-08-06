@@ -7,6 +7,7 @@ short-name = "PSP"
 licensor = "Sony"
 manufacturer = "Sony"
 type = "handheld"
+model-number = ["PSP-1000", "PSP-2000", "PSP-3000", "PSP-N1000", "PSP-E1000"]
 
 [meta.jp]
 release-date = "2004-12-12"

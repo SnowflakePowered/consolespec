@@ -7,6 +7,7 @@ short-name = "5200"
 licensor = "Atari"
 manufacturer = "Atari"
 type = "console"
+model-number = ["CX5200"]
 
 [meta.na]
 release-date = "1982-11"

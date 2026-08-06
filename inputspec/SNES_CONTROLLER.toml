@@ -2,6 +2,19 @@
 id = "SNES_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "SNES Controller"
+model-number = ["SNS-102"]
+
+[meta.na]
+model-number = ["SNS-005"]
+
+[meta.eu]
+model-number = ["SNSP-005"]
+
+[meta.jp]
+model-number = ["SHVC-005"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -36,4 +49,4 @@ element = "r"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

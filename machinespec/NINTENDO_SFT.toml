@@ -11,6 +11,7 @@ type = "console"
 
 [meta.jp]
 release-date = "1996-06-28"
+model-number = ["SFT-0100"]
 
 [input]
 groups = ["controller"]

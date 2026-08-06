@@ -10,6 +10,13 @@ type = "console"
 
 [meta.jp]
 release-date = "1994-11-22"
+model-number = ["HST-3200", "HST-3210", "HST-3220", "HST-0001"]
+
+[meta.na]
+model-number = ["MK-80000", "MK-80000A"]
+
+[meta.eu]
+model-number = ["MK-80200-50", "MK-80200A-50"]
 
 [input]
 groups = ["controller"]

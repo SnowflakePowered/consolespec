@@ -10,6 +10,7 @@ type = "console"
 
 [meta.na]
 release-date = "1979-12-03"
+model-number = ["2609", "5872"]
 
 [input]
 groups = ["controller"]

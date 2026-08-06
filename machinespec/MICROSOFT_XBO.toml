@@ -7,6 +7,7 @@ short-name = "XBO"
 licensor = "Microsoft"
 manufacturer = "Microsoft"
 type = "console"
+model-number = ["1540", "1681", "1787"]
 
 [meta.na]
 release-date = "2013-11-22"

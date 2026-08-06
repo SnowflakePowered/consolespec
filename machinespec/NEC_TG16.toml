@@ -11,6 +11,10 @@ type = "console"
 [meta.jp]
 name = "PC Engine"
 release-date = "1987-10-30"
+model-number = ["PI-TG001"]
+
+[meta.na]
+model-number = ["HES-TGX-01"]
 
 [input]
 groups = ["controller"]

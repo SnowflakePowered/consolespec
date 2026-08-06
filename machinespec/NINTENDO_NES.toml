@@ -10,9 +10,11 @@ type = "console"
 
 [meta.jp]
 name = "Family Computer"
+model-number = ["HVC-001", "HVC-101"]
 
 [meta.na]
 release-date = "1985-10-18"
+model-number = ["NES-001", "NES-101"]
 
 [input]
 groups = ["controller"]

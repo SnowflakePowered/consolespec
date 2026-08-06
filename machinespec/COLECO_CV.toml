@@ -10,6 +10,10 @@ type = "console"
 
 [meta.na]
 release-date = "1982-08"
+model-number = ["2400"]
+
+[meta.eu]
+model-number = ["6989-8", "6989-8F"]
 
 [input]
 groups = ["controller"]

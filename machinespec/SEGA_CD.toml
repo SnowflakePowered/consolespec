@@ -11,6 +11,13 @@ type = "addon"
 
 [meta.jp]
 release-date = "1991-12-12"
+model-number = ["HAA-2910", "HAA-2913", "HAA-2912"]
+
+[meta.na]
+model-number = ["1690", "4102"]
+
+[meta.eu]
+model-number = ["1690-18", "MK-4102-50"]
 
 [input]
 groups = ["controller"]

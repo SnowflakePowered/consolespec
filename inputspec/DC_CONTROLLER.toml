@@ -2,6 +2,18 @@
 id = "DC_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Dreamcast Controller"
+
+[meta.na]
+model-number = ["HKT-7700"]
+
+[meta.eu]
+model-number = ["HKT-7700"]
+
+[meta.jp]
+model-number = ["HKT-7701"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -24,7 +36,7 @@ element = "start"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

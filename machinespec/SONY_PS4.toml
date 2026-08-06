@@ -7,6 +7,7 @@ short-name = "PS4"
 licensor = "Sony"
 manufacturer = "Sony"
 type = "console"
+model-number = ["CUH-1000", "CUH-1100", "CUH-1200", "CUH-2000", "CUH-2100", "CUH-2200", "CUH-7000", "CUH-7100", "CUH-7200"]
 
 [meta.na]
 release-date = "2013-11-15"

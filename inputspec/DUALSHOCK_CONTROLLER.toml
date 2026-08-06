@@ -2,6 +2,10 @@
 id = "DUALSHOCK_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "DualShock"
+model-number = ["SCPH-1200", "SCPH-110"]
+
 [[input.button]]
 label = "Cross"
 element = "a"
@@ -48,7 +52,7 @@ element = "guide"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

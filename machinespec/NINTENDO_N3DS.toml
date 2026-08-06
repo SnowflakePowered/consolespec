@@ -9,6 +9,7 @@ short-name = "N3DS"
 licensor = "Nintendo"
 manufacturer = "Nintendo"
 type = "handheld"
+model-number = ["KTR-001", "RED-001", "JAN-001"]
 
 [meta.jp]
 release-date = "2014-10-11"

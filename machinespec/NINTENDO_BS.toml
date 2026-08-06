@@ -10,6 +10,7 @@ type = "console"
 
 [meta.jp]
 release-date = "1995-04-24"
+model-number = ["SHVC-029"]
 
 [input]
 groups = ["controller"]

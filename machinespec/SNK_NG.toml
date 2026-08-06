@@ -10,6 +10,10 @@ type = "console"
 
 [meta.jp]
 release-date = "1991-04-26"
+model-number = ["NEO-0"]
+
+[meta.na]
+model-number = ["NEOGEOAES"]
 
 [input]
 groups = ["controller"]

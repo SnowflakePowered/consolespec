@@ -2,6 +2,10 @@
 id = "A2600_PADDLE_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Paddle"
+model-number = ["CX30"]
+
 [[input.button]]
 label = "Fire"
 element = "a"

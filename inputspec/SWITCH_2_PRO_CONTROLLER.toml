@@ -2,6 +2,10 @@
 id = "SWITCH_2_PRO_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Switch 2 Pro Controller"
+model-number = ["BEE-008"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -64,7 +68,7 @@ element = "3"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

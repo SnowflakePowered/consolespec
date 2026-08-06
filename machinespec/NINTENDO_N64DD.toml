@@ -11,6 +11,7 @@ type = "console"
 
 [meta.jp]
 release-date = "1999-12-01"
+model-number = ["NUS-010"]
 
 [[bios]]
 name = "64DD_IPL.bin"

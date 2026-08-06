@@ -34,6 +34,19 @@ element = "2"
 label = "X4"
 element = "3"
 
-[[input.directional]]
-label = "Y"
-hats = 4
+[[input.button]]
+label = "Y1"
+element = "4"
+
+[[input.button]]
+label = "Y2"
+element = "5"
+
+[[input.button]]
+label = "Y3"
+element = "6"
+
+[[input.button]]
+label = "Y4"
+element = "7"
+

@@ -7,6 +7,7 @@ short-name = "GBC"
 licensor = "Nintendo"
 manufacturer = "Nintendo"
 type = "handheld"
+model-number = ["CGB-001"]
 
 [meta.jp]
 release-date = "1998-10-21"

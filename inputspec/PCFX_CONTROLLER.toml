@@ -2,6 +2,9 @@
 id = "PCFX_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "PC-FX Controller"
+
 [[input.button]]
 label = "I"
 element = "a"
@@ -44,4 +47,4 @@ element = "1"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

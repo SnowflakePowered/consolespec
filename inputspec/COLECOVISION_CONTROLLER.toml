@@ -2,6 +2,9 @@
 id = "COLECOVISION_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "ColecoVision Controller"
+
 [[input.button]]
 label = "0"
 element = "0"

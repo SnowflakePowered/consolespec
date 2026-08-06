@@ -2,6 +2,9 @@
 id = "INTELLIVISION_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Intellivision Controller"
+
 [[input.button]]
 label = "0"
 element = "0"

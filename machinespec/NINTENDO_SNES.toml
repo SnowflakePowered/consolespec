@@ -11,6 +11,13 @@ type = "console"
 [meta.jp]
 name = "Super Famicom"
 release-date = "1990-11-21"
+model-number = ["SHVC-001", "SHVC-101"]
+
+[meta.na]
+model-number = ["SNS-001", "SNS-101"]
+
+[meta.eu]
+model-number = ["SNSP-001A"]
 
 [input]
 groups = ["controller"]

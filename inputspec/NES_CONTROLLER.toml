@@ -2,6 +2,16 @@
 id = "NES_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "NES Controller"
+
+[meta.na]
+model-number = ["NES-004", "NES-039"]
+
+[meta.jp]
+name = "Famicom Controller"
+model-number = ["HVC-102"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -20,4 +30,4 @@ element = "select"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

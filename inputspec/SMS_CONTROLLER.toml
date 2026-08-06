@@ -2,6 +2,13 @@
 id = "SMS_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Master System Controller"
+model-number = ["3020"]
+
+[meta.jp]
+model-number = ["SJ-152"]
+
 [[input.button]]
 label = "1"
 element = "a"
@@ -12,4 +19,4 @@ element = "b"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

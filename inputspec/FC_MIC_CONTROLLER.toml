@@ -1,6 +1,13 @@
 [input]
-id = "NDS_LAYOUT"
-type = "handheld"
+id = "FC_MIC_CONTROLLER"
+type = "controller"
+
+[meta]
+name = "Famicon Controller (Player 2)"
+
+[meta.jp]
+name = "Famicom Controller"
+model-number = ["HVC-102"]
 
 [[input.button]]
 label = "A"
@@ -18,26 +25,13 @@ element = "start"
 label = "Select"
 element = "select"
 
-[[input.button]]
-label = "L"
-element = "l"
-
-[[input.button]]
-label = "R"
-element = "r"
-
 [[input.directional]]
 label = "D-Pad"
 directions = 4
 
-[[input.touchscreen]]
-width = 256
-height = 192
-
 [[input.microphone]]
-label = "Microphone"
+label = "MIC"
 
-[[input.rumble]]
-label = "Rumble Pak"
-size = "small"
-optional = true
+[[input.analog]]
+label = "Volume"
+axes = 1

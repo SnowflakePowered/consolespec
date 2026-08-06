@@ -2,6 +2,10 @@
 id = "JAGUAR_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Jaguar Controller"
+model-number = ["J8901"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -72,4 +76,4 @@ element = "start"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

@@ -2,10 +2,14 @@
 id = "A2600_JOYSTICK_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Joystick"
+model-number = ["CX40"]
+
 [[input.button]]
 label = "Fire"
 element = "a"
 
 [[input.directional]]
 label = "Joystick"
-hats = 4
+directions = 4

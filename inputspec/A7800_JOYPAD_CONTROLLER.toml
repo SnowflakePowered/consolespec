@@ -2,6 +2,10 @@
 id = "A7800_JOYPAD_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Atari 7800 Joypad"
+model-number = ["CX78", "CX24"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -12,4 +16,4 @@ element = "b"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

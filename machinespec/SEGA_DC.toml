@@ -10,6 +10,13 @@ type = "console"
 
 [meta.jp]
 release-date = "1998-11-27"
+model-number = ["HKT-3000", "HKT-3010"]
+
+[meta.na]
+model-number = ["HKT-3020"]
+
+[meta.eu]
+model-number = ["HKT-3030"]
 
 [input]
 groups = ["controller"]

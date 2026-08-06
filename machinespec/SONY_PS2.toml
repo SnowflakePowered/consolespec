@@ -7,6 +7,7 @@ short-name = "PS2"
 licensor = "Sony"
 manufacturer = "Sony"
 type = "console"
+model-number = ["SCPH-10000", "SCPH-15000", "SCPH-18000", "SCPH-30000", "SCPH-35000", "SCPH-37000", "SCPH-39000", "SCPH-50000", "SCPH-70000", "SCPH-75000", "SCPH-77000", "SCPH-79000", "SCPH-90000"]
 
 [meta.jp]
 release-date = "2000-03-04"

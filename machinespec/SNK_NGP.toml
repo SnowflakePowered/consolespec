@@ -10,6 +10,7 @@ type = "handheld"
 
 [meta.jp]
 release-date = "1998-10-28"
+model-number = ["NEOP10010"]
 
 [input]
 groups = ["layout"]

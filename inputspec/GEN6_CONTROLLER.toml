@@ -2,6 +2,18 @@
 id = "GEN6_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Genesis 6-Button Controller"
+
+[meta.na]
+model-number = ["MK-1653"]
+
+[meta.eu]
+model-number = ["MK-1653"]
+
+[meta.jp]
+model-number = ["SJ-6000"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -36,4 +48,4 @@ element = "select"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4

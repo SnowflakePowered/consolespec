@@ -7,6 +7,7 @@ short-name = "psx"
 licensor = "Sony"
 manufacturer = "Sony"
 type = "console"
+model-number = ["SCPH-1000", "SCPH-3000", "SCPH-3500", "SCPH-5000", "SCPH-5500", "SCPH-7000", "SCPH-7500", "SCPH-9000", "SCPH-100"]
 
 [meta.jp]
 release-date = "1994-12-03"

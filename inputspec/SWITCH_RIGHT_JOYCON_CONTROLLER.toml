@@ -2,6 +2,10 @@
 id = "SWITCH_RIGHT_JOYCON_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Switch Right Joy-Con"
+model-number = ["HAC-016"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -40,7 +44,7 @@ element = "1"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

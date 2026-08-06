@@ -10,6 +10,13 @@ type = "console"
 
 [meta.jp]
 release-date = "1985-10-20"
+model-number = ["SG-1000M3", "MK-2000"]
+
+[meta.na]
+model-number = ["3010", "MK-3006"]
+
+[meta.eu]
+model-number = ["3005-09-A", "3005-18", "3005-25", "3005-26", "MK-3090", "MK-3095", "MK-3096", "3006-18", "3006-20", "3006-24"]
 
 [input]
 groups = ["controller"]

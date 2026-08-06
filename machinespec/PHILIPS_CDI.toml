@@ -10,13 +10,24 @@ type = "console"
 
 [meta.na]
 release-date = "1991-12-03"
+model-number = ["CDI 910", "CDI 450"]
+
+[meta.eu]
+model-number = ["CDI 205", "CDI 210", "CDI 220", "CDI 470", "CDI 490", "CDI 550", "CDI 740", "CDI 310", "CDI 350", "CDI 360", "CDI 370"]
 
 [input]
 groups = ["controller"]
 
 [input.controller]
-inputs = ["CDI_CONTROLLER", "CDI_MOUSE_CONTROLLER"]
+inputs = ["CDI_CONTROLLER"]
 ports = 1
+accessories = true 
+
+[accessories]
+class = [
+    "mouse",
+    "keyboard"
+]
 
 [[bios]]
 name = "cdi200.rom"

@@ -7,6 +7,7 @@ short-name = "X360"
 licensor = "Microsoft"
 manufacturer = "Microsoft"
 type = "console"
+model-number = ["1439", "1538"]
 
 [meta.na]
 release-date = "2005-11-22"

@@ -2,6 +2,10 @@
 id = "VB_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "Virtual Boy Controller"
+model-number = ["VUE-005"]
+
 [[input.button]]
 label = "A"
 element = "a"
@@ -20,8 +24,10 @@ element = "select"
 
 [[input.directional]]
 label = "Left D-Pad"
-hats = 4
+directions = 4
+alignment = "left"
 
 [[input.directional]]
 label = "Right D-Pad"
-hats = 4
+directions = 4
+alignment = "right"

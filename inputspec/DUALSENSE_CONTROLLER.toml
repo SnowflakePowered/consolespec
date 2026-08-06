@@ -2,6 +2,10 @@
 id = "DUALSENSE_CONTROLLER"
 type = "controller"
 
+[meta]
+name = "DualSense"
+model-number = ["CFI-ZCT1W", "CFI-ZCT2W"]
+
 [[input.button]]
 label = "Cross"
 element = "a"
@@ -56,7 +60,7 @@ element = "1"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 4
+directions = 4
 
 [[input.analog]]
 axes = 2

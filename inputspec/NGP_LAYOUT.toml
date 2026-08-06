@@ -16,4 +16,4 @@ element = "start"
 
 [[input.directional]]
 label = "D-Pad"
-hats = 8
+directions = 8

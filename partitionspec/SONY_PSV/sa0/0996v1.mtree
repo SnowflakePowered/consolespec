@@ -1,5 +1,6 @@
 #mtree
-# PS Vita official firmware 00.996 system software (sa0)
+# PS Vita official firmware system software (sa0)
+# as installed by 2 firmwares: 0996v1, 0996v2
 . type=dir
 ./data type=dir
 ./data/dic type=dir

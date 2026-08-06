@@ -1,0 +1,11 @@
+#mtree
+# Nintendo 3DS ctrnand:/dbs, identical across every firmware
+# title content sizes and digests are those Nintendo signed into each TMD
+# console-unique files carry name and size only, never a digest
+. type=dir
+./certs.db type=file size=24576
+./import.db type=file
+./ticket.db type=file
+./title.db type=file size=412672
+./tmp_i.db type=file
+./tmp_t.db type=file

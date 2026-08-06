@@ -1,5 +1,6 @@
 #mtree
-# PS Vita official firmware 01.030 system software (sa0)
+# PS Vita official firmware system software (sa0)
+# as installed by firmware 1030
 . type=dir
 ./data type=dir
 ./data/dic type=dir

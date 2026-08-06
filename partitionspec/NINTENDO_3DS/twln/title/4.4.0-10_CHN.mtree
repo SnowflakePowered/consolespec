@@ -1,0 +1,22 @@
+#mtree
+# Nintendo 3DS twln:/title as installed by 2 firmwares: 4.4.0-10_CHN, 4.4.0-10_MSet_CHN_CHN
+# title content sizes and digests are those Nintendo signed into each TMD
+. type=dir
+./00048005 type=dir
+./00048005/42383841 type=dir
+./00048005/42383841/cmd type=dir
+./00048005/42383841/content type=dir
+./00048005/42383841/content/00000002.app type=file size=1305600 sha256=2050491c34883b892aafbc26ccee9232815721b2cf009fc399d9fb337b2a7468
+./00048005/484e4443 type=dir
+./00048005/484e4443/cmd type=dir
+./00048005/484e4443/content type=dir
+./00048005/484e4443/content/00000000.app type=file size=582080 sha256=f6123e17e68ce11d02a72b22c246417f6381279c53153b18f81bf8d3be0ef1b2
+./0004800f type=dir
+./0004800f/484e4841 type=dir
+./0004800f/484e4841/cmd type=dir
+./0004800f/484e4841/content type=dir
+./0004800f/484e4841/content/0000000a.app type=file size=327680 sha256=e8c3adce2b299bdc443d08f3cc43a954f6a9789c5e12b7d2f2cc73eff557ac2e
+./0004800f/484e4c41 type=dir
+./0004800f/484e4c41/cmd type=dir
+./0004800f/484e4c41/content type=dir
+./0004800f/484e4c41/content/00000000.app type=file size=6992 sha256=b2569155fca3be49ad88e1bba8992c6eb360a5c297c6a9e48b6a94c9a67079cb

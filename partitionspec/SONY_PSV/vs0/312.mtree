@@ -1,5 +1,6 @@
 #mtree
-# PS Vita official firmware 3.12 system software (vs0)
+# PS Vita official firmware system software (vs0)
+# as installed by firmware 312
 . type=dir
 ./app type=dir
 ./app/NPXS10000 type=dir

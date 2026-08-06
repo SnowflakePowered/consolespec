@@ -37,22 +37,12 @@ user = true
 id = "os0"
 name = "os0"
 spec = [
-    "SONY_PSV/os0/0945.mtree",
-    "SONY_PSV/os0/0996v1.mtree",
-    "SONY_PSV/os0/0996v2.mtree",
-    "SONY_PSV/os0/1000v1.mtree",
-    "SONY_PSV/os0/1000v2.mtree",
-    "SONY_PSV/os0/1030.mtree",
-    "SONY_PSV/os0/1500.mtree",
-    "SONY_PSV/os0/1510.mtree",
-    "SONY_PSV/os0/1520.mtree",
     "SONY_PSV/os0/160.mtree",
     "SONY_PSV/os0/161.mtree",
     "SONY_PSV/os0/165.mtree",
     "SONY_PSV/os0/166.mtree",
     "SONY_PSV/os0/167.mtree",
     "SONY_PSV/os0/169.mtree",
-    "SONY_PSV/os0/1691.mtree",
     "SONY_PSV/os0/180.mtree",
     "SONY_PSV/os0/181.mtree",
     "SONY_PSV/os0/200.mtree",
@@ -91,6 +81,16 @@ spec = [
     "SONY_PSV/os0/372.mtree",
     "SONY_PSV/os0/373.mtree",
     "SONY_PSV/os0/374.mtree",
+    "SONY_PSV/os0/0945.mtree",
+    "SONY_PSV/os0/0996v1.mtree",
+    "SONY_PSV/os0/0996v2.mtree",
+    "SONY_PSV/os0/1000v1.mtree",
+    "SONY_PSV/os0/1000v2.mtree",
+    "SONY_PSV/os0/1030.mtree",
+    "SONY_PSV/os0/1500.mtree",
+    "SONY_PSV/os0/1510.mtree",
+    "SONY_PSV/os0/1520.mtree",
+    "SONY_PSV/os0/1691.mtree",
 ]
 
 [[storage.emmc.partition]]
@@ -102,9 +102,7 @@ id = "sa0"
 name = "sa0"
 spec = [
     "SONY_PSV/sa0/0996v1.mtree",
-    "SONY_PSV/sa0/0996v2.mtree",
     "SONY_PSV/sa0/1000v1.mtree",
-    "SONY_PSV/sa0/1000v2.mtree",
     "SONY_PSV/sa0/1030.mtree",
 ]
 
@@ -124,22 +122,12 @@ name = "vd0"
 id = "vs0"
 name = "vs0"
 spec = [
-    "SONY_PSV/vs0/0945.mtree",
-    "SONY_PSV/vs0/0996v1.mtree",
-    "SONY_PSV/vs0/0996v2.mtree",
-    "SONY_PSV/vs0/1000v1.mtree",
-    "SONY_PSV/vs0/1000v2.mtree",
-    "SONY_PSV/vs0/1030.mtree",
-    "SONY_PSV/vs0/1500.mtree",
-    "SONY_PSV/vs0/1510.mtree",
-    "SONY_PSV/vs0/1520.mtree",
     "SONY_PSV/vs0/160.mtree",
     "SONY_PSV/vs0/161.mtree",
     "SONY_PSV/vs0/165.mtree",
     "SONY_PSV/vs0/166.mtree",
     "SONY_PSV/vs0/167.mtree",
     "SONY_PSV/vs0/169.mtree",
-    "SONY_PSV/vs0/1691.mtree",
     "SONY_PSV/vs0/180.mtree",
     "SONY_PSV/vs0/181.mtree",
     "SONY_PSV/vs0/200.mtree",
@@ -178,6 +166,16 @@ spec = [
     "SONY_PSV/vs0/372.mtree",
     "SONY_PSV/vs0/373.mtree",
     "SONY_PSV/vs0/374.mtree",
+    "SONY_PSV/vs0/0945.mtree",
+    "SONY_PSV/vs0/0996v1.mtree",
+    "SONY_PSV/vs0/0996v2.mtree",
+    "SONY_PSV/vs0/1000v1.mtree",
+    "SONY_PSV/vs0/1000v2.mtree",
+    "SONY_PSV/vs0/1030.mtree",
+    "SONY_PSV/vs0/1500.mtree",
+    "SONY_PSV/vs0/1510.mtree",
+    "SONY_PSV/vs0/1520.mtree",
+    "SONY_PSV/vs0/1691.mtree",
 ]
 
 [[bios]]

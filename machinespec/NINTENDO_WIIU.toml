@@ -44,6 +44,58 @@ name = "System NAND"
 [storage.slccmpt]
 name = "vWii NAND"
 
+[[storage.slccmpt.partition]]
+id = "title"
+name = "title"
+spec = [
+    "NINTENDO_WIIU/slccmpt/title/1.0.0E.mtree",
+    "NINTENDO_WIIU/slccmpt/title/1.0.0J.mtree",
+    "NINTENDO_WIIU/slccmpt/title/1.0.0U.mtree",
+    "NINTENDO_WIIU/slccmpt/title/4.0.0E.mtree",
+    "NINTENDO_WIIU/slccmpt/title/4.0.0J.mtree",
+    "NINTENDO_WIIU/slccmpt/title/4.0.0U.mtree",
+    "NINTENDO_WIIU/slccmpt/title/5.2.0E.mtree",
+    "NINTENDO_WIIU/slccmpt/title/5.2.0J.mtree",
+    "NINTENDO_WIIU/slccmpt/title/5.2.0U.mtree",
+]
+
+[[storage.slccmpt.partition]]
+id = "ticket"
+name = "ticket"
+spec = [
+    "NINTENDO_WIIU/slccmpt/ticket/1.0.0E.mtree",
+    "NINTENDO_WIIU/slccmpt/ticket/1.0.0J.mtree",
+    "NINTENDO_WIIU/slccmpt/ticket/1.0.0U.mtree",
+]
+
+[[storage.slccmpt.partition]]
+id = "shared1"
+name = "shared1"
+spec = [
+    "NINTENDO_WIIU/slccmpt/shared1/1.0.0E.mtree",
+    "NINTENDO_WIIU/slccmpt/shared1/1.0.0J.mtree",
+]
+
+[[storage.slccmpt.partition]]
+id = "shared2"
+name = "shared2"
+
+[[storage.slccmpt.partition]]
+id = "sys"
+name = "sys"
+
+[[storage.slccmpt.partition]]
+id = "meta"
+name = "meta"
+
+[[storage.slccmpt.partition]]
+id = "import"
+name = "import"
+
+[[storage.slccmpt.partition]]
+id = "tmp"
+name = "tmp"
+
 [storage.mlc]
 name = "Internal Storage"
 user = true

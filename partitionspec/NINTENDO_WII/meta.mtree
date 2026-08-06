@@ -4,11 +4,10 @@
 # console state, not update content: paths only, never a digest,
 # and sizes only where a source fixes them
 . type=dir
-./meta type=dir
-./meta/00000001 type=dir
-./meta/00000001/00000002 type=dir
-./meta/00000001/00000002/title.met type=file
-./meta/00000001/00000004 type=dir
-./meta/00000001/00000004/title.met type=file
-./meta/00000001/00000009 type=dir
-./meta/00000001/00000009/title.met type=file
+./00000001 type=dir
+./00000001/00000002 type=dir
+./00000001/00000002/title.met type=file size=64
+./00000001/00000004 type=dir
+./00000001/00000004/title.met type=file size=64
+./00000001/00000009 type=dir
+./00000001/00000009/title.met type=file size=64

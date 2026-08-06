@@ -28,6 +28,9 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from importlib import import_module  # noqa: E402
+
+dedupe = import_module('dedupe-mtrees')
 import fatfs  # noqa: E402
 import psvpup  # noqa: E402
 
@@ -113,13 +116,9 @@ def main():
         return 0 if report(f'{pup} ({partition})', failures) else 1
 
     mtree_root, fw_dir = args.a, args.b
-    mtrees = {}  # stem -> {partition: path}
-    for entry in sorted(os.listdir(mtree_root)):
-        full = os.path.join(mtree_root, entry)
-        if PARTITION.match(entry) and os.path.isdir(full):
-            for name in sorted(os.listdir(full)):
-                if name.endswith('.mtree'):
-                    mtrees.setdefault(name[:-len('.mtree')], {})[entry] = os.path.join(full, name)
+    # one mtree may cover several firmwares once identical states are
+    # deduplicated, so the index is built from each file's attribution header
+    mtrees = dedupe.index(mtree_root, PARTITION.match)
     pups = {}
     for name in sorted(os.listdir(fw_dir)):
         stem, ext = os.path.splitext(name)

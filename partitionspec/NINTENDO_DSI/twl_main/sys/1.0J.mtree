@@ -1,0 +1,8 @@
+#mtree
+# Nintendo DSi TWL_MAIN:/sys as installed by 35 firmwares: 1.0J, 1.2A, 1.2E, 1.2J, 1.2U, 1.3E, 1.3J, 1.3U, 1.4.1A, 1.4.1E, 1.4.1J, 1.4.1U, 1.4.1U_NZB, 1.4.2E, 1.4.2J, 1.4.2U, 1.4.2U_PWC, 1.4.3A, 1.4.3E, 1.4.3J, 1.4.3U, 1.4.4A, 1.4.4E, 1.4.4J, 1.4.4U, 1.4.5A, 1.4.5E, 1.4.5J, 1.4.5U, 1.4A, 1.4E, 1.4J, 1.4J_KST, 1.4U, 1.4U_B
+# save files a fresh install leaves blank carry a name only: their
+# size and contents change as soon as the title is used
+. type=dir
+./HWINFO_N.dat type=file size=16384 md5=9aa9a729670528ecfcea7b521bbd5407 sha1=c7b7893a58d0abd07050ac7738d1c970e91d7f22 sha256=faa80e439a84c0c20f1c8b8b0089f3eff5e145e6f4ddd3cf4ec3230832657544
+./TWLFontTable.dat type=file size=863296 md5=ee83c579e9e69f94cc8317bd66533a36 sha1=c1101d7c9224acfa0350b5fc62da97d4c6d36141 sha256=2833d4bba599d5559e482c735f24682ccd44c375ba2940d1206ce85b7a0dd7e4
+./cert.sys type=file size=2560 md5=09dfce24029cd1ea7a97e12fc7eae223 sha1=e30f260a492245c9f8c76ac76076dc9b95526f44 sha256=e7f7cb8d8755b71cfeac45520f6605b58a5692ee507bd3d621ab16aa3fa878c5

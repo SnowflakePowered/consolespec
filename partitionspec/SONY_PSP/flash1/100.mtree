@@ -1,3 +1,4 @@
 #mtree
-# PSP official firmware 1.00 system software (flash1)
+# PSP official firmware system software (flash1)
+# as installed by 8 firmwares: 100, 150, 151, 152, 360, 421, 570, 570go
 . type=dir

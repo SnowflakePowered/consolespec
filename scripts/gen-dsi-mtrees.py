@@ -33,6 +33,7 @@ Without it, only the ticket/title trees are described.
 Requires pycryptodome (pip install pycryptodome).
 """
 import argparse
+import collections
 import hashlib
 import os
 import sys
@@ -109,9 +110,10 @@ def is_blank(data):
     return bool(data) and data.count(0) == len(data)
 
 
-def mtree_lines(files, label):
+def mtree_lines(files, label, partition):
+    """Render one partition's mtree, rooted at that partition."""
     lines = ['#mtree',
-             f'# Nintendo DSi firmware {label} installed NAND state (TWL_MAIN)',
+             f'# Nintendo DSi TWL_MAIN:/{partition} as installed by firmware {label}',
              '# save files a fresh install leaves blank carry a name only: their',
              '# size and contents change as soon as the title is used',
              '. type=dir']
@@ -133,6 +135,16 @@ def mtree_lines(files, label):
     return lines
 
 
+def split_by_partition(files):
+    """Group {path: data} into {top-level folder: {path below it: data}}."""
+    out = {}
+    for path, data in files.items():
+        head, _, rest = path.partition('/')
+        if rest:
+            out.setdefault(head, {})[rest] = data
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=False)
     ap.add_argument('--sysdata')
@@ -152,25 +164,53 @@ def main():
               file=sys.stderr)
 
     zips = sorted(n for n in os.listdir(args.firmware_dir) if n.lower().endswith('.zip'))
-    out_dir = os.path.join(args.output_dir, 'twl_main')
-    os.makedirs(out_dir, exist_ok=True)
-
-    written, failed = 0, []
+    rendered = collections.defaultdict(dict)
+    failed = []
     for name in zips:
         label = os.path.splitext(name)[0].lstrip('vV')
         try:
             files = firmware_files(os.path.join(args.firmware_dir, name), sysdata, label)
-            lines = mtree_lines(files, label)
         except Exception as e:  # noqa: BLE001 - report and continue over the set
             print(f'FAIL {label}: {e}', file=sys.stderr)
             failed.append(label)
             continue
-        with open(os.path.join(out_dir, f'{label}.mtree'), 'w') as f:
-            f.write('\n'.join(lines) + '\n')
-        titles = len({p.split('/')[2] for p in files if p.startswith('title/')})
-        print(f'ok   {label}: {titles} titles, {len(files)} files')
-        written += 1
-    print(f'{written} mtrees written to {out_dir}'
+        for partition, entries in split_by_partition(files).items():
+            rendered[partition][label] = '\n'.join(mtree_lines(entries, label, partition)) + '\n'
+        print(f'ok   {label}: {len(files)} files')
+
+    # A partition whose content never varies is written once; only the ones that
+    # differ between firmwares get a file per firmware.
+    static, versioned, written = 0, 0, 0
+    out_root = os.path.join(args.output_dir, 'twl_main')
+    os.makedirs(out_root, exist_ok=True)
+    for partition, bodies in sorted(rendered.items()):
+        def strip(b):
+            return '\n'.join(l for l in b.splitlines() if not l.startswith('#'))
+        if len({strip(b) for b in bodies.values()}) == 1:
+            body = bodies[sorted(bodies)[0]].splitlines()
+            body[1] = f'# Nintendo DSi TWL_MAIN:/{partition}, identical across every firmware'
+            with open(os.path.join(out_root, f'{partition}.mtree'), 'w') as f:
+                f.write('\n'.join(body) + '\n')
+            static += 1
+            written += 1
+        else:
+            os.makedirs(os.path.join(out_root, partition), exist_ok=True)
+            # firmwares whose content is byte-identical share one file, named
+            # for the earliest of them and listing the rest in its header
+            groups = collections.defaultdict(list)
+            for label, body in bodies.items():
+                groups[strip(body)].append(label)
+            for labels in groups.values():
+                labels.sort()
+                body = bodies[labels[0]].splitlines()
+                body[1] = (f'# Nintendo DSi TWL_MAIN:/{partition} as installed by '
+                           + (f'firmware {labels[0]}' if len(labels) == 1
+                              else f'{len(labels)} firmwares: ' + ', '.join(labels)))
+                with open(os.path.join(out_root, partition, f'{labels[0]}.mtree'), 'w') as f:
+                    f.write('\n'.join(body) + '\n')
+                written += 1
+            versioned += 1
+    print(f'{written} mtrees written to {out_root}: {static} static, {versioned} versioned'
           + (f', {len(failed)} failed: {", ".join(failed)}' if failed else ''))
     return 0 if written and not failed else 1
 

@@ -1,5 +1,6 @@
 #mtree
-# PS3 official firmware 2.52 system software (dev_flash)
+# PS3 official firmware system software (dev_flash)
+# as installed by firmware 252
 . type=dir
 ./bdplayer type=dir
 ./bdplayer/AacsModule.spu.isoself type=file size=108936 md5=77d200cabde1b62b0276a4ed19aeb340 sha1=fcafbd6bb219ea60f66f688aa04b4acd9c851bd4 sha256=a50f5e24777a86f15286427246d762adb09e0a97114f20ff87d4ed1f8cca6cf0

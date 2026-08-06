@@ -7,13 +7,17 @@ Metadata (default) re-derives each mtree from the signed TMDs and tickets it
 was built from and compares entry for entry, so drift between the cache and
 the manifests is caught:
 
-    verify-wii-mtrees.py <mtree-root> <nusdownloader.cpp> <tmd-dir>
+    verify-wii-mtrees.py [--system {wii,vwii}] <mtree-root>
+                         [<nusdownloader.cpp>] <tmd-dir>
 
 Content (--content N) additionally proves the manifests describe real data:
 for N randomly chosen entries it downloads the content from NUS, decrypts it
 with the ticket's title key, and checks the SHA-1 against the mtree. This is
 the end-to-end check that the TMD hashes match what Nintendo actually
 serves. It needs network access and pycryptodome.
+
+--system vwii verifies the Wii U's SLCCMPT mtrees instead, from the vWii
+table in wiiupd.py; the source file is not needed and must be omitted.
 
 Exits non-zero if any check fails.
 """
@@ -26,16 +30,21 @@ import urllib.request
 from importlib import import_module
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+dedupe = import_module('dedupe-mtrees')
 import wiitmd  # noqa: E402
 import wiiupd  # noqa: E402
 
 gen = import_module('gen-wii-mtrees')
 
 NUS = 'http://nus.cdn.shop.wii.com/ccs/download'
-# Wii common keys, indexed by the ticket's common key index
+# Wii common keys, indexed by the ticket's common key index. vWii titles are
+# served from their own NUS namespace but their tickets carry the ordinary Wii
+# title id, which is also the IV the title key is unwrapped with; only the key
+# they are wrapped under differs.
 COMMON_KEYS = [
     'ebe42a225e8593e448d9c5457381aaf7',   # retail
     '63b82bb4f4614e2e13f2fefbba4c9b7e',   # Korean
+    '30bfc76e7c19afbb23163330ced7c28d',   # vWii
 ]
 
 
@@ -154,68 +163,83 @@ def check_skeletons(mtree_root):
 
 def main():
     ap = argparse.ArgumentParser(add_help=False)
+    ap.add_argument('--system', choices=('wii', 'vwii'), default='wii')
     ap.add_argument('--content', type=int, default=0)
-    ap.add_argument('mtree_root', nargs='?')
-    ap.add_argument('source', nargs='?')
-    ap.add_argument('tmd_dir', nargs='?')
+    ap.add_argument('args', nargs='*')
     args = ap.parse_args()
-    if not args.mtree_root or not args.source or not args.tmd_dir:
+    # vWii needs no source file, so it takes two positional arguments, not three
+    wanted = 2 if args.system == 'vwii' else 3
+    if len(args.args) != wanted:
         print(__doc__, file=sys.stderr)
         return 2
+    mtree_root, source, tmd_dir = (
+        (args.args[0], None, args.args[1]) if wanted == 2 else args.args)
 
-    updates = wiiupd.parse(args.source)
-    derived, cache = derive(updates, args.tmd_dir)
+    updates = (wiiupd.vwii_updates() if args.system == 'vwii'
+               else wiiupd.parse(source))
+    derived, cache = derive(updates, tmd_dir)
 
-    ok, failed = check_skeletons(args.mtree_root)
-    partitions = sorted(d for d in os.listdir(args.mtree_root)
-                        if os.path.isdir(os.path.join(args.mtree_root, d)))
+    # the skeletons are Wii-only; vWii's console state has no source
+    ok, failed = check_skeletons(mtree_root) if args.system == 'wii' else (0, 0)
+    partitions = sorted(d for d in os.listdir(mtree_root)
+                        if os.path.isdir(os.path.join(mtree_root, d)))
     for partition in partitions:
-        mtree_dir = os.path.join(args.mtree_root, partition)
+        mtree_dir = os.path.join(mtree_root, partition)
         for name in sorted(os.listdir(mtree_dir)):
             if not name.endswith('.mtree'):
                 continue
-            label = name[:-len('.mtree')]
-            want = parse_mtree(os.path.join(mtree_dir, name))
-            have = derived.get(label, {}).get(partition)
-            failures = []
-            if not have:
-                failures.append(f'no reconstructed {partition} set for this label')
-            else:
-                for path, kv in sorted(want.items()):
-                    if path not in have:
-                        failures.append(f'not derivable from metadata: {path}')
-                        continue
-                    size, sha1 = have[path]
-                    # shared1 entries carry neither: the name says nothing
-                    # about which content was allocated to it
-                    if size is None:
-                        if 'size' in kv:
-                            failures.append(f'{path}: has a size but none is derivable')
-                    elif int(kv.get('size', -1)) != size:
-                        failures.append(f'{path}: size {kv.get("size")} != {size}')
-                    if kv.get('sha1') != sha1:
-                        failures.append(f'{path}: sha1 {kv.get("sha1")} != {sha1}')
-                for path in sorted(set(have) - set(want)):
-                    failures.append(f'missing from mtree: {path}')
-            if failures:
-                print(f'FAIL {partition}/{label}')
-                for f in failures[:10]:
-                    print(f'     {f}')
-                failed += 1
-            else:
-                ok += 1
+            # after deduplication one mtree stands for every firmware listed in
+            # its header, and each of those must agree with it
+            path = os.path.join(mtree_dir, name)
+            want = parse_mtree(path)
+            for label in dedupe.labels_of(path):
+                have = derived.get(label, {}).get(partition)
+                failures = []
+                if not have:
+                    failures.append(f'no reconstructed {partition} set for this label')
+                else:
+                    for entry, kv in sorted(want.items()):
+                        if entry not in have:
+                            failures.append(f'not derivable from metadata: {entry}')
+                            continue
+                        size, sha1 = have[entry]
+                        # shared1 entries carry neither: the name says nothing
+                        # about which content was allocated to it
+                        if size is None:
+                            if 'size' in kv:
+                                failures.append(f'{entry}: has a size but none is derivable')
+                        elif int(kv.get('size', -1)) != size:
+                            failures.append(f'{entry}: size {kv.get("size")} != {size}')
+                        if kv.get('sha1') != sha1:
+                            failures.append(f'{entry}: sha1 {kv.get("sha1")} != {sha1}')
+                    for entry in sorted(set(have) - set(want)):
+                        failures.append(f'missing from mtree: {entry}')
+                if failures:
+                    print(f'FAIL {partition}/{label}')
+                    for f in failures[:10]:
+                        print(f'     {f}')
+                    failed += 1
+                else:
+                    ok += 1
     print(f'metadata: {ok} ok, {failed} failed')
 
     if args.content:
         import random
-        tickets = {t.title_id: t.blob for t in cache.values()
+        # Contents are fetched under the id the title is *served* as, which for
+        # vWii is not the id inside its TMD. The cache filename carries it, so
+        # key everything by that rather than by TMD.title_id — which for vWii
+        # would collide with the Wii title of the same number.
+        def nus_id(path):
+            return int(os.path.basename(path).split('.')[0], 16)
+
+        tickets = {nus_id(p): t.blob for p, t in cache.items()
                    if isinstance(t, wiitmd.Ticket)}
         pool = []
-        for tmd in cache.values():
-            if not isinstance(tmd, wiitmd.Tmd) or tmd.title_id not in tickets:
+        for path, tmd in cache.items():
+            if not isinstance(tmd, wiitmd.Tmd) or nus_id(path) not in tickets:
                 continue
             for c in tmd.contents:
-                pool.append((tmd.title_id, c['id'], c['index'], c['size'],
+                pool.append((nus_id(path), c['id'], c['index'], c['size'],
                              c['sha1'], c['shared']))
         pool.sort()
         random.seed(0)

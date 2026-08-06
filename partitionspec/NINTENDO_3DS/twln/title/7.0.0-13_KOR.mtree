@@ -1,0 +1,22 @@
+#mtree
+# Nintendo 3DS twln:/title as installed by 45 firmwares: 7.0.0-13_KOR, 7.1.0-14_KOR, 7.1.0-15_KOR, 7.1.0-16_KOR, 7.2.0-17_KOR, 8.0.0-18_KOR, 8.1.0-18_KOR, 8.1.0-19_KOR, 9.0.0-20_KOR, 9.2.0-20_KOR, 9.3.0-21_KOR, 9.4.0-21_KOR, 9.5.0-22_KOR, 9.5.0-23_KOR, 9.6.0-24_KOR, 9.7.0-25_KOR, 9.8.0-25_KOR, 9.9.0-26_KOR, 10.0.0-27_KOR, 10.1.0-27_KOR, 10.2.0-28_KOR, 10.3.0-28_KOR, 10.4.0-29_KOR, 10.5.0-30_KOR, 10.6.0-31_KOR, 10.7.0-32_KOR, 11.0.0-33_KOR, 11.1.0-34_KOR, 11.2.0-35_KOR, 11.3.0-36_KOR, 11.4.0-37_KOR, 11.5.0-38_KOR, 11.6.0-39_KOR, 11.7.0-40_KOR, 11.8.0-41_KOR, 11.9.0-42_KOR, 11.10.0-43_KOR, 11.11.0-43E_KOR, 11.12.0-44_KOR, 11.13.0-45_KOR, 11.14.0-46_KOR, 11.15.0-47_KOR, 11.16.0-48_KOR, 11.16.0-49_KOR, 11.17.0-50_KOR
+# title content sizes and digests are those Nintendo signed into each TMD
+. type=dir
+./00048005 type=dir
+./00048005/42383841 type=dir
+./00048005/42383841/cmd type=dir
+./00048005/42383841/content type=dir
+./00048005/42383841/content/00000002.app type=file size=1305600 sha256=2050491c34883b892aafbc26ccee9232815721b2cf009fc399d9fb337b2a7468
+./00048005/484e444b type=dir
+./00048005/484e444b/cmd type=dir
+./00048005/484e444b/content type=dir
+./00048005/484e444b/content/00000000.app type=file size=490944 sha256=6a448097e11b81f1471b531c08ed581c7fb51bd78a29976f04494dac82c24e02
+./0004800f type=dir
+./0004800f/484e4841 type=dir
+./0004800f/484e4841/cmd type=dir
+./0004800f/484e4841/content type=dir
+./0004800f/484e4841/content/0000000e.app type=file size=376832 sha256=6195a83383de823a8f4f44999783711af0fc6485e38e72389f0a9bca94c676d2
+./0004800f/484e4c41 type=dir
+./0004800f/484e4c41/cmd type=dir
+./0004800f/484e4c41/content type=dir
+./0004800f/484e4c41/content/00000000.app type=file size=6992 sha256=b2569155fca3be49ad88e1bba8992c6eb360a5c297c6a9e48b6a94c9a67079cb

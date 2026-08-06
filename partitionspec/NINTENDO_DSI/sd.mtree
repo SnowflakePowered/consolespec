@@ -1,0 +1,24 @@
+#mtree
+# Nintendo DSi SD card, directories the console itself creates
+#
+# An SD card ships empty; the console writes these on demand, so this is a
+# layout skeleton rather than an install state. Nothing here has a fixed size
+# or contents: it is all user data.
+#
+# An asterisk stands for a path component that cannot be named generically:
+# DSiWare exports are named after their title id, per-application directories
+# after the application's gamecode, and the camera's directories and photos
+# after their sequence numbers.
+#
+# Source: https://problemkaputt.de/gbatek-dsi-sd-mmc-summary-of-sd-mmc-files-folders.htm
+. type=dir
+./DCIM type=dir
+./DCIM/* type=dir
+./DCIM/*/* type=file
+./private type=dir
+./private/ds type=dir
+./private/ds/app type=dir
+./private/ds/app/* type=dir
+./private/ds/title type=dir
+./private/ds/title/* type=file
+./private/ds/title/HNB_.lst type=file

@@ -28,10 +28,18 @@ shared1_entries(); the skeletons carry no digests either, for the different
 reason given at SKELETONS.
 
 Usage:
-    gen-wii-mtrees.py [--no-tickets] <nusdownloader.cpp> <tmd-dir> <output-dir>
+    gen-wii-mtrees.py [--system {wii,vwii}] [--no-tickets]
+                      [<nusdownloader.cpp>] <tmd-dir> <output-dir>
 
 <nusdownloader.cpp> is WiiQt/nusdownloader.cpp from github.com/trapexit/wiiqt
 and <tmd-dir> is the cache fetch-wii-tmds.py populated from it.
+
+--system vwii instead builds the Wii U's SLCCMPT partition, the Wii NAND it
+carries for Wii mode, from the vWii table in wiiupd.py; the source file is not
+needed and must be omitted. SLCCMPT is a Wii NAND filesystem, so title, ticket
+and shared1 come out exactly as they do for a Wii. The console-state skeletons
+are Wii-only: their layouts came from sources describing a Wii, and nothing
+comparable documents what vWii leaves in shared2, sys or meta.
 """
 import argparse
 import collections
@@ -52,14 +60,34 @@ import wiiupd  # noqa: E402
 # install history, testlog.txt its factory test run. A size is recorded only
 # where a source fixes one.
 #
-# Layouts come from wiibrew's partition pages, which are stubs and may be
-# incomplete. The sizes come from: Dolphin's SYSCONF_SIZE, which it enforces on
-# load; wiibrew's offset maps for NANDBOOTINFO (0x20 header + 0xFE0 argbuf) and
-# RFL_DB.dat (trailing CRC16 at 0x1F1DE fixing the end at 0x1F1E0); the default
-# wc24 files Dolphin ships in Data/Sys/Wii/shared2/wc24; and, for cert.sys, the
-# three certificates NUS appends to every TMD and ticket — CA00000001,
-# CP00000004 and XS00000003, which total exactly the 2560 bytes cert.sys is
-# known to be.
+# Layouts come from wiibrew's partition pages, which are stubs, cross-checked
+# against a real retail Wii NAND dump. A size is recorded only where two
+# independent sources agree, since the dump is a single console and cannot on
+# its own distinguish a fixed format from that unit's state:
+#
+#   SYSCONF          Dolphin's SYSCONF_SIZE, which it enforces on load, and the
+#                    dump both say 0x4000.
+#   NANDBOOTINFO     wiibrew's struct is a 0x20 header plus a 0x1000 argbuf,
+#                    and the dump agrees at 0x1020.
+#   cert.sys         the three certificates NUS appends to every TMD and ticket
+#                    — CA00000001, CP00000004 and XS00000003 — total 2560, and
+#                    the dump agrees.
+#   title.met        wiiqt's GenMeta writes 0x40 bytes; the dump agrees, and
+#                    carries exactly the three titles wiiqt writes them for.
+#   wc24 *.bin/*.ctl the defaults Dolphin ships in Data/Sys/Wii/shared2/wc24
+#                    match the dump.
+#
+# Files the dump shows to vary are left unsized even though a size was
+# observed: the wc24 mailboxes had grown to 7MB and 2MB against Dolphin's
+# 48-byte fresh copies, and uid.sys and space.sys track install history.
+# RFL_DB.dat is left unsized because the two sources conflict — wiibrew's
+# offset map ends it at 0x1F1E0, the dump is 779968 bytes — and one console
+# cannot settle which is general.
+#
+# Paths wiibrew lists that the dump does not have are kept: several are
+# conditional (a WiiConnect24 download counter, a play-time limit), and one
+# console's absence is not evidence they never exist. Artifacts of that
+# console's homebrew are deliberately not imported.
 #
 # None of these are resolved per system menu version: no source records which
 # of these files a given version creates.
@@ -68,19 +96,17 @@ SKELETONS = {
         'note': 'setup data and logs for WiiConnect24, Miis and the factory test line',
         'dirs': [
             'shared2', 'shared2/DIAG', 'shared2/FaceLib', 'shared2/aging',
-            'shared2/diag', 'shared2/ec', 'shared2/menu', 'shared2/menu/FaceLib',
-            'shared2/succession', 'shared2/sys', 'shared2/sys/net',
-            'shared2/sys/net/02', 'shared2/test', 'shared2/test2',
-            'shared2/title', 'shared2/wc24', 'shared2/wc24/mbox',
+            'shared2/diag', 'shared2/ec', 'shared2/ec/sync', 'shared2/menu',
+            'shared2/menu/FaceLib', 'shared2/menu/vc', 'shared2/succession',
+            'shared2/sys', 'shared2/sys/net', 'shared2/sys/net/02',
+            'shared2/test', 'shared2/test2', 'shared2/title', 'shared2/wc24',
+            'shared2/wc24/mbox',
         ],
         'files': {
-            'shared2/menu/FaceLib/RFL_DB.dat': 127968,
-            'shared2/sys/NANDBOOTINFO': 4096,
+            'shared2/sys/NANDBOOTINFO': 4128,
             'shared2/sys/SYSCONF': 16384,
             'shared2/wc24/mbox/wc24recv.ctl': 32768,
-            'shared2/wc24/mbox/wc24recv.mbx': 48,
             'shared2/wc24/mbox/wc24send.ctl': 16384,
-            'shared2/wc24/mbox/wc24send.mbx': 48,
             'shared2/wc24/misc.bin': 1024,
             'shared2/wc24/nwc24dl.bin': 63488,
             'shared2/wc24/nwc24fl.bin': 32864,
@@ -89,11 +115,15 @@ SKELETONS = {
             'shared2/wc24/nwc24msg.cfg': 1024,
         },
         'unsized': [
-            'shared2/DWC_AUTHDATA', 'shared2/cntcache.txt', 'shared2/expired',
+            'shared2/DWC_AUTHDATA', 'shared2/cntcache.txt',
+            'shared2/ec/shopsetu.log', 'shared2/expired',
+            'shared2/menu/FaceLib/RFL_DB.dat', 'shared2/menu/vc/settings.sav',
             'shared2/succession/shop.log', 'shared2/succession/transfer.id',
-            'shared2/sys/net/config.dat', 'shared2/sys/net/dhcp.dat',
-            'shared2/test/testlog.txt', 'shared2/test2/dvderror.dat',
-            'shared2/test2/nanderr.log', 'shared2/wc24/dlcnt.bin',
+            'shared2/sys/flags.dat', 'shared2/sys/net/02/config.dat',
+            'shared2/sys/net/dhcp.dat', 'shared2/test/testlog.txt',
+            'shared2/test2/dvderror.dat', 'shared2/test2/nanderr.log',
+            'shared2/wc24/dlcnt.bin', 'shared2/wc24/mbox/wc24recv.mbx',
+            'shared2/wc24/mbox/wc24send.mbx',
         ],
     },
     'sys': {
@@ -111,12 +141,12 @@ SKELETONS = {
             'meta', 'meta/00000001', 'meta/00000001/00000002',
             'meta/00000001/00000004', 'meta/00000001/00000009',
         ],
-        'files': {},
-        'unsized': [
-            'meta/00000001/00000002/title.met',
-            'meta/00000001/00000004/title.met',
-            'meta/00000001/00000009/title.met',
-        ],
+        'files': {
+            'meta/00000001/00000002/title.met': 64,
+            'meta/00000001/00000004/title.met': 64,
+            'meta/00000001/00000009/title.met': 64,
+        },
+        'unsized': [],
     },
     'import': {
         'note': 'scratch space for an in-progress title install; empty unless one was interrupted',
@@ -143,9 +173,15 @@ def tik_path(tmd_dir, tid, version):
     return os.path.join(tmd_dir, f'{tid:016x}.{tag}.tik')
 
 
-def mtree_lines(entries, label, partition, header, missing):
+TITLES = {
+    'wii': 'Nintendo Wii system menu {label} installed NAND state ({partition})',
+    'vwii': 'Nintendo Wii U vWii {label} installed SLCCMPT state ({partition})',
+}
+
+
+def mtree_lines(entries, label, partition, header, missing, system='wii'):
     lines = ['#mtree',
-             f'# Nintendo Wii system menu {label} installed NAND state ({partition})',
+             '# ' + TITLES[system].format(label=label, partition=partition),
              f'# {header}']
     if missing:
         lines.append(f'# {missing} title(s) omitted: no metadata cached from NUS')
@@ -223,22 +259,27 @@ HEADERS = {
 
 def main():
     ap = argparse.ArgumentParser(add_help=False)
+    ap.add_argument('--system', choices=('wii', 'vwii'), default='wii')
     ap.add_argument('--no-tickets', action='store_true')
-    ap.add_argument('source', nargs='?')
-    ap.add_argument('tmd_dir', nargs='?')
-    ap.add_argument('output_dir', nargs='?')
+    ap.add_argument('args', nargs='*')
     args = ap.parse_args()
-    if not args.source or not args.tmd_dir or not args.output_dir:
+    # vWii needs no source file, so it takes two positional arguments, not three
+    wanted = 2 if args.system == 'vwii' else 3
+    if len(args.args) != wanted:
         print(__doc__, file=sys.stderr)
         return 2
+    source, tmd_dir, output_dir = ([None] + args.args) if wanted == 2 else args.args
 
-    try:
-        updates = wiiupd.parse(args.source)
-    except OSError as e:
-        print(f'error: {e}', file=sys.stderr)
-        return 2
+    if args.system == 'vwii':
+        updates = wiiupd.vwii_updates()
+    else:
+        try:
+            updates = wiiupd.parse(source)
+        except OSError as e:
+            print(f'error: {e}', file=sys.stderr)
+            return 2
     if not updates:
-        print(f'error: no update lists in {args.source}', file=sys.stderr)
+        print(f'error: no update lists in {source}', file=sys.stderr)
         return 2
 
     cache = {}
@@ -247,7 +288,7 @@ def main():
         by_partition, missing = collections.defaultdict(dict), 0
         shared_hashes = set()
         for tid, version in sorted(updates[label].items()):
-            path = tmd_path(args.tmd_dir, tid, version)
+            path = tmd_path(tmd_dir, tid, version)
             if path not in cache:
                 try:
                     cache[path] = wiitmd.load(path)
@@ -262,7 +303,7 @@ def main():
             shared_hashes.update(sha1 for _, sha1 in tmd.shared_contents())
             if args.no_tickets:
                 continue
-            path = tik_path(args.tmd_dir, tid, version)
+            path = tik_path(tmd_dir, tid, version)
             if path not in cache:
                 try:
                     cache[path] = wiitmd.load_ticket(path)
@@ -273,20 +314,23 @@ def main():
         absent += missing
         by_partition['shared1'] = shared1_entries(sorted(shared_hashes))
         for partition, entries in by_partition.items():
-            out_dir = os.path.join(args.output_dir, partition)
+            out_dir = os.path.join(output_dir, partition)
             os.makedirs(out_dir, exist_ok=True)
-            lines = mtree_lines(entries, label, partition, HEADERS[partition], missing)
+            lines = mtree_lines(entries, label, partition, HEADERS[partition],
+                                missing, args.system)
             with open(os.path.join(out_dir, f'{label}.mtree'), 'w') as f:
                 f.write('\n'.join(lines) + '\n')
             written[partition] += 1
 
-    for partition in SKELETONS:
-        write_skeleton(args.output_dir, partition)
-        written[partition] += 1
+    # the skeletons describe a Wii's console state; nothing sources vWii's
+    if args.system == 'wii':
+        for partition in SKELETONS:
+            write_skeleton(output_dir, partition)
+            written[partition] += 1
 
     total = sum(written.values())
     detail = ', '.join(f'{n} {p}' for p, n in sorted(written.items()))
-    print(f'{total} mtrees written to {args.output_dir} ({detail})'
+    print(f'{total} mtrees written to {output_dir} ({detail})'
           + (f', {absent} title/version pairs had no TMD' if absent else ''))
     return 0 if total else 1
 

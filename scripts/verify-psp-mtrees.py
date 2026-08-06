@@ -32,6 +32,10 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from importlib import import_module
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+dedupe = import_module('dedupe-mtrees')
 
 FLASH_DIRS = re.compile(r'^F(\d+)$')
 FLASH_NAME = re.compile(r'^flash\d+$')
@@ -153,13 +157,9 @@ def main():
         return 0 if report(f'{package} ({flash})', failures) else 1
 
     mtree_root, fw_dir = args.a, args.b
-    mtrees = {}  # stem -> {flash: mtree path}
-    for entry in sorted(os.listdir(mtree_root)):
-        if FLASH_NAME.match(entry) and os.path.isdir(os.path.join(mtree_root, entry)):
-            for name in sorted(os.listdir(os.path.join(mtree_root, entry))):
-                if name.endswith('.mtree'):
-                    mtrees.setdefault(name[:-len('.mtree')], {})[entry] = \
-                        os.path.join(mtree_root, entry, name)
+    # one mtree may cover several firmwares once identical states are
+    # deduplicated, so the index is built from each file's attribution header
+    mtrees = dedupe.index(mtree_root, FLASH_NAME.match)
     packages = {}
     for root, _, names in os.walk(fw_dir):
         for name in names:

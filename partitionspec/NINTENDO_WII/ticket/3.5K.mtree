@@ -1,28 +1,28 @@
 #mtree
-# Nintendo Wii system menu 3.5K installed NAND state (ticket)
+# Nintendo Wii system menu installed NAND state (ticket)
 # each ticket is the signed 0x2A4-byte prefix of the title's NUS cetk
+# as installed by firmware 3.5K
 . type=dir
-./ticket type=dir
-./ticket/00000001 type=dir
-./ticket/00000001/00000002.tik type=file size=676 sha1=7076891f96ad3e4a6148a4a308e4a12fc72cc4b5
-./ticket/00000001/00000004.tik type=file size=676 sha1=46db465d33c782cb75ad675fab403d70791a42e5
-./ticket/00000001/00000009.tik type=file size=676 sha1=a19dafc7f7bbfe76bd72e68aa7343c1f2182366d
-./ticket/00000001/00000015.tik type=file size=676 sha1=5ead7d030ee35150f9d0aef5c6681f91fb58b384
-./ticket/00000001/00000025.tik type=file size=676 sha1=152276780cc7f7c331ee753527266b348f1d6b14
-./ticket/00000001/00000028.tik type=file size=676 sha1=d60d36a86ffaf59457d1ac7a90ccbe1860544163
-./ticket/00000001/00000029.tik type=file size=676 sha1=a8b902ae6805b46d35064cd959adbb498c41127e
-./ticket/00000001/0000002b.tik type=file size=676 sha1=373bb08aea5ad1105adbc37fff7beddf5d8eb3d3
-./ticket/00000001/0000002d.tik type=file size=676 sha1=4310beec8c9845b83cfb7acdeabfc00b82cca165
-./ticket/00000001/0000002e.tik type=file size=676 sha1=027040091d622b75ca04651de76e22c03fed5928
-./ticket/00000001/00000033.tik type=file size=676 sha1=58dd11fcb66cddf304937d0a31fbb5a752b6edd6
-./ticket/00000001/00000034.tik type=file size=676 sha1=fa32350ddf35997cc07ff0a1dbfbe12d7f95cf0a
-./ticket/00000001/00000035.tik type=file size=676 sha1=cd56ecb81744cb97a57376b7bb7c9756e13336ef
-./ticket/00000001/00000037.tik type=file size=676 sha1=f3071f8c275abf93f2bec079fcd12323a0036f57
-./ticket/00000001/0000003d.tik type=file size=676 sha1=3eb3ca8a3b41884ec4cd68fae5395731ea36ec88
-./ticket/00000001/000000fe.tik type=file size=676 sha1=fd4aba85278e245209c8fd01c4f344a7d4dfd093
-./ticket/00000001/00000100.tik type=file size=676 sha1=1735c8972762bc6569d04e2df460640fa5b4d99e
-./ticket/00000001/00000101.tik type=file size=676 sha1=41644911fcaee00a66ebc1aa42eabdc4788b9f90
-./ticket/00010002 type=dir
-./ticket/00010002/4841424b.tik type=file size=676 sha1=12f4de2037bd352e507a0cf3312a1f6a3dbd5953
-./ticket/00010008 type=dir
-./ticket/00010008/48414c4b.tik type=file size=676 sha1=d43809abb977cbe4188c29eb65ffe5d5379c001e
+./00000001 type=dir
+./00000001/00000002.tik type=file size=676 sha1=7076891f96ad3e4a6148a4a308e4a12fc72cc4b5
+./00000001/00000004.tik type=file size=676 sha1=46db465d33c782cb75ad675fab403d70791a42e5
+./00000001/00000009.tik type=file size=676 sha1=a19dafc7f7bbfe76bd72e68aa7343c1f2182366d
+./00000001/00000015.tik type=file size=676 sha1=5ead7d030ee35150f9d0aef5c6681f91fb58b384
+./00000001/00000025.tik type=file size=676 sha1=152276780cc7f7c331ee753527266b348f1d6b14
+./00000001/00000028.tik type=file size=676 sha1=d60d36a86ffaf59457d1ac7a90ccbe1860544163
+./00000001/00000029.tik type=file size=676 sha1=a8b902ae6805b46d35064cd959adbb498c41127e
+./00000001/0000002b.tik type=file size=676 sha1=373bb08aea5ad1105adbc37fff7beddf5d8eb3d3
+./00000001/0000002d.tik type=file size=676 sha1=4310beec8c9845b83cfb7acdeabfc00b82cca165
+./00000001/0000002e.tik type=file size=676 sha1=027040091d622b75ca04651de76e22c03fed5928
+./00000001/00000033.tik type=file size=676 sha1=58dd11fcb66cddf304937d0a31fbb5a752b6edd6
+./00000001/00000034.tik type=file size=676 sha1=fa32350ddf35997cc07ff0a1dbfbe12d7f95cf0a
+./00000001/00000035.tik type=file size=676 sha1=cd56ecb81744cb97a57376b7bb7c9756e13336ef
+./00000001/00000037.tik type=file size=676 sha1=f3071f8c275abf93f2bec079fcd12323a0036f57
+./00000001/0000003d.tik type=file size=676 sha1=3eb3ca8a3b41884ec4cd68fae5395731ea36ec88
+./00000001/000000fe.tik type=file size=676 sha1=fd4aba85278e245209c8fd01c4f344a7d4dfd093
+./00000001/00000100.tik type=file size=676 sha1=1735c8972762bc6569d04e2df460640fa5b4d99e
+./00000001/00000101.tik type=file size=676 sha1=41644911fcaee00a66ebc1aa42eabdc4788b9f90
+./00010002 type=dir
+./00010002/4841424b.tik type=file size=676 sha1=12f4de2037bd352e507a0cf3312a1f6a3dbd5953
+./00010008 type=dir
+./00010008/48414c4b.tik type=file size=676 sha1=d43809abb977cbe4188c29eb65ffe5d5379c001e

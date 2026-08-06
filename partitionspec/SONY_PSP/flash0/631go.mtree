@@ -1,5 +1,6 @@
 #mtree
-# PSP official firmware 6.31 (PSP Go) system software (flash0)
+# PSP official firmware (PSP Go) system software (flash0)
+# as installed by firmware 631go
 . type=dir
 ./codepage type=dir
 ./codepage/cptbl.dat type=file size=182356 md5=7e208d583cac62ac741bdb19027adf4b sha1=d7055b6a438756d6f29343877873843c6081212c sha256=4e3a7662b16d27805c4a7be173fd83258ec12783fac1dd6397cedf77ac7b2bbb

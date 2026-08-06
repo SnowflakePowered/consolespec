@@ -4,4 +4,3 @@
 # console state, not update content: paths only, never a digest,
 # and sizes only where a source fixes them
 . type=dir
-./import type=dir

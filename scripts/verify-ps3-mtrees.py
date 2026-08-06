@@ -28,6 +28,9 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from importlib import import_module  # noqa: E402
+
+dedupe = import_module('dedupe-mtrees')
 import ps3pup  # noqa: E402
 
 DEVICE_NAME = re.compile(r'^dev_flash\d*$')
@@ -115,13 +118,9 @@ def main():
         return 0 if report(f'{pup} ({device})', failures) else 1
 
     mtree_root, fw_dir = args.a, args.b
-    mtrees = {}  # stem -> {device: path}
-    for entry in sorted(os.listdir(mtree_root)):
-        if DEVICE_NAME.match(entry) and os.path.isdir(os.path.join(mtree_root, entry)):
-            for name in sorted(os.listdir(os.path.join(mtree_root, entry))):
-                if name.endswith('.mtree'):
-                    mtrees.setdefault(name[:-len('.mtree')], {})[entry] = \
-                        os.path.join(mtree_root, entry, name)
+    # one mtree may cover several firmwares once identical states are
+    # deduplicated, so the index is built from each file's attribution header
+    mtrees = dedupe.index(mtree_root, DEVICE_NAME.match)
     pups = {}
     for entry in sorted(os.listdir(fw_dir)):
         pup = os.path.join(fw_dir, entry, 'PS3UPDAT.PUP')

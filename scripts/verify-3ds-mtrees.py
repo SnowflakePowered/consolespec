@@ -108,48 +108,67 @@ def main():
                 per_partition.setdefault(tmd.partition, {}).update(tmd.app_files())
         entries_by_label[f'{firmware}_{region}'] = per_partition
 
-    partitions = sorted(d for d in os.listdir(args.mtree_root)
-                        if os.path.isdir(os.path.join(args.mtree_root, d)))
-    for partition in partitions:
-        mtree_dir = os.path.join(args.mtree_root, partition)
-        for name in sorted(os.listdir(mtree_dir)):
-            if not name.endswith('.mtree'):
-                continue
-            label = name[:-len('.mtree')]
-            want = parse_mtree(os.path.join(mtree_dir, name))
-            have = entries_by_label.get(label, {}).get(partition)
-            failures = []
-            if have is None:
-                failures.append(f'no reconstructed {partition} title set for this label')
-            else:
-                skeleton = set(gen.CTRNAND_FILES) | set(gen.CTRNAND_FILES_UNSIZED)
-                for path, kv in sorted(want.items()):
-                    if path in skeleton:
-                        # console-unique files: check the recorded size where the
-                        # generator gives one, and never expect a digest
-                        expect = gen.CTRNAND_FILES.get(path)
-                        if expect is not None and int(kv.get('size', -1)) != expect:
-                            failures.append(f'{path}: size {kv.get("size")} != {expect}')
-                        if kv.get('sha256'):
-                            failures.append(f'{path}: has a digest but is console-unique')
-                        continue
-                    if path not in have:
-                        failures.append(f'not derivable from TMDs: {path}')
-                        continue
-                    size, sha256 = have[path]
-                    if int(kv.get('size', -1)) != size:
-                        failures.append(f'{path}: size {kv.get("size")} != {size}')
-                    if kv.get('sha256') != sha256:
-                        failures.append(f'{path}: sha256 {kv.get("sha256")} != {sha256}')
-                for path in sorted(set(have) - set(want)):
-                    failures.append(f'missing from mtree: {path}')
-            if failures:
-                print(f'FAIL {partition}/{label}')
-                for f in failures[:10]:
-                    print(f'     {f}')
-                failed += 1
-            else:
-                ok += 1
+    # mtrees live at <root>/<device>/<partition>.mtree when a partition's
+    # content never varies, or <root>/<device>/<partition>/<firmware>.mtree
+    # when it does. Either way each one is rooted at its partition, and a
+    # single file may stand for several firmwares (named in its header).
+    def mtree_files():
+        for device in sorted(d for d in os.listdir(args.mtree_root)
+                             if os.path.isdir(os.path.join(args.mtree_root, d))):
+            device_dir = os.path.join(args.mtree_root, device)
+            for entry in sorted(os.listdir(device_dir)):
+                path = os.path.join(device_dir, entry)
+                if entry.endswith('.mtree'):
+                    yield device, entry[:-len('.mtree')], path, None
+                elif os.path.isdir(path):
+                    for name in sorted(os.listdir(path)):
+                        if name.endswith('.mtree'):
+                            yield device, entry, os.path.join(path, name), name[:-len('.mtree')]
+
+    skeleton_files = set(gen.CTRNAND_FILES) | set(gen.CTRNAND_FILES_UNSIZED)
+    skeleton = {p.partition('/')[2]: p for p in skeleton_files if '/' in p}
+    for device, partition, path, label in mtree_files():
+        want = parse_mtree(path)
+        failures = []
+        if label is None:
+            # static partition: every firmware must agree, so check them all
+            labels = sorted(entries_by_label)
+        else:
+            labels = [label]
+        for one in labels:
+            entries = entries_by_label.get(one, {}).get(device, {})
+            have = {p.partition('/')[2]: v for p, v in entries.items()
+                    if p.partition('/')[0] == partition}
+            for rel, kv in sorted(want.items()):
+                full = skeleton.get(rel)
+                if full:
+                    # console-unique files: check the recorded size where the
+                    # generator gives one, and never expect a digest
+                    expect = gen.CTRNAND_FILES.get(full)
+                    if expect is not None and int(kv.get('size', -1)) != expect:
+                        failures.append(f'{rel}: size {kv.get("size")} != {expect}')
+                    if kv.get('sha256'):
+                        failures.append(f'{rel}: has a digest but is console-unique')
+                    continue
+                if rel not in have:
+                    if label is not None:
+                        failures.append(f'not derivable from TMDs: {rel}')
+                    continue
+                size, sha256 = have[rel]
+                if int(kv.get('size', -1)) != size:
+                    failures.append(f'{rel}: size {kv.get("size")} != {size}')
+                if kv.get('sha256') != sha256:
+                    failures.append(f'{rel}: sha256 {kv.get("sha256")} != {sha256}')
+            if label is not None:
+                for rel in sorted(set(have) - set(want)):
+                    failures.append(f'missing from mtree: {rel}')
+        if failures:
+            print(f'FAIL {device}/{partition}' + (f'/{label}' if label else ''))
+            for f in failures[:10]:
+                print(f'     {f}')
+            failed += 1
+        else:
+            ok += 1
     print(f'metadata: {ok} ok, {failed} failed')
 
     if args.content:

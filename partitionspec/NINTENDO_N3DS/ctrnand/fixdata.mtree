@@ -1,0 +1,5 @@
+#mtree
+# Nintendo 3DS ctrnand:/fixdata, identical across every firmware
+# title content sizes and digests are those Nintendo signed into each TMD
+. type=dir
+./sysdata type=dir

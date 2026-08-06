@@ -16,7 +16,13 @@ as newest". Those are fetched from the unversioned TMD path and saved as
 <title id>.latest.tmd, so the generator resolves them the same way offline.
 
 Usage:
-    fetch-wii-tmds.py [--tickets] [--jobs N] <nusdownloader.cpp> <tmd-dir>
+    fetch-wii-tmds.py [--system {wii,vwii}] [--tickets] [--jobs N]
+                      [<nusdownloader.cpp>] <tmd-dir>
+
+--system wii (the default) reads the update lists from the nusdownloader.cpp
+path, which is then required. --system vwii instead uses the vWii table in
+wiiupd.py, which needs no source file, and fetches the Wii U's vWii system
+titles from their own NUS namespace.
 
 Already-cached files are left alone, so re-running only fetches what is
 missing. Exits non-zero if anything failed to download.
@@ -73,29 +79,35 @@ def download(tmd_dir, tid, version, tickets):
 
 def main():
     ap = argparse.ArgumentParser(add_help=False)
+    ap.add_argument('--system', choices=('wii', 'vwii'), default='wii')
     ap.add_argument('--tickets', action='store_true')
     ap.add_argument('--jobs', type=int, default=8)
-    ap.add_argument('source', nargs='?')
-    ap.add_argument('tmd_dir', nargs='?')
+    ap.add_argument('args', nargs='*')
     args = ap.parse_args()
-    if not args.source or not args.tmd_dir:
+    # vWii needs no source file, so it takes one positional argument, not two
+    wanted = 1 if args.system == 'vwii' else 2
+    if len(args.args) != wanted:
         print(__doc__, file=sys.stderr)
         return 2
+    source, tmd_dir = (None, args.args[0]) if wanted == 1 else args.args
 
-    try:
-        updates = wiiupd.parse(args.source)
-    except OSError as e:
-        print(f'error: {e}', file=sys.stderr)
-        return 2
+    if args.system == 'vwii':
+        updates = wiiupd.vwii_updates()
+    else:
+        try:
+            updates = wiiupd.parse(source)
+        except OSError as e:
+            print(f'error: {e}', file=sys.stderr)
+            return 2
     if not updates:
-        print(f'error: no update lists in {args.source}', file=sys.stderr)
+        print(f'error: no update lists in {source}', file=sys.stderr)
         return 2
 
-    os.makedirs(args.tmd_dir, exist_ok=True)
+    os.makedirs(tmd_dir, exist_ok=True)
     pairs = jobs_for(updates)
     done = failures = 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as pool:
-        futures = {pool.submit(download, args.tmd_dir, tid, version, args.tickets):
+        futures = {pool.submit(download, tmd_dir, tid, version, args.tickets):
                    (tid, version) for tid, version in pairs}
         for future in concurrent.futures.as_completed(futures):
             ok, message = future.result()
@@ -104,7 +116,7 @@ def main():
             else:
                 failures += 1
                 print(f'FAIL {message}', file=sys.stderr)
-    print(f'{done}/{len(pairs)} title versions cached in {args.tmd_dir}'
+    print(f'{done}/{len(pairs)} title versions cached in {tmd_dir}'
           + (f', {failures} failed' if failures else ''))
     return 1 if failures else 0
 

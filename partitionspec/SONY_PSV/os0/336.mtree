@@ -1,5 +1,6 @@
 #mtree
-# PS Vita official firmware 3.36 system software (os0)
+# PS Vita official firmware system software (os0)
+# as installed by firmware 336
 . type=dir
 ./kd type=dir
 ./kd/acmgr.skprx type=file size=10865 md5=d72c292acecf91b3a9ea7d099de785a3 sha1=216b766e25077f83d9cf2a43da4ee689df07360a sha256=7e1f57add3cb125a17bd6c35c70cb3d217fa518d48380c4377853fdaf8f4fc28

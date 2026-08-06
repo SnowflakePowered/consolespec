@@ -1,0 +1,6 @@
+#mtree
+# Nintendo 3DS ctrnand:/private, identical across every firmware
+# title content sizes and digests are those Nintendo signed into each TMD
+# console-unique files carry name and size only, never a digest
+. type=dir
+./MOVABLE.SED type=file size=320

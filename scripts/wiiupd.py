@@ -56,6 +56,72 @@ TYPO_FIXES = {
 
 REGIONS = {'e': 'EUR', 'u': 'USA', 'j': 'JPN', 'k': 'KOR'}
 
+
+# --- vWii -------------------------------------------------------------------
+#
+# The Wii U carries a Wii NAND of its own in the SLCCMPT partition, holding a
+# vWii build of the Wii system software. Nintendo delivers those titles under a
+# separate NUS namespace — 00000007 for the essential titles, 00070002 and
+# 00070008 for channels — but the TMDs and tickets inside carry the ordinary
+# Wii title ids, so on SLCCMPT they land at the same paths a Wii uses. Keying
+# this table by the NUS id and reading the installed path back out of the TMD
+# therefore needs no special handling, and it keeps vWii's System Menu distinct
+# from the Wii's: both are title 0000000100000002 and both have versions 512,
+# 513 and 514, but the content differs.
+#
+# There is no wiiqt equivalent listing vWii update contents, so the table was
+# built by enumerating NUS directly: every id in 00000007-000000xx was probed,
+# which found the System Menu and 29 IOSes, and the channel ids came from
+# wiiubrew's title database with their versions confirmed against NUS.
+#
+# Every vWii title except the System Menu has exactly one version on NUS. That
+# was checked by sweeping four major versions' worth of minor versions around
+# each of IOS31, IOS58 and IOS80 (one hit each) and by enumerating every
+# channel's versions in full. So only the System Menu is version-pinned here;
+# the rest resolve through LATEST, which for them is their only version.
+VWII_SYSMENU = {
+    '1.0.0J': 512, '1.0.0U': 513, '1.0.0E': 514,
+    '4.0.0J': 544, '4.0.0U': 545, '4.0.0E': 546,
+    '5.2.0J': 608, '5.2.0U': 609, '5.2.0E': 610,
+}
+VWII_SYSMENU_ID = 0x0000000700000002
+VWII_IOS = [
+    0x0000000700000009, 0x000000070000000c, 0x000000070000000d, 0x000000070000000e,
+    0x000000070000000f, 0x0000000700000011, 0x0000000700000015, 0x0000000700000016,
+    0x000000070000001c, 0x000000070000001f, 0x0000000700000021, 0x0000000700000022,
+    0x0000000700000023, 0x0000000700000024, 0x0000000700000025, 0x0000000700000026,
+    0x0000000700000029, 0x000000070000002b, 0x000000070000002d, 0x000000070000002e,
+    0x0000000700000030, 0x0000000700000035, 0x0000000700000037, 0x0000000700000038,
+    0x0000000700000039, 0x000000070000003a, 0x000000070000003b, 0x000000070000003e,
+    0x0000000700000050,
+]
+# {nus title id: region letter, or None for every region}. Only channels with a
+# single version on NUS are listed. The Wii Menu Manual (HCUE/HCUJ/HCUP, five
+# or six versions each) and the WagonCompat Transfer Tool (HCZE/HCZJ/HCZP, v29
+# and v31) are left out: nothing records which of their versions belongs to
+# which vWii release, and picking one would be a guess.
+VWII_CHANNELS = {
+    0x0007000248414241: None,   # HABA Wii Shop Channel, v21
+    0x0007000248414341: None,   # HACA Mii Channel, v6
+    0x0007000248435641: None,   # HCVA Wii U Menu, v0
+    0x0007000848414c45: 'U',    # HALE rgnsel, v2
+    0x0007000848414c4a: 'J',    # HALJ rgnsel, v2
+    0x0007000848414c50: 'E',    # HALP rgnsel, v2
+}
+
+
+def vwii_updates():
+    """Return {vWii version label: {NUS title id: version}}, same shape as parse()."""
+    out = {}
+    for label, menu_version in VWII_SYSMENU.items():
+        region = label[-1]
+        titles = {VWII_SYSMENU_ID: menu_version}
+        titles.update({tid: LATEST for tid in VWII_IOS})
+        titles.update({tid: LATEST for tid, r in VWII_CHANNELS.items()
+                       if r is None or r == region})
+        out[label] = titles
+    return out
+
 FUNC = re.compile(r'NusDownloader::List(\d)(\d)([eujk])\(\)')
 BASE = re.compile(r'titles\s*=\s*List(\d)(\d)([eujk])\(\)')
 INSERT = re.compile(r'^\s*titles\.insert\(\s*(0x[0-9a-fA-F]+)ull\s*,\s*'
@@ -113,11 +179,16 @@ def parse(path):
 
 
 def label_key(label):
-    """Sort key placing update labels in release order, region last."""
-    m = re.match(r'^(\d+)\.(\d+)([EUJK])', label)
+    """Sort key placing update labels in release order, region last.
+
+    Covers both the Wii's two-part labels (4.3U) and vWii's three-part ones
+    (5.2.0U).
+    """
+    m = re.match(r'^(\d+)\.(\d+)(?:\.(\d+))?([EUJK])$', label)
     if not m:
-        return (1, 0, 0, label)
-    return (0, int(m.group(1)), int(m.group(2)), m.group(3))
+        return (1, 0, 0, 0, label)
+    return (0, int(m.group(1)), int(m.group(2)),
+            int(m.group(3) or 0), m.group(4))
 
 
 def region_of(label):

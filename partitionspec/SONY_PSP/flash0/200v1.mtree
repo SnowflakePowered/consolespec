@@ -1,5 +1,6 @@
 #mtree
-# PSP official firmware 2.00 (v1) system software (flash0)
+# PSP official firmware (v1) system software (flash0)
+# as installed by 2 firmwares: 200v1, 200v2
 . type=dir
 ./data type=dir
 ./data/cert type=dir

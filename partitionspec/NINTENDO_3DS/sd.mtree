@@ -1,0 +1,24 @@
+#mtree
+# Nintendo 3DS SD card, directories the console itself creates
+#
+# An SD card ships empty; the console writes these on demand, so this is a
+# layout skeleton rather than an install state. Nothing here has a fixed size
+# or contents: it is all user data.
+#
+# An asterisk stands for a path component that cannot be named generically.
+# Under "Nintendo 3DS" the first is ID0, derived from the console's
+# movable.sed, and the second is ID1, derived from the CID of the particular
+# SD card the directory was created on.
+#
+# Source: https://www.3dbrew.org/wiki/SD_Filesystem
+. type=dir
+./DCIM type=dir
+./Nintendo\0403DS type=dir
+./Nintendo\0403DS/* type=dir
+./Nintendo\0403DS/*/* type=dir
+./Nintendo\0403DS/*/*/Nintendo\040DSiWare type=dir
+./Nintendo\0403DS/*/*/backups type=dir
+./Nintendo\0403DS/*/*/dbs type=dir
+./Nintendo\0403DS/*/*/extdata type=dir
+./Nintendo\0403DS/*/*/title type=dir
+./private type=dir

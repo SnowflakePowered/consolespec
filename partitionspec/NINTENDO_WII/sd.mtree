@@ -1,0 +1,20 @@
+#mtree
+# Nintendo Wii SD card, directories the console itself creates
+#
+# An SD card ships empty; the console writes these on demand, so this is a
+# layout skeleton rather than an install state. Nothing here has a fixed size
+# or contents: it is all user data.
+#
+# An asterisk stands for a path component that cannot be named generically.
+# Each title copied to the card gets a directory named after the ASCII form of
+# the lower half of its title id, holding data.bin for exported save data and
+# content.bin for exported channel content.
+#
+# Source: https://wiibrew.org/wiki/SD:/private/wii/title
+. type=dir
+./private type=dir
+./private/wii type=dir
+./private/wii/title type=dir
+./private/wii/title/* type=dir
+./private/wii/title/*/content.bin type=file
+./private/wii/title/*/data.bin type=file

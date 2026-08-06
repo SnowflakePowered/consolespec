@@ -124,16 +124,39 @@ def main():
     zips = {os.path.splitext(n)[0].lstrip('vV'): os.path.join(args.b, n)
             for n in os.listdir(args.b) if n.lower().endswith('.zip')}
 
+    # mtrees live at twl_main/<partition>.mtree when a partition's content
+    # never varies, or twl_main/<partition>/<firmware>.mtree when it does.
+    # Each is rooted at its partition; a file may stand for several firmwares.
+    targets = []
+    for entry in sorted(os.listdir(mtree_dir)):
+        path = os.path.join(mtree_dir, entry)
+        if entry.endswith('.mtree'):
+            targets.append((entry[:-len('.mtree')], path, None))
+        elif os.path.isdir(path):
+            for name in sorted(os.listdir(path)):
+                if name.endswith('.mtree'):
+                    targets.append((entry, os.path.join(path, name), name[:-len('.mtree')]))
+
     ok = missing = failed = 0
-    for name in sorted(os.listdir(mtree_dir)):
-        if not name.endswith('.mtree'):
-            continue
-        label = name[:-len('.mtree')]
-        zip_path = zips.get(label)
-        if zip_path is None:
-            print(f'MISS {label}: no matching firmware zip under {args.b}')
+    for partition, path, label in targets:
+        # a static partition is checked against every firmware, a versioned one
+        # against the firmware it is named for
+        labels = sorted(zips) if label is None else [label]
+        if label is not None and label not in zips:
+            print(f'MISS {partition}/{label}: no matching firmware zip under {args.b}')
             missing += 1
-        elif check(os.path.join(mtree_dir, name), zip_path, label, sysdata):
+            continue
+        failures = []
+        for one in labels:
+            try:
+                files = gen.firmware_files(zips[one], sysdata, one)
+            except Exception as e:  # noqa: BLE001
+                failures.append(f'{one}: {e}')
+                continue
+            scoped = {p.partition('/')[2]: d for p, d in files.items()
+                      if p.partition('/')[0] == partition}
+            failures += [f'{one}: {f}' for f in verify(path, scoped)]
+        if report(f'{partition}' + (f'/{label}' if label else ''), failures):
             ok += 1
         else:
             failed += 1

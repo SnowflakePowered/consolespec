@@ -137,29 +137,27 @@ def title_sets(rows):
     return out
 
 
-def mtree_lines(entries, label, partition, missing):
+def mtree_lines(entries, label, device, partition, missing):
+    """Render one partition's mtree, rooted at that partition."""
     lines = ['#mtree',
-             f'# Nintendo 3DS firmware {label} installed state ({partition})',
+             f'# Nintendo 3DS {device}:/{partition} as installed by firmware {label}',
              '# title content sizes and digests are those Nintendo signed into each TMD']
-    if partition == 'ctrnand':
+    if partition in ('dbs', 'ro', 'rw', 'private'):
         lines.append('# console-unique files carry name and size only, never a digest')
     if missing:
         lines.append(f'# {missing} title(s) omitted: no TMD available from NUS')
     lines.append('. type=dir')
-
-    dirs = set(CTRNAND_DIRS) if partition == 'ctrnand' else set()
+    dirs = set()
     for path in entries:
         parts = path.split('/')[:-1]
         for i in range(1, len(parts) + 1):
             dirs.add('/'.join(parts[:i]))
-        # every installed title also carries a cmd directory
-        if path.startswith('title/') and path.endswith('.app'):
-            dirs.add('/'.join(path.split('/')[:4]) + '/cmd')
-
-    rows = [(d, None) for d in dirs] + list(entries.items())
-    if partition == 'ctrnand':
-        rows += [(p, (size, None)) for p, size in CTRNAND_FILES.items()]
-        rows += [(p, (None, None)) for p in CTRNAND_FILES_UNSIZED]
+        if partition == 'title' and path.endswith('.app'):
+            dirs.add('/'.join(path.split('/')[:2]) + '/cmd')
+    merged = {d: None for d in dirs}
+    for path, value in entries.items():
+        merged[path] = None if value == 'dir' else value
+    rows = list(merged.items())
     for path, value in sorted(rows):
         if value is None:
             lines.append(f'./{path} type=dir')
@@ -172,6 +170,33 @@ def mtree_lines(entries, label, partition, missing):
                 line += f' sha256={sha256}'
             lines.append(line)
     return lines
+
+
+def split_by_partition(files, dirs=(), partition_files=None, partition_unsized=()):
+    """Group paths into {top-level folder: {path below it: value}}.
+
+    Directories seed the result so that a folder which is empty on a clean
+    install still gets a partition. Files sitting at the volume root (the FAT
+    journal) belong to no folder and are left out.
+    """
+    out = {d.partition('/')[0]: {} for d in dirs}
+    for d in dirs:
+        head, _, rest = d.partition('/')
+        if rest:
+            out.setdefault(head, {})[rest] = 'dir'
+    for path, value in files.items():
+        head, _, rest = path.partition('/')
+        if rest:
+            out.setdefault(head, {})[rest] = value
+    for path, size in (partition_files or {}).items():
+        head, _, rest = path.partition('/')
+        if rest:
+            out.setdefault(head, {})[rest] = (size, None)
+    for path in partition_unsized:
+        head, _, rest = path.partition('/')
+        if rest:
+            out.setdefault(head, {})[rest] = (None, None)
+    return out
 
 
 def main():
@@ -197,10 +222,12 @@ def main():
     sets = title_sets(rows)
 
     cache = {}
-    written, skipped, absent = collections.Counter(), 0, 0
+    # per (device, partition, firmware label) rendered mtree body
+    rendered = collections.defaultdict(dict)
+    absent = 0
     for (firmware, region), state in sorted(sets.items(),
                                             key=lambda kv: (firmware_key(kv[0][0]), kv[0][1])):
-        by_partition, missing = collections.defaultdict(dict), 0
+        by_device, missing = collections.defaultdict(dict), 0
         for title, version in sorted(state.items()):
             path = os.path.join(args.tmd_dir, f'{title}.{version}.tmd')
             if path not in cache:
@@ -212,25 +239,61 @@ def main():
             if tmd is None:
                 missing += 1
                 continue
-            by_partition[tmd.partition].update(tmd.app_files())
+            by_device[tmd.partition].update(tmd.app_files())
         absent += missing
         if len(state) - missing < args.min_titles:
-            skipped += 1
             continue
         label = f'{firmware}_{region}'
-        for partition, entries in by_partition.items():
-            out_dir = os.path.join(args.output_dir, partition)
-            os.makedirs(out_dir, exist_ok=True)
-            lines = mtree_lines(entries, label, partition, missing if partition == 'ctrnand' else 0)
-            with open(os.path.join(out_dir, f'{label}.mtree'), 'w') as f:
-                f.write('\n'.join(lines) + '\n')
-            written[partition] += 1
-    total = sum(written.values())
-    detail = ', '.join(f'{n} {p}' for p, n in sorted(written.items()))
-    print(f'{total} mtrees written to {args.output_dir} ({detail})'
-          + (f', {skipped} skipped below --min-titles' if skipped else '')
+        for device, files in by_device.items():
+            if device == 'ctrnand':
+                parts = split_by_partition(files, CTRNAND_DIRS, CTRNAND_FILES,
+                                           CTRNAND_FILES_UNSIZED)
+            else:
+                parts = split_by_partition(files)
+            for partition, entries in parts.items():
+                body = '\n'.join(mtree_lines(entries, label, device, partition,
+                                             missing if partition == 'title' else 0)) + '\n'
+                rendered[(device, partition)][label] = body
+
+    # A partition whose content never varies is written once; only the ones that
+    # differ between firmwares get a file per firmware.
+    static, versioned, files_written = 0, 0, 0
+    for (device, partition), bodies in sorted(rendered.items()):
+        # compare ignoring the header comment naming the firmware
+        def strip(b):
+            return '\n'.join(l for l in b.splitlines() if not l.startswith('#'))
+        distinct = {strip(b) for b in bodies.values()}
+        out_dir = os.path.join(args.output_dir, device)
+        os.makedirs(out_dir, exist_ok=True)
+        if len(distinct) == 1:
+            label = sorted(bodies, key=lambda s: (firmware_key(s.rsplit('_', 1)[0]), s))[0]
+            body = bodies[label].splitlines()
+            body[1] = f'# Nintendo 3DS {device}:/{partition}, identical across every firmware'
+            with open(os.path.join(out_dir, f'{partition}.mtree'), 'w') as f:
+                f.write('\n'.join(body) + '\n')
+            static += 1
+            files_written += 1
+        else:
+            os.makedirs(os.path.join(out_dir, partition), exist_ok=True)
+            # firmwares whose content is byte-identical share one file, named
+            # for the earliest of them and listing the rest in its header
+            groups = collections.defaultdict(list)
+            for label, body in bodies.items():
+                groups[strip(body)].append(label)
+            for labels in groups.values():
+                labels.sort(key=lambda s: (firmware_key(s.rsplit('_', 1)[0]), s))
+                body = bodies[labels[0]].splitlines()
+                body[1] = (f'# Nintendo 3DS {device}:/{partition} as installed by '
+                           + (f'firmware {labels[0]}' if len(labels) == 1
+                              else f'{len(labels)} firmwares: ' + ', '.join(labels)))
+                with open(os.path.join(out_dir, partition, f'{labels[0]}.mtree'), 'w') as f:
+                    f.write('\n'.join(body) + '\n')
+                files_written += 1
+            versioned += 1
+    print(f'{files_written} mtrees written to {args.output_dir}: '
+          f'{static} static partition(s), {versioned} versioned'
           + (f', {absent} title/version pairs had no TMD' if absent else ''))
-    return 0 if total else 1
+    return 0 if files_written else 1
 
 
 if __name__ == '__main__':

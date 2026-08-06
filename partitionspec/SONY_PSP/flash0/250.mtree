@@ -1,5 +1,6 @@
 #mtree
-# PSP official firmware 2.50 system software (flash0)
+# PSP official firmware system software (flash0)
+# as installed by firmware 250
 . type=dir
 ./data type=dir
 ./data/cert type=dir

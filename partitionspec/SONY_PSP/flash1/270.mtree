@@ -1,5 +1,6 @@
 #mtree
-# PSP official firmware 2.70 system software (flash1)
+# PSP official firmware system software (flash1)
+# as installed by 58 firmwares: 270, 271, 280, 281, 282, 300, 301, 302, 303, 310, 311, 330, 340, 350, 351, 352, 370, 371, 372, 373, 380, 390, 393, 395, 396, 400, 401, 405, 500, 501, 502, 503, 505, 550, 551, 555, 600, 610, 610go, 620, 620go, 630, 630go, 631, 631go, 635, 635go, 636, 637, 637go, 638, 638go, 639, 639go, 660, 660go, 661, 661go
 . type=dir
 ./dic type=dir
 ./gps type=dir

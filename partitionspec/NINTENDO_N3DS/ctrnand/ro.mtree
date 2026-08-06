@@ -1,0 +1,10 @@
+#mtree
+# Nintendo 3DS ctrnand:/ro, identical across every firmware
+# title content sizes and digests are those Nintendo signed into each TMD
+# console-unique files carry name and size only, never a digest
+. type=dir
+./private type=dir
+./shared type=dir
+./sys type=dir
+./sys/HWCAL0.dat type=file size=2512
+./sys/HWCAL1.dat type=file size=2512

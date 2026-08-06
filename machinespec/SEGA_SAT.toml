@@ -22,7 +22,7 @@ model-number = ["MK-80200-50", "MK-80200A-50"]
 groups = ["controller"]
 
 [input.controller]
-inputs = ["SAT_CONTROLLER"]
+inputs = ["SAT_CONTROLLER", "SAT_3D_CONTROLLER"]
 ports = 2
 
 [[bios]]

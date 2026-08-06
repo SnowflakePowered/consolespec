@@ -1,0 +1,58 @@
+[input]
+id = "SAT_3D_CONTROLLER"
+type = "controller"
+
+[meta]
+name = "3D Control Pad"
+
+[meta.na]
+model-number = ["MK-80116"]
+
+[meta.jp]
+name = "マルチコントローラー"
+name-en = "Multi Controller"
+model-number = ["HSS-0137"]
+
+[[input.button]]
+label = "A"
+element = "a"
+
+[[input.button]]
+label = "B"
+element = "b"
+
+[[input.button]]
+label = "C"
+element = "c"
+
+[[input.button]]
+label = "X"
+element = "x"
+
+[[input.button]]
+label = "Y"
+element = "y"
+
+[[input.button]]
+label = "Z"
+element = "z"
+
+[[input.button]]
+label = "Start"
+element = "start"
+
+[[input.directional]]
+label = "D-Pad"
+directions = 4
+
+[[input.analog]]
+axes = 2
+alignment = "left"
+
+[[input.trigger]]
+label = "L"
+alignment = "left"
+
+[[input.trigger]]
+label = "R"
+alignment = "right"

@@ -2,6 +2,7 @@
 # Nintendo DSi TWL_MAIN:/shared1, identical across every firmware
 # save files a fresh install leaves blank carry a name only: their
 # size and contents change as soon as the title is used
+# console-specific files carry name and size only, never a digest
 . type=dir
-./TWLCFG0.dat type=file size=16384 md5=3b184ed615f4b999e44cfba66d04f74c sha1=5d02c630b954b82f57c2a243edf972e8f6fd3071 sha256=93af7ed9fca6951f50892fbe751afb8f6ff283bcb2255d2c4f990c62d567c06f
-./TWLCFG1.dat type=file size=16384 md5=3b184ed615f4b999e44cfba66d04f74c sha1=5d02c630b954b82f57c2a243edf972e8f6fd3071 sha256=93af7ed9fca6951f50892fbe751afb8f6ff283bcb2255d2c4f990c62d567c06f
+./TWLCFG0.dat type=file size=16384
+./TWLCFG1.dat type=file size=16384

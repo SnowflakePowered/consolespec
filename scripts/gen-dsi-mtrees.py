@@ -51,15 +51,36 @@ def digests(data):
 
 # NAND path -> filename in the system data directory. The font table varies by
 # region and is resolved separately.
-SYSTEM_DATA = {
-    'sys/cert.sys': 'cert.sys',
-    'sys/HWINFO_N.dat': 'HWINFO_N.dat',
-    'shared1/TWLCFG0.dat': 'TWLCFG0.dat',
-    'shared1/TWLCFG1.dat': 'TWLCFG1.dat',
-    'shared2/0000': '0000',
-    'shared2/launcher/wrap.bin': 'wrap.bin',
-}
+# The only system file whose contents are the same on every console, so the
+# only one that may carry a digest. Confirmed byte-identical between a USA and
+# a Japanese retail NAND and the copy the makenand project distributes.
+SYSTEM_DATA = {'sys/TWLFontTable.dat': 'TWLFontTable.dat'}
 FONT_TABLE = {'C': 'TWLFontTable_CN.dat', 'K': 'TWLFontTable_KR.dat'}
+
+# Directories a real NAND carries that installing titles does not create.
+# Taken from retail dumps and confirmed identical between two consoles of
+# different regions.
+NAND_DIRS = ['import', 'progress', 'sys', 'sys/log', 'tmp', 'tmp/es', 'tmp/es/write']
+
+# System files present on every console but whose contents are console-specific
+# — settings, calibration, signed hardware identity, logs. Their sizes are
+# structurally fixed, so those are recorded; their digests never are, because a
+# digest would describe one particular console. Sizes verified across two
+# retail NANDs; product.log has none because its length grows with use.
+NAND_FILES = {
+    'shared1/TWLCFG0.dat': 16384,
+    'shared1/TWLCFG1.dat': 16384,
+    'shared2/0000': 2097152,
+    'shared2/launcher/wrap.bin': 16384,
+    'sys/HWID.sgn': 256,
+    'sys/HWINFO_N.dat': 16384,
+    'sys/HWINFO_S.dat': 16384,
+    'sys/cert.sys': 3904,
+    'sys/dev.kp': 446,
+    'sys/log/shop.log': 32,
+    'sys/log/sysmenu.log': 16384,
+}
+NAND_FILES_UNSIZED = ['sys/log/product.log']
 
 
 def region_of(label):
@@ -115,33 +136,59 @@ def mtree_lines(files, label, partition):
     lines = ['#mtree',
              f'# Nintendo DSi TWL_MAIN:/{partition} as installed by firmware {label}',
              '# save files a fresh install leaves blank carry a name only: their',
-             '# size and contents change as soon as the title is used',
-             '. type=dir']
+             '# size and contents change as soon as the title is used']
+    if partition in ('sys', 'shared1', 'shared2'):
+        lines.append('# console-specific files carry name and size only, never a digest')
+    lines.append('. type=dir')
+
     dirs = set()
     for path in files:
         parts = path.split('/')[:-1]
         for i in range(1, len(parts) + 1):
             dirs.add('/'.join(parts[:i]))
-    entries = [(d, None) for d in dirs] + list(files.items())
-    for path, data in sorted(entries):
-        if data is None:
+    merged = {d: None for d in dirs}
+    for path, value in files.items():
+        merged[path] = None if value == 'dir' else value
+
+    for path, value in sorted(merged.items()):
+        if value is None:
             lines.append(f'./{path} type=dir')
-        elif is_blank(data):
+        elif isinstance(value, tuple):
+            # known to exist, contents console-specific: never a digest
+            size, _ = value
+            lines.append(f'./{path} type=file'
+                         + (f' size={size}' if size is not None else ''))
+        elif is_blank(value):
             lines.append(f'./{path} type=file')
         else:
-            md5, sha1, sha256 = digests(data)
-            lines.append(f'./{path} type=file size={len(data)} '
+            md5, sha1, sha256 = digests(value)
+            lines.append(f'./{path} type=file size={len(value)} '
                          f'md5={md5} sha1={sha1} sha256={sha256}')
     return lines
 
 
 def split_by_partition(files):
-    """Group {path: data} into {top-level folder: {path below it: data}}."""
-    out = {}
+    """Group into {top-level folder: {path below it: value}}.
+
+    A value is the file's bytes when its contents are known, a (size, None)
+    pair when only its size is, None when neither, and 'dir' for a directory
+    that exists on a clean console but holds nothing.
+    """
+    out = {d.partition('/')[0]: {} for d in NAND_DIRS}
+    for d in NAND_DIRS:
+        head, _, rest = d.partition('/')
+        if rest:
+            out.setdefault(head, {})[rest] = 'dir'
     for path, data in files.items():
         head, _, rest = path.partition('/')
         if rest:
             out.setdefault(head, {})[rest] = data
+    for path, size in NAND_FILES.items():
+        head, _, rest = path.partition('/')
+        out.setdefault(head, {})[rest] = (size, None)
+    for path in NAND_FILES_UNSIZED:
+        head, _, rest = path.partition('/')
+        out.setdefault(head, {})[rest] = (None, None)
     return out
 
 

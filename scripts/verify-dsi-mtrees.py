@@ -54,10 +54,35 @@ def parse_mtree(path):
     return files
 
 
-def verify(mtree, files):
+def verify(mtree, files, partition=None):
     failures = []
     want = parse_mtree(mtree)
+    # entries that come from the console rather than the firmware package: the
+    # sizes are checked against what real hardware carries, and a digest must
+    # never appear because it would describe one particular console
+    console = {}
+    for path, size in gen.NAND_FILES.items():
+        head, _, rest = path.partition('/')
+        if partition in (None, head):
+            console[rest if partition else path] = size
+    for path in gen.NAND_FILES_UNSIZED:
+        head, _, rest = path.partition('/')
+        if partition in (None, head):
+            console[rest if partition else path] = None
+    console_dirs = set()
+    for d in gen.NAND_DIRS:
+        head, _, rest = d.partition('/')
+        if partition in (None, head) and rest:
+            console_dirs.add(rest if partition else d)
+
     for name, kv in sorted(want.items()):
+        if name in console:
+            expect = console[name]
+            if expect is not None and int(kv.get('size', -1)) != expect:
+                failures.append(f'{name}: size {kv.get("size")} != {expect}')
+            if any(kv.get(a) for a in CHECKS):
+                failures.append(f'{name}: console-specific file must carry no digest')
+            continue
         data = files.get(name)
         if data is None:
             failures.append(f'missing from firmware: {name}')
@@ -155,7 +180,7 @@ def main():
                 continue
             scoped = {p.partition('/')[2]: d for p, d in files.items()
                       if p.partition('/')[0] == partition}
-            failures += [f'{one}: {f}' for f in verify(path, scoped)]
+            failures += [f'{one}: {f}' for f in verify(path, scoped, partition)]
         if report(f'{partition}' + (f'/{label}' if label else ''), failures):
             ok += 1
         else:

@@ -1,0 +1,7 @@
+#mtree
+# Nintendo DSi TWL_MAIN:/tmp, identical across every firmware
+# save files a fresh install leaves blank carry a name only: their
+# size and contents change as soon as the title is used
+. type=dir
+./es type=dir
+./es/write type=dir

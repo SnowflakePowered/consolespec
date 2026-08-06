@@ -34,6 +34,20 @@ devices = ["twl_main", "twl_photo", "sd"]
 name = "TWL_MAIN"
 
 [[storage.twl_main.partition]]
+id = "import"
+name = "import"
+spec = [
+    "NINTENDO_DSI/twl_main/import.mtree",
+]
+
+[[storage.twl_main.partition]]
+id = "progress"
+name = "progress"
+spec = [
+    "NINTENDO_DSI/twl_main/progress.mtree",
+]
+
+[[storage.twl_main.partition]]
 id = "shared1"
 name = "shared1"
 spec = [
@@ -146,6 +160,13 @@ spec = [
     "NINTENDO_DSI/twl_main/title/1.4J_KST.mtree",
     "NINTENDO_DSI/twl_main/title/1.4U.mtree",
     "NINTENDO_DSI/twl_main/title/1.4U_B.mtree",
+]
+
+[[storage.twl_main.partition]]
+id = "tmp"
+name = "tmp"
+spec = [
+    "NINTENDO_DSI/twl_main/tmp.mtree",
 ]
 
 [storage.twl_photo]

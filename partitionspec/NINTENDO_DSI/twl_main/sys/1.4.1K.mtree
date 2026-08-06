@@ -2,7 +2,15 @@
 # Nintendo DSi TWL_MAIN:/sys as installed by 4 firmwares: 1.4.1K, 1.4.2K, 1.4.5K, 1.4.6K
 # save files a fresh install leaves blank carry a name only: their
 # size and contents change as soon as the title is used
+# console-specific files carry name and size only, never a digest
 . type=dir
-./HWINFO_N.dat type=file size=16384 md5=9aa9a729670528ecfcea7b521bbd5407 sha1=c7b7893a58d0abd07050ac7738d1c970e91d7f22 sha256=faa80e439a84c0c20f1c8b8b0089f3eff5e145e6f4ddd3cf4ec3230832657544
+./HWID.sgn type=file size=256
+./HWINFO_N.dat type=file size=16384
+./HWINFO_S.dat type=file size=16384
 ./TWLFontTable.dat type=file size=162688 md5=a1088b7c8f2e81dc1d1955892c757365 sha1=f0a37b073eb0208d3a54c9a6bb94292dbec1192a sha256=8e74414e960bb4c3df540f8daa949f7830d7d2de7caf8d753f258a4ed3d161c3
-./cert.sys type=file size=2560 md5=09dfce24029cd1ea7a97e12fc7eae223 sha1=e30f260a492245c9f8c76ac76076dc9b95526f44 sha256=e7f7cb8d8755b71cfeac45520f6605b58a5692ee507bd3d621ab16aa3fa878c5
+./cert.sys type=file size=3904
+./dev.kp type=file size=446
+./log type=dir
+./log/product.log type=file
+./log/shop.log type=file size=32
+./log/sysmenu.log type=file size=16384

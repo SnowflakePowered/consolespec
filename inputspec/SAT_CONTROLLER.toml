@@ -41,12 +41,16 @@ label = "Z"
 element = "z"
 
 [[input.button]]
-label = "Start"
-element = "start"
+label = "L"
+element = "l"
 
 [[input.button]]
-label = "Select"
-element = "select"
+label = "R"
+element = "r"
+
+[[input.button]]
+label = "Start"
+element = "start"
 
 [[input.directional]]
 label = "D-Pad"

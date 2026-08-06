@@ -72,11 +72,11 @@ alignment = "right"
 
 [[input.analog]]
 axes = 3
-alignment = "gyroscope"
+class = "gyroscope"
 
 [[input.analog]]
 axes = 3
-alignment = "accelerometer"
+class = "accelerometer"
 
 [[input.trigger]]
 label = "L2"

@@ -52,19 +52,21 @@ alignment = "right"
 
 [[input.analog]]
 axes = 3 
-alignment = "gyroscope"
+class = "gyroscope"
 
 [[input.analog]]
 axes = 3 
-alignment = "accelerometer"
+class = "accelerometer"
 
 [[input.touchscreen]]
 label = "Touchscreen"
+alignment = "front"
 width = 960
 height = 544
 
 [[input.touchscreen]]
-label = "Rear Touchpad"
+label = "Touchpad"
+alignment = "rear"
 width = 960
 height = 544
 

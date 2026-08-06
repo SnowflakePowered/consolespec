@@ -36,3 +36,5 @@ label = "MIC"
 [[input.analog]]
 label = "Volume"
 axes = 1
+class = "slider"
+

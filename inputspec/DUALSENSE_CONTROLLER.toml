@@ -76,11 +76,11 @@ alignment = "right"
 
 [[input.analog]]
 axes = 3
-alignment = "gyroscope"
+class = "gyroscope"
 
 [[input.analog]]
 axes = 3
-alignment = "accelerometer"
+class = "accelerometer"
 
 [[input.trigger]]
 label = "L2"
@@ -91,12 +91,14 @@ label = "R2"
 alignment = "right"
 
 [[input.rumble]]
-label = "Haptic (Left)"
+label = "Haptic"
 size = "small"
+alignment = "left"
 
 [[input.rumble]]
-label = "Haptic (Right)"
+label = "Haptic"
 size = "small"
+alignment = "right"
 
 [[input.touchscreen]]
 label = "Touchpad"

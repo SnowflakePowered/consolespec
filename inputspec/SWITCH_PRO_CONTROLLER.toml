@@ -64,11 +64,11 @@ alignment = "right"
 
 [[input.analog]]
 axes = 3
-alignment = "gyroscope"
+class = "gyroscope"
 
 [[input.analog]]
 axes = 3
-alignment = "accelerometer"
+class = "accelerometer"
 
 [[input.trigger]]
 label = "ZL"
@@ -81,9 +81,12 @@ alignment = "right"
 digital = true
 
 [[input.rumble]]
-label = "HD Rumble (Left)"
+label = "HD Rumble"
 size = "small"
+alignment = "left"
 
 [[input.rumble]]
-label = "HD Rumble (Right)"
+label = "HD Rumble"
 size = "small"
+alignment = "right"
+

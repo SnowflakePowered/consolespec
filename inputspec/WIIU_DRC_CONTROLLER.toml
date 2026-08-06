@@ -42,6 +42,14 @@ element = "l"
 label = "R1"
 element = "r"
 
+[[input.button]]
+label = "L3"
+element = "clickl"
+
+[[input.button]]
+label = "R3"
+element = "clickr"
+
 [[input.directional]]
 label = "D-Pad"
 directions = 4
@@ -56,11 +64,11 @@ alignment = "right"
 
 [[input.analog]]
 axes = 3
-alignment = "gyroscope"
+class = "gyroscope"
 
 [[input.analog]]
 axes = 3
-alignment = "accelerometer"
+class = "accelerometer"
 
 [[input.trigger]]
 label = "L2"

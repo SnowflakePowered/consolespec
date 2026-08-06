@@ -52,11 +52,18 @@ alignment = "left"
 
 [[input.analog]]
 axes = 3
-alignment = "gyroscope"
+class = "gyroscope"
 
 [[input.analog]]
 axes = 3
-alignment = "accelerometer"
+class = "accelerometer"
+alignment = "right"
+
+[[input.analog]]
+label = "Nunchuk"
+axes = 3
+class = "accelerometer"
+alignment = "left"
 
 [[input.pointer]]
 label = "IR"

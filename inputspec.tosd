@@ -8,6 +8,14 @@ version = "1.0.0"
 
 [types]
 
+    # Where on the device a cluster sits. Present only when a device has more
+    # than one cluster of the same kind and class, and then on each of them:
+    # the Virtual Boy's two D-pads, the Joy-Cons' two rumble motors, the Vita's
+    # front screen and rear touchpad.
+    [types.alignmentType]
+    type = "string"
+    allowedvalues = [ "left", "right", "front", "rear" ]
+
     # Region-specific metadata, overriding the device-wide values for one
     # market.
     [types.regionMetaType]
@@ -82,13 +90,12 @@ version = "1.0.0"
         # DualShock D-Pad ("left") alongside a right-side face button
         # cluster.
         [types.directionalType.alignment]
-        type = "string"
-        allowedvalues = [ "left", "right" ]
+        type = "types.alignmentType"
         optional = true
 
-    # An analog axis cluster: a paddle or spinner (1 axis), a stick (2 axes),
-    # or a motion sensor (3 axes). Each axis expands to a positive and a
-    # negative element.
+    # An analog axis cluster: how many degrees of freedom it has (`axes`) and
+    # what kind of control it is (`class`). Each axis expands to a positive and
+    # a negative element.
     [types.analogType]
 
         [types.analogType.label]
@@ -101,13 +108,20 @@ version = "1.0.0"
         type = "integer"
         allowedvalues = [ 1, 2, 3 ]
 
-        # Which analog cluster this is: an analog stick ("left", "right") or a
-        # motion sensor ("gyroscope", "accelerometer"). Omitted for a control
-        # that occupies no such position, such as the 3DS depth slider or the
-        # Famicom microphone's volume dial.
-        [types.analogType.alignment]
+        # What kind of analog cluster this is: a thumbstick, a linear slider,
+        # a rotary dial or spinner, or a motion sensor. Defaults to "stick".
+        [types.analogType.class]
         type = "string"
-        allowedvalues = [ "left", "right", "gyroscope", "accelerometer" ]
+        allowedvalues = [ "stick", "slider", "rotary", "gyroscope", "accelerometer" ]
+        optional = true
+
+        # Where on the device the cluster sits. Required only to tell two
+        # clusters of the same class apart, e.g. the Wii Remote's own
+        # accelerometer from the one in the Nunchuk attached to its left.
+        # Omitted for a control that occupies no such position, such as the
+        # 3DS depth slider or the Famicom microphone's volume dial.
+        [types.analogType.alignment]
+        type = "types.alignmentType"
         optional = true
 
         # Whether the cluster registers digital signals only, e.g. the N64
@@ -126,8 +140,7 @@ version = "1.0.0"
 
         # Which side of the device the trigger is on.
         [types.triggerType.alignment]
-        type = "string"
-        allowedvalues = [ "left", "right" ]
+        type = "types.alignmentType"
 
         # Whether the trigger registers a digital signal only, e.g. the
         # Switch ZL/ZR. Defaults to false.
@@ -146,6 +159,12 @@ version = "1.0.0"
         [types.rumbleType.size]
         type = "string"
         allowedvalues = [ "big", "small" ]
+
+        # Which side of the device the motor is in. Required only to tell two
+        # motors of the same size apart, e.g. the Joy-Cons' HD Rumble pair.
+        [types.rumbleType.alignment]
+        type = "types.alignmentType"
+        optional = true
 
         # Whether the rumble motor is an optional add-on rather than built
         # in, e.g. the N64 Rumble Pak. Defaults to false.
@@ -167,6 +186,12 @@ version = "1.0.0"
         [types.pointerType.dimensions]
         type = "integer"
         allowedvalues = [ 2, 3 ]
+
+        # Which side of the device the pointer is on. Required only to tell two
+        # apart, e.g. the Switch 2 Joy-Cons, which are each a mouse.
+        [types.pointerType.alignment]
+        type = "types.alignmentType"
+        optional = true
 
     # A keyboard with an unspecified amount of keys, e.g. for emulated
     # computers.
@@ -196,6 +221,12 @@ version = "1.0.0"
 
         [types.touchscreenType.label]
         type = "string"
+        optional = true
+
+        # Which face of the device the surface is on. Required only to tell
+        # two apart, e.g. the Vita's screen and its rear touchpad.
+        [types.touchscreenType.alignment]
+        type = "types.alignmentType"
         optional = true
 
         # Dimensions of the touch surface's coordinate matrix, usually in

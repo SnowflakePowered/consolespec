@@ -41,11 +41,11 @@ alignment = "right"
 
 [[input.analog]]
 axes = 3
-alignment = "gyroscope"
+class = "gyroscope"
 
 [[input.analog]]
 axes = 3
-alignment = "accelerometer"
+class = "accelerometer"
 
 [[input.touchscreen]]
 width = 320
@@ -66,3 +66,5 @@ label = "Outer Camera (Right)"
 [[input.analog]]
 label = "3D Slider"
 axes = 1
+class = "slider"
+

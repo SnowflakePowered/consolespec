@@ -75,4 +75,4 @@ element = "start"
 
 [[input.analog]]
 axes = 1
-alignment = "left"
+class = "rotary"

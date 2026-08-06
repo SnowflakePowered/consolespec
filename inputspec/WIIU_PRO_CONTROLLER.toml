@@ -42,10 +42,6 @@ element = "l"
 label = "R1"
 element = "r"
 
-[[input.button]]
-label = "Power"
-element = "0"
-
 [[input.directional]]
 label = "D-Pad"
 directions = 4

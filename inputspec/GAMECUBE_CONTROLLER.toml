@@ -3,8 +3,12 @@ id = "GAMECUBE_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "GameCube Controller"
+name = "Nintendo GameCube Controller"
 model-number = ["DOL-003"]
+
+[meta.jp]
+name = "ニンテンドー ゲームキューブ コントローラ"
+name-en = "Nintendo GameCube Controller"
 
 [[input.button]]
 label = "A"

@@ -3,8 +3,12 @@ id = "SWITCH_PRO_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Switch Pro Controller"
+name = "Nintendo Switch Pro Controller"
 model-number = ["HAC-013"]
+
+[meta.jp]
+name = "Nintendo Switch Proコントローラー"
+name-en = "Nintendo Switch Pro Controller"
 
 [[input.button]]
 label = "A"

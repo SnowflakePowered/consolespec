@@ -9,8 +9,8 @@ name = "NES Controller"
 model-number = ["NES-004", "NES-039"]
 
 [meta.jp]
-name = "Famicom Controller"
-model-number = ["HVC-102"]
+name = "ファミリーコンピュータ コントローラー"
+name-en = "Family Computer Controller"
 
 [[input.button]]
 label = "A"

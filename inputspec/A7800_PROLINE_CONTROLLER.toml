@@ -1,0 +1,19 @@
+[input]
+id = "A7800_PROLINE_CONTROLLER"
+type = "controller"
+
+[meta]
+name = "Pro-Line Joystick"
+model-number = ["CX24"]
+
+[[input.button]]
+label = "Left Fire"
+element = "a"
+
+[[input.button]]
+label = "Right Fire"
+element = "b"
+
+[[input.directional]]
+label = "Joystick"
+directions = 4

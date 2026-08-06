@@ -3,7 +3,7 @@ id = "SNES_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "SNES Controller"
+name = "Super NES Controller"
 model-number = ["SNS-102"]
 
 [meta.na]

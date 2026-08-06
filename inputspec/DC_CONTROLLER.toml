@@ -12,6 +12,8 @@ model-number = ["HKT-7700"]
 model-number = ["HKT-7700"]
 
 [meta.jp]
+name = "ドリームキャスト コントローラ"
+name-en = "Dreamcast Controller"
 model-number = ["HKT-7701"]
 
 [[input.button]]

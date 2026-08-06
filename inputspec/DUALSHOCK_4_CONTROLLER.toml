@@ -3,8 +3,12 @@ id = "DUALSHOCK_4_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "DualShock 4"
+name = "DUALSHOCK 4"
 model-number = ["CUH-ZCT1", "CUH-ZCT2"]
+
+[meta.jp]
+name = "デュアルショック4"
+name-en = "Dual Shock 4"
 
 [[input.button]]
 label = "Cross"

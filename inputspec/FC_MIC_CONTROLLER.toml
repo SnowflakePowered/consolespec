@@ -3,10 +3,11 @@ id = "FC_MIC_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Famicon Controller (Player 2)"
+name = "Famicom Controller II"
 
 [meta.jp]
-name = "Famicom Controller"
+name = "ファミリーコンピュータ コントローラーⅡ"
+name-en = "Family Computer Controller II"
 model-number = ["HVC-102"]
 
 [[input.button]]

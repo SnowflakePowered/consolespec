@@ -3,8 +3,8 @@ id = "A7800_JOYPAD_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Atari 7800 Joypad"
-model-number = ["CX78", "CX24"]
+name = "Joypad"
+model-number = ["CX78"]
 
 [[input.button]]
 label = "A"

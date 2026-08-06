@@ -5,6 +5,10 @@ type = "controller"
 [meta]
 name = "FM Towns Marty Controller"
 
+[meta.jp]
+name = "パッド"
+name-en = "Pad"
+
 [[input.button]]
 label = "A"
 element = "a"

@@ -3,8 +3,12 @@ id = "SWITCH_2_PRO_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Switch 2 Pro Controller"
+name = "Nintendo Switch 2 Pro Controller"
 model-number = ["BEE-008"]
+
+[meta.jp]
+name = "Nintendo Switch 2 Proコントローラー"
+name-en = "Nintendo Switch 2 Pro Controller"
 
 [[input.button]]
 label = "A"

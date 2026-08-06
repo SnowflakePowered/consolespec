@@ -3,7 +3,7 @@ id = "INTELLIVISION_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Intellivision Controller"
+name = "Hand Controller"
 
 [[input.button]]
 label = "0"

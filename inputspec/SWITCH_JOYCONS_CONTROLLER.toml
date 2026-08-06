@@ -3,7 +3,7 @@ id = "SWITCH_JOYCONS_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Switch Joy-Con Pair"
+name = "Joy-Con (L)/(R)"
 model-number = ["HAC-015", "HAC-016"]
 
 [[input.button]]

@@ -3,7 +3,7 @@ id = "SAT_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Saturn Controller"
+name = "Control Pad"
 
 [meta.na]
 model-number = ["MK-80100"]
@@ -12,6 +12,8 @@ model-number = ["MK-80100"]
 model-number = ["MK-80301", "MK-80313"]
 
 [meta.jp]
+name = "コントロールパッド"
+name-en = "Control Pad"
 model-number = ["HSS-0101"]
 
 [[input.button]]

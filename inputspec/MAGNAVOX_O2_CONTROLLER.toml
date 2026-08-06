@@ -3,7 +3,7 @@ id = "MAGNAVOX_O2_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Magnavox Odyssey² Controller"
+name = "Hand Control"
 
 [[input.button]]
 label = "Fire"

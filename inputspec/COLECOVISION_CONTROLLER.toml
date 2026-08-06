@@ -3,7 +3,7 @@ id = "COLECOVISION_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "ColecoVision Controller"
+name = "Hand Controller"
 
 [[input.button]]
 label = "0"

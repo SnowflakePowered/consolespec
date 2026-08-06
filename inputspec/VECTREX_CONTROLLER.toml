@@ -3,7 +3,7 @@ id = "VECTREX_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Vectrex Controller"
+name = "Control Panel"
 
 [[input.button]]
 label = "1"

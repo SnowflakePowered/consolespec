@@ -3,8 +3,12 @@ id = "DUALSHOCK_2_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "DualShock 2"
+name = "DUALSHOCK 2"
 model-number = ["SCPH-10010"]
+
+[meta.jp]
+name = "デュアルショック2"
+name-en = "Dual Shock 2"
 
 [[input.button]]
 label = "Cross"

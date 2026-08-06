@@ -3,7 +3,7 @@ id = "GEN6_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Genesis 6-Button Controller"
+name = "6 Button Arcade Pad"
 
 [meta.na]
 model-number = ["MK-1653"]
@@ -12,6 +12,8 @@ model-number = ["MK-1653"]
 model-number = ["MK-1653"]
 
 [meta.jp]
+name = "ファイティングパッド6B"
+name-en = "Fighting Pad 6B"
 model-number = ["SJ-6000"]
 
 [[input.button]]

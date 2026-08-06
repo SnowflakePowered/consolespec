@@ -6,6 +6,10 @@ type = "controller"
 name = "PlayStation Controller"
 model-number = ["SCPH-1010", "SCPH-1080"]
 
+[meta.jp]
+name = "コントローラー"
+name-en = "Controller"
+
 [[input.button]]
 label = "Cross"
 element = "a"

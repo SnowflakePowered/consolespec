@@ -3,7 +3,7 @@ id = "PCFX_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "PC-FX Controller"
+name = "FX-PAD"
 
 [[input.button]]
 label = "I"

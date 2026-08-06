@@ -3,7 +3,7 @@ id = "A5200_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Atari 5200 Controller"
+name = "5200 Controller"
 model-number = ["CX52"]
 
 [[input.button]]

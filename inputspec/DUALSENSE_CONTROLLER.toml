@@ -6,6 +6,10 @@ type = "controller"
 name = "DualSense"
 model-number = ["CFI-ZCT1W", "CFI-ZCT2W"]
 
+[meta.jp]
+name = "DualSense ワイヤレスコントローラー"
+name-en = "DualSense Wireless Controller"
+
 [[input.button]]
 label = "Cross"
 element = "a"

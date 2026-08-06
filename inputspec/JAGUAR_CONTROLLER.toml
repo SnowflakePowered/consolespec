@@ -3,7 +3,7 @@ id = "JAGUAR_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "Jaguar Controller"
+name = "Control Pad"
 model-number = ["J8901"]
 
 [[input.button]]

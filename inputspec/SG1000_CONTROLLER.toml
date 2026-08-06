@@ -3,8 +3,12 @@ id = "SG1000_CONTROLLER"
 type = "controller"
 
 [meta]
-name = "SG-1000 Controller"
+name = "Joystick"
 model-number = ["SJ-200", "SJ-150", "SJ-151", "SJ-300", "SJ-300M"]
+
+[meta.jp]
+name = "ジョイスティック"
+name-en = "Joystick"
 
 [[input.button]]
 label = "Fire 1"

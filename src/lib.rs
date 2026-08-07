@@ -1,11 +1,19 @@
 //! Compile-time database of console machine and input specifications.
 //!
 //! Source TOML is parsed and cross-checked by the build script. Runtime access
-//! reads immutable generated tables and performs no parsing or filesystem I/O.
+//! reads immutable generated tables through build-time PHF indexes and performs
+//! no parsing or filesystem I/O.
 //! Mtree references are retained as strings but their files are intentionally
 //! not parsed until a portable mtree implementation is available.
 
 #![forbid(unsafe_code)]
+
+mod key;
+
+pub use key::{
+    Alignment, AnalogClass, Axis, BindingKey, ButtonElement, Component, Direction, ParseKeyError,
+    Peripheral, RumbleMotor, RumbleSize, Sign,
+};
 
 use std::{fmt, str::FromStr};
 
@@ -38,29 +46,6 @@ pub enum MachineKind {
     Handheld,
     Addon,
     Arcade,
-}
-
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
-pub enum Alignment {
-    Left,
-    Right,
-    Front,
-    Rear,
-}
-
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
-pub enum AnalogClass {
-    Stick,
-    Slider,
-    Rotary,
-    Gyroscope,
-    Accelerometer,
-}
-
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
-pub enum RumbleSize {
-    Big,
-    Small,
 }
 
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
@@ -111,12 +96,32 @@ struct InputRecord {
     touchscreens: Slice,
     microphones: Slice,
     cameras: Slice,
+    elements: Slice,
+    clusters: Slice,
+}
+
+#[derive(Clone, Copy)]
+struct ElementRecord {
+    id: StrId,
+    binding: BindingKey,
+    label: StrId,
+    kind: StrId,
+}
+
+#[derive(Clone, Copy)]
+struct ClusterRecord {
+    kind: StrId,
+    class: Option<AnalogClass>,
+    alignment: Option<Alignment>,
+    discriminator: Option<StrId>,
+    arity: u8,
+    elements: Slice,
 }
 
 #[derive(Clone, Copy)]
 struct ButtonRecord {
     label: StrId,
-    element: StrId,
+    element: ButtonElement,
     analog: bool,
 }
 
@@ -304,11 +309,29 @@ impl InputSpec {
             .iter()
             .map(Touchscreen)
     }
-    pub fn microphones(self) -> impl ExactSizeIterator<Item = Peripheral> {
-        self.record().microphones.get(PLAIN).iter().map(Peripheral)
+    pub fn microphones(self) -> impl ExactSizeIterator<Item = InputPeripheral> {
+        self.record()
+            .microphones
+            .get(PLAIN)
+            .iter()
+            .map(InputPeripheral)
     }
-    pub fn cameras(self) -> impl ExactSizeIterator<Item = Peripheral> {
-        self.record().cameras.get(PLAIN).iter().map(Peripheral)
+    pub fn cameras(self) -> impl ExactSizeIterator<Item = InputPeripheral> {
+        self.record().cameras.get(PLAIN).iter().map(InputPeripheral)
+    }
+    pub fn elements(self) -> impl ExactSizeIterator<Item = InputElement> {
+        self.record()
+            .elements
+            .get(ELEMENTS)
+            .iter()
+            .map(InputElement)
+    }
+    pub fn clusters(self) -> impl ExactSizeIterator<Item = InputCluster> {
+        self.record()
+            .clusters
+            .get(CLUSTERS)
+            .iter()
+            .map(InputCluster)
     }
     pub fn all() -> impl ExactSizeIterator<Item = Self> {
         (0..INPUTS.len()).map(Self)
@@ -319,9 +342,9 @@ impl TryFrom<&str> for InputSpec {
     type Error = UnknownSpec;
     fn try_from(id: &str) -> Result<Self, Self::Error> {
         INPUT_LOOKUP
-            .binary_search_by_key(&id, |(key, _)| text(*key))
-            .map(|index| Self(INPUT_LOOKUP[index].1 as usize))
-            .map_err(|_| UnknownSpec {
+            .get(id)
+            .map(|index| Self(*index as usize))
+            .ok_or_else(|| UnknownSpec {
                 kind: "inputspec",
                 id: id.to_owned(),
             })
@@ -414,9 +437,9 @@ impl TryFrom<&str> for MachineSpec {
     type Error = UnknownSpec;
     fn try_from(id: &str) -> Result<Self, Self::Error> {
         MACHINE_LOOKUP
-            .binary_search_by_key(&id, |(key, _)| text(*key))
-            .map(|index| Self(MACHINE_LOOKUP[index].1 as usize))
-            .map_err(|_| UnknownSpec {
+            .get(id)
+            .map(|index| Self(*index as usize))
+            .ok_or_else(|| UnknownSpec {
                 kind: "machinespec",
                 id: id.to_owned(),
             })
@@ -464,13 +487,51 @@ impl RegionMetadata {
     }
 }
 
+view!(InputElement, ElementRecord);
+impl InputElement {
+    pub fn id(self) -> &'static str {
+        text(self.0.id)
+    }
+    pub fn binding(self) -> BindingKey {
+        self.0.binding
+    }
+    pub fn label(self) -> &'static str {
+        text(self.0.label)
+    }
+    pub fn kind(self) -> &'static str {
+        text(self.0.kind)
+    }
+}
+
+view!(InputCluster, ClusterRecord);
+impl InputCluster {
+    pub fn kind(self) -> &'static str {
+        text(self.0.kind)
+    }
+    pub fn class(self) -> Option<AnalogClass> {
+        self.0.class
+    }
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+    pub fn discriminator(self) -> Option<&'static str> {
+        self.0.discriminator.map(text)
+    }
+    pub fn arity(self) -> u8 {
+        self.0.arity
+    }
+    pub fn elements(self) -> impl ExactSizeIterator<Item = &'static str> {
+        strings(self.0.elements)
+    }
+}
+
 view!(Button, ButtonRecord);
 impl Button {
     pub fn label(self) -> &'static str {
         text(self.0.label)
     }
-    pub fn element(self) -> &'static str {
-        text(self.0.element)
+    pub fn element(self) -> ButtonElement {
+        self.0.element
     }
     pub fn is_analog(self) -> bool {
         self.0.analog
@@ -545,8 +606,8 @@ impl Pointer {
         self.0.alignment
     }
 }
-view!(Peripheral, PlainRecord);
-impl Peripheral {
+view!(InputPeripheral, PlainRecord);
+impl InputPeripheral {
     pub fn label(self) -> Option<&'static str> {
         self.0.label.map(text)
     }
@@ -653,7 +714,10 @@ mod tests {
         );
         let xbox = InputSpec::try_from("XBOX_CONTROLLER").unwrap();
         assert_eq!(xbox.kind(), InputKind::Controller);
-        assert!(xbox.buttons().any(|button| button.element() == "a"));
+        assert!(
+            xbox.buttons()
+                .any(|button| button.element() == ButtonElement::A)
+        );
     }
 
     #[test]
@@ -666,6 +730,27 @@ mod tests {
                         "{}/{}: {input}",
                         machine.id(),
                         group.name()
+                    );
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn every_input_is_compiled_into_elements_and_clusters() {
+        for input in InputSpec::all() {
+            let element_ids = input
+                .elements()
+                .map(|element| element.id())
+                .collect::<Vec<_>>();
+            assert!(!element_ids.is_empty(), "{}", input.id());
+            for cluster in input.clusters() {
+                for element in cluster.elements() {
+                    assert!(
+                        element_ids.contains(&element),
+                        "{}/{} references unknown element {element}",
+                        input.id(),
+                        cluster.kind()
                     );
                 }
             }

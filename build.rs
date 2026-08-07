@@ -246,6 +246,22 @@ struct Span {
     len: u32,
 }
 
+struct ExpandedElement {
+    id: String,
+    binding: String,
+    label: String,
+    kind: &'static str,
+}
+
+struct ExpandedCluster {
+    kind: &'static str,
+    class: Option<&'static str>,
+    alignment: Option<String>,
+    discriminator: Option<String>,
+    arity: u8,
+    elements: Vec<String>,
+}
+
 impl Span {
     fn code(self) -> String {
         format!("Slice {{ start: {}, len: {} }}", self.start, self.len)
@@ -265,6 +281,8 @@ struct Generator {
     pointers: Vec<String>,
     plain: Vec<String>,
     touchscreens: Vec<String>,
+    elements: Vec<String>,
+    clusters: Vec<String>,
     groups: Vec<String>,
     accessories: Vec<String>,
     storage: Vec<String>,
@@ -344,6 +362,18 @@ impl Generator {
     fn input(&mut self, document: &InputDocument) -> Result<(), String> {
         let input = &document.input;
         let kind = input_kind(&input.kind)?;
+        if input.button.is_empty()
+            && input.directional.is_empty()
+            && input.analog.is_empty()
+            && input.trigger.is_empty()
+            && input.rumble.is_empty()
+            && input.pointer.is_empty()
+            && input.touchscreen.is_empty()
+            && input.microphone.is_empty()
+            && input.camera.is_empty()
+        {
+            return Err(format!("{}: inputspec expands to no elements", input.id));
+        }
         let model_numbers =
             self.string_slice(document.meta.model_numbers.iter().map(String::as_str));
         let regions = self.regions(
@@ -357,7 +387,7 @@ impl Generator {
             codes.push(format!(
                 "ButtonRecord {{ label: {}, element: {}, analog: {} }}",
                 self.id_code(&value.label),
-                self.id_code(&value.element),
+                button_element(&value.element)?,
                 value.analog
             ));
         }
@@ -382,7 +412,14 @@ impl Generator {
             if !(1..=3).contains(&value.axes) {
                 return Err(format!("{}: analog axes must be 1..=3", input.id));
             }
-            codes.push(format!("AnalogRecord {{ label: {}, axes: {}, class: AnalogClass::{}, alignment: {}, digital: {} }}", self.option_id(value.label.as_deref()), value.axes, analog_class(value.class.as_deref().unwrap_or("stick"))?, option_alignment(value.alignment.as_deref())?, value.digital));
+            let class = analog_class(value.class.as_deref().unwrap_or("stick"))?;
+            if class == "Slider" && value.alignment.is_none() && value.label.is_none() {
+                return Err(format!(
+                    "{}: slider cluster needs an alignment or label",
+                    input.id
+                ));
+            }
+            codes.push(format!("AnalogRecord {{ label: {}, axes: {}, class: AnalogClass::{class}, alignment: {}, digital: {} }}", self.option_id(value.label.as_deref()), value.axes, option_alignment(value.alignment.as_deref())?, value.digital));
         }
         let analog = Self::push_codes(&mut self.analog, codes);
 
@@ -391,7 +428,7 @@ impl Generator {
             codes.push(format!(
                 "TriggerRecord {{ label: {}, alignment: Alignment::{}, digital: {} }}",
                 self.option_id(value.label.as_deref()),
-                alignment(&value.alignment)?,
+                trigger_alignment(&value.alignment)?,
                 value.digital
             ));
         }
@@ -460,8 +497,10 @@ impl Generator {
         }
         let touchscreens = Self::push_codes(&mut self.touchscreens, codes);
 
+        let (elements, clusters) = self.expand_input(input)?;
+
         let code = format!(
-            "InputRecord {{ id: {}, kind: InputKind::{kind}, name: {}, model_numbers: {}, regions: {}, buttons: {}, directionals: {}, analog: {}, triggers: {}, rumble: {}, pointers: {}, touchscreens: {}, microphones: {}, cameras: {} }}",
+            "InputRecord {{ id: {}, kind: InputKind::{kind}, name: {}, model_numbers: {}, regions: {}, buttons: {}, directionals: {}, analog: {}, triggers: {}, rumble: {}, pointers: {}, touchscreens: {}, microphones: {}, cameras: {}, elements: {}, clusters: {} }}",
             self.id_code(&input.id),
             self.option_id(document.meta.name.as_deref()),
             model_numbers.code(),
@@ -474,10 +513,306 @@ impl Generator {
             pointers.code(),
             touchscreens.code(),
             microphones.code(),
-            cameras.code()
+            cameras.code(),
+            elements.code(),
+            clusters.code()
         );
         self.inputs.push((input.id.clone(), code));
         Ok(())
+    }
+
+    fn expand_input(&mut self, input: &InputTable) -> Result<(Span, Span), String> {
+        let mut elements = Vec::new();
+        let mut clusters = Vec::new();
+        let mut seen = BTreeSet::new();
+
+        for value in &input.button {
+            let element = button_element(&value.element)?;
+            let suffix = button_suffix(&value.element);
+            let id = push_element(
+                &mut elements,
+                &mut seen,
+                format!("Button{suffix}"),
+                format!("BindingKey::Button({element})"),
+                value.label.clone(),
+                "Button",
+            );
+            clusters.push(ExpandedCluster {
+                kind: "button",
+                class: None,
+                alignment: None,
+                discriminator: Some(value.element.clone()),
+                arity: 1,
+                elements: vec![id],
+            });
+        }
+
+        for value in &input.directional {
+            let directions = if value.directions == 4 {
+                &DIRECTIONS[..4]
+            } else {
+                &DIRECTIONS[..]
+            };
+            let alignment = option_alignment(value.alignment.as_deref())?;
+            let label = value.label.as_deref().unwrap_or("D-Pad");
+            let ids = directions
+                .iter()
+                .map(|(variant, suffix, direction_label)| {
+                    push_element(
+                        &mut elements,
+                        &mut seen,
+                        format!("Directional{suffix}"),
+                        format!(
+                            "BindingKey::Directional {{ alignment: {alignment}, direction: Direction::{variant} }}"
+                        ),
+                        format!("{label} {direction_label}"),
+                        "Directional",
+                    )
+                })
+                .collect();
+            clusters.push(ExpandedCluster {
+                kind: "directional",
+                class: None,
+                alignment: value.alignment.clone(),
+                discriminator: value.alignment.clone(),
+                arity: value.directions,
+                elements: ids,
+            });
+        }
+
+        for value in &input.analog {
+            let class = analog_class(value.class.as_deref().unwrap_or("stick"))?;
+            let alignment = option_alignment(value.alignment.as_deref())?;
+            let prefix = match (class, value.alignment.as_deref()) {
+                ("Stick" | "Rotary", Some("left") | None) => "AxisLeftAnalog".to_owned(),
+                ("Stick" | "Rotary", Some("right")) => "AxisRightAnalog".to_owned(),
+                ("Gyroscope", None) => "GyroscopeAxis".to_owned(),
+                ("Accelerometer", None) => "AccelerometerAxis".to_owned(),
+                (class, Some(side)) => {
+                    format!("{}{}Axis", pascal_case(side), pascal_case(class))
+                }
+                (class, None) => format!(
+                    "{}{}Axis",
+                    value.label.as_deref().map(pascal_case).unwrap_or_default(),
+                    pascal_case(class)
+                ),
+            };
+            let cluster_label =
+                value
+                    .label
+                    .clone()
+                    .unwrap_or_else(|| match (class, value.alignment.as_deref()) {
+                        ("Stick", None) => "Stick".to_owned(),
+                        ("Stick", Some("left")) => "Left Stick".to_owned(),
+                        ("Stick", Some("right")) => "Right Stick".to_owned(),
+                        ("Rotary", _) => "Dial".to_owned(),
+                        _ => pascal_case(class),
+                    });
+            let mut ids = Vec::new();
+            for (axis, suffix) in AXES.iter().take(value.axes as usize) {
+                for (sign, sign_name) in [("Positive", "Positive"), ("Negative", "Negative")] {
+                    ids.push(push_element(
+                        &mut elements,
+                        &mut seen,
+                        format!("{prefix}{sign_name}{suffix}"),
+                        format!("BindingKey::Analog {{ class: AnalogClass::{class}, alignment: {alignment}, component: Component::new(Axis::{axis}, Sign::{sign}) }}"),
+                        format!(
+                            "{cluster_label} {}",
+                            axis_label(class, axis, sign == "Positive")
+                        ),
+                        if sign == "Positive" {
+                            "AxisPositive"
+                        } else {
+                            "AxisNegative"
+                        },
+                    ));
+                }
+            }
+            clusters.push(ExpandedCluster {
+                kind: "analog",
+                class: Some(class),
+                alignment: value.alignment.clone(),
+                discriminator: value.alignment.clone(),
+                arity: value.axes,
+                elements: ids,
+            });
+        }
+
+        for value in &input.trigger {
+            let side = trigger_alignment(&value.alignment)?;
+            let side_label = pascal_case(&value.alignment);
+            let id = push_element(
+                &mut elements,
+                &mut seen,
+                format!("Trigger{side_label}"),
+                format!("BindingKey::Trigger {{ alignment: Alignment::{side} }}"),
+                value
+                    .label
+                    .clone()
+                    .unwrap_or_else(|| format!("{side_label} Trigger")),
+                "Trigger",
+            );
+            clusters.push(ExpandedCluster {
+                kind: "trigger",
+                class: None,
+                alignment: Some(value.alignment.clone()),
+                discriminator: Some(value.alignment.clone()),
+                arity: 1,
+                elements: vec![id],
+            });
+        }
+
+        for value in &input.rumble {
+            let size = rumble_size(&value.size)?;
+            let motor = match value.alignment.as_deref() {
+                Some(value) => {
+                    format!("RumbleMotor::Aligned(Alignment::{})", alignment(value)?)
+                }
+                None => format!("RumbleMotor::Size(RumbleSize::{size})"),
+            };
+            let (suffix, fallback) = if size == "Big" {
+                ("Big", "Strong Rumble")
+            } else {
+                ("Small", "Weak Rumble")
+            };
+            let id = push_element(
+                &mut elements,
+                &mut seen,
+                format!("Rumble{suffix}"),
+                format!("BindingKey::Rumble({motor})"),
+                value.label.clone().unwrap_or_else(|| fallback.to_owned()),
+                "Rumble",
+            );
+            clusters.push(ExpandedCluster {
+                kind: "rumble",
+                class: None,
+                alignment: None,
+                discriminator: value.alignment.clone().or_else(|| Some(value.size.clone())),
+                arity: 1,
+                elements: vec![id],
+            });
+        }
+
+        for value in &input.pointer {
+            let alignment = option_alignment(value.alignment.as_deref())?;
+            let label = value.label.as_deref().unwrap_or("Pointer");
+            push_element(
+                &mut elements,
+                &mut seen,
+                format!("Pointer{}D", value.dimensions),
+                format!("BindingKey::Pointer {{ alignment: {alignment}, component: None }}"),
+                label.to_owned(),
+                "Pointer",
+            );
+            let mut ids = Vec::new();
+            for (axis, suffix) in AXES.iter().take(value.dimensions as usize) {
+                for (sign, sign_name) in [("Positive", "Positive"), ("Negative", "Negative")] {
+                    ids.push(push_element(
+                        &mut elements,
+                        &mut seen,
+                        format!("PointerAxis{sign_name}{suffix}"),
+                        format!("BindingKey::Pointer {{ alignment: {alignment}, component: Some(Component::new(Axis::{axis}, Sign::{sign})) }}"),
+                        format!("{label} {}", axis_label("Pointer", axis, sign == "Positive")),
+                        if sign == "Positive" { "AxisPositive" } else { "AxisNegative" },
+                    ));
+                }
+            }
+            clusters.push(ExpandedCluster {
+                kind: "pointer",
+                class: None,
+                alignment: value.alignment.clone(),
+                discriminator: value.alignment.clone(),
+                arity: value.dimensions,
+                elements: ids,
+            });
+        }
+
+        for (values, name, kind) in [
+            (&input.microphone, "Microphone", "Microphone"),
+            (&input.camera, "Camera", "Camera"),
+        ] {
+            for value in values {
+                let alignment = option_alignment(value.alignment.as_deref())?;
+                let id = push_element(
+                    &mut elements,
+                    &mut seen,
+                    name.to_owned(),
+                    format!(
+                        "BindingKey::Peripheral {{ kind: Peripheral::{kind}, alignment: {alignment} }}"
+                    ),
+                    value.label.clone().unwrap_or_else(|| name.to_owned()),
+                    name,
+                );
+                clusters.push(ExpandedCluster {
+                    kind: if name == "Microphone" {
+                        "microphone"
+                    } else {
+                        "camera"
+                    },
+                    class: None,
+                    alignment: value.alignment.clone(),
+                    discriminator: value.alignment.clone(),
+                    arity: 1,
+                    elements: vec![id],
+                });
+            }
+        }
+        for value in &input.touchscreen {
+            let alignment = option_alignment(value.alignment.as_deref())?;
+            let id = push_element(
+                &mut elements,
+                &mut seen,
+                "Touchscreen".to_owned(),
+                format!(
+                    "BindingKey::Peripheral {{ kind: Peripheral::Touchscreen, alignment: {alignment} }}"
+                ),
+                value
+                    .label
+                    .clone()
+                    .unwrap_or_else(|| "Touchscreen".to_owned()),
+                "Touchscreen",
+            );
+            clusters.push(ExpandedCluster {
+                kind: "touchscreen",
+                class: None,
+                alignment: value.alignment.clone(),
+                discriminator: value.alignment.clone(),
+                arity: 1,
+                elements: vec![id],
+            });
+        }
+
+        elements.sort_by(|left, right| left.id.cmp(&right.id));
+        let mut element_codes = Vec::new();
+        for value in elements {
+            element_codes.push(format!(
+                "ElementRecord {{ id: {}, binding: {}, label: {}, kind: {} }}",
+                self.id_code(&value.id),
+                value.binding,
+                self.id_code(&value.label),
+                self.id_code(value.kind)
+            ));
+        }
+        let elements = Self::push_codes(&mut self.elements, element_codes);
+
+        let mut cluster_codes = Vec::new();
+        for value in clusters {
+            let element_ids = self.string_slice(value.elements.iter().map(String::as_str));
+            let class = value
+                .class
+                .map(|class| format!("Some(AnalogClass::{class})"))
+                .unwrap_or_else(|| "None".to_owned());
+            let alignment = option_alignment(value.alignment.as_deref())?;
+            cluster_codes.push(format!(
+                "ClusterRecord {{ kind: {}, class: {class}, alignment: {alignment}, discriminator: {}, arity: {}, elements: {} }}",
+                self.id_code(value.kind),
+                self.option_id(value.discriminator.as_deref()),
+                value.arity,
+                element_ids.code()
+            ));
+        }
+        let clusters = Self::push_codes(&mut self.clusters, cluster_codes);
+        Ok((elements, clusters))
     }
 
     fn machine(&mut self, document: &MachineDocument) -> Result<(), String> {
@@ -678,6 +1013,8 @@ impl Generator {
             "TouchscreenRecord",
             &self.touchscreens,
         );
+        emit_codes(&mut code, "ELEMENTS", "ElementRecord", &self.elements);
+        emit_codes(&mut code, "CLUSTERS", "ClusterRecord", &self.clusters);
         emit_codes(&mut code, "GROUPS", "GroupRecord", &self.groups);
         emit_codes(
             &mut code,
@@ -828,6 +1165,96 @@ fn validate_hashes(
     Ok(())
 }
 
+const DIRECTIONS: [(&str, &str, &str); 8] = [
+    ("N", "N", "Up"),
+    ("E", "E", "Right"),
+    ("S", "S", "Down"),
+    ("W", "W", "Left"),
+    ("Ne", "NE", "Up Right"),
+    ("Se", "SE", "Down Right"),
+    ("Sw", "SW", "Down Left"),
+    ("Nw", "NW", "Up Left"),
+];
+const AXES: [(&str, &str); 3] = [("X", "X"), ("Y", "Y"), ("Z", "Z")];
+
+fn push_element(
+    elements: &mut Vec<ExpandedElement>,
+    seen: &mut BTreeSet<String>,
+    id: String,
+    binding: String,
+    label: String,
+    kind: &'static str,
+) -> String {
+    let id = if seen.insert(id.clone()) {
+        id
+    } else {
+        let mut ordinal = 2;
+        loop {
+            let candidate = format!("{id}{ordinal}");
+            if seen.insert(candidate.clone()) {
+                break candidate;
+            }
+            ordinal += 1;
+        }
+    };
+    elements.push(ExpandedElement {
+        id: id.clone(),
+        binding,
+        label,
+        kind,
+    });
+    id
+}
+
+fn button_suffix(value: &str) -> String {
+    match value {
+        "start" => "Start".to_owned(),
+        "select" => "Select".to_owned(),
+        "guide" => "Guide".to_owned(),
+        "clickl" => "ClickL".to_owned(),
+        "clickr" => "ClickR".to_owned(),
+        value if value.len() == 1 && value.as_bytes()[0].is_ascii_alphabetic() => {
+            value.to_ascii_uppercase()
+        }
+        value => value.to_owned(),
+    }
+}
+
+fn pascal_case(label: &str) -> String {
+    label
+        .split(|character: char| !character.is_ascii_alphanumeric())
+        .filter(|word| !word.is_empty())
+        .map(|word| {
+            let mut word = word.to_owned();
+            word[..1].make_ascii_uppercase();
+            word
+        })
+        .collect()
+}
+
+fn axis_label(class: &str, axis: &str, positive: bool) -> &'static str {
+    match (class, axis, positive) {
+        ("Gyroscope", "X", true) => "Roll Right",
+        ("Gyroscope", "X", false) => "Roll Left",
+        ("Gyroscope", "Y", true) => "Pitch Up",
+        ("Gyroscope", "Y", false) => "Pitch Down",
+        ("Gyroscope", _, true) => "Yaw Right",
+        ("Gyroscope", _, false) => "Yaw Left",
+        ("Accelerometer", "X", true) => "Right",
+        ("Accelerometer", "X", false) => "Left",
+        ("Accelerometer", "Y", true) => "Forward",
+        ("Accelerometer", "Y", false) => "Backward",
+        ("Accelerometer", _, true) => "Up",
+        ("Accelerometer", _, false) => "Down",
+        (_, "X", true) => "Right",
+        (_, "X", false) => "Left",
+        (_, "Y", true) => "Up",
+        (_, "Y", false) => "Down",
+        (_, _, true) => "Forward",
+        (_, _, false) => "Backward",
+    }
+}
+
 fn input_kind(value: &str) -> Result<&'static str, String> {
     match value {
         "controller" => Ok("Controller"),
@@ -835,6 +1262,38 @@ fn input_kind(value: &str) -> Result<&'static str, String> {
         "device" => Ok("Device"),
         _ => Err(format!("unknown input type `{value}`")),
     }
+}
+fn button_element(value: &str) -> Result<String, String> {
+    let variant = match value {
+        "a" => "A",
+        "b" => "B",
+        "c" => "C",
+        "x" => "X",
+        "y" => "Y",
+        "z" => "Z",
+        "l" => "L",
+        "r" => "R",
+        "start" => "Start",
+        "select" => "Select",
+        "guide" => "Guide",
+        "clickl" => "ClickL",
+        "clickr" => "ClickR",
+        digits
+            if !digits.is_empty()
+                && digits.bytes().all(|byte| byte.is_ascii_digit())
+                && !(digits.len() > 1 && digits.starts_with('0')) =>
+        {
+            let index = digits
+                .parse::<u8>()
+                .map_err(|_| format!("unknown button element `{value}`"))?;
+            if index > 31 {
+                return Err(format!("unknown button element `{value}`"));
+            }
+            return Ok(format!("ButtonElement::Numbered({index})"));
+        }
+        _ => return Err(format!("unknown button element `{value}`")),
+    };
+    Ok(format!("ButtonElement::{variant}"))
 }
 fn machine_kind(value: &str) -> Result<&'static str, String> {
     match value {
@@ -852,6 +1311,15 @@ fn alignment(value: &str) -> Result<&'static str, String> {
         "front" => Ok("Front"),
         "rear" => Ok("Rear"),
         _ => Err(format!("unknown alignment `{value}`")),
+    }
+}
+fn trigger_alignment(value: &str) -> Result<&'static str, String> {
+    match value {
+        "left" => Ok("Left"),
+        "right" => Ok("Right"),
+        _ => Err(format!(
+            "trigger alignment must be `left` or `right`, not `{value}`"
+        )),
     }
 }
 fn option_alignment(value: Option<&str>) -> Result<String, String> {

@@ -9,6 +9,7 @@ build = "build.rs"
 
 [dependencies]
 phf.workspace = true
+serde.workspace = true
 
 [build-dependencies]
 phf_codegen.workspace = true

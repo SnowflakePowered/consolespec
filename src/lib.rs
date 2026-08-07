@@ -9,6 +9,7 @@
 #![forbid(unsafe_code)]
 
 mod key;
+mod macros;
 
 pub use key::{
     Alignment, AnalogClass, Axis, BindingKey, ButtonElement, Component, Direction, ParseKeyError,

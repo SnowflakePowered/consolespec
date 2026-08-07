@@ -7,7 +7,11 @@ repository.workspace = true
 rust-version.workspace = true
 build = "build.rs"
 
+[dependencies]
+phf.workspace = true
+
 [build-dependencies]
+phf_codegen.workspace = true
 serde.workspace = true
 string-interner = { version = "0.20", default-features = false, features = ["std", "backends"] }
 toml.workspace = true

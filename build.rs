@@ -709,26 +709,8 @@ impl Generator {
                 .collect::<Vec<_>>(),
         );
 
-        let input_lookup = self
-            .inputs
-            .iter()
-            .enumerate()
-            .map(|(index, (id, _))| {
-                format!("({}, {index})", self.interner.get(id).unwrap().to_usize())
-            })
-            .map(|value| value.replacen('(', "(StrId(", 1).replacen(',', "),", 1))
-            .collect::<Vec<_>>();
-        let machine_lookup = self
-            .machines
-            .iter()
-            .enumerate()
-            .map(|(index, (id, _))| {
-                format!("({}, {index})", self.interner.get(id).unwrap().to_usize())
-            })
-            .map(|value| value.replacen('(', "(StrId(", 1).replacen(',', "),", 1))
-            .collect::<Vec<_>>();
-        emit_codes(&mut code, "INPUT_LOOKUP", "(StrId, u32)", &input_lookup);
-        emit_codes(&mut code, "MACHINE_LOOKUP", "(StrId, u32)", &machine_lookup);
+        emit_lookup(&mut code, "INPUT_LOOKUP", &self.inputs);
+        emit_lookup(&mut code, "MACHINE_LOOKUP", &self.machines);
         fs::write(output.join("database.rs"), code).expect("write generated database");
     }
 }
@@ -926,4 +908,20 @@ fn emit_numbers<T: fmt::Display>(output: &mut String, name: &str, kind: &str, va
         writeln!(output, "    {value},").unwrap();
     }
     output.push_str("];\n");
+}
+
+fn emit_lookup(output: &mut String, name: &str, records: &[(String, String)]) {
+    let mut map = phf_codegen::Map::new();
+    let values = (0..records.len())
+        .map(|index| format!("{index}u32"))
+        .collect::<Vec<_>>();
+    for ((id, _), value) in records.iter().zip(&values) {
+        map.entry(id, value);
+    }
+    writeln!(
+        output,
+        "static {name}: phf::Map<&'static str, u32> = {};",
+        map.build()
+    )
+    .unwrap();
 }

@@ -94,92 +94,180 @@ macro_rules! key {
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __button_element {
-    (a) => { $crate::ButtonElement::A };
-    (b) => { $crate::ButtonElement::B };
-    (c) => { $crate::ButtonElement::C };
-    (x) => { $crate::ButtonElement::X };
-    (y) => { $crate::ButtonElement::Y };
-    (z) => { $crate::ButtonElement::Z };
-    (l) => { $crate::ButtonElement::L };
-    (r) => { $crate::ButtonElement::R };
-    (start) => { $crate::ButtonElement::Start };
-    (select) => { $crate::ButtonElement::Select };
-    (guide) => { $crate::ButtonElement::Guide };
-    (clickl) => { $crate::ButtonElement::ClickL };
-    (clickr) => { $crate::ButtonElement::ClickR };
+    (a) => {
+        $crate::ButtonElement::A
+    };
+    (b) => {
+        $crate::ButtonElement::B
+    };
+    (c) => {
+        $crate::ButtonElement::C
+    };
+    (x) => {
+        $crate::ButtonElement::X
+    };
+    (y) => {
+        $crate::ButtonElement::Y
+    };
+    (z) => {
+        $crate::ButtonElement::Z
+    };
+    (l) => {
+        $crate::ButtonElement::L
+    };
+    (r) => {
+        $crate::ButtonElement::R
+    };
+    (start) => {
+        $crate::ButtonElement::Start
+    };
+    (select) => {
+        $crate::ButtonElement::Select
+    };
+    (guide) => {
+        $crate::ButtonElement::Guide
+    };
+    (clickl) => {
+        $crate::ButtonElement::ClickL
+    };
+    (clickr) => {
+        $crate::ButtonElement::ClickR
+    };
     // The schema stops at 31; the bound is checked here so it cannot be
     // exceeded in a const the parser would have rejected as text.
     ($index:literal) => {
-        $crate::ButtonElement::Numbered(const {
-            assert!($index <= 31, "button elements stop at 31");
-            $index
-        })
+        $crate::ButtonElement::Numbered(
+            const {
+                assert!($index <= 31, "button elements stop at 31");
+                $index
+            },
+        )
     };
 }
 
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __alignment {
-    (left) => { $crate::Alignment::Left };
-    (right) => { $crate::Alignment::Right };
-    (front) => { $crate::Alignment::Front };
-    (rear) => { $crate::Alignment::Rear };
+    (left) => {
+        $crate::Alignment::Left
+    };
+    (right) => {
+        $crate::Alignment::Right
+    };
+    (front) => {
+        $crate::Alignment::Front
+    };
+    (rear) => {
+        $crate::Alignment::Rear
+    };
 }
 
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __direction {
-    (n) => { $crate::Direction::N };
-    (e) => { $crate::Direction::E };
-    (s) => { $crate::Direction::S };
-    (w) => { $crate::Direction::W };
-    (ne) => { $crate::Direction::Ne };
-    (se) => { $crate::Direction::Se };
-    (sw) => { $crate::Direction::Sw };
-    (nw) => { $crate::Direction::Nw };
+    (n) => {
+        $crate::Direction::N
+    };
+    (e) => {
+        $crate::Direction::E
+    };
+    (s) => {
+        $crate::Direction::S
+    };
+    (w) => {
+        $crate::Direction::W
+    };
+    (ne) => {
+        $crate::Direction::Ne
+    };
+    (se) => {
+        $crate::Direction::Se
+    };
+    (sw) => {
+        $crate::Direction::Sw
+    };
+    (nw) => {
+        $crate::Direction::Nw
+    };
 }
 
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __analog_class {
-    (stick) => { $crate::AnalogClass::Stick };
-    (slider) => { $crate::AnalogClass::Slider };
-    (rotary) => { $crate::AnalogClass::Rotary };
-    (gyroscope) => { $crate::AnalogClass::Gyroscope };
-    (accelerometer) => { $crate::AnalogClass::Accelerometer };
+    (stick) => {
+        $crate::AnalogClass::Stick
+    };
+    (slider) => {
+        $crate::AnalogClass::Slider
+    };
+    (rotary) => {
+        $crate::AnalogClass::Rotary
+    };
+    (gyroscope) => {
+        $crate::AnalogClass::Gyroscope
+    };
+    (accelerometer) => {
+        $crate::AnalogClass::Accelerometer
+    };
 }
 
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __rumble_motor {
-    (big) => { $crate::RumbleMotor::Size($crate::RumbleSize::Big) };
-    (small) => { $crate::RumbleMotor::Size($crate::RumbleSize::Small) };
-    ($alignment:ident) => { $crate::RumbleMotor::Aligned($crate::__alignment!($alignment)) };
+    (big) => {
+        $crate::RumbleMotor::Size($crate::RumbleSize::Big)
+    };
+    (small) => {
+        $crate::RumbleMotor::Size($crate::RumbleSize::Small)
+    };
+    ($alignment:ident) => {
+        $crate::RumbleMotor::Aligned($crate::__alignment!($alignment))
+    };
 }
 
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __peripheral {
-    (touchscreen) => { $crate::Peripheral::Touchscreen };
-    (microphone) => { $crate::Peripheral::Microphone };
-    (camera) => { $crate::Peripheral::Camera };
+    (touchscreen) => {
+        $crate::Peripheral::Touchscreen
+    };
+    (microphone) => {
+        $crate::Peripheral::Microphone
+    };
+    (camera) => {
+        $crate::Peripheral::Camera
+    };
 }
 
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __axis {
-    (x) => { $crate::Axis::X };
-    (y) => { $crate::Axis::Y };
-    (z) => { $crate::Axis::Z };
-    (w) => { $crate::Axis::W };
-    ($index:literal) => { $crate::Axis::Numbered($index) };
+    (x) => {
+        $crate::Axis::X
+    };
+    (y) => {
+        $crate::Axis::Y
+    };
+    (z) => {
+        $crate::Axis::Z
+    };
+    (w) => {
+        $crate::Axis::W
+    };
+    ($index:literal) => {
+        $crate::Axis::Numbered($index)
+    };
 }
 
 #[doc(hidden)]
 #[macro_export]
 macro_rules! __sign {
-    (+) => { $crate::Sign::Positive };
-    (-) => { $crate::Sign::Negative };
+    (+) => {
+        $crate::Sign::Positive
+    };
+    (-) => {
+        $crate::Sign::Negative
+    };
 }
 
 #[doc(hidden)]
@@ -237,8 +325,14 @@ mod tests {
     /// after an identifier must stay two tokens and not become a float.
     #[test]
     fn numbered_buttons_survive_the_lexer() {
-        assert_eq!(key!(button.0), BindingKey::Button(ButtonElement::Numbered(0)));
-        assert_eq!(key!(button.7), BindingKey::Button(ButtonElement::Numbered(7)));
+        assert_eq!(
+            key!(button.0),
+            BindingKey::Button(ButtonElement::Numbered(0))
+        );
+        assert_eq!(
+            key!(button.7),
+            BindingKey::Button(ButtonElement::Numbered(7))
+        );
         assert_eq!(
             key!(button.31),
             BindingKey::Button(ButtonElement::Numbered(31))
@@ -288,4 +382,3 @@ mod tests {
         );
     }
 }
-

@@ -1,21 +1,20 @@
 [package]
 name = "consolespec"
-version.workspace = true
-edition.workspace = true
-license.workspace = true
-repository.workspace = true
-rust-version.workspace = true
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+rust-version = "1.94"
 build = "build.rs"
 
 [dependencies]
-phf.workspace = true
-serde.workspace = true
+phf = "0.14"
+serde = { version = "1.0", features = ["derive"] }
 
 [build-dependencies]
-phf_codegen.workspace = true
-serde.workspace = true
+phf_codegen = "0.14"
+serde = { version = "1.0", features = ["derive"] }
 string-interner = { version = "0.20", default-features = false, features = ["std", "backends"] }
-toml.workspace = true
+toml = "0.9"
 
-[lints]
-workspace = true
+[lints.rust]
+unsafe_op_in_unsafe_fn = "deny"

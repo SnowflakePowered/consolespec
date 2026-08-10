@@ -1055,9 +1055,8 @@ impl Generator {
 fn main() {
     let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR"));
     let root = manifest
-        .join("../../consolespec")
         .canonicalize()
-        .expect("consolespec data directory");
+        .expect("consolespec repository root");
     let input_dir = root.join("inputspec");
     let machine_dir = root.join("machinespec");
     println!("cargo:rerun-if-changed={}", input_dir.display());

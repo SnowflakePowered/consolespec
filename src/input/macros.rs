@@ -1,22 +1,23 @@
 //! `key!` macro for writing binding key literals.
 
-/// Macro for writing binding key literals. See [the module docs](self).
+/// Macro for writing binding key literals. See [`crate::input`].
+#[doc(hidden)]
 #[macro_export]
-macro_rules! key {
+macro_rules! __consolespec_key {
     // button.<element>
     (button.$element:tt) => {
-        $crate::BindingKey::Button($crate::__button_element!($element))
+        $crate::input::BindingKey::Button($crate::__button_element!($element))
     };
 
     // directional[.<alignment>].<direction>
     (directional.$alignment:ident.$direction:ident) => {
-        $crate::BindingKey::Directional {
+        $crate::input::BindingKey::Directional {
             alignment: ::core::option::Option::Some($crate::__alignment!($alignment)),
             direction: $crate::__direction!($direction),
         }
     };
     (directional.$direction:ident) => {
-        $crate::BindingKey::Directional {
+        $crate::input::BindingKey::Directional {
             alignment: ::core::option::Option::None,
             direction: $crate::__direction!($direction),
         }
@@ -24,14 +25,14 @@ macro_rules! key {
 
     // analog.<class>[.<alignment>].<axis><sign>
     (analog.$class:ident.$alignment:ident.$axis:tt $sign:tt) => {
-        $crate::BindingKey::Analog {
+        $crate::input::BindingKey::Analog {
             class: $crate::__analog_class!($class),
             alignment: ::core::option::Option::Some($crate::__alignment!($alignment)),
             component: $crate::__component!($axis $sign),
         }
     };
     (analog.$class:ident.$axis:tt $sign:tt) => {
-        $crate::BindingKey::Analog {
+        $crate::input::BindingKey::Analog {
             class: $crate::__analog_class!($class),
             alignment: ::core::option::Option::None,
             component: $crate::__component!($axis $sign),
@@ -40,35 +41,35 @@ macro_rules! key {
 
     // trigger.<alignment>
     (trigger.$alignment:ident) => {
-        $crate::BindingKey::Trigger { alignment: $crate::__alignment!($alignment) }
+        $crate::input::BindingKey::Trigger { alignment: $crate::__alignment!($alignment) }
     };
 
     // rumble.<alignment|size>
     (rumble.$motor:ident) => {
-        $crate::BindingKey::Rumble($crate::__rumble_motor!($motor))
+        $crate::input::BindingKey::Rumble($crate::__rumble_motor!($motor))
     };
 
     // pointer[.<alignment>][.<axis><sign>]
     (pointer.$alignment:ident.$axis:tt $sign:tt) => {
-        $crate::BindingKey::Pointer {
+        $crate::input::BindingKey::Pointer {
             alignment: ::core::option::Option::Some($crate::__alignment!($alignment)),
             component: ::core::option::Option::Some($crate::__component!($axis $sign)),
         }
     };
     (pointer.$axis:tt $sign:tt) => {
-        $crate::BindingKey::Pointer {
+        $crate::input::BindingKey::Pointer {
             alignment: ::core::option::Option::None,
             component: ::core::option::Option::Some($crate::__component!($axis $sign)),
         }
     };
     (pointer.$alignment:ident) => {
-        $crate::BindingKey::Pointer {
+        $crate::input::BindingKey::Pointer {
             alignment: ::core::option::Option::Some($crate::__alignment!($alignment)),
             component: ::core::option::Option::None,
         }
     };
     (pointer) => {
-        $crate::BindingKey::Pointer {
+        $crate::input::BindingKey::Pointer {
             alignment: ::core::option::Option::None,
             component: ::core::option::Option::None,
         }
@@ -76,13 +77,13 @@ macro_rules! key {
 
     // touchscreen|microphone|camera[.<alignment>]
     ($kind:ident.$alignment:ident) => {
-        $crate::BindingKey::Peripheral {
+        $crate::input::BindingKey::Peripheral {
             kind: $crate::__peripheral!($kind),
             alignment: ::core::option::Option::Some($crate::__alignment!($alignment)),
         }
     };
     ($kind:ident) => {
-        $crate::BindingKey::Peripheral {
+        $crate::input::BindingKey::Peripheral {
             kind: $crate::__peripheral!($kind),
             alignment: ::core::option::Option::None,
         }
@@ -95,48 +96,48 @@ macro_rules! key {
 #[macro_export]
 macro_rules! __button_element {
     (a) => {
-        $crate::ButtonElement::A
+        $crate::input::ButtonElement::A
     };
     (b) => {
-        $crate::ButtonElement::B
+        $crate::input::ButtonElement::B
     };
     (c) => {
-        $crate::ButtonElement::C
+        $crate::input::ButtonElement::C
     };
     (x) => {
-        $crate::ButtonElement::X
+        $crate::input::ButtonElement::X
     };
     (y) => {
-        $crate::ButtonElement::Y
+        $crate::input::ButtonElement::Y
     };
     (z) => {
-        $crate::ButtonElement::Z
+        $crate::input::ButtonElement::Z
     };
     (l) => {
-        $crate::ButtonElement::L
+        $crate::input::ButtonElement::L
     };
     (r) => {
-        $crate::ButtonElement::R
+        $crate::input::ButtonElement::R
     };
     (start) => {
-        $crate::ButtonElement::Start
+        $crate::input::ButtonElement::Start
     };
     (select) => {
-        $crate::ButtonElement::Select
+        $crate::input::ButtonElement::Select
     };
     (guide) => {
-        $crate::ButtonElement::Guide
+        $crate::input::ButtonElement::Guide
     };
     (clickl) => {
-        $crate::ButtonElement::ClickL
+        $crate::input::ButtonElement::ClickL
     };
     (clickr) => {
-        $crate::ButtonElement::ClickR
+        $crate::input::ButtonElement::ClickR
     };
     // The schema stops at 31; the bound is checked here so it cannot be
     // exceeded in a const the parser would have rejected as text.
     ($index:literal) => {
-        $crate::ButtonElement::Numbered(
+        $crate::input::ButtonElement::Numbered(
             const {
                 assert!($index <= 31, "button elements stop at 31");
                 $index
@@ -149,16 +150,16 @@ macro_rules! __button_element {
 #[macro_export]
 macro_rules! __alignment {
     (left) => {
-        $crate::Alignment::Left
+        $crate::input::Alignment::Left
     };
     (right) => {
-        $crate::Alignment::Right
+        $crate::input::Alignment::Right
     };
     (front) => {
-        $crate::Alignment::Front
+        $crate::input::Alignment::Front
     };
     (rear) => {
-        $crate::Alignment::Rear
+        $crate::input::Alignment::Rear
     };
 }
 
@@ -166,28 +167,28 @@ macro_rules! __alignment {
 #[macro_export]
 macro_rules! __direction {
     (n) => {
-        $crate::Direction::N
+        $crate::input::Direction::N
     };
     (e) => {
-        $crate::Direction::E
+        $crate::input::Direction::E
     };
     (s) => {
-        $crate::Direction::S
+        $crate::input::Direction::S
     };
     (w) => {
-        $crate::Direction::W
+        $crate::input::Direction::W
     };
     (ne) => {
-        $crate::Direction::Ne
+        $crate::input::Direction::Ne
     };
     (se) => {
-        $crate::Direction::Se
+        $crate::input::Direction::Se
     };
     (sw) => {
-        $crate::Direction::Sw
+        $crate::input::Direction::Sw
     };
     (nw) => {
-        $crate::Direction::Nw
+        $crate::input::Direction::Nw
     };
 }
 
@@ -195,19 +196,19 @@ macro_rules! __direction {
 #[macro_export]
 macro_rules! __analog_class {
     (stick) => {
-        $crate::AnalogClass::Stick
+        $crate::input::AnalogClass::Stick
     };
     (slider) => {
-        $crate::AnalogClass::Slider
+        $crate::input::AnalogClass::Slider
     };
     (rotary) => {
-        $crate::AnalogClass::Rotary
+        $crate::input::AnalogClass::Rotary
     };
     (gyroscope) => {
-        $crate::AnalogClass::Gyroscope
+        $crate::input::AnalogClass::Gyroscope
     };
     (accelerometer) => {
-        $crate::AnalogClass::Accelerometer
+        $crate::input::AnalogClass::Accelerometer
     };
 }
 
@@ -215,13 +216,13 @@ macro_rules! __analog_class {
 #[macro_export]
 macro_rules! __rumble_motor {
     (big) => {
-        $crate::RumbleMotor::Size($crate::RumbleSize::Big)
+        $crate::input::RumbleMotor::Size($crate::input::RumbleSize::Big)
     };
     (small) => {
-        $crate::RumbleMotor::Size($crate::RumbleSize::Small)
+        $crate::input::RumbleMotor::Size($crate::input::RumbleSize::Small)
     };
     ($alignment:ident) => {
-        $crate::RumbleMotor::Aligned($crate::__alignment!($alignment))
+        $crate::input::RumbleMotor::Aligned($crate::__alignment!($alignment))
     };
 }
 
@@ -229,13 +230,13 @@ macro_rules! __rumble_motor {
 #[macro_export]
 macro_rules! __peripheral {
     (touchscreen) => {
-        $crate::Peripheral::Touchscreen
+        $crate::input::Peripheral::Touchscreen
     };
     (microphone) => {
-        $crate::Peripheral::Microphone
+        $crate::input::Peripheral::Microphone
     };
     (camera) => {
-        $crate::Peripheral::Camera
+        $crate::input::Peripheral::Camera
     };
 }
 
@@ -243,19 +244,19 @@ macro_rules! __peripheral {
 #[macro_export]
 macro_rules! __axis {
     (x) => {
-        $crate::Axis::X
+        $crate::input::Axis::X
     };
     (y) => {
-        $crate::Axis::Y
+        $crate::input::Axis::Y
     };
     (z) => {
-        $crate::Axis::Z
+        $crate::input::Axis::Z
     };
     (w) => {
-        $crate::Axis::W
+        $crate::input::Axis::W
     };
     ($index:literal) => {
-        $crate::Axis::Numbered($index)
+        $crate::input::Axis::Numbered($index)
     };
 }
 
@@ -263,10 +264,10 @@ macro_rules! __axis {
 #[macro_export]
 macro_rules! __sign {
     (+) => {
-        $crate::Sign::Positive
+        $crate::input::Sign::Positive
     };
     (-) => {
-        $crate::Sign::Negative
+        $crate::input::Sign::Negative
     };
 }
 
@@ -274,7 +275,7 @@ macro_rules! __sign {
 #[macro_export]
 macro_rules! __component {
     ($axis:tt $sign:tt) => {
-        $crate::Component {
+        $crate::input::Component {
             axis: $crate::__axis!($axis),
             sign: $crate::__sign!($sign),
         }
@@ -283,9 +284,9 @@ macro_rules! __component {
 
 #[cfg(test)]
 mod tests {
-    use crate::{
+    use crate::input::{
         Alignment, AnalogClass, Axis, BindingKey, ButtonElement, Component, Direction, Peripheral,
-        RumbleMotor, RumbleSize, Sign,
+        RumbleMotor, RumbleSize, Sign, key,
     };
 
     /// The macro and the parser are two spellings of one grammar; every shape is

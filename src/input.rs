@@ -20,6 +20,26 @@
 //! apart with `starts_with` or a `Positive`/`Negative` substring. [`BindingKey`]
 //! is `Copy` and parses without allocating, so there is no reason to keep a
 //! string around once a document has been read.
+//!
+//! Binding keys and their literal macro live in this module:
+//!
+//! ```
+//! use consolespec::input::{BindingKey, key};
+//!
+//! const SOUTH: BindingKey = key!(button.a);
+//! ```
+
+mod macros;
+
+pub use crate::__consolespec_key as key;
+pub use crate::machine::{Region, RegionMetadata};
+
+use crate::{
+    ANALOG, AnalogRecord, BUTTONS, ButtonRecord, CLUSTERS, ClusterRecord, DIRECTIONALS,
+    DirectionalRecord, ELEMENTS, ElementRecord, INPUT_LOOKUP, INPUTS, InputRecord, PLAIN, POINTERS,
+    PlainRecord, PointerRecord, REGIONS, RUMBLE, RumbleRecord, TOUCHSCREENS, TRIGGERS,
+    TouchscreenRecord, TriggerRecord, strings, text,
+};
 
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use std::fmt;
@@ -875,5 +895,323 @@ mod tests {
         for text in ["button.a", "directional.n", "rumble.big", "pointer.x+"] {
             assert!(!text.parse::<BindingKey>().unwrap().is_analog(), "{text}");
         }
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+pub enum InputKind {
+    Controller,
+    Handheld,
+    Device,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct UnknownSpec {
+    id: String,
+}
+
+impl fmt::Display for UnknownSpec {
+    fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(formatter, "unknown inputspec `{}`", self.id)
+    }
+}
+
+impl std::error::Error for UnknownSpec {}
+
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+pub struct InputSpec(pub(crate) usize);
+
+impl InputSpec {
+    fn record(self) -> &'static InputRecord {
+        &INPUTS[self.0]
+    }
+
+    pub fn id(self) -> &'static str {
+        text(self.record().id)
+    }
+
+    pub fn kind(self) -> InputKind {
+        self.record().kind
+    }
+
+    pub fn name(self) -> Option<&'static str> {
+        self.record().name.map(text)
+    }
+
+    pub fn model_numbers(self) -> impl ExactSizeIterator<Item = &'static str> {
+        strings(self.record().model_numbers)
+    }
+
+    pub fn regions(self) -> impl ExactSizeIterator<Item = RegionMetadata> {
+        self.record()
+            .regions
+            .get(REGIONS)
+            .iter()
+            .map(RegionMetadata)
+    }
+
+    pub fn buttons(self) -> impl ExactSizeIterator<Item = Button> {
+        self.record().buttons.get(BUTTONS).iter().map(Button)
+    }
+
+    pub fn directionals(self) -> impl ExactSizeIterator<Item = Directional> {
+        self.record()
+            .directionals
+            .get(DIRECTIONALS)
+            .iter()
+            .map(Directional)
+    }
+
+    pub fn analog(self) -> impl ExactSizeIterator<Item = Analog> {
+        self.record().analog.get(ANALOG).iter().map(Analog)
+    }
+
+    pub fn triggers(self) -> impl ExactSizeIterator<Item = Trigger> {
+        self.record().triggers.get(TRIGGERS).iter().map(Trigger)
+    }
+
+    pub fn rumble(self) -> impl ExactSizeIterator<Item = Rumble> {
+        self.record().rumble.get(RUMBLE).iter().map(Rumble)
+    }
+
+    pub fn pointers(self) -> impl ExactSizeIterator<Item = Pointer> {
+        self.record().pointers.get(POINTERS).iter().map(Pointer)
+    }
+
+    pub fn touchscreens(self) -> impl ExactSizeIterator<Item = Touchscreen> {
+        self.record()
+            .touchscreens
+            .get(TOUCHSCREENS)
+            .iter()
+            .map(Touchscreen)
+    }
+
+    pub fn microphones(self) -> impl ExactSizeIterator<Item = InputPeripheral> {
+        self.record()
+            .microphones
+            .get(PLAIN)
+            .iter()
+            .map(InputPeripheral)
+    }
+
+    pub fn cameras(self) -> impl ExactSizeIterator<Item = InputPeripheral> {
+        self.record().cameras.get(PLAIN).iter().map(InputPeripheral)
+    }
+
+    pub fn elements(self) -> impl ExactSizeIterator<Item = InputElement> {
+        self.record()
+            .elements
+            .get(ELEMENTS)
+            .iter()
+            .map(InputElement)
+    }
+
+    pub fn clusters(self) -> impl ExactSizeIterator<Item = InputCluster> {
+        self.record()
+            .clusters
+            .get(CLUSTERS)
+            .iter()
+            .map(InputCluster)
+    }
+
+    pub fn all() -> impl ExactSizeIterator<Item = Self> {
+        (0..INPUTS.len()).map(Self)
+    }
+}
+
+impl TryFrom<&str> for InputSpec {
+    type Error = UnknownSpec;
+
+    fn try_from(id: &str) -> Result<Self, Self::Error> {
+        INPUT_LOOKUP
+            .get(id)
+            .map(|index| Self(*index as usize))
+            .ok_or_else(|| UnknownSpec { id: id.to_owned() })
+    }
+}
+
+impl FromStr for InputSpec {
+    type Err = UnknownSpec;
+
+    fn from_str(id: &str) -> Result<Self, Self::Err> {
+        Self::try_from(id)
+    }
+}
+
+view!(InputElement, ElementRecord);
+impl InputElement {
+    pub fn id(self) -> &'static str {
+        text(self.0.id)
+    }
+
+    pub fn binding(self) -> BindingKey {
+        self.0.binding
+    }
+
+    pub fn label(self) -> &'static str {
+        text(self.0.label)
+    }
+
+    pub fn kind(self) -> &'static str {
+        text(self.0.kind)
+    }
+}
+
+view!(InputCluster, ClusterRecord);
+impl InputCluster {
+    pub fn kind(self) -> &'static str {
+        text(self.0.kind)
+    }
+
+    pub fn class(self) -> Option<AnalogClass> {
+        self.0.class
+    }
+
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+
+    pub fn discriminator(self) -> Option<&'static str> {
+        self.0.discriminator.map(text)
+    }
+
+    pub fn arity(self) -> u8 {
+        self.0.arity
+    }
+
+    pub fn elements(self) -> impl ExactSizeIterator<Item = &'static str> {
+        strings(self.0.elements)
+    }
+}
+
+view!(Button, ButtonRecord);
+impl Button {
+    pub fn label(self) -> &'static str {
+        text(self.0.label)
+    }
+
+    pub fn element(self) -> ButtonElement {
+        self.0.element
+    }
+
+    pub fn is_analog(self) -> bool {
+        self.0.analog
+    }
+}
+
+view!(Directional, DirectionalRecord);
+impl Directional {
+    pub fn label(self) -> Option<&'static str> {
+        self.0.label.map(text)
+    }
+
+    pub fn directions(self) -> u8 {
+        self.0.directions
+    }
+
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+}
+
+view!(Analog, AnalogRecord);
+impl Analog {
+    pub fn label(self) -> Option<&'static str> {
+        self.0.label.map(text)
+    }
+
+    pub fn axes(self) -> u8 {
+        self.0.axes
+    }
+
+    pub fn class(self) -> AnalogClass {
+        self.0.class
+    }
+
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+
+    pub fn is_digital(self) -> bool {
+        self.0.digital
+    }
+}
+
+view!(Trigger, TriggerRecord);
+impl Trigger {
+    pub fn label(self) -> Option<&'static str> {
+        self.0.label.map(text)
+    }
+
+    pub fn alignment(self) -> Alignment {
+        self.0.alignment
+    }
+
+    pub fn is_digital(self) -> bool {
+        self.0.digital
+    }
+}
+
+view!(Rumble, RumbleRecord);
+impl Rumble {
+    pub fn label(self) -> Option<&'static str> {
+        self.0.label.map(text)
+    }
+
+    pub fn size(self) -> RumbleSize {
+        self.0.size
+    }
+
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+
+    pub fn is_optional(self) -> bool {
+        self.0.optional
+    }
+}
+
+view!(Pointer, PointerRecord);
+impl Pointer {
+    pub fn label(self) -> Option<&'static str> {
+        self.0.label.map(text)
+    }
+
+    pub fn dimensions(self) -> u8 {
+        self.0.dimensions
+    }
+
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+}
+
+view!(InputPeripheral, PlainRecord);
+impl InputPeripheral {
+    pub fn label(self) -> Option<&'static str> {
+        self.0.label.map(text)
+    }
+
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+}
+
+view!(Touchscreen, TouchscreenRecord);
+impl Touchscreen {
+    pub fn label(self) -> Option<&'static str> {
+        self.0.label.map(text)
+    }
+
+    pub fn alignment(self) -> Option<Alignment> {
+        self.0.alignment
+    }
+
+    pub fn width(self) -> u32 {
+        self.0.width
+    }
+
+    pub fn height(self) -> u32 {
+        self.0.height
     }
 }

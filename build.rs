@@ -1057,8 +1057,9 @@ fn main() {
     let root = manifest
         .canonicalize()
         .expect("consolespec repository root");
-    let input_dir = root.join("inputspec");
-    let machine_dir = root.join("machinespec");
+    let definitions = root.join("definitions");
+    let input_dir = definitions.join("inputspec");
+    let machine_dir = definitions.join("machinespec");
     println!("cargo:rerun-if-changed={}", input_dir.display());
     println!("cargo:rerun-if-changed={}", machine_dir.display());
 

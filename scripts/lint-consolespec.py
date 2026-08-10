@@ -66,7 +66,7 @@ def check_collection(doc, table, key, where, report):
 def check_inputspecs(root, report):
     """Return the set of declared inputspec ids."""
     ids = {}
-    directory = os.path.join(root, 'inputspec')
+    directory = os.path.join(root, 'definitions', 'inputspec')
     for name in sorted(os.listdir(directory)):
         if not name.endswith('.toml'):
             continue
@@ -100,7 +100,7 @@ def check_bios(doc, where, report):
 def check_machinespecs(root, input_ids, report):
     """Return (machine ids, set of mtree paths referenced by specs)."""
     ids, referenced = {}, set()
-    directory = os.path.join(root, 'machinespec')
+    directory = os.path.join(root, 'definitions', 'machinespec')
     docs = {}
     for name in sorted(os.listdir(directory)):
         if not name.endswith('.toml'):
@@ -132,7 +132,8 @@ def check_machinespecs(root, input_ids, report):
             for partition in doc['storage'].get(device, {}).get('partition', []):
                 for spec in partition.get('spec', []):
                     referenced.add(spec)
-                    if not os.path.exists(os.path.join(root, 'partitionspec', spec)):
+                    if not os.path.exists(os.path.join(
+                            root, 'definitions', 'partitionspec', spec)):
                         report.error(name, f'partition "{partition.get("id")}" '
                                            f'references missing mtree {spec}')
 
@@ -144,7 +145,8 @@ def check_machinespecs(root, input_ids, report):
         # [storage] section: partitionspec/<machine>/ exists with nothing
         # pointing at it. Silent section loss is otherwise invisible here,
         # since every remaining reference still resolves.
-        owned = os.path.join(root, 'partitionspec', doc.get('machine', {}).get('id', ''))
+        owned = os.path.join(root, 'definitions', 'partitionspec',
+                             doc.get('machine', {}).get('id', ''))
         if 'storage' not in doc and os.path.isdir(owned):
             report.error(name, f'has {owned and "partitionspec"} mtrees but no [storage] section')
 
@@ -160,7 +162,7 @@ def check_machinespecs(root, input_ids, report):
 
 
 def check_mtrees(root, referenced, report):
-    directory = os.path.join(root, 'partitionspec')
+    directory = os.path.join(root, 'definitions', 'partitionspec')
     if not os.path.isdir(directory):
         return
     for dirpath, _dirnames, filenames in os.walk(directory):
@@ -202,14 +204,15 @@ def check_mtrees(root, referenced, report):
 
 def check_schema(root, binary, report):
     for kind in ('inputspec', 'machinespec'):
-        schema = os.path.join(root, f'{kind}.tosd')
+        schema = os.path.join(root, 'schema', f'{kind}.tosd')
         if not os.path.exists(schema):
             report.warn(f'{kind}.tosd', 'schema not found; skipping validation')
             continue
-        for name in sorted(os.listdir(os.path.join(root, kind))):
+        directory = os.path.join(root, 'definitions', kind)
+        for name in sorted(os.listdir(directory)):
             if not name.endswith('.toml'):
                 continue
-            result = subprocess.run([binary, 'validate', schema, os.path.join(root, kind, name)],
+            result = subprocess.run([binary, 'validate', schema, os.path.join(directory, name)],
                                     capture_output=True, text=True)
             if result.returncode != 0:
                 detail = ' / '.join(l.strip() for l in result.stdout.splitlines()[1:] if l.strip())
@@ -224,7 +227,7 @@ def main():
     args = ap.parse_args()
 
     root = args.root
-    if not os.path.isdir(os.path.join(root, 'inputspec')):
+    if not os.path.isdir(os.path.join(root, 'definitions', 'inputspec')):
         print(f'error: {root} does not look like a consolespec directory', file=sys.stderr)
         return 2
 

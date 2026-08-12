@@ -1,7 +1,7 @@
 use std::path::PathBuf;
 
 use alpm_parsers::iter_str_context;
-use alpm_types::{Md5Checksum, Sha256Checksum};
+use alpm_types::{Md5Checksum, Sha1Checksum, Sha256Checksum};
 use winnow::{
     ModalResult, Parser as WinnowParser,
     ascii::{digit1, line_ending, space0},
@@ -80,6 +80,8 @@ pub enum PathProperty<'a> {
     Link(PathBuf),
     /// An MD-5 hash digest.
     Md5Digest(Md5Checksum),
+    /// A SHA-1 hash digest.
+    Sha1Digest(Sha1Checksum),
     /// A SHA-256 hash digest.
     Sha256Digest(Sha256Checksum),
     /// A point in time in seconds since the epoch.
@@ -200,6 +202,16 @@ fn sha256(input: &mut &str) -> ModalResult<Sha256Checksum> {
         .parse_next(input)
 }
 
+/// Parse a SHA-1 hash.
+fn sha1(input: &mut &str) -> ModalResult<Sha1Checksum> {
+    cut_err(take_while(40.., AsChar::is_hex_digit).parse_to())
+        .context(StrContext::Label("sha1 hash"))
+        .context(StrContext::Expected(StrContextValue::Description(
+            "40 char long hexadecimal string",
+        )))
+        .parse_next(input)
+}
+
 /// Parse an MD5 hash.
 fn md5(input: &mut &str) -> ModalResult<Md5Checksum> {
     cut_err(take_while(32.., AsChar::is_hex_digit).parse_to())
@@ -240,7 +252,11 @@ fn property<'s>(input: &mut &'s str) -> ModalResult<PathProperty<'s>> {
         "size",
         "link",
         "md5digest",
+        "md5",
+        "sha1digest",
+        "sha1",
         "sha256digest",
+        "sha256",
         "time",
     ];
     let property_type = cut_err(alt(keywords))
@@ -270,8 +286,9 @@ fn property<'s>(input: &mut &'s str) -> ModalResult<PathProperty<'s>> {
         "mode" => PathProperty::Mode(mode(input)?),
         "size" => PathProperty::Size(size.parse_next(input)?),
         "link" => PathProperty::Link(PathBuf::from(link.parse_next(input)?)),
-        "md5digest" => PathProperty::Md5Digest(md5(input)?),
-        "sha256digest" => PathProperty::Sha256Digest(sha256(input)?),
+        "md5digest" | "md5" => PathProperty::Md5Digest(md5(input)?),
+        "sha1digest" | "sha1" => PathProperty::Sha1Digest(sha1(input)?),
+        "sha256digest" | "sha256" => PathProperty::Sha256Digest(sha256(input)?),
         "time" => PathProperty::Time(timestamp(input)?),
         _ => unreachable!(),
     };
@@ -387,5 +404,48 @@ mod tests {
 
         assert_eq!(size(&mut input).unwrap(), 1337);
         assert_eq!(input, "\r\n");
+    }
+
+    #[test]
+    fn parses_standard_digest_names() {
+        let mut input = concat!(
+            "./file type=file size=1 ",
+            "md5=d41d8cd98f00b204e9800998ecf8427e ",
+            "sha1=da39a3ee5e6b4b0d3255bfef95601890afd80709 ",
+            "sha256=e3b0c44298fc1c149afbf4c8996fb924",
+            "27ae41e4649b934ca495991b7852b855\n",
+        );
+
+        let statements = mtree(&mut input).unwrap();
+        let Statement::Path { properties, .. } = &statements[0] else {
+            panic!("expected a path statement");
+        };
+
+        assert!(
+            properties
+                .iter()
+                .any(|value| matches!(value, PathProperty::Md5Digest(_)))
+        );
+        assert!(
+            properties
+                .iter()
+                .any(|value| matches!(value, PathProperty::Sha1Digest(_)))
+        );
+        assert!(
+            properties
+                .iter()
+                .any(|value| matches!(value, PathProperty::Sha256Digest(_)))
+        );
+    }
+
+    #[test]
+    fn parses_sha1_digest_alias() {
+        let mut input = "sha1digest=da39a3ee5e6b4b0d3255bfef95601890afd80709";
+
+        assert!(matches!(
+            property(&mut input).unwrap(),
+            PathProperty::Sha1Digest(_)
+        ));
+        assert!(input.is_empty());
     }
 }

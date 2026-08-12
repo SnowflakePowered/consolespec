@@ -6,7 +6,7 @@ use std::{fs::Metadata, io::Read, path::PathBuf};
 use std::os::unix::fs::MetadataExt;
 
 use alpm_common::InputPath;
-use alpm_types::{Checksum, Digest, Md5Checksum, Sha256Checksum};
+use alpm_types::{Checksum, Digest, Md5Checksum, Sha1Checksum, Sha256Checksum};
 use log::trace;
 use serde::{Serialize, Serializer, ser::Error as SerdeError}; // codespell:ignore ser
 use winnow::Parser;
@@ -330,6 +330,12 @@ pub struct File {
     )]
     /// The optional MD-5 hash digest of the file.
     pub md5_digest: Option<Md5Checksum>,
+    #[serde(
+        skip_serializing_if = "Option::is_none",
+        serialize_with = "serialize_optional_checksum_as_hex"
+    )]
+    /// The optional SHA-1 hash digest of the file.
+    pub sha1_digest: Option<Sha1Checksum>,
     /// The SHA-256 hash digest of the file.
     #[serde(serialize_with = "serialize_checksum_as_hex")]
     pub sha256_digest: Sha256Checksum,
@@ -878,6 +884,7 @@ fn path_from_parsed(
     let mut link: Option<PathBuf> = None;
     let mut size: Option<u64> = None;
     let mut md5_digest: Option<Md5Checksum> = None;
+    let mut sha1_digest: Option<Sha1Checksum> = None;
     let mut sha256_digest: Option<Sha256Checksum> = None;
     let mut time: Option<i64> = None;
 
@@ -891,6 +898,7 @@ fn path_from_parsed(
             parser::PathProperty::Size(inner) => size = Some(inner),
             parser::PathProperty::Link(inner) => link = Some(inner),
             parser::PathProperty::Md5Digest(checksum) => md5_digest = Some(checksum),
+            parser::PathProperty::Sha1Digest(checksum) => sha1_digest = Some(checksum),
             parser::PathProperty::Sha256Digest(checksum) => sha256_digest = Some(checksum),
             parser::PathProperty::Time(inner) => time = Some(inner),
         }
@@ -923,6 +931,7 @@ fn path_from_parsed(
             size: ensure_property(content, line_nr, size, "size")?,
             time: ensure_property(content, line_nr, time, "time")?,
             md5_digest,
+            sha1_digest,
             sha256_digest: ensure_property(content, line_nr, sha256_digest, "sha256_digest")?,
         }),
         PathType::Link => Path::Link(Link {

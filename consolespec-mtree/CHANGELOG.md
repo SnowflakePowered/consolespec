@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Parse SHA-1 digests and the standard `md5`, `sha1`, and `sha256` property names.
+
 ## [0.3.3] - 2026-03-16
 
 ### Other

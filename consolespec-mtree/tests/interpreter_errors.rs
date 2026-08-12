@@ -1,4 +1,4 @@
-//! Interpreter error integration tests for the `alpm-mtree` CLI.
+//! Interpreter error integration tests for the `consolespec-mtree` CLI.
 
 #![cfg(feature = "cli")]
 
@@ -25,11 +25,11 @@ fn ensure_errors_v1(#[files("tests/interpreter_error_inputs/*")] case: PathBuf) 
     // Read the input file and parse it.
 
     use alpm_common::MetadataFile;
-    use alpm_mtree::Mtree;
+    use consolespec_mtree::Mtree;
     let input = read_to_string(&case)?;
     let result = Mtree::from_file_with_schema(
         &case,
-        Some(alpm_mtree::MtreeSchema::V1(SchemaVersion::new(
+        Some(consolespec_mtree::MtreeSchema::V1(SchemaVersion::new(
             Version::new(1, 0, 0),
         ))),
     );

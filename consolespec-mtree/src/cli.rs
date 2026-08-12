@@ -4,11 +4,11 @@ use clap::{Parser, Subcommand, ValueEnum};
 
 use crate::MtreeSchema;
 
-/// The command-line interface handling for `alpm-mtree`.
+/// The command-line interface handling for `consolespec-mtree`.
 #[derive(Clone, Debug, Parser)]
-#[command(about, author, name = "alpm-mtree", version)]
+#[command(about, author, name = "consolespec-mtree", version)]
 pub struct Cli {
-    /// The `alpm-mtree` commands.
+    /// The `consolespec-mtree` commands.
     #[command(subcommand)]
     pub command: Command,
 }
@@ -22,7 +22,7 @@ pub enum OutputFormat {
     Json,
 }
 
-/// The `alpm-mtree` commands.
+/// The `consolespec-mtree` commands.
 #[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Subcommand)]
 pub enum Command {

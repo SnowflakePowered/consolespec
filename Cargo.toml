@@ -6,6 +6,10 @@ license = "MIT OR Apache-2.0"
 rust-version = "1.94"
 build = "build.rs"
 
+[workspace]
+members = ["consolespec-mtree"]
+resolver = "3"
+
 [dependencies]
 phf = "0.14"
 serde = { version = "1.0", features = ["derive"] }

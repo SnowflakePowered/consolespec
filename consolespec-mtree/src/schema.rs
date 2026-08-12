@@ -97,10 +97,10 @@ impl FileFormatSchema for MtreeSchema {
     ///
     /// ```
     /// use alpm_common::FileFormatSchema;
-    /// use alpm_mtree::MtreeSchema;
+    /// use consolespec_mtree::MtreeSchema;
     /// use alpm_types::{SchemaVersion, semver_version::Version};
     ///
-    /// # fn main() -> Result<(), alpm_mtree::Error> {
+    /// # fn main() -> Result<(), consolespec_mtree::Error> {
     /// let mtree_v2 = r#"
     /// #mtree
     /// /set mode=644 uid=0 gid=0 type=file

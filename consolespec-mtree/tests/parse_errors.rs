@@ -1,8 +1,8 @@
-//! Integration tests for the alpm-mtree parser.
+//! Integration tests for the consolespec-mtree parser.
 
 use std::{fs::read_to_string, path::PathBuf};
 
-use alpm_mtree::parser::mtree;
+use consolespec_mtree::parser::mtree;
 use insta::assert_snapshot;
 use rstest::rstest;
 use testresult::TestResult;

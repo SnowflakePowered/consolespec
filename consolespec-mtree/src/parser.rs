@@ -3,19 +3,10 @@ use std::path::PathBuf;
 use alpm_parsers::iter_str_context;
 use alpm_types::{Md5Checksum, Sha256Checksum};
 use winnow::{
-    ModalResult,
-    Parser as WinnowParser,
+    ModalResult, Parser as WinnowParser,
     ascii::{digit1, line_ending, space0},
     combinator::{
-        alt,
-        cut_err,
-        eof,
-        fail,
-        preceded,
-        repeat_till,
-        separated,
-        separated_pair,
-        terminated,
+        alt, cut_err, eof, fail, preceded, repeat_till, separated, separated_pair, terminated,
     },
     error::{StrContext, StrContextValue},
     stream::AsChar,
@@ -223,14 +214,14 @@ fn md5(input: &mut &str) -> ModalResult<Md5Checksum> {
 ///
 /// Check [`decode_utf8_chars`] for more info on how special chars in paths are escaped.
 fn link(input: &mut &str) -> ModalResult<String> {
-    take_while(0.., |c| c != ' ' && c != '\n')
+    take_while(0.., |c| c != ' ' && c != '\r' && c != '\n')
         .and_then(decode_utf8_chars)
         .parse_next(input)
 }
 
 /// Get a string representing a size by consuming all integers.
 fn size(input: &mut &str) -> ModalResult<u64> {
-    cut_err(take_while(0.., |c| c != ' ' && c != '\n').parse_to())
+    cut_err(take_while(0.., |c| c != ' ' && c != '\r' && c != '\n').parse_to())
         .context(StrContext::Label("file size"))
         .context(StrContext::Expected(StrContextValue::Description(
             "a positive integer representing the file's size.",
@@ -376,4 +367,25 @@ pub fn mtree<'s>(input: &mut &'s str) -> ModalResult<Vec<Statement<'s>>> {
         repeat_till(0.., statement, eof).parse_next(input)?;
 
     Ok(statements)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn link_stops_before_crlf() {
+        let mut input = "some_file\r\n";
+
+        assert_eq!(link(&mut input).unwrap(), "some_file");
+        assert_eq!(input, "\r\n");
+    }
+
+    #[test]
+    fn size_stops_before_crlf() {
+        let mut input = "1337\r\n";
+
+        assert_eq!(size(&mut input).unwrap(), 1337);
+        assert_eq!(input, "\r\n");
+    }
 }

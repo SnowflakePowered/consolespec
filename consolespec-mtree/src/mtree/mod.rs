@@ -163,7 +163,7 @@ impl MetadataFile<MtreeSchema> for Mtree {
     /// use std::{fs::File, io::Write};
     ///
     /// use alpm_common::{FileFormatSchema, MetadataFile};
-    /// use alpm_mtree::{Mtree, MtreeSchema};
+    /// use consolespec_mtree::{Mtree, MtreeSchema};
     /// use alpm_types::{SchemaVersion, semver_version::Version};
     ///
     /// # fn main() -> testresult::TestResult {
@@ -231,7 +231,7 @@ impl MetadataFile<MtreeSchema> for Mtree {
     /// use std::{fs::File, io::Write};
     ///
     /// use alpm_common::MetadataFile;
-    /// use alpm_mtree::{Mtree, MtreeSchema};
+    /// use consolespec_mtree::{Mtree, MtreeSchema};
     /// use alpm_types::{SchemaVersion, semver_version::Version};
     ///
     /// # fn main() -> testresult::TestResult {
@@ -300,7 +300,7 @@ impl MetadataFile<MtreeSchema> for Mtree {
     /// use std::{fs::File, io::Write};
     ///
     /// use alpm_common::MetadataFile;
-    /// use alpm_mtree::{Mtree, MtreeSchema};
+    /// use consolespec_mtree::{Mtree, MtreeSchema};
     /// use alpm_types::{SchemaVersion, semver_version::Version};
     ///
     /// # fn main() -> testresult::TestResult {

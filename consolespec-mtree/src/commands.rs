@@ -1,4 +1,4 @@
-//! Commandline functions, that're called by the `alpm-mtree` executable.
+//! Commandline functions, that're called by the `consolespec-mtree` executable.
 
 use std::{
     io::{self, IsTerminal},
@@ -6,7 +6,7 @@ use std::{
 };
 
 use alpm_common::MetadataFile;
-use alpm_mtree::{Mtree, MtreeSchema, cli::OutputFormat};
+use consolespec_mtree::{Mtree, MtreeSchema, cli::OutputFormat};
 use fluent_i18n::t;
 use thiserror::Error;
 
@@ -24,7 +24,7 @@ pub enum Error {
 
     /// An [alpm_pkginfo::Error]
     #[error(transparent)]
-    Mtree(#[from] alpm_mtree::Error),
+    Mtree(#[from] consolespec_mtree::Error),
 }
 
 /// A small wrapper around the parsing of an MTREE file that simply ensures that there were no

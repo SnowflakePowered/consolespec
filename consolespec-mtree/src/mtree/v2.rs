@@ -1,6 +1,9 @@
 //! Interpreter for ALPM-MTREE v1 and v2.
 
-use std::{fs::Metadata, io::Read, os::linux::fs::MetadataExt, path::PathBuf};
+use std::{fs::Metadata, io::Read, path::PathBuf};
+
+#[cfg(unix)]
+use std::os::unix::fs::MetadataExt;
 
 use alpm_common::InputPath;
 use alpm_types::{Checksum, Digest, Md5Checksum, Sha256Checksum};
@@ -63,6 +66,8 @@ impl PathDefaults {
 /// Returns a list of zero or more [`PathValidationError`]s.
 /// Checks that
 ///
+/// On Unix, checks that
+///
 /// - `mtree_time` matches the modification time available in `metadata`,
 /// - `mtree_uid` matches the UID available in the `metadata`,
 /// - `mtree_gid` matches the GID available in the `metadata`,
@@ -76,56 +81,67 @@ fn validate_path_common(
     path: impl AsRef<std::path::Path>,
     metadata: &Metadata,
 ) -> Vec<PathValidationError> {
-    let mtree_path = mtree_path.as_ref();
-    let path = path.as_ref();
-    let mut errors = Vec::new();
-
-    // Ensure that the path modification time recorded in the ALPM-MTREE data matches the
-    // on-disk file.
-    if mtree_time != metadata.st_mtime() {
-        errors.push(PathValidationError::PathTimeMismatch {
-            mtree_path: mtree_path.to_path_buf(),
-            mtree_time,
-            path: path.to_path_buf(),
-            path_time: metadata.st_mtime(),
-        });
+    #[cfg(not(unix))]
+    {
+        let _ = (
+            mtree_path, mtree_time, mtree_uid, mtree_gid, mtree_mode, path, metadata,
+        );
+        Vec::new()
     }
 
-    // Ensure that the path UID recorded in the ALPM-MTREE data matches the
-    // on-disk file.
-    if mtree_uid != metadata.st_uid() {
-        errors.push(PathValidationError::PathUidMismatch {
-            mtree_path: mtree_path.to_path_buf(),
-            mtree_uid,
-            path: path.to_path_buf(),
-            path_uid: metadata.st_uid(),
-        });
-    }
+    #[cfg(unix)]
+    {
+        let mtree_path = mtree_path.as_ref();
+        let path = path.as_ref();
+        let mut errors = Vec::new();
 
-    // Ensure that the path GID recorded in the ALPM-MTREE data matches the
-    // on-disk file.
-    if mtree_gid != metadata.st_gid() {
-        errors.push(PathValidationError::PathGidMismatch {
-            mtree_path: mtree_path.to_path_buf(),
-            mtree_gid,
-            path: path.to_path_buf(),
-            path_gid: metadata.st_gid(),
-        });
-    }
+        // Ensure that the path modification time recorded in the ALPM-MTREE data matches the
+        // on-disk file.
+        if mtree_time != metadata.mtime() {
+            errors.push(PathValidationError::PathTimeMismatch {
+                mtree_path: mtree_path.to_path_buf(),
+                mtree_time,
+                path: path.to_path_buf(),
+                path_time: metadata.mtime(),
+            });
+        }
 
-    // Ensure that the path mode recorded in the ALPM-MTREE data matches the
-    // on-disk file.
-    let path_mode = format!("{:o}", metadata.st_mode());
-    if !path_mode.ends_with(mtree_mode) {
-        errors.push(PathValidationError::PathModeMismatch {
-            mtree_path: mtree_path.to_path_buf(),
-            mtree_mode: mtree_mode.to_string(),
-            path: path.to_path_buf(),
-            path_mode: path_mode.to_string(),
-        });
-    }
+        // Ensure that the path UID recorded in the ALPM-MTREE data matches the
+        // on-disk file.
+        if mtree_uid != metadata.uid() {
+            errors.push(PathValidationError::PathUidMismatch {
+                mtree_path: mtree_path.to_path_buf(),
+                mtree_uid,
+                path: path.to_path_buf(),
+                path_uid: metadata.uid(),
+            });
+        }
 
-    errors
+        // Ensure that the path GID recorded in the ALPM-MTREE data matches the
+        // on-disk file.
+        if mtree_gid != metadata.gid() {
+            errors.push(PathValidationError::PathGidMismatch {
+                mtree_path: mtree_path.to_path_buf(),
+                mtree_gid,
+                path: path.to_path_buf(),
+                path_gid: metadata.gid(),
+            });
+        }
+
+        // Ensure that the path mode recorded in the ALPM-MTREE data matches the
+        // on-disk file.
+        let path_mode = format!("{:o}", metadata.mode());
+        if !path_mode.ends_with(mtree_mode) {
+            errors.push(PathValidationError::PathModeMismatch {
+                mtree_path: mtree_path.to_path_buf(),
+                mtree_mode: mtree_mode.to_string(),
+                path: path.to_path_buf(),
+                path_mode: path_mode.to_string(),
+            });
+        }
+
+        errors
+    }
 }
 
 /// Normalizes a [`std::path::Path`] by stripping the prefix [`MTREE_PATH_PREFIX`].
@@ -151,6 +167,10 @@ fn normalize_mtree_path(path: &std::path::Path) -> Result<&std::path::Path, alpm
 /// # Errors
 ///
 /// Returns a [`PathValidationError`] if the metadata of `path` cannot be retrieved.
+#[allow(
+    clippy::result_large_err,
+    reason = "preserve the detailed upstream validation error variants"
+)]
 fn path_metadata(
     path: impl AsRef<std::path::Path>,
     is_symlink: bool,
@@ -429,12 +449,12 @@ impl File {
         };
 
         // Compare the file size.
-        if metadata.st_size() != self.size {
+        if metadata.len() != self.size {
             errors.push(PathValidationError::PathSizeMismatch {
                 mtree_path: self.path.clone(),
                 mtree_size: self.size,
                 path: path.to_path_buf(),
-                path_size: metadata.st_size(),
+                path_size: metadata.len(),
             });
         }
 
@@ -717,9 +737,9 @@ impl PartialOrd for Path {
 /// # Example
 ///
 /// ```
-/// use alpm_mtree::mtree::v2::parse_mtree_v2;
+/// use consolespec_mtree::mtree::v2::parse_mtree_v2;
 ///
-/// # fn main() -> Result<(), alpm_mtree::Error> {
+/// # fn main() -> Result<(), consolespec_mtree::Error> {
 /// let content = r#"
 /// /set uid=0 gid=0 mode=644 type=link
 /// ./some_link link=/etc time=1706086640.0
@@ -920,6 +940,7 @@ fn path_from_parsed(
 
 #[cfg(test)]
 mod tests {
+    #[cfg(unix)]
     use std::{fs::create_dir, os::unix::fs::symlink};
 
     use rstest::rstest;
@@ -969,6 +990,7 @@ mod tests {
     }
 
     /// Succeeds to retrieve [`Metadata`] of a file.
+    #[cfg(unix)]
     #[test]
     fn test_path_metadata_success() -> TestResult {
         let tmp_dir = tempdir()?;

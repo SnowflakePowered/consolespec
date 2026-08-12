@@ -1,5 +1,5 @@
-//! Integration tests for the `alpm-mtree create` command.
-#![cfg(feature = "creation")]
+//! Integration tests for the `consolespec-mtree create` command.
+#![cfg(all(feature = "creation", unix))]
 
 use std::{
     fs::{File, create_dir_all},
@@ -9,13 +9,10 @@ use std::{
 };
 
 use alpm_common::MetadataFile;
-use alpm_mtree::{
-    Mtree,
-    MtreeSchema,
-    create_mtree_v1_from_input_dir,
-    create_mtree_v2_from_input_dir,
-};
 use alpm_types::SchemaVersion;
+use consolespec_mtree::{
+    Mtree, MtreeSchema, create_mtree_v1_from_input_dir, create_mtree_v2_from_input_dir,
+};
 use log::debug;
 use rstest::rstest;
 use simplelog::{Config, TermLogger};

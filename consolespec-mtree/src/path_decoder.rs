@@ -1,8 +1,7 @@
 use std::char;
 
 use winnow::{
-    ModalResult,
-    Parser,
+    ModalResult, Parser,
     combinator::{alt, cut_err, fail, preceded},
     error::{AddContext, ContextError, ErrMode, StrContext, StrContextValue},
     stream::{Checkpoint, Stream},

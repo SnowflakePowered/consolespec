@@ -8,17 +8,11 @@
 //! implementations.
 //!
 //! [ALPM-MTREE]: https://alpm.archlinux.page/specifications/ALPM-MTREE.5.html
-#![cfg(feature = "creation")]
+#![cfg(all(feature = "creation", unix))]
 
 use std::{
     fs::{
-        File,
-        FileTimes,
-        Permissions,
-        create_dir_all,
-        remove_dir,
-        remove_file,
-        rename,
+        File, FileTimes, Permissions, create_dir_all, remove_dir, remove_file, rename,
         set_permissions,
     },
     io::Write,
@@ -29,8 +23,8 @@ use std::{
 };
 
 use alpm_common::{InputPaths, MetadataFile, relative_files};
-use alpm_mtree::{Mtree, create_mtree_v2_from_input_dir};
 use alpm_types::MetadataFileName;
+use consolespec_mtree::{Mtree, create_mtree_v2_from_input_dir};
 use filetime::{FileTime, set_symlink_file_times};
 use insta::{Settings, assert_snapshot, with_settings};
 use log::debug;

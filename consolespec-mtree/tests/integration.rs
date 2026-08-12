@@ -1,4 +1,4 @@
-//! This test file contains basic tests to ensure that the alpm-mtree CLI behaves as expected.
+//! This test file contains basic tests to ensure that the consolespec-mtree CLI behaves as expected.
 //!
 //! These tests are only executed when the `cli` feature flag is enabled.
 #![cfg(feature = "cli")]
@@ -25,7 +25,7 @@ pub const VALID_MTREE: &str = r#"
 #[case("1")]
 #[case("2")]
 fn validate_stdin(#[case] schema: &str) -> TestResult {
-    let mut cmd = cargo_bin_cmd!("alpm-mtree");
+    let mut cmd = cargo_bin_cmd!("consolespec-mtree");
     cmd.args(vec!["validate", "--schema", schema]);
     cmd.write_stdin(VALID_MTREE);
 
@@ -44,7 +44,7 @@ fn validate_file(#[case] schema: &str) -> TestResult {
     let mut file = File::create(&file_path)?;
     file.write_all(VALID_MTREE.as_bytes())?;
 
-    let mut cmd = cargo_bin_cmd!("alpm-mtree");
+    let mut cmd = cargo_bin_cmd!("consolespec-mtree");
     cmd.args(vec!["validate", "--schema", schema]);
     cmd.arg(file_path.to_string_lossy().to_string());
 
@@ -59,7 +59,7 @@ fn validate_file(#[case] schema: &str) -> TestResult {
 #[case("1")]
 #[case("2")]
 fn validate_wrong_stdin(#[case] schema: &str) -> TestResult {
-    let mut cmd = cargo_bin_cmd!("alpm-mtree");
+    let mut cmd = cargo_bin_cmd!("consolespec-mtree");
     cmd.args(vec!["validate", "--schema", schema]);
     cmd.write_stdin(format!(
         "{VALID_MTREE}\ngiberish doesnt_exist=1235 sha256digest=thisisatest"
@@ -82,7 +82,7 @@ fn validate_wrong_file(#[case] schema: &str) -> TestResult {
     file.write_all(VALID_MTREE.as_bytes())?;
     file.write_all(b"giberish doesnt_exist=1235 sha256digest=thisisatest")?;
 
-    let mut cmd = cargo_bin_cmd!("alpm-mtree");
+    let mut cmd = cargo_bin_cmd!("consolespec-mtree");
     cmd.args(vec!["validate", "--schema", schema]);
     cmd.arg(file_path.to_string_lossy().to_string());
 

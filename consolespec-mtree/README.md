@@ -1,18 +1,18 @@
-# alpm-mtree
+# consolespec-mtree
 
 A library and command line interface for the parsing and writing of [ALPM-MTREE] files used in **A**rch **L**inux **P**ackage **M**anagement (ALPM).
 
-## Documentation
+This is a history-preserving fork of [`alpm-mtree` 0.3.3] for use by the
+`consolespec` project.
 
-- <https://alpm.archlinux.page/rustdoc/alpm_mtree/> for development version of the crate
-- <https://docs.rs/alpm-mtree/latest/alpm_mtree/> for released versions of the crate
+[`alpm-mtree` 0.3.3]: https://crates.io/crates/alpm-mtree/0.3.3
 
 ## Examples
 
 ### Library
 
 ```rust
-use alpm_mtree::mtree::v2::parse_mtree_v2;
+use consolespec_mtree::mtree::v2::parse_mtree_v2;
 
 let data = r#"#mtree
 /set mode=644 uid=0 gid=0 type=file
@@ -29,31 +29,26 @@ assert!(parse_mtree_v2(data).is_ok());
 Validate an `.MTREE` file.
 
 ```shell
-alpm-mtree validate path/to/file
+consolespec-mtree validate path/to/file
 ```
 
 Parse an `.MTREE` file and output its contents as structured data.
 
 ```shell
-alpm-mtree format ~/.cache/alpm/testing/packages/core/argon2-20190702-6-x86_64/.MTREE --output-format json --pretty
+consolespec-mtree format ~/.cache/alpm/testing/packages/core/argon2-20190702-6-x86_64/.MTREE --output-format json --pretty
 ```
 
 ## Features
 
-- `cli` adds dependencies required for the `alpm-mtree` command line interface.
+- `cli` adds dependencies required for the `consolespec-mtree` command line interface.
 - `creation` adds library support for the creation of [ALPM-MTREE] files (enabled by default).
 - `_winnow-debug` enables the `winnow/debug` feature, which shows the exact parsing process of winnow.
-
-## Contributing
-
-Please refer to the [contribution guidelines] to learn how to contribute to this project.
 
 ## License
 
 This project can be used under the terms of the [Apache-2.0] or [MIT].
 Contributions to this project, unless noted otherwise, are automatically licensed under the terms of both of those licenses.
 
-[contribution guidelines]: ../CONTRIBUTING.md
 [ALPM-MTREE]: https://alpm.archlinux.page/specifications/ALPM-MTREE.5.html
-[Apache-2.0]: ../LICENSES/Apache-2.0.txt
-[MIT]: ../LICENSES/MIT.txt
+[Apache-2.0]: https://spdx.org/licenses/Apache-2.0.html
+[MIT]: https://spdx.org/licenses/MIT.html

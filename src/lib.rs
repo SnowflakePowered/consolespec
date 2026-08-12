@@ -1,10 +1,8 @@
 //! Compile-time database of console machine and input specifications.
 //!
-//! Source TOML is parsed and cross-checked by the build script. Runtime access
-//! reads immutable generated tables through build-time PHF indexes and performs
-//! no parsing or filesystem I/O.
-//! Mtree references are retained as strings but their files are intentionally
-//! not parsed until a portable mtree implementation is available.
+//! Source TOML and partition mtree files are parsed and cross-checked by the
+//! build script. Runtime access reads immutable generated tables through
+//! build-time indexes and performs no parsing or filesystem I/O.
 
 #![forbid(unsafe_code)]
 
@@ -195,8 +193,17 @@ struct StorageRecord {
 struct PartitionRecord {
     id: StrId,
     name: StrId,
+    #[cfg(feature = "partition-specs")]
     specs: Slice,
     user: bool,
+}
+
+#[cfg(feature = "partition-specs")]
+#[derive(Clone, Copy)]
+struct PartitionSpecRecord {
+    reference: StrId,
+    entries_start: u32,
+    entries_len: u32,
 }
 
 #[derive(Clone, Copy)]
@@ -240,6 +247,70 @@ mod tests {
             xbox.buttons()
                 .any(|button| button.element() == ButtonElement::A)
         );
+    }
+
+    #[cfg(feature = "partition-specs")]
+    #[test]
+    fn reads_compiled_partition_specs() {
+        use crate::machine::DirEntryKind;
+
+        let vita = MachineSpec::try_from("SONY_PSV").unwrap();
+        let emmc = vita
+            .storage_devices()
+            .find(|device| device.id() == "emmc")
+            .unwrap();
+        let vs0 = emmc
+            .partitions()
+            .find(|partition| partition.id() == "vs0")
+            .unwrap();
+        let spec = vs0
+            .specs()
+            .find(|spec| spec.reference() == "SONY_PSV/vs0/374.mtree")
+            .unwrap();
+
+        assert_eq!(spec.entries().len(), 2_116);
+        let root = spec.entries().next().unwrap();
+        assert_eq!(root.path(), ".");
+        assert_eq!(root.kind(), DirEntryKind::Directory);
+        let eboot = spec
+            .entries()
+            .find(|entry| entry.path() == "./app/NPXS10000/eboot.bin")
+            .unwrap();
+        assert_eq!(eboot.kind(), DirEntryKind::File);
+        assert_eq!(eboot.size(), Some(1_074_203));
+        assert_eq!(eboot.link(), None);
+
+        #[cfg(feature = "partition-spec-digests")]
+        {
+            assert_eq!(&eboot.md5().unwrap()[..2], &[0x6c, 0xc7]);
+            assert_eq!(&eboot.sha1().unwrap()[..2], &[0x0c, 0x64]);
+            assert_eq!(&eboot.sha256().unwrap()[..2], &[0xf0, 0x2a]);
+        }
+    }
+
+    #[cfg(feature = "partition-specs")]
+    #[test]
+    fn decodes_every_compiled_partition_entry() {
+        let mut spec_count = 0;
+        let mut entry_count = 0;
+        for machine in MachineSpec::all() {
+            for storage in machine.storage_devices() {
+                for partition in storage.partitions() {
+                    for spec in partition.specs() {
+                        spec_count += 1;
+                        for entry in spec.entries() {
+                            assert!(!entry.path().is_empty());
+                            let _ = (entry.kind(), entry.size(), entry.link());
+                            #[cfg(feature = "partition-spec-digests")]
+                            let _ = (entry.md5(), entry.sha1(), entry.sha256());
+                            entry_count += 1;
+                        }
+                    }
+                }
+            }
+        }
+        assert!(spec_count > 1_000);
+        assert!(entry_count > 600_000);
     }
 
     #[test]

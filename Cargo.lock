@@ -309,6 +309,7 @@ dependencies = [
 name = "consolespec"
 version = "0.1.0"
 dependencies = [
+ "consolespec-mtree",
  "phf",
  "phf_codegen",
  "serde",

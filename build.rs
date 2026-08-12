@@ -228,6 +228,43 @@ struct Partition {
     user: bool,
 }
 
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
+enum ParsedDirEntryKind {
+    Directory,
+    File,
+    Link,
+}
+
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+struct ParsedDirEntry {
+    path: String,
+    kind: ParsedDirEntryKind,
+    size: Option<u64>,
+    link: Option<String>,
+    md5: Option<[u8; 16]>,
+    sha1: Option<[u8; 20]>,
+    sha256: Option<[u8; 32]>,
+}
+
+struct ParsedPartitionSpec {
+    reference: String,
+    entries: Vec<ParsedDirEntry>,
+}
+
+struct PackedPartitionSpecs {
+    data: Vec<u8>,
+    records: Vec<String>,
+    entries_offset: usize,
+    entry_count: usize,
+    entry_record_size: usize,
+    sizes_offset: usize,
+    md5_offset: usize,
+    sha1_offset: usize,
+    sha256_offset: usize,
+}
+
+const PACKED_NONE: u32 = 0x00ff_ffff;
+
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Bios {
@@ -268,10 +305,14 @@ impl Span {
     }
 }
 
-#[derive(Default)]
 struct Generator {
+    partition_dir: PathBuf,
+    include_partition_specs: bool,
     interner: DefaultStringInterner,
     string_ids: Vec<u32>,
+    partition_spec_ids: Vec<u32>,
+    partition_specs: Vec<ParsedPartitionSpec>,
+    partition_spec_lookup: BTreeMap<String, u32>,
     regions: Vec<String>,
     buttons: Vec<String>,
     directionals: Vec<String>,
@@ -293,6 +334,36 @@ struct Generator {
 }
 
 impl Generator {
+    fn new(partition_dir: PathBuf, include_partition_specs: bool) -> Self {
+        Self {
+            partition_dir,
+            include_partition_specs,
+            interner: DefaultStringInterner::default(),
+            string_ids: Vec::new(),
+            partition_spec_ids: Vec::new(),
+            partition_specs: Vec::new(),
+            partition_spec_lookup: BTreeMap::new(),
+            regions: Vec::new(),
+            buttons: Vec::new(),
+            directionals: Vec::new(),
+            analog: Vec::new(),
+            triggers: Vec::new(),
+            rumble: Vec::new(),
+            pointers: Vec::new(),
+            plain: Vec::new(),
+            touchscreens: Vec::new(),
+            elements: Vec::new(),
+            clusters: Vec::new(),
+            groups: Vec::new(),
+            accessories: Vec::new(),
+            storage: Vec::new(),
+            partitions: Vec::new(),
+            bios: Vec::new(),
+            inputs: Vec::new(),
+            machines: Vec::new(),
+        }
+    }
+
     fn id(&mut self, value: &str) -> u32 {
         self.interner.get_or_intern(value).to_usize() as u32
     }
@@ -317,6 +388,29 @@ impl Generator {
             start,
             len: self.string_ids.len() as u32 - start,
         }
+    }
+
+    fn partition_spec_slice(&mut self, references: &[String]) -> Result<Span, String> {
+        let start = self.partition_spec_ids.len() as u32;
+        for reference in references {
+            let id = if let Some(id) = self.partition_spec_lookup.get(reference) {
+                *id
+            } else {
+                let path = self.partition_dir.join(reference);
+                println!("cargo:rerun-if-changed={}", path.display());
+                let spec = parse_partition_spec(&path, reference)?;
+                let id = u32::try_from(self.partition_specs.len())
+                    .map_err(|_| "partition spec count exceeds u32".to_owned())?;
+                self.partition_specs.push(spec);
+                self.partition_spec_lookup.insert(reference.clone(), id);
+                id
+            };
+            self.partition_spec_ids.push(id);
+        }
+        Ok(Span {
+            start,
+            len: self.partition_spec_ids.len() as u32 - start,
+        })
     }
 
     fn push_codes(target: &mut Vec<String>, values: impl IntoIterator<Item = String>) -> Span {
@@ -896,14 +990,21 @@ impl Generator {
                             ));
                         }
                     }
-                    let specs = self.string_slice(partition.spec.iter().map(String::as_str));
-                    partition_codes.push(format!(
-                        "PartitionRecord {{ id: {}, name: {}, specs: {}, user: {} }}",
-                        self.id_code(&partition.id),
-                        self.id_code(&partition.name),
-                        specs.code(),
-                        partition.user
-                    ));
+                    let specs = self.partition_spec_slice(&partition.spec)?;
+                    let id = self.id_code(&partition.id);
+                    let name = self.id_code(&partition.name);
+                    partition_codes.push(if self.include_partition_specs {
+                        format!(
+                            "PartitionRecord {{ id: {id}, name: {name}, specs: {}, user: {} }}",
+                            specs.code(),
+                            partition.user
+                        )
+                    } else {
+                        format!(
+                            "PartitionRecord {{ id: {id}, name: {name}, user: {} }}",
+                            partition.user
+                        )
+                    });
                 }
                 let partitions = Self::push_codes(&mut self.partitions, partition_codes);
                 storage_codes.push(format!(
@@ -964,9 +1065,195 @@ impl Generator {
         Ok(())
     }
 
+    fn pack_partition_specs(&mut self, include_digests: bool) -> PackedPartitionSpecs {
+        let mut strings_to_intern = BTreeSet::new();
+        let mut canonical_specs = Vec::with_capacity(self.partition_specs.len());
+        let mut entry_set = BTreeSet::new();
+        for spec in &self.partition_specs {
+            strings_to_intern.insert(spec.reference.clone());
+            let mut entries = spec.entries.clone();
+            if !include_digests {
+                for entry in &mut entries {
+                    entry.md5 = None;
+                    entry.sha1 = None;
+                    entry.sha256 = None;
+                }
+            }
+            for entry in &entries {
+                strings_to_intern.insert(entry.path.clone());
+                if let Some(link) = &entry.link {
+                    strings_to_intern.insert(link.clone());
+                }
+                entry_set.insert(entry.clone());
+            }
+            canonical_specs.push(entries);
+        }
+        for value in strings_to_intern {
+            self.id(&value);
+        }
+
+        let entries = entry_set.into_iter().collect::<Vec<_>>();
+        let entry_ids = entries
+            .iter()
+            .cloned()
+            .enumerate()
+            .map(|(index, entry)| {
+                let index = packed_id(index, "directory entry");
+                (entry, index)
+            })
+            .collect::<BTreeMap<_, _>>();
+        let sizes = entries
+            .iter()
+            .filter_map(|entry| entry.size)
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect::<Vec<_>>();
+        let size_ids = packed_ids(&sizes, "file size");
+        let md5 = entries
+            .iter()
+            .filter_map(|entry| entry.md5)
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect::<Vec<_>>();
+        let md5_ids = packed_ids(&md5, "MD5 digest");
+        let sha1 = entries
+            .iter()
+            .filter_map(|entry| entry.sha1)
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect::<Vec<_>>();
+        let sha1_ids = packed_ids(&sha1, "SHA-1 digest");
+        let sha256 = entries
+            .iter()
+            .filter_map(|entry| entry.sha256)
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect::<Vec<_>>();
+        let sha256_ids = packed_ids(&sha256, "SHA-256 digest");
+        let references = self
+            .partition_specs
+            .iter()
+            .map(|spec| spec.reference.clone())
+            .collect::<Vec<_>>();
+        let reference_ids = references
+            .iter()
+            .map(|reference| self.id_code(reference))
+            .collect::<Vec<_>>();
+
+        let mut data = Vec::new();
+        let mut records = Vec::with_capacity(self.partition_specs.len());
+        for (reference_id, canonical_entries) in reference_ids.iter().zip(&canonical_specs) {
+            let start = u32::try_from(data.len()).expect("partition spec data exceeds 4 GiB");
+            let mut previous = 0i64;
+            for (index, entry) in canonical_entries.iter().enumerate() {
+                let id = i64::from(entry_ids[entry]);
+                if index == 0 {
+                    write_uleb(&mut data, id as u64);
+                } else {
+                    write_uleb(&mut data, zigzag(id - previous));
+                }
+                previous = id;
+            }
+            records.push(format!(
+                "PartitionSpecRecord {{ reference: {}, entries_start: {start}, entries_len: {} }}",
+                reference_id,
+                canonical_entries.len()
+            ));
+        }
+
+        let entries_offset = data.len();
+        let entry_record_size = if include_digests { 19 } else { 10 };
+        for entry in &entries {
+            write_u24(&mut data, packed_string_id(self.id(&entry.path)));
+            write_u24(
+                &mut data,
+                entry
+                    .size
+                    .map(|value| size_ids[&value])
+                    .unwrap_or(PACKED_NONE),
+            );
+            write_u24(
+                &mut data,
+                entry
+                    .link
+                    .as_deref()
+                    .map(|value| packed_string_id(self.id(value)))
+                    .unwrap_or(PACKED_NONE),
+            );
+            if include_digests {
+                write_u24(
+                    &mut data,
+                    entry
+                        .md5
+                        .as_ref()
+                        .map(|value| md5_ids[value])
+                        .unwrap_or(PACKED_NONE),
+                );
+                write_u24(
+                    &mut data,
+                    entry
+                        .sha1
+                        .as_ref()
+                        .map(|value| sha1_ids[value])
+                        .unwrap_or(PACKED_NONE),
+                );
+                write_u24(
+                    &mut data,
+                    entry
+                        .sha256
+                        .as_ref()
+                        .map(|value| sha256_ids[value])
+                        .unwrap_or(PACKED_NONE),
+                );
+            }
+            data.push(match entry.kind {
+                ParsedDirEntryKind::Directory => 0,
+                ParsedDirEntryKind::File => 1,
+                ParsedDirEntryKind::Link => 2,
+            });
+        }
+        assert_eq!(
+            data.len() - entries_offset,
+            entries.len() * entry_record_size
+        );
+
+        let sizes_offset = data.len();
+        for size in &sizes {
+            data.extend_from_slice(&size.to_le_bytes());
+        }
+        let md5_offset = data.len();
+        for digest in &md5 {
+            data.extend_from_slice(digest);
+        }
+        let sha1_offset = data.len();
+        for digest in &sha1 {
+            data.extend_from_slice(digest);
+        }
+        let sha256_offset = data.len();
+        for digest in &sha256 {
+            data.extend_from_slice(digest);
+        }
+
+        PackedPartitionSpecs {
+            data,
+            records,
+            entries_offset,
+            entry_count: entries.len(),
+            entry_record_size,
+            sizes_offset,
+            md5_offset,
+            sha1_offset,
+            sha256_offset,
+        }
+    }
+
     fn finish(mut self, output: &Path) {
         self.inputs.sort_by(|left, right| left.0.cmp(&right.0));
         self.machines.sort_by(|left, right| left.0.cmp(&right.0));
+        let include_digests = env::var_os("CARGO_FEATURE_PARTITION_SPEC_DIGESTS").is_some();
+        let packed_partition_specs = self
+            .include_partition_specs
+            .then(|| self.pack_partition_specs(include_digests));
 
         let mut ordered = vec![String::new(); self.interner.len()];
         for (symbol, value) in self.interner.iter() {
@@ -983,6 +1270,11 @@ impl Generator {
         let mut code = String::from(
             "// @generated by consolespec/build.rs; do not edit.\nstatic STRING_DATA: &[u8] = include_bytes!(concat!(env!(\"OUT_DIR\"), \"/strings.bin\"));\n",
         );
+        if packed_partition_specs.is_some() {
+            code.push_str(
+                "static PARTITION_SPEC_DATA: &[u8] = include_bytes!(concat!(env!(\"OUT_DIR\"), \"/partition-specs.bin\"));\n",
+            );
+        }
         emit_numbers(&mut code, "STRING_OFFSETS", "u32", &offsets);
         emit_numbers(
             &mut code,
@@ -1022,6 +1314,66 @@ impl Generator {
             "AccessoryClass",
             &self.accessories,
         );
+        if let Some(packed) = &packed_partition_specs {
+            fs::write(output.join("partition-specs.bin"), &packed.data)
+                .expect("write packed partition specs");
+            emit_numbers(
+                &mut code,
+                "PARTITION_SPEC_IDS",
+                "u32",
+                &self.partition_spec_ids,
+            );
+            emit_codes(
+                &mut code,
+                "PARTITION_SPECS",
+                "PartitionSpecRecord",
+                &packed.records,
+            );
+            writeln!(
+                code,
+                "const DIR_ENTRY_RECORDS_OFFSET: usize = {};",
+                packed.entries_offset
+            )
+            .unwrap();
+            writeln!(
+                code,
+                "const DIR_ENTRY_RECORD_COUNT: usize = {};",
+                packed.entry_count
+            )
+            .unwrap();
+            writeln!(
+                code,
+                "const DIR_ENTRY_RECORD_SIZE: usize = {};",
+                packed.entry_record_size
+            )
+            .unwrap();
+            writeln!(
+                code,
+                "const DIR_ENTRY_SIZES_OFFSET: usize = {};",
+                packed.sizes_offset
+            )
+            .unwrap();
+            if include_digests {
+                writeln!(
+                    code,
+                    "const MD5_DIGESTS_OFFSET: usize = {};",
+                    packed.md5_offset
+                )
+                .unwrap();
+                writeln!(
+                    code,
+                    "const SHA1_DIGESTS_OFFSET: usize = {};",
+                    packed.sha1_offset
+                )
+                .unwrap();
+                writeln!(
+                    code,
+                    "const SHA256_DIGESTS_OFFSET: usize = {};",
+                    packed.sha256_offset
+                )
+                .unwrap();
+            }
+        }
         emit_codes(&mut code, "PARTITIONS", "PartitionRecord", &self.partitions);
         emit_codes(&mut code, "STORAGE", "StorageRecord", &self.storage);
         emit_codes(&mut code, "BIOS", "BiosRecord", &self.bios);
@@ -1052,6 +1404,48 @@ impl Generator {
     }
 }
 
+fn packed_id(index: usize, kind: &str) -> u32 {
+    let id = u32::try_from(index).unwrap_or_else(|_| panic!("{kind} count exceeds u32"));
+    assert!(id < PACKED_NONE, "{kind} count exceeds packed u24 range");
+    id
+}
+
+fn packed_ids<T: Clone + Ord>(values: &[T], kind: &str) -> BTreeMap<T, u32> {
+    values
+        .iter()
+        .cloned()
+        .enumerate()
+        .map(|(index, value)| (value, packed_id(index, kind)))
+        .collect()
+}
+
+fn packed_string_id(id: u32) -> u32 {
+    assert!(id < PACKED_NONE, "string count exceeds packed u24 range");
+    id
+}
+
+fn write_u24(output: &mut Vec<u8>, value: u32) {
+    assert!(value <= PACKED_NONE, "packed value exceeds u24");
+    let bytes = value.to_le_bytes();
+    output.extend_from_slice(&bytes[..3]);
+}
+
+fn write_uleb(output: &mut Vec<u8>, mut value: u64) {
+    loop {
+        let byte = (value & 0x7f) as u8;
+        value >>= 7;
+        if value == 0 {
+            output.push(byte);
+            break;
+        }
+        output.push(byte | 0x80);
+    }
+}
+
+fn zigzag(value: i64) -> u64 {
+    ((value << 1) ^ (value >> 63)) as u64
+}
+
 fn main() {
     let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR"));
     let root = manifest
@@ -1060,10 +1454,14 @@ fn main() {
     let definitions = root.join("definitions");
     let input_dir = definitions.join("inputspec");
     let machine_dir = definitions.join("machinespec");
+    let partition_dir = definitions.join("partitionspec");
     println!("cargo:rerun-if-changed={}", input_dir.display());
     println!("cargo:rerun-if-changed={}", machine_dir.display());
 
-    let mut generator = Generator::default();
+    let mut generator = Generator::new(
+        partition_dir,
+        env::var_os("CARGO_FEATURE_PARTITION_SPECS").is_some(),
+    );
     let mut input_ids = BTreeSet::new();
     for path in toml_files(&input_dir) {
         println!("cargo:rerun-if-changed={}", path.display());
@@ -1136,6 +1534,221 @@ fn parse<T: for<'de> Deserialize<'de>>(path: &Path) -> T {
     let source =
         fs::read_to_string(path).unwrap_or_else(|error| panic!("{}: {error}", path.display()));
     toml::from_str(&source).unwrap_or_else(|error| panic!("{}: {error}", path.display()))
+}
+
+fn parse_partition_spec(path: &Path, reference: &str) -> Result<ParsedPartitionSpec, String> {
+    use consolespec_mtree::parser::{
+        PathProperty, PathType, SetProperty, Statement, UnsetProperty,
+    };
+
+    let source =
+        fs::read_to_string(path).map_err(|error| format!("{}: {error}", path.display()))?;
+    let mut input = source.as_str();
+    let statements = consolespec_mtree::parser::mtree(&mut input)
+        .map_err(|error| format!("{}: {error:?}", path.display()))?;
+    let mut default_kind = None;
+    let mut entries = Vec::new();
+    let mut paths = BTreeSet::new();
+
+    for (line_index, statement) in statements.into_iter().enumerate() {
+        let line = line_index + 1;
+        match statement {
+            Statement::Ignored => {}
+            Statement::Set(properties) => {
+                for property in properties {
+                    match property {
+                        SetProperty::Type(kind) => default_kind = Some(kind),
+                        SetProperty::Uid(_) | SetProperty::Gid(_) | SetProperty::Mode(_) => {
+                            return Err(format!(
+                                "{}:{line}: partition specs do not retain uid, gid, or mode defaults",
+                                path.display()
+                            ));
+                        }
+                    }
+                }
+            }
+            Statement::Unset(properties) => {
+                for property in properties {
+                    match property {
+                        UnsetProperty::Type => default_kind = None,
+                        UnsetProperty::Uid | UnsetProperty::Gid | UnsetProperty::Mode => {
+                            return Err(format!(
+                                "{}:{line}: partition specs do not retain uid, gid, or mode defaults",
+                                path.display()
+                            ));
+                        }
+                    }
+                }
+            }
+            Statement::Path {
+                path: entry_path,
+                properties,
+            } => {
+                let entry_path = entry_path
+                    .to_str()
+                    .ok_or_else(|| format!("{}:{line}: mtree path is not UTF-8", path.display()))?;
+                validate_partition_path(path, line, entry_path)?;
+                if !paths.insert(entry_path.to_owned()) {
+                    return Err(format!(
+                        "{}:{line}: duplicate mtree path `{entry_path}`",
+                        path.display()
+                    ));
+                }
+
+                let mut kind = None;
+                let mut size = None;
+                let mut link = None;
+                let mut md5 = None;
+                let mut sha1 = None;
+                let mut sha256 = None;
+                for property in properties {
+                    match property {
+                        PathProperty::Type(value) => {
+                            set_once(path, line, entry_path, "type", &mut kind, value)?;
+                        }
+                        PathProperty::Size(value) => {
+                            set_once(path, line, entry_path, "size", &mut size, value)?;
+                        }
+                        PathProperty::Link(value) => {
+                            let value = value.to_str().ok_or_else(|| {
+                                format!("{}:{line}: link target is not UTF-8", path.display())
+                            })?;
+                            set_once(path, line, entry_path, "link", &mut link, value.to_owned())?;
+                        }
+                        PathProperty::Md5Digest(value) => {
+                            let value = value.inner().try_into().expect("MD5 length is fixed");
+                            set_once(path, line, entry_path, "md5", &mut md5, value)?;
+                        }
+                        PathProperty::Sha1Digest(value) => {
+                            let value = value.inner().try_into().expect("SHA-1 length is fixed");
+                            set_once(path, line, entry_path, "sha1", &mut sha1, value)?;
+                        }
+                        PathProperty::Sha256Digest(value) => {
+                            let value = value.inner().try_into().expect("SHA-256 length is fixed");
+                            set_once(path, line, entry_path, "sha256", &mut sha256, value)?;
+                        }
+                        PathProperty::Uid(_)
+                        | PathProperty::Gid(_)
+                        | PathProperty::Mode(_)
+                        | PathProperty::Time(_) => {
+                            return Err(format!(
+                                "{}:{line}: partition spec entry `{entry_path}` contains unsupported ALPM metadata",
+                                path.display()
+                            ));
+                        }
+                    }
+                }
+
+                let kind = match kind.or(default_kind).ok_or_else(|| {
+                    format!(
+                        "{}:{line}: partition spec entry `{entry_path}` has no type",
+                        path.display()
+                    )
+                })? {
+                    PathType::Dir => ParsedDirEntryKind::Directory,
+                    PathType::File => ParsedDirEntryKind::File,
+                    PathType::Link => ParsedDirEntryKind::Link,
+                };
+                match kind {
+                    ParsedDirEntryKind::Directory
+                        if size.is_some()
+                            || link.is_some()
+                            || md5.is_some()
+                            || sha1.is_some()
+                            || sha256.is_some() =>
+                    {
+                        return Err(format!(
+                            "{}:{line}: directory `{entry_path}` has file or link metadata",
+                            path.display()
+                        ));
+                    }
+                    ParsedDirEntryKind::File if link.is_some() => {
+                        return Err(format!(
+                            "{}:{line}: file `{entry_path}` has a link target",
+                            path.display()
+                        ));
+                    }
+                    ParsedDirEntryKind::Link if link.is_none() => {
+                        return Err(format!(
+                            "{}:{line}: link `{entry_path}` has no target",
+                            path.display()
+                        ));
+                    }
+                    ParsedDirEntryKind::Link
+                        if size.is_some()
+                            || md5.is_some()
+                            || sha1.is_some()
+                            || sha256.is_some() =>
+                    {
+                        return Err(format!(
+                            "{}:{line}: link `{entry_path}` has file metadata",
+                            path.display()
+                        ));
+                    }
+                    _ => {}
+                }
+
+                entries.push(ParsedDirEntry {
+                    path: entry_path.to_owned(),
+                    kind,
+                    size,
+                    link,
+                    md5,
+                    sha1,
+                    sha256,
+                });
+            }
+        }
+    }
+
+    if entries.is_empty() {
+        return Err(format!("{}: partition spec is empty", path.display()));
+    }
+    Ok(ParsedPartitionSpec {
+        reference: reference.to_owned(),
+        entries,
+    })
+}
+
+fn set_once<T>(
+    source: &Path,
+    line: usize,
+    entry_path: &str,
+    property: &str,
+    slot: &mut Option<T>,
+    value: T,
+) -> Result<(), String> {
+    if slot.replace(value).is_some() {
+        Err(format!(
+            "{}:{line}: duplicate `{property}` property for `{entry_path}`",
+            source.display()
+        ))
+    } else {
+        Ok(())
+    }
+}
+
+fn validate_partition_path(source: &Path, line: usize, path: &str) -> Result<(), String> {
+    if path == "." {
+        return Ok(());
+    }
+    let Some(relative) = path.strip_prefix("./") else {
+        return Err(format!(
+            "{}:{line}: partition path `{path}` is not relative to `.`",
+            source.display()
+        ));
+    };
+    if relative.is_empty()
+        || relative
+            .split('/')
+            .any(|component| component.is_empty() || matches!(component, "." | ".."))
+    {
+        return Err(format!(
+            "{}:{line}: invalid partition path `{path}`",
+            source.display()
+        ));
+    }
+    Ok(())
 }
 
 fn validate_filename(path: &Path, id: &str) {

@@ -6,6 +6,11 @@ license = "MIT OR Apache-2.0"
 rust-version = "1.94"
 build = "build.rs"
 
+[features]
+default = []
+partition-specs = []
+partition-spec-digests = ["partition-specs"]
+
 [workspace]
 members = ["consolespec-mtree"]
 resolver = "3"
@@ -15,6 +20,7 @@ phf = "0.14"
 serde = { version = "1.0", features = ["derive"] }
 
 [build-dependencies]
+consolespec-mtree = { path = "consolespec-mtree", version = "0.3.3", default-features = false }
 phf_codegen = "0.14"
 serde = { version = "1.0", features = ["derive"] }
 string-interner = { version = "0.20", default-features = false, features = ["std", "backends"] }

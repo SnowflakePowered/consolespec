@@ -1,10 +1,11 @@
 [package]
 name = "consolespec"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2024"
 license = "MIT OR Apache-2.0"
 rust-version = "1.94"
 build = "build.rs"
+description = "Game console specification database"
 
 [features]
 default = []
@@ -16,7 +17,7 @@ phf = "0.14"
 serde = { version = "1.0", features = ["derive"] }
 
 [build-dependencies]
-consolespec-mtree = { path = "../consolespec-mtree", version = "0.3.3", default-features = false }
+consolespec-mtree = { path = "../consolespec-mtree", version = "0.4.0", default-features = false }
 phf_codegen = "0.14"
 serde = { version = "1.0", features = ["derive"] }
 string-interner = { version = "0.20", default-features = false, features = ["std", "backends"] }

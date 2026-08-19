@@ -307,7 +307,7 @@ dependencies = [
 
 [[package]]
 name = "consolespec"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "consolespec-mtree",
  "phf",
@@ -319,7 +319,7 @@ dependencies = [
 
 [[package]]
 name = "consolespec-mtree"
-version = "0.3.3"
+version = "0.4.0"
 dependencies = [
  "alpm-common",
  "alpm-parsers",

@@ -314,6 +314,27 @@ mod tests {
     }
 
     #[test]
+    fn generated_constants_match_lookups() {
+        assert_eq!(
+            MachineSpec::NINTENDO_NES,
+            MachineSpec::try_from("NINTENDO_NES").unwrap()
+        );
+        assert_eq!(MachineSpec::NINTENDO_NES.id(), "NINTENDO_NES");
+        assert_eq!(
+            InputSpec::NES_CONTROLLER,
+            InputSpec::try_from("NES_CONTROLLER").unwrap()
+        );
+        assert_eq!(InputSpec::_3DO_CONTROLLER.id(), "3DO_CONTROLLER");
+
+        for machine in MachineSpec::all() {
+            assert_eq!(MachineSpec::try_from(machine.id()).unwrap(), machine);
+        }
+        for input in InputSpec::all() {
+            assert_eq!(InputSpec::try_from(input.id()).unwrap(), input);
+        }
+    }
+
+    #[test]
     fn every_machine_input_resolves() {
         for machine in MachineSpec::all() {
             for group in machine.input_groups() {

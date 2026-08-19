@@ -329,8 +329,16 @@ struct Generator {
     storage: Vec<String>,
     partitions: Vec<String>,
     bios: Vec<String>,
-    inputs: Vec<(String, String)>,
-    machines: Vec<(String, String)>,
+    inputs: Vec<SpecEntry>,
+    machines: Vec<SpecEntry>,
+}
+
+/// A compiled top-level spec, retained so the generator can emit lookup tables
+/// and named constants alongside the record array.
+struct SpecEntry {
+    id: String,
+    name: Option<String>,
+    code: String,
 }
 
 impl Generator {
@@ -611,7 +619,11 @@ impl Generator {
             elements.code(),
             clusters.code()
         );
-        self.inputs.push((input.id.clone(), code));
+        self.inputs.push(SpecEntry {
+            id: input.id.clone(),
+            name: document.meta.name.clone(),
+            code,
+        });
         Ok(())
     }
 
@@ -1061,7 +1073,11 @@ impl Generator {
             storage.code(),
             bios.code()
         );
-        self.machines.push((identity.id.clone(), code));
+        self.machines.push(SpecEntry {
+            id: identity.id.clone(),
+            name: Some(identity.name.clone()),
+            code,
+        });
         Ok(())
     }
 
@@ -1248,8 +1264,8 @@ impl Generator {
     }
 
     fn finish(mut self, output: &Path) {
-        self.inputs.sort_by(|left, right| left.0.cmp(&right.0));
-        self.machines.sort_by(|left, right| left.0.cmp(&right.0));
+        self.inputs.sort_by(|left, right| left.id.cmp(&right.id));
+        self.machines.sort_by(|left, right| left.id.cmp(&right.id));
         let include_digests = env::var_os("CARGO_FEATURE_PARTITION_SPEC_DIGESTS").is_some();
         let packed_partition_specs = self
             .include_partition_specs
@@ -1384,7 +1400,7 @@ impl Generator {
             &self
                 .inputs
                 .iter()
-                .map(|(_, code)| code.clone())
+                .map(|entry| entry.code.clone())
                 .collect::<Vec<_>>(),
         );
         emit_codes(
@@ -1394,12 +1410,15 @@ impl Generator {
             &self
                 .machines
                 .iter()
-                .map(|(_, code)| code.clone())
+                .map(|entry| entry.code.clone())
                 .collect::<Vec<_>>(),
         );
 
         emit_lookup(&mut code, "INPUT_LOOKUP", &self.inputs);
         emit_lookup(&mut code, "MACHINE_LOOKUP", &self.machines);
+
+        emit_constants(&mut code, "InputSpec", "inputspec", &self.inputs);
+        emit_constants(&mut code, "MachineSpec", "machinespec", &self.machines);
         fs::write(output.join("database.rs"), code).expect("write generated database");
     }
 }
@@ -1991,13 +2010,13 @@ fn emit_numbers<T: fmt::Display>(output: &mut String, name: &str, kind: &str, va
     output.push_str("];\n");
 }
 
-fn emit_lookup(output: &mut String, name: &str, records: &[(String, String)]) {
+fn emit_lookup(output: &mut String, name: &str, records: &[SpecEntry]) {
     let mut map = phf_codegen::Map::new();
     let values = (0..records.len())
         .map(|index| format!("{index}u32"))
         .collect::<Vec<_>>();
-    for ((id, _), value) in records.iter().zip(&values) {
-        map.entry(id, value);
+    for (entry, value) in records.iter().zip(&values) {
+        map.entry(&entry.id, value);
     }
     writeln!(
         output,
@@ -2005,4 +2024,35 @@ fn emit_lookup(output: &mut String, name: &str, records: &[(String, String)]) {
         map.build()
     )
     .unwrap();
+}
+
+/// Emits one associated constant per spec, so `MachineSpec::NINTENDO_NES` and
+/// `InputSpec::NES_CONTROLLER` resolve at compile time instead of through a
+/// fallible string lookup.
+fn emit_constants(output: &mut String, spec: &str, kind: &str, records: &[SpecEntry]) {
+    writeln!(output, "impl {spec} {{").unwrap();
+    for (index, entry) in records.iter().enumerate() {
+        let constant = constant_name(&entry.id);
+        match &entry.name {
+            Some(name) => writeln!(output, "    /// {name} (`{}`).", entry.id).unwrap(),
+            None => writeln!(output, "    /// The `{}` {kind}.", entry.id).unwrap(),
+        }
+        writeln!(output, "    pub const {constant}: Self = Self({index});").unwrap();
+    }
+    output.push_str("}\n");
+}
+
+/// Spec ids are already screaming snake case; only a leading digit needs
+/// fixing up to form a valid Rust identifier.
+fn constant_name(id: &str) -> String {
+    assert!(
+        id.bytes()
+            .all(|byte| byte.is_ascii_uppercase() || byte.is_ascii_digit() || byte == b'_'),
+        "spec id `{id}` cannot be used as a constant name"
+    );
+    if id.starts_with(|value: char| value.is_ascii_digit()) {
+        format!("_{id}")
+    } else {
+        id.to_owned()
+    }
 }

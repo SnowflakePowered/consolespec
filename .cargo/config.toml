@@ -1,0 +1,5 @@
+[alias]
+# Rebuild or verify the definition archive that the consolespec crate ships.
+# Run `cargo archive build` after touching anything under definitions/ and
+# commit the archive with the change; `cargo archive check` is the CI guard.
+archive = "run --release -p consolespec-build --features compile --bin consolespec-archive --"

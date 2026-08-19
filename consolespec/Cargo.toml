@@ -6,6 +6,11 @@ license = "MIT OR Apache-2.0"
 rust-version = "1.94"
 build = "build.rs"
 description = "Game console specification database"
+homepage = "https://github.com/SnowflakePowered/consolespec"
+repository = "https://github.com/SnowflakePowered/consolespec"
+# The definition sources live at the repository root, not in the crate: the
+# mtree tree alone is 78 MiB of text. What ships is the archive built from it.
+include = ["src/**/*.rs", "build.rs", "definitions.csa", "README.md"]
 
 [features]
 default = []
@@ -17,7 +22,7 @@ phf = "0.14"
 serde = { version = "1.0", features = ["derive"] }
 
 [build-dependencies]
-consolespec-mtree = { path = "../consolespec-mtree", version = "0.4.0", default-features = false }
+consolespec-build = { path = "../consolespec-build", version = "0.0.1" }
 phf_codegen = "0.14"
 serde = { version = "1.0", features = ["derive"] }
 string-interner = { version = "0.20", default-features = false, features = ["std", "backends"] }

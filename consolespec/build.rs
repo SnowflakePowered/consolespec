@@ -1,3 +1,4 @@
+use consolespec_build::{Archive, DirEntryKind, PartitionSpec};
 use serde::Deserialize;
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -228,29 +229,6 @@ struct Partition {
     user: bool,
 }
 
-#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
-enum ParsedDirEntryKind {
-    Directory,
-    File,
-    Link,
-}
-
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
-struct ParsedDirEntry {
-    path: String,
-    kind: ParsedDirEntryKind,
-    size: Option<u64>,
-    link: Option<String>,
-    md5: Option<[u8; 16]>,
-    sha1: Option<[u8; 20]>,
-    sha256: Option<[u8; 32]>,
-}
-
-struct ParsedPartitionSpec {
-    reference: String,
-    entries: Vec<ParsedDirEntry>,
-}
-
 struct PackedPartitionSpecs {
     data: Vec<u8>,
     records: Vec<String>,
@@ -306,12 +284,12 @@ impl Span {
 }
 
 struct Generator {
-    partition_dir: PathBuf,
+    partition_archive: PartitionArchive,
     include_partition_specs: bool,
     interner: DefaultStringInterner,
     string_ids: Vec<u32>,
     partition_spec_ids: Vec<u32>,
-    partition_specs: Vec<ParsedPartitionSpec>,
+    partition_specs: Vec<PartitionSpec>,
     partition_spec_lookup: BTreeMap<String, u32>,
     regions: Vec<String>,
     buttons: Vec<String>,
@@ -342,9 +320,9 @@ struct SpecEntry {
 }
 
 impl Generator {
-    fn new(partition_dir: PathBuf, include_partition_specs: bool) -> Self {
+    fn new(partition_archive: PartitionArchive, include_partition_specs: bool) -> Self {
         Self {
-            partition_dir,
+            partition_archive,
             include_partition_specs,
             interner: DefaultStringInterner::default(),
             string_ids: Vec::new(),
@@ -404,12 +382,14 @@ impl Generator {
             let id = if let Some(id) = self.partition_spec_lookup.get(reference) {
                 *id
             } else {
-                let path = self.partition_dir.join(reference);
-                println!("cargo:rerun-if-changed={}", path.display());
-                let spec = parse_partition_spec(&path, reference)?;
-                let id = u32::try_from(self.partition_specs.len())
+                let id = u32::try_from(self.partition_spec_lookup.len())
                     .map_err(|_| "partition spec count exceeds u32".to_owned())?;
-                self.partition_specs.push(spec);
+                // Without the feature the trees are never decoded, so only the
+                // reference itself can be checked here.
+                match self.partition_archive.take(reference)? {
+                    Some(spec) => self.partition_specs.push(spec),
+                    None => debug_assert!(!self.include_partition_specs),
+                }
                 self.partition_spec_lookup.insert(reference.clone(), id);
                 id
             };
@@ -1223,9 +1203,9 @@ impl Generator {
                 );
             }
             data.push(match entry.kind {
-                ParsedDirEntryKind::Directory => 0,
-                ParsedDirEntryKind::File => 1,
-                ParsedDirEntryKind::Link => 2,
+                DirEntryKind::Directory => 0,
+                DirEntryKind::File => 1,
+                DirEntryKind::Link => 2,
             });
         }
         assert_eq!(
@@ -1467,25 +1447,22 @@ fn zigzag(value: i64) -> u64 {
 
 fn main() {
     let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR"));
-    let root = manifest
-        .canonicalize()
-        .expect("consolespec repository root");
-    let definitions = root.join("definitions");
-    let input_dir = definitions.join("inputspec");
-    let machine_dir = definitions.join("machinespec");
-    let partition_dir = definitions.join("partitionspec");
-    println!("cargo:rerun-if-changed={}", input_dir.display());
-    println!("cargo:rerun-if-changed={}", machine_dir.display());
+    let path = manifest.join(consolespec_build::ARCHIVE_FILE_NAME);
+    println!("cargo:rerun-if-changed={}", path.display());
+    let archive = Archive::open(&path).unwrap_or_else(|error| panic!("{error}"));
 
-    let mut generator = Generator::new(
-        partition_dir,
-        env::var_os("CARGO_FEATURE_PARTITION_SPECS").is_some(),
-    );
+    let include_partition_specs = env::var_os("CARGO_FEATURE_PARTITION_SPECS").is_some();
+    let partitions = PartitionArchive::open(&archive, include_partition_specs)
+        .unwrap_or_else(|error| panic!("{}: {error}", path.display()));
+    let (inputs, machines) = archive
+        .documents()
+        .unwrap_or_else(|error| panic!("{}: {error}", path.display()));
+
+    let mut generator = Generator::new(partitions, include_partition_specs);
     let mut input_ids = BTreeSet::new();
-    for path in toml_files(&input_dir) {
-        println!("cargo:rerun-if-changed={}", path.display());
-        let document: InputDocument = parse(&path);
-        validate_filename(&path, &document.input.id);
+    for source in &inputs {
+        let document: InputDocument = parse(source);
+        validate_filename(&source.name, &document.input.id);
         assert!(
             input_ids.insert(document.input.id.clone()),
             "duplicate inputspec {}",
@@ -1493,44 +1470,38 @@ fn main() {
         );
         generator
             .input(&document)
-            .unwrap_or_else(|error| panic!("{}: {error}", path.display()));
+            .unwrap_or_else(|error| panic!("{}: {error}", source.name));
     }
 
     let mut machine_documents = Vec::new();
     let mut machine_ids = BTreeSet::new();
-    for path in toml_files(&machine_dir) {
-        println!("cargo:rerun-if-changed={}", path.display());
-        let document: MachineDocument = parse(&path);
-        validate_filename(&path, &document.machine.id);
+    for source in &machines {
+        let document: MachineDocument = parse(source);
+        validate_filename(&source.name, &document.machine.id);
         assert!(
             machine_ids.insert(document.machine.id.clone()),
             "duplicate machinespec {}",
             document.machine.id
         );
-        machine_documents.push((path, document));
+        machine_documents.push((&source.name, document));
     }
-    for (path, document) in &machine_documents {
+    for (name, document) in &machine_documents {
         for dependency in &document.machine.dependencies {
             assert!(
                 machine_ids.contains(dependency),
-                "{}: unknown machine dependency `{dependency}`",
-                path.display()
+                "{name}: unknown machine dependency `{dependency}`"
             );
         }
         if let Some(input) = &document.input {
             for group in input.tables.values() {
                 for id in &group.inputs {
-                    assert!(
-                        input_ids.contains(id),
-                        "{}: unknown inputspec `{id}`",
-                        path.display()
-                    );
+                    assert!(input_ids.contains(id), "{name}: unknown inputspec `{id}`");
                 }
             }
         }
         generator
             .machine(document)
-            .unwrap_or_else(|error| panic!("{}: {error}", path.display()));
+            .unwrap_or_else(|error| panic!("{name}: {error}"));
     }
     assert!(
         !input_ids.is_empty() && !machine_ids.is_empty(),
@@ -1539,243 +1510,53 @@ fn main() {
     generator.finish(&PathBuf::from(env::var_os("OUT_DIR").expect("OUT_DIR")));
 }
 
-fn toml_files(directory: &Path) -> Vec<PathBuf> {
-    let mut paths = fs::read_dir(directory)
-        .unwrap_or_else(|error| panic!("{}: {error}", directory.display()))
-        .map(|entry| entry.expect("directory entry").path())
-        .filter(|path| path.extension().and_then(|value| value.to_str()) == Some("toml"))
-        .collect::<Vec<_>>();
-    paths.sort();
-    paths
+/// The partition trees the archive carries, keyed by the reference a machine
+/// spec cites.
+///
+/// Trees are only decoded when the `partition-specs` feature asks for them.
+/// A build without it still has to reject a machine spec that cites a listing
+/// nobody shipped, and the index section answers that on its own.
+struct PartitionArchive {
+    references: BTreeSet<String>,
+    specs: BTreeMap<String, PartitionSpec>,
 }
 
-fn parse<T: for<'de> Deserialize<'de>>(path: &Path) -> T {
-    let source =
-        fs::read_to_string(path).unwrap_or_else(|error| panic!("{}: {error}", path.display()));
-    toml::from_str(&source).unwrap_or_else(|error| panic!("{}: {error}", path.display()))
-}
+impl PartitionArchive {
+    fn open(archive: &Archive, include_specs: bool) -> Result<Self, consolespec_build::Error> {
+        let references = archive.partition_references()?.into_iter().collect();
+        let specs = if include_specs {
+            archive
+                .partition_specs()?
+                .into_iter()
+                .map(|spec| (spec.reference.clone(), spec))
+                .collect()
+        } else {
+            BTreeMap::new()
+        };
+        Ok(Self { references, specs })
+    }
 
-fn parse_partition_spec(path: &Path, reference: &str) -> Result<ParsedPartitionSpec, String> {
-    use consolespec_mtree::parser::{
-        PathProperty, PathType, SetProperty, Statement, UnsetProperty,
-    };
-
-    let source =
-        fs::read_to_string(path).map_err(|error| format!("{}: {error}", path.display()))?;
-    let mut input = source.as_str();
-    let statements = consolespec_mtree::parser::mtree(&mut input)
-        .map_err(|error| format!("{}: {error:?}", path.display()))?;
-    let mut default_kind = None;
-    let mut entries = Vec::new();
-    let mut paths = BTreeSet::new();
-
-    for (line_index, statement) in statements.into_iter().enumerate() {
-        let line = line_index + 1;
-        match statement {
-            Statement::Ignored => {}
-            Statement::Set(properties) => {
-                for property in properties {
-                    match property {
-                        SetProperty::Type(kind) => default_kind = Some(kind),
-                        SetProperty::Uid(_) | SetProperty::Gid(_) | SetProperty::Mode(_) => {
-                            return Err(format!(
-                                "{}:{line}: partition specs do not retain uid, gid, or mode defaults",
-                                path.display()
-                            ));
-                        }
-                    }
-                }
-            }
-            Statement::Unset(properties) => {
-                for property in properties {
-                    match property {
-                        UnsetProperty::Type => default_kind = None,
-                        UnsetProperty::Uid | UnsetProperty::Gid | UnsetProperty::Mode => {
-                            return Err(format!(
-                                "{}:{line}: partition specs do not retain uid, gid, or mode defaults",
-                                path.display()
-                            ));
-                        }
-                    }
-                }
-            }
-            Statement::Path {
-                path: entry_path,
-                properties,
-            } => {
-                let entry_path = entry_path
-                    .to_str()
-                    .ok_or_else(|| format!("{}:{line}: mtree path is not UTF-8", path.display()))?;
-                validate_partition_path(path, line, entry_path)?;
-                if !paths.insert(entry_path.to_owned()) {
-                    return Err(format!(
-                        "{}:{line}: duplicate mtree path `{entry_path}`",
-                        path.display()
-                    ));
-                }
-
-                let mut kind = None;
-                let mut size = None;
-                let mut link = None;
-                let mut md5 = None;
-                let mut sha1 = None;
-                let mut sha256 = None;
-                for property in properties {
-                    match property {
-                        PathProperty::Type(value) => {
-                            set_once(path, line, entry_path, "type", &mut kind, value)?;
-                        }
-                        PathProperty::Size(value) => {
-                            set_once(path, line, entry_path, "size", &mut size, value)?;
-                        }
-                        PathProperty::Link(value) => {
-                            let value = value.to_str().ok_or_else(|| {
-                                format!("{}:{line}: link target is not UTF-8", path.display())
-                            })?;
-                            set_once(path, line, entry_path, "link", &mut link, value.to_owned())?;
-                        }
-                        PathProperty::Md5Digest(value) => {
-                            let value = value.inner().try_into().expect("MD5 length is fixed");
-                            set_once(path, line, entry_path, "md5", &mut md5, value)?;
-                        }
-                        PathProperty::Sha1Digest(value) => {
-                            let value = value.inner().try_into().expect("SHA-1 length is fixed");
-                            set_once(path, line, entry_path, "sha1", &mut sha1, value)?;
-                        }
-                        PathProperty::Sha256Digest(value) => {
-                            let value = value.inner().try_into().expect("SHA-256 length is fixed");
-                            set_once(path, line, entry_path, "sha256", &mut sha256, value)?;
-                        }
-                        PathProperty::Uid(_)
-                        | PathProperty::Gid(_)
-                        | PathProperty::Mode(_)
-                        | PathProperty::Time(_) => {
-                            return Err(format!(
-                                "{}:{line}: partition spec entry `{entry_path}` contains unsupported ALPM metadata",
-                                path.display()
-                            ));
-                        }
-                    }
-                }
-
-                let kind = match kind.or(default_kind).ok_or_else(|| {
-                    format!(
-                        "{}:{line}: partition spec entry `{entry_path}` has no type",
-                        path.display()
-                    )
-                })? {
-                    PathType::Dir => ParsedDirEntryKind::Directory,
-                    PathType::File => ParsedDirEntryKind::File,
-                    PathType::Link => ParsedDirEntryKind::Link,
-                };
-                match kind {
-                    ParsedDirEntryKind::Directory
-                        if size.is_some()
-                            || link.is_some()
-                            || md5.is_some()
-                            || sha1.is_some()
-                            || sha256.is_some() =>
-                    {
-                        return Err(format!(
-                            "{}:{line}: directory `{entry_path}` has file or link metadata",
-                            path.display()
-                        ));
-                    }
-                    ParsedDirEntryKind::File if link.is_some() => {
-                        return Err(format!(
-                            "{}:{line}: file `{entry_path}` has a link target",
-                            path.display()
-                        ));
-                    }
-                    ParsedDirEntryKind::Link if link.is_none() => {
-                        return Err(format!(
-                            "{}:{line}: link `{entry_path}` has no target",
-                            path.display()
-                        ));
-                    }
-                    ParsedDirEntryKind::Link
-                        if size.is_some()
-                            || md5.is_some()
-                            || sha1.is_some()
-                            || sha256.is_some() =>
-                    {
-                        return Err(format!(
-                            "{}:{line}: link `{entry_path}` has file metadata",
-                            path.display()
-                        ));
-                    }
-                    _ => {}
-                }
-
-                entries.push(ParsedDirEntry {
-                    path: entry_path.to_owned(),
-                    kind,
-                    size,
-                    link,
-                    md5,
-                    sha1,
-                    sha256,
-                });
-            }
+    /// Claims a tree, or confirms the reference resolves when the trees were
+    /// left compressed. Each reference is only asked for once.
+    fn take(&mut self, reference: &str) -> Result<Option<PartitionSpec>, String> {
+        if !self.references.contains(reference) {
+            return Err(format!(
+                "`{reference}` is not in the definition archive; run `cargo archive build`"
+            ));
         }
-    }
-
-    if entries.is_empty() {
-        return Err(format!("{}: partition spec is empty", path.display()));
-    }
-    Ok(ParsedPartitionSpec {
-        reference: reference.to_owned(),
-        entries,
-    })
-}
-
-fn set_once<T>(
-    source: &Path,
-    line: usize,
-    entry_path: &str,
-    property: &str,
-    slot: &mut Option<T>,
-    value: T,
-) -> Result<(), String> {
-    if slot.replace(value).is_some() {
-        Err(format!(
-            "{}:{line}: duplicate `{property}` property for `{entry_path}`",
-            source.display()
-        ))
-    } else {
-        Ok(())
+        Ok(self.specs.remove(reference))
     }
 }
 
-fn validate_partition_path(source: &Path, line: usize, path: &str) -> Result<(), String> {
-    if path == "." {
-        return Ok(());
-    }
-    let Some(relative) = path.strip_prefix("./") else {
-        return Err(format!(
-            "{}:{line}: partition path `{path}` is not relative to `.`",
-            source.display()
-        ));
-    };
-    if relative.is_empty()
-        || relative
-            .split('/')
-            .any(|component| component.is_empty() || matches!(component, "." | ".."))
-    {
-        return Err(format!(
-            "{}:{line}: invalid partition path `{path}`",
-            source.display()
-        ));
-    }
-    Ok(())
+fn parse<T: for<'de> Deserialize<'de>>(document: &consolespec_build::Document) -> T {
+    toml::from_str(&document.source).unwrap_or_else(|error| panic!("{}: {error}", document.name))
 }
 
-fn validate_filename(path: &Path, id: &str) {
+fn validate_filename(name: &str, id: &str) {
     assert_eq!(
-        path.file_stem().and_then(|value| value.to_str()),
+        name.strip_suffix(".toml"),
         Some(id),
-        "{}: filename must match document id",
-        path.display()
+        "{name}: filename must match document id"
     );
 }
 

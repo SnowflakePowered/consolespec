@@ -1,0 +1,30 @@
+[package]
+name = "consolespec-build"
+version = "0.0.1"
+edition = "2024"
+rust-version = "1.94"
+license = "MIT OR Apache-2.0"
+description = "Compressed definition archive shipped with and expanded by consolespec"
+homepage = "https://github.com/SnowflakePowered/consolespec"
+repository = "https://github.com/SnowflakePowered/consolespec"
+readme = "README.md"
+authors = ["Ronny Chan <ronny@ronnychan.ca>"]
+
+[features]
+default = []
+# Reading an archive needs nothing but a pure-Rust zstd decoder. Building one
+# from the definition tree pulls in the mtree parser and the reference zstd
+# encoder, so it stays behind a feature that only this repository turns on.
+compile = ["dep:consolespec-mtree", "dep:zstd"]
+
+[dependencies]
+ruzstd = "0.9"
+consolespec-mtree = { path = "../consolespec-mtree", version = "0.4.0", default-features = false, optional = true }
+zstd = { version = "0.13", optional = true }
+
+[[bin]]
+name = "consolespec-archive"
+required-features = ["compile"]
+
+[lints.rust]
+unsafe_op_in_unsafe_fn = "deny"

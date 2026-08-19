@@ -1,11 +1,8 @@
 [package]
 authors = [
-    "Arne Beer <contact@arne.beer>",
-    "David Runge <dvzrv@archlinux.org>",
-    "Jagoda Ślązak <j-g00da@archlinux.org>",
-    "Orhun Parmaksız <orhun@archlinux.org>",
+    "Ronny Chan <ronny@ronnychan.ca>"
 ]
-description = "Library and command line interface for the parsing and writing of ALPM-MTREE files"
+description = "Fork of alpm-mtree crate for use in building consolespec"
 edition = "2024"
 homepage = "https://github.com/SnowflakePowered/consolespec"
 keywords = ["alpm", "arch", "linux", "packaging"]
@@ -14,7 +11,7 @@ name = "consolespec-mtree"
 readme = "README.md"
 repository = "https://github.com/SnowflakePowered/consolespec"
 rust-version = "1.94"
-version = "0.3.3"
+version = "0.4.0"
 
 [[bin]]
 name = "consolespec-mtree"

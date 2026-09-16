@@ -20,9 +20,26 @@ inputs = ["A2600_JOYSTICK_CONTROLLER", "A2600_PADDLE_CONTROLLER", "A7800_PROLINE
 ports = 2
 
 [[bios]]
-name = "7800 BIOS (U).rom"
-md5 = ["0763f1ffb006ddbe32e52d497ee848ae"]
+name = ["7800 BIOS (E).rom"]
+md5 = "397bb566584be7b9764e7a68974c4263"
+sha1 = "5a140136a16d1d83e4ff32a19409ca376a8df874"
 
 [[bios]]
-name = "7800 BIOS (E).rom"
-md5 = ["397bb566584be7b9764e7a68974c4263"]
+name = ["7800 BIOS (U).rom"]
+md5 = "0763f1ffb006ddbe32e52d497ee848ae"
+sha1 = "d9d134bb6b36907c615a594cc7688f7bfcef5b43"
+
+[[bios]]
+name = ["7800OpenBIOS (2021-07-05)(Saarna, Mike)(CC0).bin"]
+md5 = "659607f14d1a0743c004d2b0bc0807fc"
+sha1 = "3b79b823fdeb249bdcc2a460a316b08b8ffba02b"
+
+[[bios]]
+name = ["Atari 7800 BIOS (1984)(Atari)(NTSC)[b].bin"]
+md5 = "b32526ea179dc9ab9b2e5f8a2662b298"
+sha1 = "ad3002b9385d1df8c0066a407362a1261180e76f"
+
+[[bios]]
+name = ["Atari 7800 High Score Cartridge BIOS (2000)(Atari - GCC - Gary Rubio).bin"]
+md5 = "c8a73288ab97226c52602204ab894286"
+sha1 = "a3af676991391a6dd716c79022d4947206b78164"

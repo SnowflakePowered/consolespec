@@ -30,17 +30,21 @@ class = [
 ]
 
 [[bios]]
-name = "cdi200.rom"
-md5 = ["2969341396aa61e0143dc2351aaa6ef6"]
+name = ["cdi200.rom", "Magnavox CD-i 200 BIOS (1991)(Microware - Philips)(US).bin"]
+md5 = "2969341396aa61e0143dc2351aaa6ef6"
+sha1 = "d961de803c89b3d1902d656ceb9ce7c02dccb40a"
 
 [[bios]]
-name = "cdi220b.rom"
-md5 = ["ac0d468be366779c9df633be98da250a"]
+name = ["cdi220b.rom", "Philips CD-i 220 F2 BIOS (1997)(Microware - Philips).bin"]
+md5 = "ac0d468be366779c9df633be98da250a"
+sha1 = "53360a1f21ddac952e95306ced64186a3fc0b93e"
 
 [[bios]]
-name = "cdi490a.rom"
-md5 = ["f0f4e0bf948930b50be8f97730463e34"]
+name = ["cdi490a.rom", "Philips CD-i 490 BIOS (1997)(Microware - Philips).bin"]
+md5 = "f0f4e0bf948930b50be8f97730463e34"
+sha1 = "f71be031a5dfa837de225081b2ddc8dcb74a0552"
 
 [[bios]]
-name = "cdi910.rom"
-md5 = ["b69d6553134ad69dfd5ce0ea709b02b5"]
+name = ["cdi910.rom", "Philips CD-i 910 BIOS (1991)(Microware - Philips)(US).bin"]
+md5 = "b69d6553134ad69dfd5ce0ea709b02b5"
+sha1 = "3fcdfa96f862b0cb7603fb6c2af84cac59527b05"

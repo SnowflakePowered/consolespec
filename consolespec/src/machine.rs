@@ -1,8 +1,9 @@
 //! Console machine specifications and their storage, firmware, and input-port metadata.
 
 use crate::{
-    ACCESSORIES, BIOS, BiosRecord, GROUPS, GroupRecord, MACHINE_LOOKUP, MACHINES, MachineRecord,
-    PARTITIONS, PartitionRecord, REGIONS, RegionRecord, STORAGE, StorageRecord, strings, text,
+    ACCESSORIES, BIOS, FirmwareRecord, GROUPS, GroupRecord, MACHINE_LOOKUP, MACHINES,
+    MachineRecord, PARTITIONS, PartitionRecord, REGIONS, RegionRecord, STORAGE, SYSUPDATES,
+    StorageRecord, strings, text,
 };
 #[cfg(feature = "partition-specs")]
 use crate::{
@@ -141,6 +142,14 @@ impl MachineSpec {
 
     pub fn bios(self) -> impl ExactSizeIterator<Item = Bios> {
         self.record().bios.get(BIOS).iter().map(Bios)
+    }
+
+    pub fn sysupdates(self) -> impl ExactSizeIterator<Item = SystemUpdate> {
+        self.record()
+            .sysupdates
+            .get(SYSUPDATES)
+            .iter()
+            .map(SystemUpdate)
     }
 
     pub fn all() -> impl ExactSizeIterator<Item = Self> {
@@ -463,21 +472,30 @@ impl Iterator for DirEntries {
 #[cfg(feature = "partition-specs")]
 impl ExactSizeIterator for DirEntries {}
 
-view!(Bios, BiosRecord);
-impl Bios {
-    pub fn name(self) -> &'static str {
-        text(self.0.name)
-    }
+view!(Bios, FirmwareRecord);
+view!(SystemUpdate, FirmwareRecord);
 
-    pub fn md5(self) -> impl ExactSizeIterator<Item = &'static str> {
-        strings(self.0.md5)
-    }
+macro_rules! firmware_accessors {
+    ($kind:ident) => {
+        impl $kind {
+            pub fn names(self) -> impl ExactSizeIterator<Item = &'static str> {
+                strings(self.0.names)
+            }
 
-    pub fn sha1(self) -> impl ExactSizeIterator<Item = &'static str> {
-        strings(self.0.sha1)
-    }
+            pub fn md5(self) -> Option<&'static str> {
+                self.0.md5.map(text)
+            }
 
-    pub fn sha256(self) -> impl ExactSizeIterator<Item = &'static str> {
-        strings(self.0.sha256)
-    }
+            pub fn sha1(self) -> Option<&'static str> {
+                self.0.sha1.map(text)
+            }
+
+            pub fn sha256(self) -> Option<&'static str> {
+                self.0.sha256.map(text)
+            }
+        }
+    };
 }
+
+firmware_accessors!(Bios);
+firmware_accessors!(SystemUpdate);

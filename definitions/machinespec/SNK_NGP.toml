@@ -20,5 +20,11 @@ inputs = ["NGP_LAYOUT"]
 ports = 1
 
 [[bios]]
-name = "bios.rom"
-md5 = ["d87d876c4391935c9d48ef352a3ff02d"]
+name = ["bios.rom", "SNK Neo-Geo Pocket BIOS (1998)(SNK)(en-ja).bin"]
+md5 = "d87d876c4391935c9d48ef352a3ff02d"
+sha1 = "2f6429b68446536d8b03f35d02f1e98beb6460a0"
+
+[[bios]]
+name = ["bios.rom", "SNK Neo-Geo Pocket BIOS (1998)(SNK)(en-ja)(beta).bin"]
+md5 = "18a3a190b6b6f47f801fc044b26e1794"
+sha1 = "50db9b1c267baf88a0d969dea4f72d92e46cdfaf"

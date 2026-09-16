@@ -26,25 +26,61 @@ inputs = ["SAT_CONTROLLER", "SAT_3D_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "saturn_bios.bin"
-md5 = ["af5828fdff51384f99b3c4926be27762"]
+name = ["hisaturn.bin"]
+md5 = "3ea3202e2634cb47cb90f3a05c015010"
+sha1 = "49d8493008fa715ca0c94d99817a5439d6f2c796"
 
 [[bios]]
-name = "sega_101.bin"
-md5 = ["85ec9ca47d8f6807718151cbcca8b964"]
+name = ["mpr-17933.bin"]
+md5 = "3240872c70984b6cbfda1586cab68dbe"
+sha1 = "faa8ea183a6d7bbe5d4e03bb1332519800d3fbc3"
 
 [[bios]]
-name = "mpr-17933.bin"
-md5 = ["3240872c70984b6cbfda1586cab68dbe"]
+name = ["mpr-18100.bin"]
+md5 = "cb2cebc1b6e573b7c44523d037edcd45"
+sha1 = "8a22710e09ce75f39625894366cafe503ed1942d"
 
 [[bios]]
-name = "mpr-18811-mx.ic1"
-md5 = ["255113ba943c92a54facd25a10fd780c"]
+name = ["mpr-18811-mx.ic1"]
+md5 = "255113ba943c92a54facd25a10fd780c"
+sha1 = "a67cd4f550751f8b91de2b8b74528ab4e0c11c77"
 
 [[bios]]
-name = "mpr-19367-mx.ic1"
-md5 = ["1cd19988d1d72a3e7caa0b73234c96b4"]
+name = ["mpr-19367-mx.ic1"]
+md5 = "1cd19988d1d72a3e7caa0b73234c96b4"
+sha1 = "56c1b93da6b660bf393fbf48ca47569000ef4047"
 
 [[bios]]
-name = "sega_100.bin"
-md5 = ["af5828fdff51384f99b3c4926be27762"]
+name = ["saturn_bios.bin", "sega_100.bin"]
+md5 = "af5828fdff51384f99b3c4926be27762"
+sha1 = "2b8cb4f87580683eb4d760e4ed210813d667f0a2"
+
+[[bios]]
+name = ["sega1003.bin"]
+md5 = "74570fed4d44b2682b560c8cd44b8b6a"
+sha1 = "7b23b53d62de0f29a23e423d0fe751dfb469c2fa"
+
+[[bios]]
+name = ["sega_100a.bin"]
+md5 = "f273555d7d91e8a5a6bfd9bcf066331c"
+sha1 = "3bb41feb82838ab9a35601ac666de5aacfd17a58"
+
+[[bios]]
+name = ["sega_101.bin"]
+md5 = "85ec9ca47d8f6807718151cbcca8b964"
+sha1 = "df94c5b4d47eb3cc404d88b33a8fda237eaf4720"
+
+[[bios]]
+name = ["vsaturn.bin"]
+md5 = "ac4e4b6522e200c0d23d371a8cecbfd3"
+sha1 = "4154e11959f3d5639b11d7902b3a393a99fb5776"
+
+[[bios]]
+name = ["Hitachi Hi-Saturn BIOS v1.02 (1995)(Hitachi - Sega)(JP)(M6)[h].bin"]
+md5 = "7ae047df81cd8e2eb86063164a93621c"
+sha1 = "735494ba1b8b9be4930c1c3d62dcc93fb52c71ae"
+
+[[bios]]
+name = ["Sega Saturn BIOS v1.01 (1995)(Sega)(JP)(M6)[h].bin"]
+md5 = "cb37ed680c55ed4a0cb3c7eb41497d4a"
+sha1 = "52d06f72aa979d67a2a96c6b860ba47d0c2dd444"

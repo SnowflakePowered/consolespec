@@ -20,5 +20,10 @@ inputs = ["A5200_CONTROLLER"]
 ports = 4
 
 [[bios]]
-name = "5200.rom"
-md5 = ["ee7b85f5ca384dcb1f284946f3c12ac4", "281f20ea4320404ec820fb7ec0693b38"]
+name = ["5200.rom"]
+md5 = "281f20ea4320404ec820fb7ec0693b38"
+sha1 = "6ad7a1e8c9fad486fbec9498cb48bf5bc3adc530"
+
+[[bios]]
+name = ["5200a.rom", "5200.rom"]
+md5 = "ee7b85f5ca384dcb1f284946f3c12ac4"

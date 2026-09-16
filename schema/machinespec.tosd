@@ -135,33 +135,26 @@ version = "1.0.0"
     # A BIOS or system file required by the machine.
     [types.biosType]
 
-        # Filename of the BIOS file.
+        # Accepted filenames for the BIOS file.
         [types.biosType.name]
-        type = "string"
+        type = "array"
+        itemtype = "string"
+        minlength = 1
 
-        # MD5 checksums of known-good copies of the file, one per accepted
-        # revision. Omitted when no checksum is known, e.g. for
-        # console-unique files.
+        # MD5 checksum of the file. Omitted when no checksum is known, e.g.
+        # for console-unique files.
         [types.biosType.md5]
-        type = "array"
-        itemtype = "types.md5Type"
-        minlength = 1
+        type = "types.md5Type"
         optional = true
 
-        # SHA-1 checksums of known-good copies of the file, one per accepted
-        # revision.
+        # SHA-1 checksum of the file.
         [types.biosType.sha1]
-        type = "array"
-        itemtype = "types.sha1Type"
-        minlength = 1
+        type = "types.sha1Type"
         optional = true
 
-        # SHA-256 checksums of known-good copies of the file, one per
-        # accepted revision.
+        # SHA-256 checksum of the file.
         [types.biosType.sha256]
-        type = "array"
-        itemtype = "types.sha256Type"
-        minlength = 1
+        type = "types.sha256Type"
         optional = true
 
     # An MD5 checksum.
@@ -304,6 +297,13 @@ optional = true
 
 # BIOS or system files required by the machine.
 [elements.bios]
+type = "array"
+arraytype = "table"
+itemtype = "types.biosType"
+optional = true
+
+# System-update packages distributed for the machine.
+[elements.sysupdate]
 type = "array"
 arraytype = "table"
 itemtype = "types.biosType"

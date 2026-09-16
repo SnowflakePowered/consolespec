@@ -26,5 +26,6 @@ inputs = ["GBA_LAYOUT"]
 ports = 1
 
 [[bios]]
-name = "gba_bios.bin"
-md5 = ["a860e8c0b6d573d191e4ec7db1b1e4f6"]
+name = ["gba_bios.bin"]
+md5 = "a860e8c0b6d573d191e4ec7db1b1e4f6"
+sha1 = "300c20df6731a33952ded8c436f7f186d25d3492"

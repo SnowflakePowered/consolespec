@@ -86,15 +86,15 @@ def check_inputspecs(root, report):
 
 
 def check_bios(doc, where, report):
-    for entry in doc.get('bios', []):
-        name = entry.get('name', '?')
-        lengths = {algo: len(entry[algo]) for algo in HEX if algo in entry}
-        if len(set(lengths.values())) > 1:
-            report.error(where, f'bios "{name}": checksum arrays differ in length {lengths}')
+    for entry in doc.get('bios', []) + doc.get('sysupdate', []):
+        names = entry.get('name', [])
+        if not isinstance(names, list) or not names or not all(isinstance(name, str) for name in names):
+            report.error(where, f'bios has invalid name array {names!r}')
         for algo, width in HEX.items():
-            for digest in entry.get(algo, []):
+            digest = entry.get(algo)
+            if digest is not None:
                 if not re.fullmatch(f'[a-f0-9]{{{width}}}', digest):
-                    report.error(where, f'bios "{name}": malformed {algo} "{digest}"')
+                    report.error(where, f'bios {names!r}: malformed {algo} "{digest}"')
 
 
 def check_machinespecs(root, input_ids, report):

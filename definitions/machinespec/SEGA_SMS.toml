@@ -26,13 +26,71 @@ inputs = ["SMS_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "bios_E.sms"
-md5 = ["840481177270d5642a14ca71ee72844c"]
+name = ["bios.sms", "bios_E.sms", "bios_U.sms"]
+md5 = "840481177270d5642a14ca71ee72844c"
+sha1 = "c315672807d8ddb8d91443729405c766dd95cae7"
 
 [[bios]]
-name = "bios_J.sms"
-md5 = ["24a519c53f67b00640d0048ef7089105"]
+name = ["bios_J.sms"]
+md5 = "24a519c53f67b00640d0048ef7089105"
+sha1 = "a8c1b39a2e41137835eda6a5de6d46dd9fadbaf2"
 
 [[bios]]
-name = "bios_U.sms"
-md5 = ["840481177270d5642a14ca71ee72844c"]
+name = ["Samsung Gam-Boy II BIOS (1986)(Samsung - Sega)(KR).bin"]
+md5 = "e49e63328c78fe3d24ae32bf903583e0"
+sha1 = "2feafd8f1c40fdf1bd5668f8c5c02e5560945b17"
+
+[[bios]]
+name = ["Sega Master System BIOS (1990)(Sega)(EU-US)(en).bin"]
+md5 = "e8b26871629b938887757a64798df6dc"
+sha1 = "3af7b66248d34eb26da40c92bf2fa4c73a46a051"
+
+[[bios]]
+name = ["Sega Master System BIOS (1991)(Sega)(EU)(en).bin"]
+md5 = "4187d96beaf36385e681a3cf3bd1663d"
+sha1 = "6aca0e3dffe461ba1cb11a86cd4caf5b97e1b8df"
+
+[[bios]]
+name = ["Sega Master System BIOS v1.0 (1986)(Sega)(US)(beta).bin"]
+md5 = "626b3453613e43d5a47908a8944ba583"
+sha1 = "29091ff60ef4c22b1ee17aa21e0e75bac6b36474"
+
+[[bios]]
+name = ["Sega Master System BIOS v1.3 (1986)(Sega)(EU-US)(en)[h].bin"]
+md5 = "4f47e48248f6498bff9018789f26c9f8"
+sha1 = "083ce08bff13b3530371c6021dc740f1cfc78e0c"
+
+[[bios]]
+name = ["Sega Master System BIOS v2.0 (1986)(Sega)(EU-US).bin"]
+md5 = "bdb34f2c471e5d0c358eeec621f9d029"
+sha1 = "fc7eb9141f38c92bf98d9134816f64b45e811112"
+
+[[bios]]
+name = ["Sega Master System BIOS v2.4 (1988)(Sega)(EU-US)(en).bin"]
+md5 = "02cbb2e348945c9ac41e37502a58ca76"
+sha1 = "9e179392cd416af14024d8f31c981d9ee9a64517"
+
+[[bios]]
+name = ["Sega Master System BIOS v3.4 (1988)(Sega)(EU-US)(en).bin"]
+md5 = "5cd8f62cd8786af0226e6d2248279338"
+sha1 = "51fd6d7990f62cd9d18c9ecfc62ed7936169107e"
+
+[[bios]]
+name = ["Sega Master System BIOS v4.4 (1988)(Sega)(EU-US)(en).bin"]
+md5 = "08b81aa6be18b92daef1b875deecf824"
+sha1 = "aa92ae576ca670b00855e278378d89e9f85e0351"
+
+[[bios]]
+name = ["Sega Master System BIOS vm404 (1986)(Sega)(US)(beta).bin"]
+md5 = "3153447d155fb8bfc66a4d1c41e399b9"
+sha1 = "4a06c8e66261611dce0305217c42138b71331701"
+
+[[bios]]
+name = ["Sega Master System Boot Loader v0.90 (2001)(Cornut, Omar)(PD).bin"]
+md5 = "bd136047c2c13a13ea32d1ac48d51c82"
+sha1 = "8d9824b736fc220dc4de1afb89397359533b1c58"
+
+[[bios]]
+name = ["Sega Master System Store Display Unit BIOS (1987)(Sega)(US).bin"]
+md5 = "b264bef9bda264ffe83afcebac21b81f"
+sha1 = "fc465122134d95363112eb51b9ab71db3576cefd"

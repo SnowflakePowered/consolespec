@@ -20,20 +20,164 @@ inputs = ["DUALSHOCK_CONTROLLER", "PSX_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "scph1001.bin"
-md5 = ["924e392ed05558ffdb115408c263dccf"]
+name = ["scph1000.bin"]
+md5 = "239665b1a3dade1b5a52c06338011044"
+sha1 = "343883a7b555646da8cee54aadd2795b6e7dd070"
 
 [[bios]]
-name = "scph5500.bin"
-md5 = ["8dd7d5296a650fac7319bce665a6a53c"]
+name = ["scph1001.bin"]
+md5 = "924e392ed05558ffdb115408c263dccf"
+sha1 = "10155d8d6e6e832d6ea66db9bc098321fb5e8ebf"
 
 [[bios]]
-name = "scph5501.bin"
-md5 = ["490f666e1afb15b7362b406ed1cea246"]
+name = ["scph1002.bin"]
+md5 = "54847e693405ffeb0359c6287434cbef"
+sha1 = "20b98f3d80f11cbf5a7bfd0779b0e63760ecc62c"
 
 [[bios]]
-name = "scph5502.bin"
-md5 = ["32736f17079d0b2b7024407c39bd3050"]
+name = ["scph100.bin"]
+md5 = "8abc1b549a4a80954addc48ef02c4521"
+sha1 = "339a48f4fcf63e10b5b867b8c93cfd40945faf6c"
+
+[[bios]]
+name = ["scph101.bin"]
+md5 = "6e3735ff4c7dc899ee98981385f6f3d0"
+sha1 = "dcffe16bd90a723499ad46c641424981338d8378"
+
+[[bios]]
+name = ["scph102A.bin"]
+md5 = "b10f5e0e3d9eb60e5159690680b1e774"
+sha1 = "beb0ac693c0dc26daf5665b3314db81480fa5c7c"
+
+[[bios]]
+name = ["scph102B.bin", "scph102C.bin"]
+md5 = "de93caec13d1a141a40a79f5c86168d6"
+sha1 = "dbc7339e5d85827c095764fc077b41f78fd2ecae"
+
+[[bios]]
+name = ["scph3000.bin"]
+md5 = "849515939161e62f6b866f6853006780"
+sha1 = "b06f4a861f74270be819aa2a07db8d0563a7cc4e"
+
+[[bios]]
+name = ["scph3500.bin"]
+md5 = "cba733ceeff5aef5c32254f1d617fa62"
+sha1 = "e38466a4ba8005fba7e9e3c7b9efeba7205bee3f"
+
+[[bios]]
+name = ["scph5000.bin"]
+md5 = "eb201d2d98251a598af467d4347bb62f"
+sha1 = "e340db2696274dda5fdc25e434a914db71e8b02b"
+
+[[bios]]
+name = ["scph5500.bin"]
+md5 = "8dd7d5296a650fac7319bce665a6a53c"
+sha1 = "b05def971d8ec59f346f2d9ac21fb742e3eb6917"
+
+[[bios]]
+name = ["scph5501.bin", "scph7003.bin"]
+md5 = "490f666e1afb15b7362b406ed1cea246"
+sha1 = "0555c6fae8906f3f09baf5988f00e55f88e9f30b"
+
+[[bios]]
+name = ["scph5502.bin", "scph5552.bin"]
+md5 = "32736f17079d0b2b7024407c39bd3050"
+sha1 = "f6bc2d1f5eb6593de7d089c425ac681d6fffd3f0"
+
+[[bios]]
+name = ["scph7001.bin"]
+md5 = "1e68c231d0896b7eadcad1d7d8e76129"
+sha1 = "14df4f6c1e367ce097c11deae21566b4fe5647a9"
+
+[[bios]]
+name = ["scph7002.bin", "scph7502.bin", "scph9002(7502).bin"]
+md5 = "b9d9a0286c33dc6b7237bb13cd46fdee"
+sha1 = "8d5de56a79954f29e9006929ba3fed9b6a418c1d"
+
+[[bios]]
+name = ["psxonpsp660.bin"]
+md5 = "c53ca5908936d412331790f4426c6c33"
+sha1 = "96880d1ca92a016ff054be5159bb06fe03cb4e14"
+
+[[bios]]
+name = ["ps1_rom.bin"]
+md5 = "81bbe60ba7a3d1cea1d48c14cbcc647b"
+sha1 = "c40146361eb8cf670b19fdc9759190257803cab7"
+
+[[bios]]
+name = ["Bleem! Bios vB5.1 (2000)(Bleem! - Linden, Randy).bin"]
+md5 = "714f7c5adceb3f7ec4347c5efa48a3aa"
+sha1 = "a220a6fcf8ed28e4eb37bbddf16ec6a1543b977b"
+
+[[bios]]
+name = ["Sony PlayStation BIOS v5.0 (2000-09-02)(Sony)(EU)[PlayStation Bios found in PS2].bin"]
+md5 = "71f50ef4f4e17c163c78908e16244f7d"
+sha1 = "91cb6e3f9871454a0127ecb928ed7f1237742ea1"
+
+[[bios]]
+name = ["Sony PlayStation BIOS v5.0 (2000-10-27)(Sony)(JP)[PlayStation Bios found in PS2].bin"]
+md5 = "d8f485717a5237285e4d7c5f881b7f32"
+sha1 = "d7d6be084f51354bc951d8fa2d8d912aa70abc5e"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1001 BIOS v2.0 (1995-05-07)(Sony)(US).bin"]
+md5 = "dc2b9bf8da62ec93e868cfd29f0d067d"
+sha1 = "649895efd79d14790eabb362e94eb0622093dfb9"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1100 BIOS v2.2 (1996-03-06)(Sony)(JP).bin"]
+md5 = "ca5cfc321f916756e3f0effbfaeba13b"
+sha1 = "73107d468fc7cb1d2c5b18b269715dd889ecef06"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1101 BIOS v2.1 (1995-07-17)(Sony)(US).bin"]
+md5 = "da27e8b6dab242d8f91a9b25d80c63b8"
+sha1 = "ca7af30b50d9756cbd764640126c454cff658479"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1102 & SCPH-1002 BIOS v2.1 (1995-07-17)(Sony).bin"]
+md5 = "417b34706319da7cf001e76e40136c23"
+sha1 = "76cf6b1b2a7c571a6ad07f2bac0db6cd8f71e2cc"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1200, DTL-H3000 & SCPH-5000 BIOS v2.2 (1995-12-04)(Sony)(JP).bin"]
+md5 = "57a06303dfa9cf9351222dfcbb4a29d9"
+sha1 = "ffa7f9a7fb19d773a0c3985a541c8e5623d2c30d"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1200, DTL-H3000 & SCPH-5000 BIOS v2.2 (1995-12-04)(Sony)(JP)[h].bin"]
+md5 = "1eefa9775e3ac04000a4f81c922d96dc"
+sha1 = "81622ace63e25696a5d884692e554d350ddf57a6"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1202, DTL-H3002 & SCPH-1002 BIOS v2.2 (1995-12-04)(Sony).bin"]
+md5 = "e2110b8a2b97a8e0b857a45d32f7e187"
+sha1 = "b6a11579caef3875504fcf3831b8e3922746df2c"
+
+[[bios]]
+name = ["Sony PlayStation DTL-H1202, DTL-H3002 & SCPH-1002 BIOS v2.2 (1995-12-04)(Sony)[o][b].bin"]
+md5 = "81328b966e6dcf7ea1e32e55e1c104bb"
+sha1 = "15c94da3cc5a38a582429575af4198c487fe893c"
+
+[[bios]]
+name = ["Sony PlayStation SCPH-5502 & SCPH-5552 BIOS v3.0 (1997-01-06)(Sony)[b].bin"]
+md5 = "e56ec1b027e2fe8a49217d9678f7f6bb"
+sha1 = "f8de9325fc36fcfa4b29124d291c9251094f2e54"
+
+[[bios]]
+name = ["Sony PlayStation SCPH-7000, SCPH-7500 & SCPH-9000 BIOS v4.0 (1997-08-18)(Sony)(JP).bin"]
+md5 = "8e4c14f567745eff2f0408c8129f72a6"
+sha1 = "77b10118d21ac7ffa9b35f9c4fd814da240eb3e9"
+
+[[bios]]
+name = ["Sony PlayStation SCPH-7000, SCPH-7500 & SCPH-9000 BIOS v4.1 (1997-11-14)(Sony).bin"]
+md5 = "b84be139db3ee6cbd075630aa20a6553"
+sha1 = "1b0dbdb23da9dc0776aac58d0755dc80fea20975"
+
+[[bios]]
+name = ["Sony PSone SCPH-102 BIOS v4.4 (2000-03-24)(Sony)[a].bin"]
+md5 = "9a09ab7e49b422c007e6d54d7c49b965"
+sha1 = "7771d6e90980408f753891648685def6dd42ef6d"
 
 [storage]
 devices = ["card1", "card2"]

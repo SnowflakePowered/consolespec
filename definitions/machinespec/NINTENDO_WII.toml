@@ -212,9 +212,9 @@ name = "GameCube Memory Card B"
 raw = true
 user = true
 [[bios]]
-name = "dsp_rom.bin"
-md5 = ["23645d446729a166ab3a9aaba2f5fba5"]
+name = ["dsp_rom.bin"]
+md5 = "23645d446729a166ab3a9aaba2f5fba5"
 
 [[bios]]
-name = "dsp_coef.bin"
-md5 = ["9a6514b88003c9c47e334de654ec550b"]
+name = ["dsp_coef.bin"]
+md5 = "9a6514b88003c9c47e334de654ec550b"

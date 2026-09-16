@@ -20,8 +20,54 @@ inputs = ["GAMECUBE_CONTROLLER"]
 ports = 4
 
 [[bios]]
-name = "IPL.bin"
-md5 = ["fc924a7c879b661abc37cec4f018fdf3", "0cdda509e2da83c85bfe423dd87346cc", "db92574caab77a7ec99d4605fd6f2450"]
+name = ["gc-dvd-20010608.bin"]
+md5 = "561532ad496f644897952d2cef5bb431"
+sha1 = "27872c201e87b06a19bf85d36c796ef383f8d52d"
+
+[[bios]]
+name = ["gc-dvd-20010831.bin"]
+md5 = "b953eb1a8fc9922b3f7051c1cdc451f1"
+sha1 = "ae7233cae8f94749796e0b740d6021e3b00a8926"
+
+[[bios]]
+name = ["gc-dvd-20020402.bin"]
+md5 = "413154dd0e2c824c9b18b807fd03ec4e"
+sha1 = "691e46213d8428befdf568157e670b971ab94e1d"
+
+[[bios]]
+name = ["gc-dvd-20020823.bin"]
+md5 = "c03f6bbaf644eb9b3ee261dbe199eb42"
+sha1 = "2faaf92bcaffe675f54f7249d30f3791507e22ab"
+
+[[bios]]
+name = ["gc-ntsc-10.bin", "IPL.bin"]
+md5 = "fc924a7c879b661abc37cec4f018fdf3"
+sha1 = "a1837968288253ed541f2b11440b68f5a9b33875"
+
+[[bios]]
+name = ["gc-ntsc-11.bin"]
+md5 = "019e39822a9ca3029124f74dd4d55ac4"
+sha1 = "239eacd86527ff9a75aeb7282da65797baeef010"
+
+[[bios]]
+name = ["gc-ntsc-12.bin"]
+md5 = "b17148254a5799684c7d783206504926"
+sha1 = "ef9194ab4804aa0aa8540d846caf291b28331165"
+
+[[bios]]
+name = ["gc-pal-10.bin", "IPL.bin"]
+md5 = "0cdda509e2da83c85bfe423dd87346cc"
+sha1 = "f27c63e5394e2fd1606f70df004c4fc2d6027700"
+
+[[bios]]
+name = ["gc-pal-11.bin"]
+md5 = "339848a0b7c2124cf155276c1e79cbd0"
+sha1 = "f3cd0c7c61cbcefa85e7de3aff4cfa50bc508714"
+
+[[bios]]
+name = ["gc-pal-12.bin", "IPL.bin"]
+md5 = "db92574caab77a7ec99d4605fd6f2450"
+sha1 = "80b8744ff5e43585392f55546bd03a673d11ef5f"
 
 [storage]
 devices = ["slotA", "slotB"]

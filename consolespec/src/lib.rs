@@ -170,6 +170,7 @@ struct MachineRecord {
     accessories: Slice,
     storage: Slice,
     bios: Slice,
+    sysupdates: Slice,
 }
 
 #[derive(Clone, Copy)]
@@ -207,11 +208,11 @@ struct PartitionSpecRecord {
 }
 
 #[derive(Clone, Copy)]
-struct BiosRecord {
-    name: StrId,
-    md5: Slice,
-    sha1: Slice,
-    sha256: Slice,
+struct FirmwareRecord {
+    names: Slice,
+    md5: Option<StrId>,
+    sha1: Option<StrId>,
+    sha256: Option<StrId>,
 }
 
 include!(concat!(env!("OUT_DIR"), "/database.rs"));

@@ -20,17 +20,41 @@ inputs = ["INTELLIVISION_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "exec.bin"
-md5 = ["62e761035cb657903761800f4437b8af"]
+name = ["exec.bin"]
+md5 = "62e761035cb657903761800f4437b8af"
+sha1 = "5a65b922b562cb1f57dab51b73151283f0e20c7a"
 
 [[bios]]
-name = "grom.bin"
-md5 = ["0cd5946c6473e42e8e4c2137785e427f"]
+name = ["grom.bin"]
+md5 = "0cd5946c6473e42e8e4c2137785e427f"
+sha1 = "f9608bb4ad1cfe3640d02844c7ad8e0bcd974917"
 
 [[bios]]
-name = "ivoice.bin"
-md5 = ["d5530f74681ec6e0f282dab42e6b1c5f"]
+name = ["Entertainment Computer System's EXEC-BASIC ROM, The (1978)(Mattel).bin", "ecs.bin"]
+md5 = "2e72a9a2b897d330a35c8b07a6146c52"
+sha1 = "b7ccb38b881d7f8426cd6f1f8a7aabbd31784fc5"
 
 [[bios]]
-name = "ecs.bin"
-md5 = ["2e72a9a2b897d330a35c8b07a6146c52"]
+name = ["IntelliVoice BIOS (1981)(Mattel).bin", "ivoice.bin"]
+md5 = "d5530f74681ec6e0f282dab42e6b1c5f"
+sha1 = "618563e512ff5665183664f52270fa9606c9d289"
+
+[[bios]]
+name = ["Sears Super Video Arcade BIOS (1979)(Mattel)(US).bin"]
+md5 = "8590d338a1bb5e0feed3e8a8cd493035"
+sha1 = "834339de056d42a35571cae7fd5b04d1344001e9"
+
+[[bios]]
+name = ["Entertainment Computer System (19xx)(Mattel Electronics).20"]
+md5 = "52f0bbbaff9ca21e619eb0ad5d85f9fb"
+sha1 = "083a3e7405b8f8b4b8a5003ca9c31b8d824b535c"
+
+[[bios]]
+name = ["Entertainment Computer System (19xx)(Mattel Electronics).70"]
+md5 = "83efe70ebb42e3ded46ac76d851838a0"
+sha1 = "eda44a8476fdada1ae90fba0d0287611e2efa074"
+
+[[bios]]
+name = ["Entertainment Computer System (19xx)(Mattel Electronics).e0"]
+md5 = "ee2d7856f667ed66430be88871d86c39"
+sha1 = "b3c14955f56c57e6f0d8fbb695771946cfcf6582"

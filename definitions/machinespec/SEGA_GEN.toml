@@ -29,5 +29,61 @@ inputs = ["GEN6_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "Genesis_OS_ROM.bin"
-md5 = ["d3293ebaaa7f4eb2a6766b68a0fb4609", "45e298905a08f9cfb38fd504cd6dbc84"]
+name = ["areplay.bin"]
+md5 = "a0028b3043f9d59ceeb03da5b073b30d"
+sha1 = "1e0f246826be4ebc7b99bb3f9de7f1de347122e5"
+
+[[bios]]
+name = ["bios_MD.bin", "Genesis_OS_ROM.bin"]
+md5 = "d3293ebaaa7f4eb2a6766b68a0fb4609"
+sha1 = "3f50b76b0529db7f79c396b5e808cc0786ffc311"
+
+[[bios]]
+name = ["ggenie.bin"]
+md5 = "e8af7fe115a75c849f6aab3701e7799b"
+sha1 = "937e1878ebd104f489e6bdbc410a184f79f1144a"
+
+[[bios]]
+name = ["rom.db"]
+md5 = "ff4a3572475236e859e3e9ac5c87d1f1"
+sha1 = "02c287d10da6de579af7a4ce73b134bbdf23c970"
+
+[[bios]]
+name = ["sk.bin"]
+md5 = "4ea493ea4e9f6c9ebfccbdb15110367e"
+sha1 = "88d6499d874dcb5721ff58d76fe1b9af811192e3"
+
+[[bios]]
+name = ["sk2chip.bin"]
+md5 = "b4e76e416b887f4e7413ba76fa735f16"
+sha1 = "70429f1d80503a0632f603bf762fe0bbaa881d22"
+
+[[bios]]
+name = ["Everdrive OS v34 (20xx)(KRIKzz).bin"]
+md5 = "29be996722960760660414434cd15fd1"
+sha1 = "0bfd3dba3ea8c266a9d18bbb5c95cd92be868d83"
+
+[[bios]]
+name = ["Everdrive OS v35 (20xx)(KRIKzz).bin"]
+md5 = "ccba535bd2b41597f7e93bcf3777a1df"
+sha1 = "05ff9debbb0c6a2e446243dbb58b192ec901af7e"
+
+[[bios]]
+name = ["Game Genie Rev 0 (1992)(Codemasters - Galoob).bin"]
+md5 = "b5d5ff1147036b06944b4d2cac2dd1e1"
+sha1 = "ea4b0418d90bc47996f6788ad455391d07cad6cc"
+
+[[bios]]
+name = ["Game Genie Rev 0 (1992)(Codemasters - Galoob)[b2].bin"]
+md5 = "82cb033ee7b8e9a9ba83b1c53528972d"
+sha1 = "caa6f0e3878a86614c27fecc6d098d1715370fec"
+
+[[bios]]
+name = ["Game Genie Rev 0 (1992)(Codemasters - Galoob)[b].bin"]
+md5 = "e107d0e9cef99001f4789500f991871a"
+sha1 = "73e44389eba2aef5bf5f4133e13327500db4b770"
+
+[[bios]]
+name = ["Sega Genesis BIOS (1990)(Sega)(US).bin", "Genesis_OS_ROM.bin"]
+md5 = "45e298905a08f9cfb38fd504cd6dbc84"
+sha1 = "453fca4e1db6fae4a10657c4451bccbb71955628"

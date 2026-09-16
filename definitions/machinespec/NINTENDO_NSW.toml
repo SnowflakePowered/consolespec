@@ -25,32 +25,27 @@ groups = ["controller"]
 inputs = ["GAMECUBE_CONTROLLER", "SWITCH_JOYCONS_CONTROLLER", "SWITCH_LEFT_JOYCON_CONTROLLER", "SWITCH_PRO_CONTROLLER", "SWITCH_RIGHT_JOYCON_CONTROLLER", "WIIU_PRO_CONTROLLER"]
 ports = 8
 
-[[bios]]
-name = "console.keys"
 
 [[bios]]
-name = "prod.keys"
+name = ["PRODINFO.bin"]
 
 [[bios]]
-name = "PRODINFO.bin"
+name = ["BCPKG2-1-Normal-Main.bin"]
 
 [[bios]]
-name = "BCPKG2-1-Normal-Main.bin"
+name = ["fuses.bin"]
 
 [[bios]]
-name = "fuses.bin"
+name = ["BOOT0"]
 
 [[bios]]
-name = "BOOT0"
+name = ["BOOT1"]
 
 [[bios]]
-name = "BOOT1"
+name = ["secmon.bin"]
 
 [[bios]]
-name = "secmon.bin"
-
-[[bios]]
-name = "pkg1_decr.bin"
+name = ["pkg1_decr.bin"]
 
 [storage]
 devices = ["emmc", "sd"]

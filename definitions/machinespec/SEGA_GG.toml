@@ -19,5 +19,6 @@ model-number = ["2110", "2110K", "2110G"]
 model-number = ["2110-50", "MK-2110-50"]
 
 [[bios]]
-name = "bios.gg"
-md5 = ["672e104c3be3a238301aceffc3b23fd6"]
+name = ["bios.gg"]
+md5 = "672e104c3be3a238301aceffc3b23fd6"
+sha1 = "914aa165e3d879f060be77870d345b60cfeb4ede"

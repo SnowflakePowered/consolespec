@@ -20,9 +20,26 @@ inputs = ["NDS_LAYOUT"]
 ports = 1
 
 [[bios]]
-name = "biosnds7.rom"
-md5 = ["df692a80a5b1bc90728bc3dfc76cd948"]
+name = ["bios7.bin", "biosnds7.rom"]
+md5 = "df692a80a5b1bc90728bc3dfc76cd948"
+sha1 = "24f67bdea115a2c847c8813a262502ee1607b7df"
 
 [[bios]]
-name = "biosnds9.rom"
-md5 = ["a392174eb3e572fed6447e956bde4b25"]
+name = ["bios9.bin", "biosnds9.rom"]
+md5 = "a392174eb3e572fed6447e956bde4b25"
+sha1 = "bfaac75f101c135e32e2aaf541de6b1be4c8c62d"
+
+[[bios]]
+name = ["firmware.bin"]
+md5 = "e45033d9b0fa6b0de071292bba7c9d13"
+sha1 = "cfe072921ee3fb93f688743f8beef89043c3e9ad"
+
+[[bios]]
+name = ["Nintendo DS Lite Firmware (2006)(Nintendo)(EU)(en).bin"]
+md5 = "37cc17d8004667df7a360e50c0d4c6e6"
+sha1 = "e8cbf864be9a8d077ceccd2e7059b6d515fce672"
+
+[[bios]]
+name = ["FW0802D6.BIN"]
+md5 = "10869044137cc5dd352e46fc8efcf287"
+sha1 = "d51be561a6538941f8f43d6db9cdb964a383080a"

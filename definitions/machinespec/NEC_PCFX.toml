@@ -19,21 +19,26 @@ inputs = ["PCFX_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "pcfx.rom"
-md5 = ["08e36edbea28a017f79f8d4f7ff9b6d7"]
+name = ["fx-scsi.rom"]
+md5 = "430e9745f9235c515bc8e652d6ca3004"
+sha1 = "65482a23ac5c10a6095aee1db5824cca54ead6e5"
 
 [[bios]]
-name = "fx-scsi.rom"
-md5 = ["430e9745f9235c515bc8e652d6ca3004"]
+name = ["pcfx.rom", "pcfxbios.bin", "pcfx.bios"]
+md5 = "08e36edbea28a017f79f8d4f7ff9b6d7"
+sha1 = "1a77fd83e337f906aecab27a1604db064cf10074"
 
 [[bios]]
-name = "pcfxbios.bin"
-md5 = ["08e36edbea28a017f79f8d4f7ff9b6d7"]
+name = ["pcfxga.rom"]
+md5 = "5885bc9a64bf80d4530b9b9b978ff587"
+sha1 = "a9372202a5db302064c994fcda9b24d29bb1b41c"
 
 [[bios]]
-name = "pcfx.bios"
-md5 = ["08e36edbea28a017f79f8d4f7ff9b6d7"]
+name = ["pcfxv101.bin"]
+md5 = "e2fb7c7220e3a7838c2dd7e401a7f3d8"
+sha1 = "8b662f7548078be52a871565e19511ccca28c5c8"
 
 [[bios]]
-name = "pcfxv101.bin"
-md5 = ["e2fb7c7220e3a7838c2dd7e401a7f3d8"]
+name = ["NEC PC-FXGA BIOS (1994)(NEC)(JP)[b].bin"]
+md5 = "1c8996258dfe6c1a07df305f0a3e5758"
+sha1 = "0534726e90a52a4651c4c9041c619554010b83f1"

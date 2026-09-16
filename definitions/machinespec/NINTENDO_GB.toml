@@ -21,5 +21,36 @@ inputs = ["GB_LAYOUT"]
 ports = 1
 
 [[bios]]
-name = "bios.bin"
-md5 = ["a8f84a0ac44da5d3f0ee19f9cea80a8c", "71a378e71ff30b2d8a1f02bf5c7896aa", "32fbbd84168d3482956eb3c5051637f5"]
+name = ["dmg_boot.bin", "gb_bios.bin", "bios.bin"]
+md5 = "32fbbd84168d3482956eb3c5051637f5"
+sha1 = "4ed31ec6b0b175bb109c0eb5fd3d193da823339f"
+
+[[bios]]
+name = ["Game Genie BIOS v2.1 (19xx)(-)(US).gb"]
+md5 = "49e512bb8b0dcc6a8d26d873623d0590"
+sha1 = "50e2ceb9b83f953d304d5bc6a25065bafad89490"
+
+[[bios]]
+name = ["GameShark BIOS (19xx)(-)(US)[b].gb"]
+md5 = "6ae8105f21bf0b80a6f64fabc4094c4b"
+sha1 = "09a6dae5e5faae1c4b5cf20e1b913b1c5e72297e"
+
+[[bios]]
+name = ["Maxstation Boot ROM (19xx)(Gang Feng)(TW)[p].gb"]
+md5 = "77a7021db824010a678791f6d062943d"
+sha1 = "1776bd61b8db71fc4c4d4b5feab4a21b3c1fd95b"
+
+[[bios]]
+name = ["Nintendo Game Boy Boot ROM (1989-04-21)(Nintendo)(JP).gb", "bios.bin"]
+md5 = "a8f84a0ac44da5d3f0ee19f9cea80a8c"
+sha1 = "8bd501e31921e9601788316dbd3ce9833a97bcbc"
+
+[[bios]]
+name = ["Nintendo Game Boy Pocket Boot ROM (1996-06-21)(Nintendo).gb", "bios.bin"]
+md5 = "71a378e71ff30b2d8a1f02bf5c7896aa"
+sha1 = "4e68f9da03c310e84c523654b9026e51f26ce7f0"
+
+[[bios]]
+name = ["Pro Action Replay BIOS (19xx)(-)(EU).gb"]
+md5 = "b7477b7050cc569b4c02a5ae60e5f24e"
+sha1 = "cc691eeef80423bb55b442cc1d9e5abd8bb80148"

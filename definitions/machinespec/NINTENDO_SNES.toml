@@ -34,73 +34,141 @@ ports = 2
 accessories = true
 
 [[bios]]
-name = "cx4.data.rom"
-md5 = ["037ac4296b6b6a5c47c440188d3c72e3"]
+name = ["SGB1.sfc", "sgb1.program.rom"]
+md5 = "b15ddb15721c657d82c5bab6db982ee9"
+sha1 = "973e10840db683cf3faf61bd443090786b3a9f04"
 
 [[bios]]
-name = "dsp1.data.rom"
-md5 = ["3d81b45fa0c2aa8b852dfb1ece7c0971"]
+name = ["SGB2.sfc", "sgb2.program.rom"]
+md5 = "8ecd73eb4edf7ed7e81aef1be80031d5"
+sha1 = "e5b2922ca137051059e4269b236d07a22c07bc84"
 
 [[bios]]
-name = "dsp1.program.rom"
-md5 = ["ae209fbe789fbf11a48aea5ab1197321"]
+name = ["sgb1.boot.rom", "sgb_bios.bin", "sgb.boot.rom"]
+md5 = "d574d4f9c12f305074798f54c091a8b4"
+sha1 = "aa2f50a77dfb4823da96ba99309085a3c6278515"
 
 [[bios]]
-name = "dsp1b.data.rom"
-md5 = ["1e3f568634a7d8284020dddc0ae905bc"]
+name = ["sgb2.boot.rom", "sgb2_bios.bin"]
+md5 = "e0430bca9925fb9882148fd2dc2418c1"
+sha1 = "93407ea10d2f30ab96a314d8eca44fe160aea734"
 
 [[bios]]
-name = "dsp1b.program.rom"
-md5 = ["d10f446888e097cbf500f3f663cf4f6d"]
+name = ["cx4.data.rom"]
+md5 = "037ac4296b6b6a5c47c440188d3c72e3"
+sha1 = "a002f4efba42775a31185d443f3ed1790b0e949a"
 
 [[bios]]
-name = "dsp2.data.rom"
-md5 = ["e9417e29223b139c3c4b635a2a3b8744"]
+name = ["dsp1.data.rom"]
+md5 = "3d81b45fa0c2aa8b852dfb1ece7c0971"
+sha1 = "589c158685fe3cf88c7ca77cb6083f0e4de9c7c3"
 
 [[bios]]
-name = "dsp2.program.rom"
-md5 = ["aa6e5922a3ed5ded54f24247c11143c5"]
+name = ["dsp1.program.rom"]
+md5 = "ae209fbe789fbf11a48aea5ab1197321"
+sha1 = "c5d283604beebb3d832f15a0b3fc60d10dd4bddc"
 
 [[bios]]
-name = "dsp3.data.rom"
-md5 = ["0a81210c0a940b997dd9843281008ee6"]
+name = ["dsp1b.data.rom"]
+md5 = "1e3f568634a7d8284020dddc0ae905bc"
+sha1 = "19d5e822fe15ee6942e9921c3d8275a761a969df"
 
 [[bios]]
-name = "dsp3.program.rom"
-md5 = ["d99ca4562818d49cee1f242705bba6f8"]
+name = ["dsp1b.program.rom"]
+md5 = "d10f446888e097cbf500f3f663cf4f6d"
+sha1 = "03c6c0bdb40846c42aeff6b716e1ea0e001c3ae3"
 
 [[bios]]
-name = "dsp4.data.rom"
-md5 = ["ee4990879eb68e3cbca239c5bc20303d"]
+name = ["dsp2.data.rom"]
+md5 = "e9417e29223b139c3c4b635a2a3b8744"
+sha1 = "aed9167cc2897cd8d0432f0b8f713fabbc48f5c4"
 
 [[bios]]
-name = "dsp4.program.rom"
-md5 = ["a151023b948b90ffc23a5b594bb6fef2"]
+name = ["dsp2.program.rom"]
+md5 = "aa6e5922a3ed5ded54f24247c11143c5"
+sha1 = "51a274955ef493cfcf2efad7e2ee54738c81eb15"
 
 [[bios]]
-name = "sgb.boot.rom"
-md5 = ["d574d4f9c12f305074798f54c091a8b4"]
+name = ["dsp3.data.rom"]
+md5 = "0a81210c0a940b997dd9843281008ee6"
+sha1 = "e7ec3da203a4edba2b17c06d9384787304a025a0"
 
 [[bios]]
-name = "st010.data.rom"
-md5 = ["254d70762b6f59f99c27c395aba7d07d"]
+name = ["dsp3.program.rom"]
+md5 = "d99ca4562818d49cee1f242705bba6f8"
+sha1 = "11b7ba3501a8542af4cdfdbd1c9702ae0a0e3fae"
 
 [[bios]]
-name = "st010.program.rom"
-md5 = ["1d70019179a59a566a0bb5d3f2845544"]
+name = ["dsp4.data.rom"]
+md5 = "ee4990879eb68e3cbca239c5bc20303d"
+sha1 = "8f2ffb9c1702aa2f76191e98f3fef43f73e5aab7"
 
 [[bios]]
-name = "st011.data.rom"
-md5 = ["10bd3f4aa949737ab9836512c35bcc29"]
+name = ["dsp4.program.rom"]
+md5 = "a151023b948b90ffc23a5b594bb6fef2"
+sha1 = "1abee528a59238fd5668fdcffd598d079cb056c2"
 
 [[bios]]
-name = "st011.program.rom"
-md5 = ["95222ebf1c0c2990bcf25db43743f032"]
+name = ["st010.data.rom"]
+md5 = "254d70762b6f59f99c27c395aba7d07d"
+sha1 = "bd116501ec41c438fff210fd03233c6c9d15a514"
 
 [[bios]]
-name = "st018.data.rom"
-md5 = ["49c898b60d0f15e90d0ba780dd12f366"]
+name = ["st010.program.rom"]
+md5 = "1d70019179a59a566a0bb5d3f2845544"
+sha1 = "2d0f34074ed3c6dfd61f767ee8b18e699b9769ac"
 
 [[bios]]
-name = "st018.program.rom"
-md5 = ["dda40ccd57390c96e49d30a041f9a9e7"]
+name = ["st011.data.rom"]
+md5 = "10bd3f4aa949737ab9836512c35bcc29"
+sha1 = "798ab84110ca93a6e73a540f4146d21f8d9e1442"
+
+[[bios]]
+name = ["st011.program.rom"]
+md5 = "95222ebf1c0c2990bcf25db43743f032"
+sha1 = "375eca92592621e83881f3a9d7fd5ea3e5b306dc"
+
+[[bios]]
+name = ["st018.data.rom"]
+md5 = "49c898b60d0f15e90d0ba780dd12f366"
+sha1 = "b19c0f8f207d62fdabf4bf71442826063bccc626"
+
+[[bios]]
+name = ["st018.program.rom"]
+md5 = "dda40ccd57390c96e49d30a041f9a9e7"
+sha1 = "388e3721b94cd074d6ba0eca8616523d2118a6c3"
+
+[[bios]]
+name = ["Game Genie (1992)(Codemasters - Galoob).bin"]
+md5 = "9b6636b1908d672244bd687f0b388465"
+sha1 = "6d96c3556b8eef50d5a49a807f246cba1ff48b6b"
+
+[[bios]]
+name = ["Game Genie (1992)(Codemasters - Galoob)[a].bin"]
+md5 = "a7d74a21ebe4d2fafe0e9b8bb089d3e0"
+sha1 = "81a5c4667e3021094edf3c82b2e9d1e453f547b3"
+
+[[bios]]
+name = ["Game Genie (1992)(Codemasters - Galoob)[b2].bin"]
+md5 = "ca69b98fb4249fbceba565e1fc9df8c6"
+sha1 = "413694f8c8e0b4df86724321d3406a51191cc131"
+
+[[bios]]
+name = ["Game Genie (1992)(Codemasters - Galoob)[b3].bin"]
+md5 = "884ebffea729fe93c6cafd741c0f3977"
+sha1 = "8b972fa89b1cdd271e9ab0f2ef4e263bc5c17817"
+
+[[bios]]
+name = ["Game Genie (1992)(Codemasters - Galoob)[b4].bin"]
+md5 = "1df4b1241ed86e0bbb37d99be8c73197"
+sha1 = "89e99e84d29fe10b2e03f1c8331fe0d98668af75"
+
+[[bios]]
+name = ["Game Genie (1992)(Codemasters - Galoob)[b].bin"]
+md5 = "7f7db068a91611af339d0544c48b6453"
+sha1 = "a8c1b147372f90b2032f753ae28187a1477f6189"
+
+[[bios]]
+name = ["Game Genie v2.0 (1992)(Codemasters - Galoob).bin"]
+md5 = "e5213200466a1c7a3cafeb42e773da37"
+sha1 = "58dd143049c5a1527975d64c9773b605aca307c3"

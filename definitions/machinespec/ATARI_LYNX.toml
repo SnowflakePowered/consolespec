@@ -23,5 +23,11 @@ inputs = ["LYNX_LAYOUT"]
 ports = 1
 
 [[bios]]
-name = "lynxboot.img"
-md5 = ["fcd403db69f54290b51035d82f835e7b"]
+name = ["lynxboot.img"]
+md5 = "fcd403db69f54290b51035d82f835e7b"
+sha1 = "e4ed47fae31693e016b081c6bda48da5b70d7ccb"
+
+[[bios]]
+name = ["Atari Lynx BIOS (1989)(Atari).bin"]
+md5 = "1a7896e1fe540fe10e51936426b88116"
+sha1 = "de60f2263851bbe10e5801ef8f6c357a4bc077e6"

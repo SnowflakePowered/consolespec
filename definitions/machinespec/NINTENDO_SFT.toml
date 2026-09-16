@@ -21,5 +21,6 @@ inputs = ["SNES_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "Sufami Turbo (Japan).sfc"
-md5 = ["d3a44ba7d42a74d3ac58cb9c14c6a5ca"]
+name = ["STBIOS.bin",  "Sufami Turbo (Japan).sfc"]
+md5 = "d3a44ba7d42a74d3ac58cb9c14c6a5ca"
+sha1 = "ef86ea192eed03d5c413fdbbfd46043be1d7a127"

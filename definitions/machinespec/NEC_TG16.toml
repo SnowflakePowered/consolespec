@@ -25,9 +25,35 @@ inputs = ["TG16_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "syscard3.pce"
-md5 = ["ff1a674273fe3540ccef576376407d1d", "38179df8f4ac870017db21ebcbf53114", "0754f903b52e3b3342202bdafb13efa5"]
+name = ["gecard.pce", "gexpress.pce"]
+md5 = "6d2cb14fc3e1f65ceb135633d1694122"
+sha1 = "014881a959e045e00f4db8f52955200865d40280"
 
 [[bios]]
-name = "gecard.pce"
-md5 = ["6d2cb14fc3e1f65ceb135633d1694122"]
+name = ["syscard1.pce"]
+md5 = "2b7ccb3d86baa18f6402c176f3065082"
+sha1 = "a39a66da7de6ba94ab84d04eef7afeec7d4ee66a"
+
+[[bios]]
+name = ["syscard2.pce"]
+md5 = "3cdd6614a918616bfc41c862e889dd79"
+sha1 = "88da02e2503f7c32810f5d93a34849d470742b6d"
+
+[[bios]]
+name = ["syscard2u.pce"]
+md5 = "94279f315e8b52904f65ab3108542afe"
+sha1 = "2bea3dac98f84b2f2f469fa77ea720b8770d598d"
+
+[[bios]]
+name = ["syscard3.pce"]
+md5 = "38179df8f4ac870017db21ebcbf53114"
+sha1 = "79f5ff55dd10187c7fd7b8daab0b3ffbd1f56a2c"
+
+[[bios]]
+name = ["syscard3u.pce", "syscard3.pce"]
+md5 = "0754f903b52e3b3342202bdafb13efa5"
+sha1 = "d02611d99921986147c753df14c7349b31d71950"
+
+[[bios]]
+name = ["syscard3.pce"]
+md5 = "ff1a674273fe3540ccef576376407d1d"

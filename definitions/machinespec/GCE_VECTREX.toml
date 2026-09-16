@@ -21,3 +21,8 @@ groups = ["controller"]
 [input.controller]
 inputs = ["VECTREX_CONTROLLER"]
 ports = 1
+
+[[bios]]
+name = ["Vectrex BIOS (1982)(GCE).bin"]
+md5 = "ba9260bb961d60e718378cc16a8051d7"
+sha1 = "b9bbf5bb0eac52d039a4a993a2d8064b862c9e28"

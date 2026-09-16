@@ -14,5 +14,16 @@ release-date = "1986-02-21"
 model-number = ["HVC-022", "HVC-023"]
 
 [[bios]]
-name = "disksys.rom"
-md5 = ["ca30b50f880eb660a320674ed365ef7a"]
+name = ["disksys.rom"]
+md5 = "ca30b50f880eb660a320674ed365ef7a"
+sha1 = "57fe1bdee955bb48d357e463ccbf129496930b62"
+
+[[bios]]
+name = ["gamegenie.nes"]
+md5 = "7f98d77d7a094ad7d069b74bd553ec98"
+sha1 = "f430a0d752a9fa0c7032db8131f9090d18f71779"
+
+[[bios]]
+name = ["Sharp Twin Famicom BIOS (198x)(Nintendo)(JP)(en).bin"]
+md5 = "c1a9e9415a6adde3c8563c622d4c9fce"
+sha1 = "e4e41472c454f928e53eb10e0509bf7d1146ecc1"

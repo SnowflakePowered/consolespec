@@ -26,12 +26,74 @@ inputs = ["DC_CONTROLLER"]
 ports = 4
 
 [[bios]]
-name = "dc_boot.bin"
-md5 = ["e10c53c2f8b90bab96ead2d368858623"]
+name = ["dc_boot.bin", "boot.bin"]
+md5 = "e10c53c2f8b90bab96ead2d368858623"
+sha1 = "8951d1bb219ab2ff8583033d2119c899cc81f18c"
 
 [[bios]]
-name = "dc_flash.bin"
-md5 = ["0a93f7940c455905bea6e392dfde92a4"]
+name = ["dc_flash.bin", "flash.bin"]
+md5 = "0a93f7940c455905bea6e392dfde92a4"
+sha1 = "94d44d7f9529ec1642ba3771ed3c5f756d5bc872"
+
+[[bios]]
+name = ["Sega Dreamcast BIOS v1.004 (1998)(Sega)(JP)(M6)[MPR-21068].bin"]
+md5 = "37c921eb47532cae8fb70e5d987ce91c"
+sha1 = "1ea132c0fbbf07ef76789eadc07908045c089bd6"
+
+[[bios]]
+name = ["Sega Dreamcast BIOS v1.01c (1999)(Sega)(EU)(M6)[MPR-21871].bin"]
+md5 = "6679bc5f3006b5bdb019b2781f537373"
+sha1 = "1ede8d5be49116a4c6f3fe0961175469537a0434"
+
+[[bios]]
+name = ["Sega Dreamcast BIOS v1.01d (1999)(Sega)(EU-JP-US)(M6)[h Treamcast].bin"]
+md5 = "583f96b3e255ed405abc5bdbad8635c0"
+sha1 = "e3f84705b183ffded0a349ac7f2ab00be2ab74ee"
+
+[[bios]]
+name = ["Sega Dreamcast BIOS v1.01d (1999)(Sega)(EU-JP-US)(M6)[tr zh][b HOLLY checksum].bin"]
+md5 = "a5c6a00818f97c5e3e91569ee22416dc"
+sha1 = "edc5d3d70a93c935703d26119b37731fd317d2bf"
+
+[[bios]]
+name = ["Sega Dreamcast BIOS v1.022 (2000)(Sega)(JP-US)(M6)[MPR-23588].bin"]
+md5 = "f2cd29d09f3e29984bcea22ab2e006fe"
+sha1 = "ba8bbb90fdb29525f24f17055dc2c7b2d7674437"
+
+[[bios]]
+name = ["Sega Dreamcast Development Box HKT-0120 BIOS v1.001 (1998)(Sega)(JP)(M6)[WinCE 1.0].bin"]
+md5 = "ebda7cc340692d679d7562ec68ba7963"
+sha1 = "ea7a3ae1de73683008dd795c252941a4fc81b42e"
+
+[[bios]]
+name = ["Sega Dreamcast Development Box HKT-0120 BIOS v1.011 (1999)(Sega)(EU-JP-US)(M6)[Katana R9-R11, WinCE 2.1].bin"]
+md5 = "eafca1eed2d7f76c487e940597c2a786"
+sha1 = "6bd18fb83f8fdb56f1941e079580e5dd672a6dad"
+
+[[bios]]
+name = ["Sega Dreamcast Development Box HKT-0120 Set5 Checker v0.41 (1998)(Sega).bin"]
+md5 = "f501a3a89e335404d047af17f1c9093b"
+sha1 = "dc1af1f1248ffa87d57bc5ef2ea41aac95ecfc5e"
+
+[[bios]]
+name = ["Sega Dreamcast FLASH (1998)(Sega)(JP).bin"]
+md5 = "7b4dfe4cf959bb85d9b4acee3dc10031"
+sha1 = "66fd8ee40b207ce03a5fd6abbc00d27bbd5f92bd"
+
+[[bios]]
+name = ["Sega Dreamcast FLASH (1998)(Sega)(JP)[h Treamcast].bin"]
+md5 = "767637c4a904fbde4602f2baea46bfa1"
+sha1 = "b027913a8c00d4edaef83c440dd6c59090b387f2"
+
+[[bios]]
+name = ["Sega Dreamcast FLASH (1999)(Sega)(EU).bin"]
+md5 = "23df18aa53c8b30784cd9a84e061d008"
+sha1 = "11e02433e13b793ec7ffe0ae2356750bb8a575b4"
+
+[[bios]]
+name = ["Sega Dreamcast FLASH (1999)(Sega)(US).bin"]
+md5 = "1f34c6206a6569387557f0a2f45e6e7e"
+sha1 = "24875ce85c011600e73b1c3fd2b341824cbf8544"
 
 [storage]
 devices = ["vmu"]

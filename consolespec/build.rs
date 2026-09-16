@@ -149,6 +149,8 @@ struct MachineDocument {
     storage: Option<StorageTable>,
     #[serde(default)]
     bios: Vec<Bios>,
+    #[serde(default)]
+    sysupdate: Vec<Bios>,
 }
 
 #[derive(Deserialize)]
@@ -246,13 +248,10 @@ const PACKED_NONE: u32 = 0x00ff_ffff;
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Bios {
-    name: String,
-    #[serde(default)]
-    md5: Vec<String>,
-    #[serde(default)]
-    sha1: Vec<String>,
-    #[serde(default)]
-    sha256: Vec<String>,
+    name: Vec<String>,
+    md5: Option<String>,
+    sha1: Option<String>,
+    sha256: Option<String>,
 }
 
 #[derive(Clone, Copy)]
@@ -307,6 +306,7 @@ struct Generator {
     storage: Vec<String>,
     partitions: Vec<String>,
     bios: Vec<String>,
+    sysupdates: Vec<String>,
     inputs: Vec<SpecEntry>,
     machines: Vec<SpecEntry>,
 }
@@ -345,6 +345,7 @@ impl Generator {
             storage: Vec::new(),
             partitions: Vec::new(),
             bios: Vec::new(),
+            sysupdates: Vec::new(),
             inputs: Vec::new(),
             machines: Vec::new(),
         }
@@ -1019,26 +1020,13 @@ impl Generator {
         }
         let storage = Self::push_codes(&mut self.storage, storage_codes);
 
-        let mut bios_codes = Vec::new();
-        for value in &document.bios {
-            validate_hashes(&identity.id, "MD5", &value.md5, 32)?;
-            validate_hashes(&identity.id, "SHA-1", &value.sha1, 40)?;
-            validate_hashes(&identity.id, "SHA-256", &value.sha256, 64)?;
-            let md5 = self.string_slice(value.md5.iter().map(String::as_str));
-            let sha1 = self.string_slice(value.sha1.iter().map(String::as_str));
-            let sha256 = self.string_slice(value.sha256.iter().map(String::as_str));
-            bios_codes.push(format!(
-                "BiosRecord {{ name: {}, md5: {}, sha1: {}, sha256: {} }}",
-                self.id_code(&value.name),
-                md5.code(),
-                sha1.code(),
-                sha256.code()
-            ));
-        }
+        let bios_codes = self.firmware_codes(&identity.id, &document.bios)?;
         let bios = Self::push_codes(&mut self.bios, bios_codes);
+        let sysupdate_codes = self.firmware_codes(&identity.id, &document.sysupdate)?;
+        let sysupdates = Self::push_codes(&mut self.sysupdates, sysupdate_codes);
 
         let code = format!(
-            "MachineRecord {{ id: {}, name: {}, dependencies: {}, short_name: {}, model_numbers: {}, licensor: {}, manufacturer: {}, kind: MachineKind::{}, regions: {}, groups: {}, accessories: {}, storage: {}, bios: {} }}",
+            "MachineRecord {{ id: {}, name: {}, dependencies: {}, short_name: {}, model_numbers: {}, licensor: {}, manufacturer: {}, kind: MachineKind::{}, regions: {}, groups: {}, accessories: {}, storage: {}, bios: {}, sysupdates: {} }}",
             self.id_code(&identity.id),
             self.id_code(&identity.name),
             dependencies.code(),
@@ -1051,7 +1039,8 @@ impl Generator {
             groups.code(),
             accessories.code(),
             storage.code(),
-            bios.code()
+            bios.code(),
+            sysupdates.code()
         );
         self.machines.push(SpecEntry {
             id: identity.id.clone(),
@@ -1059,6 +1048,24 @@ impl Generator {
             code,
         });
         Ok(())
+    }
+
+    fn firmware_codes(&mut self, machine_id: &str, values: &[Bios]) -> Result<Vec<String>, String> {
+        let mut codes = Vec::new();
+        for value in values {
+            validate_hashes(machine_id, "MD5", value.md5.iter(), 32)?;
+            validate_hashes(machine_id, "SHA-1", value.sha1.iter(), 40)?;
+            validate_hashes(machine_id, "SHA-256", value.sha256.iter(), 64)?;
+            let names = self.string_slice(value.name.iter().map(String::as_str));
+            codes.push(format!(
+                "FirmwareRecord {{ names: {}, md5: {}, sha1: {}, sha256: {} }}",
+                names.code(),
+                self.option_id(value.md5.as_deref()),
+                self.option_id(value.sha1.as_deref()),
+                self.option_id(value.sha256.as_deref())
+            ));
+        }
+        Ok(codes)
     }
 
     fn pack_partition_specs(&mut self, include_digests: bool) -> PackedPartitionSpecs {
@@ -1372,7 +1379,8 @@ impl Generator {
         }
         emit_codes(&mut code, "PARTITIONS", "PartitionRecord", &self.partitions);
         emit_codes(&mut code, "STORAGE", "StorageRecord", &self.storage);
-        emit_codes(&mut code, "BIOS", "BiosRecord", &self.bios);
+        emit_codes(&mut code, "BIOS", "FirmwareRecord", &self.bios);
+        emit_codes(&mut code, "SYSUPDATES", "FirmwareRecord", &self.sysupdates);
         emit_codes(
             &mut code,
             "INPUTS",
@@ -1560,10 +1568,10 @@ fn validate_filename(name: &str, id: &str) {
     );
 }
 
-fn validate_hashes(
+fn validate_hashes<'a>(
     machine: &str,
     kind: &str,
-    values: &[String],
+    values: impl IntoIterator<Item = &'a String>,
     length: usize,
 ) -> Result<(), String> {
     for value in values {

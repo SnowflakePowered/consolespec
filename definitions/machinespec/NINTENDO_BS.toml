@@ -20,5 +20,16 @@ inputs = ["SNES_CONTROLLER"]
 ports = 2
 
 [[bios]]
-name = "BS-X.bin"
-md5 = ["fed4d8242cfbed61343d53d48432aced"]
+name = ["BS-X.bin"]
+md5 = "fed4d8242cfbed61343d53d48432aced"
+sha1 = "604556b2e62860af18db5a77f2956ebc75450020"
+
+[[bios]]
+name = ["BS-X (En).bin"]
+md5 = "33b62505da6ca4525e3839db4e1a7bca"
+sha1 = "f3cdff70de5d0f5c52ca3a8f46588b863d48b8ec"
+
+[[bios]]
+name = ["BS-X (En) (DRM-Free).bin"]
+md5 = "4ed9648505ab33a4daec93707b16caba"
+sha1 = "7996bd1c01b99800e0d5d34beff93db283784864"

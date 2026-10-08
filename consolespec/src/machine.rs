@@ -13,9 +13,11 @@ use crate::{
 };
 #[cfg(feature = "partition-spec-digests")]
 use crate::{MD5_DIGESTS_OFFSET, SHA1_DIGESTS_OFFSET, SHA256_DIGESTS_OFFSET};
+use serde::ser::{Serialize, SerializeStruct, Serializer};
 use std::{fmt, str::FromStr};
 
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, serde::Serialize)]
+#[serde(rename_all = "camelCase")]
 pub enum MachineKind {
     Console,
     Handheld,
@@ -23,14 +25,16 @@ pub enum MachineKind {
     Arcade,
 }
 
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, serde::Serialize)]
+#[serde(rename_all = "camelCase")]
 pub enum Region {
     NorthAmerica,
     Europe,
     Japan,
 }
 
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, serde::Serialize)]
+#[serde(rename_all = "camelCase")]
 pub enum AccessoryClass {
     DisneyInfinity,
     Skylander,
@@ -499,3 +503,88 @@ macro_rules! firmware_accessors {
 
 firmware_accessors!(Bios);
 firmware_accessors!(SystemUpdate);
+
+impl Serialize for MachineSpec {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        let mut state = serializer.serialize_struct("MachineSpec", 14)?;
+        state.serialize_field("id", self.id())?;
+        state.serialize_field("name", self.name())?;
+        state.serialize_field("kind", &self.kind())?;
+        state.serialize_field("shortName", &self.short_name())?;
+        state.serialize_field("modelNumbers", &self.model_numbers().collect::<Vec<_>>())?;
+        state.serialize_field("licensor", &self.licensor())?;
+        state.serialize_field("manufacturer", &self.manufacturer())?;
+        state.serialize_field("dependencies", &self.dependencies().collect::<Vec<_>>())?;
+        state.serialize_field("regions", &self.regions().collect::<Vec<_>>())?;
+        state.serialize_field("inputGroups", &self.input_groups().collect::<Vec<_>>())?;
+        state.serialize_field("accessories", self.accessories())?;
+        state.serialize_field("storageDevices", &self.storage_devices().collect::<Vec<_>>())?;
+        state.serialize_field("bios", &self.bios().collect::<Vec<_>>())?;
+        state.serialize_field("sysupdates", &self.sysupdates().collect::<Vec<_>>())?;
+        state.end()
+    }
+}
+
+impl Serialize for RegionMetadata {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        let mut state = serializer.serialize_struct("RegionMetadata", 6)?;
+        state.serialize_field("region", &self.region())?;
+        state.serialize_field("name", &self.name())?;
+        state.serialize_field("englishName", &self.english_name())?;
+        state.serialize_field("shortName", &self.short_name())?;
+        state.serialize_field("modelNumbers", &self.model_numbers().collect::<Vec<_>>())?;
+        state.serialize_field("releaseDate", &self.release_date())?;
+        state.end()
+    }
+}
+
+impl Serialize for InputGroup {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        let mut state = serializer.serialize_struct("InputGroup", 4)?;
+        state.serialize_field("name", self.name())?;
+        state.serialize_field("inputs", &self.inputs().collect::<Vec<_>>())?;
+        state.serialize_field("ports", &self.ports())?;
+        state.serialize_field("isAccessoryGroup", &self.is_accessory_group())?;
+        state.end()
+    }
+}
+
+impl Serialize for StorageDevice {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        let mut state = serializer.serialize_struct("StorageDevice", 5)?;
+        state.serialize_field("id", self.id())?;
+        state.serialize_field("name", self.name())?;
+        state.serialize_field("isRaw", &self.is_raw())?;
+        state.serialize_field("isUserStorage", &self.is_user_storage())?;
+        state.serialize_field("partitions", &self.partitions().collect::<Vec<_>>())?;
+        state.end()
+    }
+}
+
+impl Serialize for Partition {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        let mut state = serializer.serialize_struct("Partition", 3)?;
+        state.serialize_field("id", self.id())?;
+        state.serialize_field("name", self.name())?;
+        state.serialize_field("isUserData", &self.is_user_data())?;
+        state.end()
+    }
+}
+
+macro_rules! firmware_serialize {
+    ($kind:ident) => {
+        impl Serialize for $kind {
+            fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+                let mut state = serializer.serialize_struct(stringify!($kind), 4)?;
+                state.serialize_field("names", &self.names().collect::<Vec<_>>())?;
+                state.serialize_field("md5", &self.md5())?;
+                state.serialize_field("sha1", &self.sha1())?;
+                state.serialize_field("sha256", &self.sha256())?;
+                state.end()
+            }
+        }
+    };
+}
+
+firmware_serialize!(Bios);
+firmware_serialize!(SystemUpdate);
